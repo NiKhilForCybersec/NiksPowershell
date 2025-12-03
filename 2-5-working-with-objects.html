@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.5 Working with Objects - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link active"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Working with Objects</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.5 Working with Objects</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Understand PowerShell's object-based approach</li>
+                        <li>Explore objects with Get-Member and properties</li>
+                        <li>Create custom objects for reporting</li>
+                        <li>Use Select-Object, Where-Object, and Sort-Object effectively</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Everything is an Object</h2>
+                <p>
+                    Unlike traditional shells that pass text between commands, PowerShell passes 
+                    <strong>objects</strong>. This is PowerShell's most important concept. Objects 
+                    have properties (data) and methods (actions), making them far more powerful 
+                    than simple text strings.
+                </p>
+
+                <!-- Object Diagram -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Objects vs Text</div>
+<pre>
+Traditional Shell (Bash):                PowerShell:
+┌─────────────────────────┐             ┌─────────────────────────┐
+│    TEXT OUTPUT          │             │    OBJECT OUTPUT        │
+│                         │             │                         │
+│ "nginx   1234  0.5%"    │             │ Process Object {        │
+│                         │             │   Name = "nginx"        │
+│ Must PARSE text to      │             │   Id = 1234             │
+│ extract data            │             │   CPU = 0.5             │
+│                         │             │   StartTime = DateTime  │
+│ grep, awk, sed, cut     │             │   Path = "C:\..."       │
+│                         │             │   Methods: Kill(), ...  │
+└─────────────────────────┘             │ }                       │
+                                        └─────────────────────────┘
+                                        
+                                        Access directly:
+                                        $process.Name → "nginx"
+                                        $process.Kill() → Stops it
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Key Object Commands</div>
+                    </div>
+                    <ul>
+                        <li><strong>Get-Member (gm)</strong> → Discover properties and methods</li>
+                        <li><strong>Select-Object</strong> → Choose which properties to display</li>
+                        <li><strong>Where-Object</strong> → Filter objects by criteria</li>
+                        <li><strong>Sort-Object</strong> → Order objects by property</li>
+                        <li><strong>ForEach-Object</strong> → Process each object</li>
+                        <li><strong>Measure-Object</strong> → Calculate statistics</li>
+                    </ul>
+                </div>
+
+                <!-- Exploring Objects -->
+                <h2>Exploring Objects with Get-Member</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Get-Member
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># What type of object does Get-Process return?</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Get-Member</span>
+<span class="token-comment"># TypeName: System.Diagnostics.Process</span>
+
+<span class="token-comment"># Show only properties</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Get-Member</span> <span class="token-parameter">-MemberType</span> Property
+
+<span class="token-comment"># Show only methods</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Get-Member</span> <span class="token-parameter">-MemberType</span> Method
+
+<span class="token-comment"># Common alias: gm</span>
+<span class="token-cmdlet">Get-Service</span> | gm
+
+<span class="token-comment"># See all properties of a specific object</span>
+<span class="token-variable">$Process</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Name</span> <span class="token-string">"explorer"</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">1</span>
+<span class="token-variable">$Process</span> | <span class="token-cmdlet">Format-List</span> *
+
+<span class="token-comment"># Get object type</span>
+<span class="token-variable">$Process</span>.GetType()
+<span class="token-variable">$Process</span>.GetType().FullName  <span class="token-comment"># System.Diagnostics.Process</span>
+
+<span class="token-comment"># Check what's available on services</span>
+<span class="token-cmdlet">Get-Service</span> <span class="token-string">"WinRM"</span> | <span class="token-cmdlet">Get-Member</span>
+
+<span class="token-comment"># See methods you can call</span>
+<span class="token-cmdlet">Get-Service</span> <span class="token-string">"Spooler"</span> | <span class="token-cmdlet">Get-Member</span> <span class="token-parameter">-MemberType</span> Method
+<span class="token-comment"># Start(), Stop(), Pause(), Refresh()...</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Accessing Properties -->
+                <h2>Accessing Properties</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Property Access
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Dot notation for properties</span>
+<span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-string">"WinRM"</span>
+<span class="token-variable">$Service</span>.Name          <span class="token-comment"># WinRM</span>
+<span class="token-variable">$Service</span>.Status        <span class="token-comment"># Running</span>
+<span class="token-variable">$Service</span>.StartType     <span class="token-comment"># Automatic</span>
+<span class="token-variable">$Service</span>.DisplayName   <span class="token-comment"># Windows Remote Management (WS-Management)</span>
+
+<span class="token-comment"># Access property on collection (PS 3+)</span>
+(<span class="token-cmdlet">Get-Process</span>).Name           <span class="token-comment"># All process names</span>
+(<span class="token-cmdlet">Get-Service</span>).Status         <span class="token-comment"># All service statuses</span>
+
+<span class="token-comment"># Dynamic property access with variable</span>
+<span class="token-variable">$PropertyName</span> = <span class="token-string">"Status"</span>
+<span class="token-variable">$Service</span>.<span class="token-variable">$PropertyName</span>       <span class="token-comment"># Running</span>
+
+<span class="token-comment"># Nested properties</span>
+<span class="token-variable">$Process</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-string">"explorer"</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">1</span>
+<span class="token-variable">$Process</span>.StartTime.DayOfWeek
+<span class="token-variable">$Process</span>.Modules.Count
+
+<span class="token-comment"># Check if property exists</span>
+<span class="token-variable">$Process</span>.PSObject.Properties.Name <span class="token-operator">-contains</span> <span class="token-string">'CPU'</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Select-Object -->
+                <h2>Select-Object - Choosing Properties</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Select-Object
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Select specific properties</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> Name, Id, CPU
+
+<span class="token-comment"># First/Last N objects</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">5</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-Last</span> <span class="token-number">3</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-Skip</span> <span class="token-number">10</span> <span class="token-parameter">-First</span> <span class="token-number">5</span>
+
+<span class="token-comment"># Unique values</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> Name <span class="token-parameter">-Unique</span>
+
+<span class="token-comment"># Exclude properties</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> * <span class="token-parameter">-ExcludeProperty</span> Modules, Threads
+
+<span class="token-comment"># Calculated properties (custom columns)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> Name, 
+    @{Name=<span class="token-string">'Memory(MB)'</span>; Expression={[math]::Round(<span class="token-variable">$_</span>.WorkingSet64 / 1MB, <span class="token-number">2</span>)}},
+    @{N=<span class="token-string">'CPU(s)'</span>; E={[math]::Round(<span class="token-variable">$_</span>.CPU, <span class="token-number">2</span>)}}
+
+<span class="token-comment"># Rename property</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'ServiceName'</span>;E={<span class="token-variable">$_</span>.Name}}, Status
+
+<span class="token-comment"># ExpandProperty - get raw value instead of object</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-ExpandProperty</span> Name
+<span class="token-comment"># vs</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> Name  <span class="token-comment"># Returns objects with Name property</span>
+
+<span class="token-comment"># Common alias: select</span>
+<span class="token-cmdlet">Get-Process</span> | select Name, CPU <span class="token-parameter">-First</span> <span class="token-number">5</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Where-Object -->
+                <h2>Where-Object - Filtering</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Where-Object
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Filter by property value</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>
+
+<span class="token-comment"># Script block syntax (more flexible)</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span> }
+
+<span class="token-comment"># Multiple conditions</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.CPU <span class="token-operator">-gt</span> <span class="token-number">10</span> <span class="token-operator">-and</span> <span class="token-variable">$_</span>.WorkingSet64 <span class="token-operator">-gt</span> <span class="token-number">100MB</span> }
+
+<span class="token-comment"># Or conditions</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Name <span class="token-operator">-eq</span> <span class="token-string">'WinRM'</span> <span class="token-operator">-or</span> <span class="token-variable">$_</span>.Name <span class="token-operator">-eq</span> <span class="token-string">'Spooler'</span> }
+
+<span class="token-comment"># Pattern matching</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-like</span> <span class="token-string">'Win*'</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-match</span> <span class="token-string">'^Win'</span>
+
+<span class="token-comment"># Not equal / Not like</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-ne</span> <span class="token-string">'svchost'</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-notlike</span> <span class="token-string">'*Update*'</span>
+
+<span class="token-comment"># In / NotIn array</span>
+<span class="token-variable">$CriticalServices</span> = @(<span class="token-string">'WinRM'</span>, <span class="token-string">'W32Time'</span>, <span class="token-string">'Netlogon'</span>)
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-in</span> <span class="token-variable">$CriticalServices</span>
+
+<span class="token-comment"># Comparison operators: -gt -lt -ge -le -eq -ne</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Handles <span class="token-operator">-ge</span> <span class="token-number">1000</span> }
+
+<span class="token-comment"># Common alias: where, ?</span>
+<span class="token-cmdlet">Get-Process</span> | ? CPU <span class="token-operator">-gt</span> <span class="token-number">5</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Sort-Object -->
+                <h2>Sort-Object - Ordering</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Sort-Object
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Sort ascending (default)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> CPU
+
+<span class="token-comment"># Sort descending</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> CPU <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Sort by multiple properties</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> Name, CPU <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Sort with different directions per property</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> @{Expression=<span class="token-string">'Name'</span>;Ascending=<span class="token-variable">$true</span>}, 
+                           @{Expression=<span class="token-string">'CPU'</span>;Descending=<span class="token-variable">$true</span>}
+
+<span class="token-comment"># Top 10 by CPU</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> CPU <span class="token-parameter">-Descending</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">10</span>
+
+<span class="token-comment"># Unique values only</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> Name <span class="token-parameter">-Unique</span>
+
+<span class="token-comment"># Case-sensitive sort</span>
+<span class="token-string">'Apple'</span>, <span class="token-string">'apple'</span>, <span class="token-string">'Banana'</span> | <span class="token-cmdlet">Sort-Object</span> <span class="token-parameter">-CaseSensitive</span>
+
+<span class="token-comment"># Sort by calculated property</span>
+<span class="token-cmdlet">Get-ChildItem</span> | <span class="token-cmdlet">Sort-Object</span> { <span class="token-variable">$_</span>.Length / <span class="token-number">1KB</span> } <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Common alias: sort</span>
+<span class="token-cmdlet">Get-Process</span> | sort CPU <span class="token-parameter">-desc</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Creating Custom Objects -->
+                <h2>Creating Custom Objects</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Custom Objects
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Method 1: [PSCustomObject] (preferred, PS 3+)</span>
+<span class="token-variable">$Server</span> = [PSCustomObject]@{
+    Name = <span class="token-string">'Server01'</span>
+    IP = <span class="token-string">'192.168.1.10'</span>
+    Status = <span class="token-string">'Online'</span>
+    LastCheck = Get-Date
+}
+
+<span class="token-comment"># Method 2: New-Object with Add-Member</span>
+<span class="token-variable">$Server</span> = <span class="token-cmdlet">New-Object</span> PSObject
+<span class="token-variable">$Server</span> | <span class="token-cmdlet">Add-Member</span> <span class="token-parameter">-NotePropertyName</span> <span class="token-string">'Name'</span> <span class="token-parameter">-NotePropertyValue</span> <span class="token-string">'Server01'</span>
+<span class="token-variable">$Server</span> | <span class="token-cmdlet">Add-Member</span> <span class="token-parameter">-NotePropertyName</span> <span class="token-string">'IP'</span> <span class="token-parameter">-NotePropertyValue</span> <span class="token-string">'192.168.1.10'</span>
+
+<span class="token-comment"># Creating collection of objects</span>
+<span class="token-variable">$Servers</span> = @(
+    [PSCustomObject]@{ Name = <span class="token-string">'Server01'</span>; Role = <span class="token-string">'Web'</span>; Status = <span class="token-string">'Online'</span> }
+    [PSCustomObject]@{ Name = <span class="token-string">'Server02'</span>; Role = <span class="token-string">'DB'</span>; Status = <span class="token-string">'Online'</span> }
+    [PSCustomObject]@{ Name = <span class="token-string">'Server03'</span>; Role = <span class="token-string">'App'</span>; Status = <span class="token-string">'Offline'</span> }
+)
+
+<span class="token-comment"># Build objects in loop</span>
+<span class="token-variable">$Results</span> = <span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    [PSCustomObject]@{
+        ProcessName = <span class="token-variable">$_</span>.Name
+        PID = <span class="token-variable">$_</span>.Id
+        <span class="token-string">'Memory(MB)'</span> = [math]::Round(<span class="token-variable">$_</span>.WorkingSet64 / <span class="token-number">1MB</span>, <span class="token-number">2</span>)
+        <span class="token-string">'CPU(s)'</span> = [math]::Round(<span class="token-variable">$_</span>.CPU, <span class="token-number">2</span>)
+        Running = <span class="token-variable">$_</span>.Responding
+    }
+}
+
+<span class="token-comment"># Security report example</span>
+<span class="token-variable">$SecurityReport</span> = <span class="token-cmdlet">Get-EventLog</span> <span class="token-parameter">-LogName</span> Security <span class="token-parameter">-Newest</span> <span class="token-number">100</span> |
+    <span class="token-cmdlet">Group-Object</span> EventID |
+    <span class="token-cmdlet">ForEach-Object</span> {
+        [PSCustomObject]@{
+            EventID = <span class="token-variable">$_</span>.Name
+            Count = <span class="token-variable">$_</span>.Count
+            Description = (<span class="token-variable">$_</span>.Group | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">1</span>).Message.Split(<span class="token-string">'.'</span>)[<span class="token-number">0</span>]
+        }
+    } | <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Measure and Group -->
+                <h2>Measure-Object and Group-Object</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Aggregation
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Measure-Object - statistics</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Measure-Object</span>                          <span class="token-comment"># Count</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Measure-Object</span> <span class="token-parameter">-Property</span> CPU <span class="token-parameter">-Sum</span>       <span class="token-comment"># Sum</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Measure-Object</span> <span class="token-parameter">-Property</span> CPU <span class="token-parameter">-Average</span>   <span class="token-comment"># Average</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Measure-Object</span> CPU <span class="token-parameter">-Sum</span> <span class="token-parameter">-Average</span> <span class="token-parameter">-Maximum</span> <span class="token-parameter">-Minimum</span>
+
+<span class="token-comment"># File sizes</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Recurse</span> | <span class="token-cmdlet">Measure-Object</span> <span class="token-parameter">-Property</span> Length <span class="token-parameter">-Sum</span>
+
+<span class="token-comment"># Group-Object - categorize</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Group-Object</span> Status
+
+<span class="token-comment"># Group and count</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Group-Object</span> Name | 
+    <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span> | 
+    <span class="token-cmdlet">Select-Object</span> Name, Count <span class="token-parameter">-First</span> <span class="token-number">10</span>
+
+<span class="token-comment"># Group events by source</span>
+<span class="token-cmdlet">Get-EventLog</span> System <span class="token-parameter">-Newest</span> <span class="token-number">500</span> | 
+    <span class="token-cmdlet">Group-Object</span> Source | 
+    <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Group as hashtable for quick lookup</span>
+<span class="token-variable">$ServicesByStatus</span> = <span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Group-Object</span> Status <span class="token-parameter">-AsHashTable</span>
+<span class="token-variable">$ServicesByStatus</span>[<span class="token-string">'Running'</span>].Count
+
+<span class="token-comment"># No element (just count)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Group-Object</span> Name <span class="token-parameter">-NoElement</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Working with Objects</div>
+                    </div>
+                    <ul>
+                        <li><strong>Always explore with Get-Member:</strong> Discover available properties/methods</li>
+                        <li><strong>Filter early:</strong> Use Where-Object before expensive operations</li>
+                        <li><strong>Select only needed properties:</strong> Reduces memory and improves speed</li>
+                        <li><strong>Use [PSCustomObject] for reports:</strong> Clean, exportable output</li>
+                        <li><strong>Avoid text parsing:</strong> Access properties directly instead</li>
+                        <li><strong>Use -ExpandProperty for single values:</strong> Get raw value, not object</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How is PowerShell different from Bash?"</li>
+                        <li><strong>Strong Answer:</strong> PowerShell passes objects between commands, not text. This means you can access properties directly (<code>$process.Name</code>) instead of parsing text with grep/awk. Use <code>Get-Member</code> to discover what properties and methods are available on any object.</li>
+                        <li><strong>Follow-up:</strong> Mention that calculated properties in Select-Object let you transform data on the fly, and PSCustomObject creates clean reports.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>PowerShell passes objects, not text—access properties directly</li>
+                    <li>Use <code>Get-Member</code> to explore any object's properties and methods</li>
+                    <li><code>Select-Object</code> chooses properties, <code>Where-Object</code> filters</li>
+                    <li><code>[PSCustomObject]</code> creates clean, exportable reports</li>
+                    <li>Calculated properties transform data inline: <code>@{N='Name';E={expression}}</code></li>
+                    <li><code>Measure-Object</code> and <code>Group-Object</code> aggregate data</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-4-variables-datatypes.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.4 Variables & Data Types</span>
+                    </a>
+                    <a href="2-6-control-structures.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.6 Control Structures →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.16 Active Directory - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link active"><span class="nav-link-number">2.16</span> Active Directory</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Active Directory</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.16 Active Directory</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Query and manage AD users, groups, and computers</li>
+                        <li>Security auditing: stale accounts, privileged access, permissions</li>
+                        <li>Detect potential compromise indicators in AD</li>
+                        <li>Automate user lifecycle and compliance reporting</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Active Directory Security with PowerShell</h2>
+                <p>
+                    Active Directory is the backbone of enterprise identity management—and a prime 
+                    target for attackers. PowerShell's AD module provides powerful capabilities for 
+                    security auditing, threat detection, and compliance monitoring.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: AD Security Priorities</div>
+                    </div>
+                    <ul>
+                        <li><strong>P</strong>rivileged Access → Monitor Domain Admins, Enterprise Admins</li>
+                        <li><strong>S</strong>tale Accounts → Disabled accounts, no recent logon</li>
+                        <li><strong>S</strong>ervice Accounts → SPNs, Kerberoasting targets</li>
+                        <li><strong>P</strong>assword Hygiene → Never expire, old passwords</li>
+                        <li><strong>D</strong>elegation → Unconstrained delegation risks</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Remember: "PS SPD" - the AD security checklist!</em>
+                    </p>
+                </div>
+
+                <!-- Module Setup -->
+                <h2>Setting Up the AD Module</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - AD Module Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check if AD module is available</span>
+<span class="token-cmdlet">Get-Module</span> <span class="token-parameter">-ListAvailable</span> ActiveDirectory
+
+<span class="token-comment"># Import the module</span>
+<span class="token-cmdlet">Import-Module</span> ActiveDirectory
+
+<span class="token-comment"># Install RSAT tools on Windows 10/11 (requires admin)</span>
+Add-WindowsCapability <span class="token-parameter">-Online</span> <span class="token-parameter">-Name</span> Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0
+
+<span class="token-comment"># Verify domain connectivity</span>
+<span class="token-cmdlet">Get-ADDomain</span>
+<span class="token-cmdlet">Get-ADForest</span>
+
+<span class="token-comment"># Find domain controllers</span>
+<span class="token-cmdlet">Get-ADDomainController</span> <span class="token-parameter">-Filter</span> *</code></pre>
+                    </div>
+                </div>
+
+                <!-- User Queries -->
+                <h2>User Account Auditing</h2>
+
+                <h3>Basic User Queries</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - User Queries
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Get all users with specific properties</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> * <span class="token-parameter">-Properties</span> DisplayName, EmailAddress, LastLogonDate, Enabled |
+    <span class="token-cmdlet">Select-Object</span> Name, DisplayName, EmailAddress, LastLogonDate, Enabled
+
+<span class="token-comment"># Find user by name (wildcards supported)</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> <span class="token-string">"Name -like '*smith*'"</span>
+
+<span class="token-comment"># Find user by email</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> <span class="token-string">"EmailAddress -eq 'john.smith@company.com'"</span>
+
+<span class="token-comment"># Get specific user with all properties</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Identity</span> <span class="token-string">"jsmith"</span> <span class="token-parameter">-Properties</span> *
+
+<span class="token-comment"># Users in specific OU</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> * <span class="token-parameter">-SearchBase</span> <span class="token-string">"OU=Employees,DC=company,DC=com"</span>
+
+<span class="token-comment"># Count users by department</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> * <span class="token-parameter">-Properties</span> Department | 
+    <span class="token-cmdlet">Group-Object</span> Department | 
+    <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Security-Focused User Audits</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security User Audits
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Stale accounts - no login in 90 days</span>
+<span class="token-variable">$StaleDate</span> = (Get-Date).AddDays(-90)
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {LastLogonDate <span class="token-operator">-lt</span> <span class="token-variable">$StaleDate</span> <span class="token-operator">-and</span> Enabled <span class="token-operator">-eq</span> <span class="token-variable">$true</span>} <span class="token-parameter">-Properties</span> LastLogonDate |
+    <span class="token-cmdlet">Select-Object</span> Name, SamAccountName, LastLogonDate
+
+<span class="token-comment"># Accounts with password never expires (security risk)</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {PasswordNeverExpires <span class="token-operator">-eq</span> <span class="token-variable">$true</span> <span class="token-operator">-and</span> Enabled <span class="token-operator">-eq</span> <span class="token-variable">$true</span>} <span class="token-parameter">-Properties</span> PasswordNeverExpires |
+    <span class="token-cmdlet">Select-Object</span> Name, SamAccountName
+
+<span class="token-comment"># Accounts with password not required (critical risk)</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {PasswordNotRequired <span class="token-operator">-eq</span> <span class="token-variable">$true</span>} |
+    <span class="token-cmdlet">Select-Object</span> Name, SamAccountName, Enabled
+
+<span class="token-comment"># Recently created accounts (last 7 days)</span>
+<span class="token-variable">$RecentDate</span> = (Get-Date).AddDays(-7)
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {whenCreated <span class="token-operator">-gt</span> <span class="token-variable">$RecentDate</span>} <span class="token-parameter">-Properties</span> whenCreated |
+    <span class="token-cmdlet">Select-Object</span> Name, SamAccountName, whenCreated |
+    <span class="token-cmdlet">Sort-Object</span> whenCreated <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Accounts that can use reversible encryption (security risk)</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {AllowReversiblePasswordEncryption <span class="token-operator">-eq</span> <span class="token-variable">$true</span>}
+
+<span class="token-comment"># Locked out accounts</span>
+<span class="token-cmdlet">Search-ADAccount</span> <span class="token-parameter">-LockedOut</span> | <span class="token-cmdlet">Select-Object</span> Name, SamAccountName, LockedOut</code></pre>
+                    </div>
+                </div>
+
+                <!-- Privileged Access -->
+                <h2>Privileged Access Auditing</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Privileged Access Audit
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-PrivilegedUsers</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Audits all privileged group memberships in Active Directory.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>()
+    
+    <span class="token-comment"># High-value groups to audit</span>
+    <span class="token-variable">$PrivilegedGroups</span> = @(
+        <span class="token-string">'Domain Admins'</span>,
+        <span class="token-string">'Enterprise Admins'</span>,
+        <span class="token-string">'Schema Admins'</span>,
+        <span class="token-string">'Administrators'</span>,
+        <span class="token-string">'Account Operators'</span>,
+        <span class="token-string">'Backup Operators'</span>,
+        <span class="token-string">'Server Operators'</span>,
+        <span class="token-string">'Print Operators'</span>,
+        <span class="token-string">'DnsAdmins'</span>,
+        <span class="token-string">'Group Policy Creator Owners'</span>
+    )
+    
+    <span class="token-variable">$Results</span> = <span class="token-keyword">foreach</span> (<span class="token-variable">$Group</span> <span class="token-keyword">in</span> <span class="token-variable">$PrivilegedGroups</span>) {
+        <span class="token-keyword">try</span> {
+            <span class="token-variable">$Members</span> = <span class="token-cmdlet">Get-ADGroupMember</span> <span class="token-parameter">-Identity</span> <span class="token-variable">$Group</span> <span class="token-parameter">-Recursive</span> -ErrorAction Stop
+            
+            <span class="token-keyword">foreach</span> (<span class="token-variable">$Member</span> <span class="token-keyword">in</span> <span class="token-variable">$Members</span>) {
+                <span class="token-keyword">if</span> (<span class="token-variable">$Member</span>.objectClass <span class="token-operator">-eq</span> <span class="token-string">'user'</span>) {
+                    <span class="token-variable">$User</span> = <span class="token-cmdlet">Get-ADUser</span> <span class="token-variable">$Member</span> <span class="token-parameter">-Properties</span> LastLogonDate, Enabled, Description
+                    [PSCustomObject]@{
+                        GroupName = <span class="token-variable">$Group</span>
+                        UserName = <span class="token-variable">$User</span>.Name
+                        SamAccountName = <span class="token-variable">$User</span>.SamAccountName
+                        Enabled = <span class="token-variable">$User</span>.Enabled
+                        LastLogon = <span class="token-variable">$User</span>.LastLogonDate
+                        Description = <span class="token-variable">$User</span>.Description
+                    }
+                }
+            }
+        }
+        <span class="token-keyword">catch</span> {
+            Write-Warning <span class="token-string">"Could not query group: $Group"</span>
+        }
+    }
+    
+    <span class="token-variable">$Results</span> | <span class="token-cmdlet">Sort-Object</span> GroupName, UserName
+}
+
+<span class="token-comment"># Run audit</span>
+<span class="token-variable">$PrivilegedAudit</span> = Get-PrivilegedUsers
+<span class="token-variable">$PrivilegedAudit</span> | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+
+<span class="token-comment"># Export to CSV</span>
+<span class="token-variable">$PrivilegedAudit</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"PrivilegedUsers_$(Get-Date -f yyyyMMdd).csv"</span> <span class="token-parameter">-NoTypeInformation</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Service Accounts and SPNs -->
+                <h2>Service Accounts and Kerberoasting</h2>
+
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Security Alert: Kerberoasting Risk</div>
+                    </div>
+                    <p>
+                        Accounts with Service Principal Names (SPNs) are vulnerable to Kerberoasting attacks. 
+                        Any authenticated user can request service tickets for these accounts, then crack 
+                        them offline. Regular auditing of SPNs is critical.
+                    </p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - SPN and Service Account Audit
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-KerberoastableAccounts</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Finds user accounts with SPNs (Kerberoasting targets).
+    #&gt;</span>
+    
+    <span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {ServicePrincipalName <span class="token-operator">-ne</span> <span class="token-string">"$null"</span>} <span class="token-parameter">-Properties</span> ServicePrincipalName, 
+        PasswordLastSet, LastLogonDate, Enabled, Description, AdminCount |
+    <span class="token-cmdlet">Select-Object</span> Name, SamAccountName, Enabled,
+        @{N=<span class="token-string">'SPNs'</span>;E={<span class="token-variable">$_</span>.ServicePrincipalName -join <span class="token-string">'; '</span>}},
+        @{N=<span class="token-string">'PasswordAge'</span>;E={(New-TimeSpan <span class="token-variable">$_</span>.PasswordLastSet (Get-Date)).Days}},
+        PasswordLastSet, LastLogonDate,
+        @{N=<span class="token-string">'IsPrivileged'</span>;E={<span class="token-variable">$_</span>.AdminCount <span class="token-operator">-eq</span> 1}},
+        Description
+}
+
+<span class="token-comment"># Find Kerberoastable accounts</span>
+<span class="token-variable">$Kerberoastable</span> = Get-KerberoastableAccounts
+Write-Host <span class="token-string">"Found $($Kerberoastable.Count) accounts with SPNs"</span> -ForegroundColor Yellow
+
+<span class="token-comment"># High-risk: privileged accounts with SPNs</span>
+<span class="token-variable">$HighRisk</span> = <span class="token-variable">$Kerberoastable</span> | <span class="token-cmdlet">Where-Object</span> IsPrivileged <span class="token-operator">-eq</span> <span class="token-variable">$true</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$HighRisk</span>) {
+    Write-Host <span class="token-string">"[!] CRITICAL: $($HighRisk.Count) privileged accounts have SPNs!"</span> -ForegroundColor Red
+    <span class="token-variable">$HighRisk</span> | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+}
+
+<span class="token-comment"># Accounts with old passwords (easier to crack)</span>
+<span class="token-variable">$OldPasswords</span> = <span class="token-variable">$Kerberoastable</span> | <span class="token-cmdlet">Where-Object</span> PasswordAge <span class="token-operator">-gt</span> <span class="token-number">365</span>
+Write-Host <span class="token-string">"Accounts with passwords older than 1 year: $($OldPasswords.Count)"</span>
+
+<span class="token-comment"># List all SPNs in domain</span>
+<span class="token-cmdlet">Get-ADObject</span> <span class="token-parameter">-Filter</span> {ServicePrincipalName <span class="token-operator">-ne</span> <span class="token-string">"$null"</span>} <span class="token-parameter">-Properties</span> ServicePrincipalName |
+    <span class="token-cmdlet">Select-Object</span> Name, @{N=<span class="token-string">'SPN'</span>;E={<span class="token-variable">$_</span>.ServicePrincipalName}}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Delegation Audit -->
+                <h2>Delegation Security Audit</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Delegation Audit
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-DelegationRisks</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Identifies accounts with dangerous delegation settings.
+    #&gt;</span>
+    
+    Write-Host <span class="token-string">"`n=== Unconstrained Delegation (HIGH RISK) ==="</span> -ForegroundColor Red
+    <span class="token-comment"># Computers with unconstrained delegation</span>
+    <span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> {TrustedForDelegation <span class="token-operator">-eq</span> <span class="token-variable">$true</span>} <span class="token-parameter">-Properties</span> TrustedForDelegation |
+        <span class="token-cmdlet">Select-Object</span> Name, DNSHostName, TrustedForDelegation
+    
+    <span class="token-comment"># Users with unconstrained delegation</span>
+    <span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {TrustedForDelegation <span class="token-operator">-eq</span> <span class="token-variable">$true</span>} <span class="token-parameter">-Properties</span> TrustedForDelegation |
+        <span class="token-cmdlet">Select-Object</span> Name, SamAccountName, TrustedForDelegation
+    
+    Write-Host <span class="token-string">"`n=== Constrained Delegation ==="</span> -ForegroundColor Yellow
+    <span class="token-comment"># Accounts with constrained delegation</span>
+    <span class="token-cmdlet">Get-ADObject</span> <span class="token-parameter">-Filter</span> {msDS-AllowedToDelegateTo <span class="token-operator">-ne</span> <span class="token-string">"$null"</span>} <span class="token-parameter">-Properties</span> msDS-AllowedToDelegateTo |
+        <span class="token-cmdlet">Select-Object</span> Name, ObjectClass, @{N=<span class="token-string">'DelegateTo'</span>;E={<span class="token-variable">$_</span>.<span class="token-string">'msDS-AllowedToDelegateTo'</span> -join <span class="token-string">', '</span>}}
+    
+    Write-Host <span class="token-string">"`n=== Resource-Based Constrained Delegation ==="</span> -ForegroundColor Cyan
+    <span class="token-comment"># RBCD - check for unexpected entries</span>
+    <span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> {msDS-AllowedToActOnBehalfOfOtherIdentity <span class="token-operator">-ne</span> <span class="token-string">"$null"</span>} <span class="token-parameter">-Properties</span> msDS-AllowedToActOnBehalfOfOtherIdentity |
+        <span class="token-cmdlet">ForEach-Object</span> {
+            <span class="token-variable">$SD</span> = <span class="token-variable">$_</span>.<span class="token-string">'msDS-AllowedToActOnBehalfOfOtherIdentity'</span>
+            [PSCustomObject]@{
+                Computer = <span class="token-variable">$_</span>.Name
+                AllowedPrincipals = (<span class="token-variable">$SD</span>.Access | <span class="token-cmdlet">ForEach-Object</span> { <span class="token-variable">$_</span>.IdentityReference }) -join <span class="token-string">', '</span>
+            }
+        }
+}
+
+<span class="token-comment"># Accounts that don't require pre-authentication (AS-REP roasting)</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-ASREPRoastableAccounts</span> {
+    <span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {DoesNotRequirePreAuth <span class="token-operator">-eq</span> <span class="token-variable">$true</span>} <span class="token-parameter">-Properties</span> DoesNotRequirePreAuth |
+        <span class="token-cmdlet">Select-Object</span> Name, SamAccountName, Enabled
+}
+
+Write-Host <span class="token-string">"=== AS-REP Roastable Accounts ==="</span> -ForegroundColor Magenta
+Get-ASREPRoastableAccounts</code></pre>
+                    </div>
+                </div>
+
+                <!-- Computer Accounts -->
+                <h2>Computer Account Auditing</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Computer Account Audit
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Stale computer accounts (no login in 90 days)</span>
+<span class="token-variable">$StaleDate</span> = (Get-Date).AddDays(-90)
+<span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> {LastLogonDate <span class="token-operator">-lt</span> <span class="token-variable">$StaleDate</span>} <span class="token-parameter">-Properties</span> LastLogonDate, OperatingSystem |
+    <span class="token-cmdlet">Select-Object</span> Name, LastLogonDate, OperatingSystem |
+    <span class="token-cmdlet">Sort-Object</span> LastLogonDate
+
+<span class="token-comment"># Computers by operating system</span>
+<span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> * <span class="token-parameter">-Properties</span> OperatingSystem |
+    <span class="token-cmdlet">Group-Object</span> OperatingSystem |
+    <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span> |
+    <span class="token-cmdlet">Select-Object</span> Count, Name
+
+<span class="token-comment"># Find domain controllers</span>
+<span class="token-cmdlet">Get-ADDomainController</span> <span class="token-parameter">-Filter</span> * | 
+    <span class="token-cmdlet">Select-Object</span> Name, IPv4Address, Site, OperatingSystem, IsGlobalCatalog
+
+<span class="token-comment"># Computers with outdated OS (security risk)</span>
+<span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> * <span class="token-parameter">-Properties</span> OperatingSystem |
+    <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.OperatingSystem <span class="token-operator">-match</span> <span class="token-string">'Windows (7|XP|2008|2003)'</span> } |
+    <span class="token-cmdlet">Select-Object</span> Name, OperatingSystem</code></pre>
+                    </div>
+                </div>
+
+                <!-- Group Policy Objects -->
+                <h2>Group Policy Auditing</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - GPO Security Audit
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Import GroupPolicy module</span>
+<span class="token-cmdlet">Import-Module</span> GroupPolicy
+
+<span class="token-comment"># List all GPOs</span>
+<span class="token-cmdlet">Get-GPO</span> <span class="token-parameter">-All</span> | <span class="token-cmdlet">Select-Object</span> DisplayName, GpoStatus, CreationTime, ModificationTime
+
+<span class="token-comment"># Find GPOs modified recently (potential unauthorized changes)</span>
+<span class="token-variable">$RecentDate</span> = (Get-Date).AddDays(-7)
+<span class="token-cmdlet">Get-GPO</span> <span class="token-parameter">-All</span> | <span class="token-cmdlet">Where-Object</span> ModificationTime <span class="token-operator">-gt</span> <span class="token-variable">$RecentDate</span> |
+    <span class="token-cmdlet">Select-Object</span> DisplayName, ModificationTime
+
+<span class="token-comment"># GPOs with specific security settings</span>
+<span class="token-cmdlet">Get-GPO</span> <span class="token-parameter">-All</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$Report</span> = <span class="token-cmdlet">Get-GPOReport</span> <span class="token-parameter">-Guid</span> <span class="token-variable">$_</span>.Id <span class="token-parameter">-ReportType</span> Xml
+    <span class="token-keyword">if</span> (<span class="token-variable">$Report</span> <span class="token-operator">-match</span> <span class="token-string">'ScheduledTasks|Scripts'</span>) {
+        [PSCustomObject]@{
+            GPOName = <span class="token-variable">$_</span>.DisplayName
+            HasScheduledTasks = <span class="token-variable">$Report</span> <span class="token-operator">-match</span> <span class="token-string">'ScheduledTasks'</span>
+            HasScripts = <span class="token-variable">$Report</span> <span class="token-operator">-match</span> <span class="token-string">'Scripts'</span>
+        }
+    }
+}
+
+<span class="token-comment"># Export GPO report for review</span>
+<span class="token-cmdlet">Get-GPOReport</span> <span class="token-parameter">-All</span> <span class="token-parameter">-ReportType</span> HTML <span class="token-parameter">-Path</span> <span class="token-string">"GPO_Report.html"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Comprehensive AD Health Check -->
+                <h2>Comprehensive AD Security Assessment</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - AD Security Assessment
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-ADSecurityAssessment</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Performs a comprehensive AD security assessment.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\AD_Assessment_$(Get-Date -f yyyyMMdd)"</span>
+    )
+    
+    <span class="token-cmdlet">New-Item</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Path</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-Force</span> | <span class="token-cmdlet">Out-Null</span>
+    
+    <span class="token-variable">$Report</span> = @{
+        AssessmentDate = Get-Date
+        Domain = (Get-ADDomain).DNSRoot
+        Findings = @()
+    }
+    
+    Write-Host <span class="token-string">"[*] Starting AD Security Assessment..."</span> -ForegroundColor Cyan
+    
+    <span class="token-comment"># 1. Privileged Users</span>
+    Write-Host <span class="token-string">"[*] Checking privileged users..."</span>
+    <span class="token-variable">$DomainAdmins</span> = <span class="token-cmdlet">Get-ADGroupMember</span> <span class="token-string">"Domain Admins"</span> <span class="token-parameter">-Recursive</span>
+    <span class="token-variable">$Report</span>.Findings += [PSCustomObject]@{
+        Category = <span class="token-string">"Privileged Access"</span>
+        Finding = <span class="token-string">"Domain Admins count: $($DomainAdmins.Count)"</span>
+        Risk = <span class="token-keyword">if</span> (<span class="token-variable">$DomainAdmins</span>.Count <span class="token-operator">-gt</span> <span class="token-number">10</span>) { <span class="token-string">"HIGH"</span> } <span class="token-keyword">else</span> { <span class="token-string">"INFO"</span> }
+    }
+    
+    <span class="token-comment"># 2. Kerberoastable Accounts</span>
+    Write-Host <span class="token-string">"[*] Checking for Kerberoastable accounts..."</span>
+    <span class="token-variable">$SPNAccounts</span> = <span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {ServicePrincipalName <span class="token-operator">-ne</span> <span class="token-string">"$null"</span>} <span class="token-parameter">-Properties</span> ServicePrincipalName, AdminCount
+    <span class="token-variable">$PrivSPN</span> = <span class="token-variable">$SPNAccounts</span> | <span class="token-cmdlet">Where-Object</span> AdminCount <span class="token-operator">-eq</span> <span class="token-number">1</span>
+    <span class="token-variable">$Report</span>.Findings += [PSCustomObject]@{
+        Category = <span class="token-string">"Kerberoasting"</span>
+        Finding = <span class="token-string">"User accounts with SPNs: $($SPNAccounts.Count), Privileged: $($PrivSPN.Count)"</span>
+        Risk = <span class="token-keyword">if</span> (<span class="token-variable">$PrivSPN</span>.Count <span class="token-operator">-gt</span> <span class="token-number">0</span>) { <span class="token-string">"CRITICAL"</span> } <span class="token-keyword">else</span> { <span class="token-string">"MEDIUM"</span> }
+    }
+    
+    <span class="token-comment"># 3. Password Policy Issues</span>
+    Write-Host <span class="token-string">"[*] Checking password policy issues..."</span>
+    <span class="token-variable">$NeverExpire</span> = (<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {PasswordNeverExpires <span class="token-operator">-eq</span> <span class="token-variable">$true</span> <span class="token-operator">-and</span> Enabled <span class="token-operator">-eq</span> <span class="token-variable">$true</span>}).Count
+    <span class="token-variable">$Report</span>.Findings += [PSCustomObject]@{
+        Category = <span class="token-string">"Password Policy"</span>
+        Finding = <span class="token-string">"Enabled accounts with non-expiring passwords: $NeverExpire"</span>
+        Risk = <span class="token-keyword">if</span> (<span class="token-variable">$NeverExpire</span> <span class="token-operator">-gt</span> <span class="token-number">50</span>) { <span class="token-string">"HIGH"</span> } <span class="token-keyword">else</span> { <span class="token-string">"MEDIUM"</span> }
+    }
+    
+    <span class="token-comment"># 4. Stale Accounts</span>
+    Write-Host <span class="token-string">"[*] Checking for stale accounts..."</span>
+    <span class="token-variable">$StaleDate</span> = (Get-Date).AddDays(-90)
+    <span class="token-variable">$StaleUsers</span> = (<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {LastLogonDate <span class="token-operator">-lt</span> <span class="token-variable">$StaleDate</span> <span class="token-operator">-and</span> Enabled <span class="token-operator">-eq</span> <span class="token-variable">$true</span>} <span class="token-parameter">-Properties</span> LastLogonDate).Count
+    <span class="token-variable">$Report</span>.Findings += [PSCustomObject]@{
+        Category = <span class="token-string">"Account Hygiene"</span>
+        Finding = <span class="token-string">"Enabled accounts with no login in 90 days: $StaleUsers"</span>
+        Risk = <span class="token-keyword">if</span> (<span class="token-variable">$StaleUsers</span> <span class="token-operator">-gt</span> <span class="token-number">100</span>) { <span class="token-string">"HIGH"</span> } <span class="token-keyword">else</span> { <span class="token-string">"MEDIUM"</span> }
+    }
+    
+    <span class="token-comment"># 5. Unconstrained Delegation</span>
+    Write-Host <span class="token-string">"[*] Checking delegation settings..."</span>
+    <span class="token-variable">$UnconstrainedComp</span> = (<span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> {TrustedForDelegation <span class="token-operator">-eq</span> <span class="token-variable">$true</span>}).Count
+    <span class="token-variable">$Report</span>.Findings += [PSCustomObject]@{
+        Category = <span class="token-string">"Delegation"</span>
+        Finding = <span class="token-string">"Computers with unconstrained delegation: $UnconstrainedComp"</span>
+        Risk = <span class="token-keyword">if</span> (<span class="token-variable">$UnconstrainedComp</span> <span class="token-operator">-gt</span> <span class="token-number">0</span>) { <span class="token-string">"HIGH"</span> } <span class="token-keyword">else</span> { <span class="token-string">"LOW"</span> }
+    }
+    
+    <span class="token-comment"># Output report</span>
+    Write-Host <span class="token-string">"`n=== Assessment Summary ==="</span> -ForegroundColor Green
+    <span class="token-variable">$Report</span>.Findings | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+    
+    <span class="token-comment"># Export findings</span>
+    <span class="token-variable">$Report</span>.Findings | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\Findings.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    
+    Write-Host <span class="token-string">"[+] Assessment complete. Results saved to: $OutputPath"</span> -ForegroundColor Green
+    <span class="token-keyword">return</span> <span class="token-variable">$Report</span>
+}
+
+<span class="token-comment"># Run assessment</span>
+Invoke-ADSecurityAssessment</code></pre>
+                    </div>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you audit privileged access in AD?"</li>
+                        <li><strong>Strong Answer:</strong> Query membership of Domain Admins, Enterprise Admins, Schema Admins, and Administrators recursively. Check for nested groups. Look for accounts with AdminCount=1. Review service accounts with SPNs for Kerberoasting risk. Check for unconstrained delegation.</li>
+                        <li><strong>Key terms:</strong> Kerberoasting, AS-REP Roasting, unconstrained delegation, AdminSDHolder, AdminCount</li>
+                        <li><strong>Bonus:</strong> Mention tools like BloodHound for attack path analysis</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>-Filter</code> at the cmdlet level for performance (not Where-Object)</li>
+                    <li>Always audit privileged groups: Domain Admins, Enterprise Admins, Schema Admins</li>
+                    <li>Monitor SPNs on user accounts—Kerberoasting risk</li>
+                    <li>Check for unconstrained delegation on non-DC computers</li>
+                    <li>Review accounts with AdminCount=1 (protected by AdminSDHolder)</li>
+                    <li>Regular stale account cleanup reduces attack surface</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-15-eventlog-analysis.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.15 Event Log Analysis</span>
+                    </a>
+                    <a href="2-17-networking-commands.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.17 Networking Commands →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

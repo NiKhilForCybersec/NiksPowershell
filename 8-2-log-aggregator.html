@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.2 Log Aggregator Project - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link active"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#projects">Real-World Projects</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Log Aggregator</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>8.2 Log Aggregator Project</h1>
+
+                <!-- Project Overview -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🚀</div>
+                        <div class="info-box-title">Project Overview</div>
+                    </div>
+                    <ul>
+                        <li><strong>Goal:</strong> Collect and centralize logs from multiple servers</li>
+                        <li><strong>Skills:</strong> Remote execution, file handling, parsing</li>
+                        <li><strong>Output:</strong> Centralized log repository with search capability</li>
+                        <li><strong>Time:</strong> ~3 hours to build fully functional system</li>
+                    </ul>
+                </div>
+
+                <!-- Architecture -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Log Aggregator Architecture</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       LOG AGGREGATION ARCHITECTURE                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+  │ Server1 │   │ Server2 │   │ Server3 │   │ Server4 │
+  │  (Win)  │   │  (Win)  │   │ (Linux) │   │ (Linux) │
+  └────┬────┘   └────┬────┘   └────┬────┘   └────┬────┘
+       │             │             │             │
+       └─────────────┴──────┬──────┴─────────────┘
+                            │
+                    ┌───────▼───────┐
+                    │   Collector   │
+                    │  (PowerShell) │
+                    │               │
+                    │ • WinRM/SSH   │
+                    │ • Scheduling  │
+                    │ • Parsing     │
+                    └───────┬───────┘
+                            │
+              ┌─────────────┼─────────────┐
+              ▼             ▼             ▼
+       ┌───────────┐ ┌───────────┐ ┌───────────┐
+       │  JSON DB  │ │   HTML    │ │   CSV     │
+       │  Storage  │ │  Reports  │ │  Export   │
+       └───────────┘ └───────────┘ └───────────┘
+</pre>
+                </div>
+
+                <!-- Configuration -->
+                <h2>Step 1: Configuration Module</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Configuration
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># LogAggregator-Config.ps1</span>
+
+<span class="token-variable">$Config</span> = @{
+    <span class="token-comment"># Server definitions</span>
+    Servers = @(
+        @{
+            Name = <span class="token-string">"DC01"</span>
+            Type = <span class="token-string">"Windows"</span>
+            IP = <span class="token-string">"192.168.1.10"</span>
+            Logs = @(
+                @{ Name = <span class="token-string">"Security"</span>; Type = <span class="token-string">"EventLog"</span>; EventIDs = @(<span class="token-number">4624</span>,<span class="token-number">4625</span>,<span class="token-number">4672</span>) }
+                @{ Name = <span class="token-string">"System"</span>; Type = <span class="token-string">"EventLog"</span>; EventIDs = @(<span class="token-number">7045</span>,<span class="token-number">7040</span>) }
+            )
+        }
+        @{
+            Name = <span class="token-string">"WEB01"</span>
+            Type = <span class="token-string">"Windows"</span>
+            IP = <span class="token-string">"192.168.1.20"</span>
+            Logs = @(
+                @{ Name = <span class="token-string">"Application"</span>; Type = <span class="token-string">"EventLog"</span> }
+                @{ Path = <span class="token-string">"C:\inetpub\logs\LogFiles\W3SVC1"</span>; Type = <span class="token-string">"IIS"</span> }
+            )
+        }
+        @{
+            Name = <span class="token-string">"LINUX01"</span>
+            Type = <span class="token-string">"Linux"</span>
+            IP = <span class="token-string">"192.168.1.30"</span>
+            Logs = @(
+                @{ Path = <span class="token-string">"/var/log/auth.log"</span>; Type = <span class="token-string">"Syslog"</span> }
+                @{ Path = <span class="token-string">"/var/log/syslog"</span>; Type = <span class="token-string">"Syslog"</span> }
+            )
+        }
+    )
+    
+    <span class="token-comment"># Output settings</span>
+    OutputPath = <span class="token-string">"C:\LogAggregator"</span>
+    RetentionDays = <span class="token-number">30</span>
+    MaxLogSize = <span class="token-number">100</span>MB
+    
+    <span class="token-comment"># Collection settings</span>
+    CollectionInterval = <span class="token-number">15</span>  <span class="token-comment"># minutes</span>
+    TimeoutSeconds = <span class="token-number">60</span>
+}
+
+<span class="token-comment"># Export configuration</span>
+<span class="token-variable">$Config</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">5</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"C:\LogAggregator\config.json"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Collection Functions -->
+                <h2>Step 2: Log Collection Functions</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Windows Log Collection
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-WindowsEventLogs</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects Windows Event Logs from remote server.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$ComputerName</span>,
+        
+        [string]<span class="token-variable">$LogName</span> = <span class="token-string">'Security'</span>,
+        
+        [int[]]<span class="token-variable">$EventIDs</span>,
+        
+        [datetime]<span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-number">1</span>),
+        
+        [PSCredential]<span class="token-variable">$Credential</span>
+    )
+    
+    <span class="token-variable">$FilterHash</span> = @{
+        LogName = <span class="token-variable">$LogName</span>
+        StartTime = <span class="token-variable">$StartTime</span>
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$EventIDs</span>) {
+        <span class="token-variable">$FilterHash</span>.Id = <span class="token-variable">$EventIDs</span>
+    }
+    
+    <span class="token-variable">$Params</span> = @{
+        ComputerName = <span class="token-variable">$ComputerName</span>
+        FilterHashtable = <span class="token-variable">$FilterHash</span>
+        MaxEvents = <span class="token-number">1000</span>
+        ErrorAction = <span class="token-string">'SilentlyContinue'</span>
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Credential</span>) {
+        <span class="token-variable">$Params</span>.Credential = <span class="token-variable">$Credential</span>
+    }
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> @Params
+        
+        <span class="token-variable">$Events</span> | <span class="token-cmdlet">ForEach-Object</span> {
+            [PSCustomObject]@{
+                Source = <span class="token-variable">$ComputerName</span>
+                LogName = <span class="token-variable">$_</span>.LogName
+                EventID = <span class="token-variable">$_</span>.Id
+                Level = <span class="token-variable">$_</span>.LevelDisplayName
+                TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+                Message = <span class="token-variable">$_</span>.Message
+                User = <span class="token-variable">$_</span>.UserId
+                RecordId = <span class="token-variable">$_</span>.RecordId
+            }
+        }
+    } <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"Failed to collect from $ComputerName : $_"</span>
+    }
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Get-RemoteFileLogs</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects file-based logs from remote Windows server.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$ComputerName</span>,
+        [string]<span class="token-variable">$RemotePath</span>,
+        [datetime]<span class="token-variable">$Since</span> = (Get-Date).AddHours(-<span class="token-number">1</span>)
+    )
+    
+    <span class="token-variable">$UNCPath</span> = <span class="token-string">"\\$ComputerName\$($RemotePath -replace ':', '$')"</span>
+    
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$UNCPath</span>) {
+        <span class="token-cmdlet">Get-ChildItem</span> <span class="token-variable">$UNCPath</span> <span class="token-parameter">-Filter</span> <span class="token-string">"*.log"</span> | 
+            <span class="token-cmdlet">Where-Object</span> LastWriteTime <span class="token-operator">-gt</span> <span class="token-variable">$Since</span> |
+            <span class="token-cmdlet">ForEach-Object</span> {
+                <span class="token-variable">$Content</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-variable">$_</span>.FullName <span class="token-parameter">-Tail</span> <span class="token-number">1000</span>
+                [PSCustomObject]@{
+                    Source = <span class="token-variable">$ComputerName</span>
+                    LogFile = <span class="token-variable">$_</span>.Name
+                    Content = <span class="token-variable">$Content</span>
+                    Retrieved = Get-Date
+                }
+            }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Linux Collection -->
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Linux Log Collection (SSH)
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-LinuxLogs</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects logs from Linux servers via SSH.
+        Requires: Install-Module Posh-SSH
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$HostName</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$LogPath</span>,
+        
+        [PSCredential]<span class="token-variable">$Credential</span>,
+        
+        [int]<span class="token-variable">$Lines</span> = <span class="token-number">500</span>
+    )
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-comment"># Establish SSH session</span>
+        <span class="token-variable">$Session</span> = <span class="token-cmdlet">New-SSHSession</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$HostName</span> <span class="token-parameter">-Credential</span> <span class="token-variable">$Credential</span> <span class="token-parameter">-AcceptKey</span>
+        
+        <span class="token-comment"># Get log content</span>
+        <span class="token-variable">$Command</span> = <span class="token-string">"tail -n $Lines $LogPath"</span>
+        <span class="token-variable">$Result</span> = <span class="token-cmdlet">Invoke-SSHCommand</span> <span class="token-parameter">-SessionId</span> <span class="token-variable">$Session</span>.SessionId <span class="token-parameter">-Command</span> <span class="token-variable">$Command</span>
+        
+        <span class="token-comment"># Parse syslog format</span>
+        <span class="token-variable">$Result</span>.Output | <span class="token-cmdlet">ForEach-Object</span> {
+            <span class="token-keyword">if</span> (<span class="token-variable">$_</span> <span class="token-operator">-match</span> <span class="token-string">'^(\w+\s+\d+\s+[\d:]+)\s+(\S+)\s+(\S+):\s+(.+)$'</span>) {
+                [PSCustomObject]@{
+                    Source = <span class="token-variable">$HostName</span>
+                    Timestamp = <span class="token-variable">$Matches</span>[<span class="token-number">1</span>]
+                    Host = <span class="token-variable">$Matches</span>[<span class="token-number">2</span>]
+                    Process = <span class="token-variable">$Matches</span>[<span class="token-number">3</span>]
+                    Message = <span class="token-variable">$Matches</span>[<span class="token-number">4</span>]
+                    LogFile = <span class="token-variable">$LogPath</span>
+                }
+            }
+        }
+        
+        <span class="token-comment"># Cleanup</span>
+        <span class="token-cmdlet">Remove-SSHSession</span> <span class="token-parameter">-SessionId</span> <span class="token-variable">$Session</span>.SessionId | <span class="token-cmdlet">Out-Null</span>
+        
+    } <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"SSH collection failed for $HostName : $_"</span>
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Main Orchestrator -->
+                <h2>Step 3: Main Orchestration Script</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Main Collector
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-LogCollection</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Main log collection orchestrator.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$ConfigPath</span> = <span class="token-string">"C:\LogAggregator\config.json"</span>
+    )
+    
+    <span class="token-comment"># Load configuration</span>
+    <span class="token-variable">$Config</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-variable">$ConfigPath</span> | <span class="token-cmdlet">ConvertFrom-Json</span>
+    
+    <span class="token-variable">$RunTimestamp</span> = Get-Date -Format <span class="token-string">'yyyyMMdd_HHmmss'</span>
+    <span class="token-variable">$OutputDir</span> = <span class="token-cmdlet">Join-Path</span> <span class="token-variable">$Config</span>.OutputPath <span class="token-variable">$RunTimestamp</span>
+    <span class="token-cmdlet">New-Item</span> <span class="token-variable">$OutputDir</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | <span class="token-cmdlet">Out-Null</span>
+    
+    <span class="token-variable">$AllLogs</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Config</span>.Servers) {
+        Write-Host <span class="token-string">"[*] Collecting from $($Server.Name)..."</span> -ForegroundColor Cyan
+        
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$LogDef</span> <span class="token-keyword">in</span> <span class="token-variable">$Server</span>.Logs) {
+            <span class="token-keyword">switch</span> (<span class="token-variable">$LogDef</span>.Type) {
+                <span class="token-string">'EventLog'</span> {
+                    <span class="token-variable">$Params</span> = @{
+                        ComputerName = <span class="token-variable">$Server</span>.IP
+                        LogName = <span class="token-variable">$LogDef</span>.Name
+                        StartTime = (Get-Date).AddMinutes(-<span class="token-variable">$Config</span>.CollectionInterval)
+                    }
+                    <span class="token-keyword">if</span> (<span class="token-variable">$LogDef</span>.EventIDs) {
+                        <span class="token-variable">$Params</span>.EventIDs = <span class="token-variable">$LogDef</span>.EventIDs
+                    }
+                    <span class="token-variable">$Logs</span> = Get-WindowsEventLogs @Params
+                }
+                <span class="token-string">'IIS'</span> {
+                    <span class="token-variable">$Logs</span> = Get-RemoteFileLogs <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Server</span>.IP <span class="token-parameter">-RemotePath</span> <span class="token-variable">$LogDef</span>.Path
+                }
+                <span class="token-string">'Syslog'</span> {
+                    <span class="token-variable">$Logs</span> = Get-LinuxLogs <span class="token-parameter">-HostName</span> <span class="token-variable">$Server</span>.IP <span class="token-parameter">-LogPath</span> <span class="token-variable">$LogDef</span>.Path
+                }
+            }
+            
+            <span class="token-keyword">if</span> (<span class="token-variable">$Logs</span>) {
+                <span class="token-variable">$AllLogs</span> += <span class="token-variable">$Logs</span>
+                Write-Host <span class="token-string">"    [+] Collected $($Logs.Count) entries from $($LogDef.Name)"</span>
+            }
+        }
+    }
+    
+    <span class="token-comment"># Save collected logs</span>
+    <span class="token-variable">$AllLogs</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">5</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"$OutputDir\logs.json"</span>
+    <span class="token-variable">$AllLogs</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputDir\logs.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    
+    Write-Host <span class="token-string">"`n[+] Collection complete: $($AllLogs.Count) total entries"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"[+] Output: $OutputDir"</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$AllLogs</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Search Function -->
+                <h2>Step 4: Search and Query</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Log Search
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Search-AggregatedLogs</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Search across all collected logs.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$LogPath</span> = <span class="token-string">"C:\LogAggregator"</span>,
+        [string]<span class="token-variable">$SearchPattern</span>,
+        [string]<span class="token-variable">$Source</span>,
+        [int]<span class="token-variable">$EventID</span>,
+        [datetime]<span class="token-variable">$StartDate</span>,
+        [datetime]<span class="token-variable">$EndDate</span>,
+        [int]<span class="token-variable">$Limit</span> = <span class="token-number">100</span>
+    )
+    
+    <span class="token-comment"># Load all log files</span>
+    <span class="token-variable">$AllLogs</span> = <span class="token-cmdlet">Get-ChildItem</span> <span class="token-variable">$LogPath</span> <span class="token-parameter">-Recurse</span> <span class="token-parameter">-Filter</span> <span class="token-string">"logs.json"</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-cmdlet">Get-Content</span> <span class="token-variable">$_</span>.FullName | <span class="token-cmdlet">ConvertFrom-Json</span>
+    }
+    
+    <span class="token-variable">$Results</span> = <span class="token-variable">$AllLogs</span>
+    
+    <span class="token-comment"># Apply filters</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$SearchPattern</span>) {
+        <span class="token-variable">$Results</span> = <span class="token-variable">$Results</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Message <span class="token-operator">-match</span> <span class="token-variable">$SearchPattern</span> }
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Source</span>) {
+        <span class="token-variable">$Results</span> = <span class="token-variable">$Results</span> | <span class="token-cmdlet">Where-Object</span> Source <span class="token-operator">-eq</span> <span class="token-variable">$Source</span>
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$EventID</span>) {
+        <span class="token-variable">$Results</span> = <span class="token-variable">$Results</span> | <span class="token-cmdlet">Where-Object</span> EventID <span class="token-operator">-eq</span> <span class="token-variable">$EventID</span>
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$StartDate</span>) {
+        <span class="token-variable">$Results</span> = <span class="token-variable">$Results</span> | <span class="token-cmdlet">Where-Object</span> { [datetime]<span class="token-variable">$_</span>.TimeCreated <span class="token-operator">-ge</span> <span class="token-variable">$StartDate</span> }
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$EndDate</span>) {
+        <span class="token-variable">$Results</span> = <span class="token-variable">$Results</span> | <span class="token-cmdlet">Where-Object</span> { [datetime]<span class="token-variable">$_</span>.TimeCreated <span class="token-operator">-le</span> <span class="token-variable">$EndDate</span> }
+    }
+    
+    <span class="token-variable">$Results</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-variable">$Limit</span>
+}
+
+<span class="token-comment"># Usage examples:</span>
+
+<span class="token-comment"># Search for failed logins</span>
+Search-AggregatedLogs <span class="token-parameter">-EventID</span> <span class="token-number">4625</span>
+
+<span class="token-comment"># Search for pattern</span>
+Search-AggregatedLogs <span class="token-parameter">-SearchPattern</span> <span class="token-string">"Failed password"</span>
+
+<span class="token-comment"># Search specific server</span>
+Search-AggregatedLogs <span class="token-parameter">-Source</span> <span class="token-string">"DC01"</span> <span class="token-parameter">-EventID</span> <span class="token-number">4624</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Log Aggregation</div>
+                    </div>
+                    <ul>
+                        <li><strong>Secure credentials:</strong> Use credential manager or vault</li>
+                        <li><strong>Implement rotation:</strong> Delete logs older than retention period</li>
+                        <li><strong>Handle failures gracefully:</strong> Continue if one server fails</li>
+                        <li><strong>Compress old logs:</strong> Save storage space</li>
+                        <li><strong>Index for search:</strong> Use database for large deployments</li>
+                        <li><strong>Monitor collector health:</strong> Alert on collection failures</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use configuration files for flexible server management</li>
+                    <li>Support both Windows (WinRM) and Linux (SSH) collection</li>
+                    <li>Normalize logs to common format for searching</li>
+                    <li>Implement search/filter functions for analysis</li>
+                    <li>Export to JSON and CSV for flexibility</li>
+                    <li>Great foundation for building mini-SIEM</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="8-1-security-dashboard.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 8.1 Security Dashboard</span>
+                    </a>
+                    <a href="8-3-asset-inventory.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">8.3 Asset Inventory →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.1 PowerShell Introduction - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation (abbreviated for space - same structure as other pages) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-terminal-basics.html" class="nav-link"><span class="nav-link-number">1.3</span> Terminal Basics</a>
+                        <a href="1-4-shell-comparison.html" class="nav-link"><span class="nav-link-number">1.4</span> Shell Comparison</a>
+                        <a href="1-5-script-execution.html" class="nav-link"><span class="nav-link-number">1.5</span> Script Execution</a>
+                        <a href="1-6-variables-datatypes.html" class="nav-link"><span class="nav-link-number">1.6</span> Variables & Data Types</a>
+                        <a href="1-7-operators.html" class="nav-link"><span class="nav-link-number">1.7</span> Operators</a>
+                        <a href="1-8-control-flow.html" class="nav-link"><span class="nav-link-number">1.8</span> Control Flow</a>
+                        <a href="1-9-functions-modules.html" class="nav-link"><span class="nav-link-number">1.9</span> Functions & Modules</a>
+                        <a href="1-10-error-handling.html" class="nav-link"><span class="nav-link-number">1.10</span> Error Handling</a>
+                        <a href="1-11-input-output.html" class="nav-link"><span class="nav-link-number">1.11</span> Input/Output</a>
+                        <a href="1-12-debugging.html" class="nav-link"><span class="nav-link-number">1.12</span> Debugging</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link active"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-objects-properties.html" class="nav-link"><span class="nav-link-number">2.4</span> Objects & Properties</a>
+                        <a href="2-5-providers-drives.html" class="nav-link"><span class="nav-link-number">2.5</span> Providers & Drives</a>
+                        <a href="2-6-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.6</span> WMI & CIM</a>
+                        <a href="2-7-remoting.html" class="nav-link"><span class="nav-link-number">2.7</span> Remoting</a>
+                        <a href="2-8-modules-management.html" class="nav-link"><span class="nav-link-number">2.8</span> Modules Management</a>
+                        <a href="2-9-profile-customization.html" class="nav-link"><span class="nav-link-number">2.9</span> Profile Customization</a>
+                        <a href="2-10-regex-powershell.html" class="nav-link"><span class="nav-link-number">2.10</span> Regex in PowerShell</a>
+                        <a href="2-11-file-operations.html" class="nav-link"><span class="nav-link-number">2.11</span> File Operations</a>
+                        <a href="2-12-registry-operations.html" class="nav-link"><span class="nav-link-number">2.12</span> Registry Operations</a>
+                        <a href="2-13-services-processes.html" class="nav-link"><span class="nav-link-number">2.13</span> Services & Processes</a>
+                        <a href="2-14-scheduled-tasks.html" class="nav-link"><span class="nav-link-number">2.14</span> Scheduled Tasks</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests</a>
+                        <a href="2-19-background-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Background Jobs</a>
+                        <a href="2-20-dsc-basics.html" class="nav-link"><span class="nav-link-number">2.20</span> DSC Basics</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-basics.html" class="nav-link"><span class="nav-link-number">3.2</span> Bash Basics</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Bash Variables</a>
+                        <a href="3-4-bash-strings.html" class="nav-link"><span class="nav-link-number">3.4</span> Bash Strings</a>
+                        <a href="3-5-bash-arrays.html" class="nav-link"><span class="nav-link-number">3.5</span> Bash Arrays</a>
+                        <a href="3-6-bash-conditionals.html" class="nav-link"><span class="nav-link-number">3.6</span> Bash Conditionals</a>
+                        <a href="3-7-bash-loops.html" class="nav-link"><span class="nav-link-number">3.7</span> Bash Loops</a>
+                        <a href="3-8-bash-functions.html" class="nav-link"><span class="nav-link-number">3.8</span> Bash Functions</a>
+                        <a href="3-9-bash-io-redirection.html" class="nav-link"><span class="nav-link-number">3.9</span> I/O Redirection</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-11-bash-regex.html" class="nav-link"><span class="nav-link-number">3.11</span> Bash Regex</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                        <a href="3-13-bash-system-admin.html" class="nav-link"><span class="nav-link-number">3.13</span> System Administration</a>
+                        <a href="3-14-bash-security-tools.html" class="nav-link"><span class="nav-link-number">3.14</span> Security Tools Integration</a>
+                        <a href="3-15-bash-best-practices.html" class="nav-link"><span class="nav-link-number">3.15</span> Bash Best Practices</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-basics.html" class="nav-link"><span class="nav-link-number">4.2</span> Batch Basics</a>
+                        <a href="4-3-batch-commands.html" class="nav-link"><span class="nav-link-number">4.3</span> Batch Commands</a>
+                        <a href="4-4-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.4</span> Batch Control Flow</a>
+                        <a href="4-5-batch-arguments.html" class="nav-link"><span class="nav-link-number">4.5</span> Batch Arguments</a>
+                        <a href="4-6-batch-errorhandling.html" class="nav-link"><span class="nav-link-number">4.6</span> Batch Error Handling</a>
+                        <a href="4-7-batch-security-tasks.html" class="nav-link"><span class="nav-link-number">4.7</span> Batch Security Tasks</a>
+                        <a href="4-8-batch-to-powershell.html" class="nav-link"><span class="nav-link-number">4.8</span> Batch to PowerShell</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-security-scripting-overview.html" class="nav-link"><span class="nav-link-number">5.1</span> Security Scripting Overview</a>
+                        <a href="5-2-log-analysis-scripts.html" class="nav-link"><span class="nav-link-number">5.2</span> Log Analysis Scripts</a>
+                        <a href="5-3-user-audit-scripts.html" class="nav-link"><span class="nav-link-number">5.3</span> User Audit Scripts</a>
+                        <a href="5-4-network-security-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Network Security Scripts</a>
+                        <a href="5-5-malware-analysis-scripts.html" class="nav-link"><span class="nav-link-number">5.5</span> Malware Analysis Scripts</a>
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting Scripts</a>
+                        <a href="5-8-vulnerability-scripts.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scripts</a>
+                        <a href="5-9-compliance-scripts.html" class="nav-link"><span class="nav-link-number">5.9</span> Compliance Scripts</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-cloud-security-scripts.html" class="nav-link"><span class="nav-link-number">5.12</span> Cloud Security Scripts</a>
+                        <a href="5-13-email-security-scripts.html" class="nav-link"><span class="nav-link-number">5.13</span> Email Security Scripts</a>
+                        <a href="5-14-reporting-automation.html" class="nav-link"><span class="nav-link-number">5.14</span> Reporting Automation</a>
+                        <a href="5-15-orchestration-basics.html" class="nav-link"><span class="nav-link-number">5.15</span> Orchestration Basics</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="offensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">⚔️</span>
+                        Offensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-offensive-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Offensive Introduction</a>
+                        <a href="6-2-recon-scripts.html" class="nav-link"><span class="nav-link-number">6.2</span> Recon Scripts</a>
+                        <a href="6-3-exploitation-frameworks.html" class="nav-link"><span class="nav-link-number">6.3</span> Exploitation Frameworks</a>
+                        <a href="6-4-credential-attacks.html" class="nav-link"><span class="nav-link-number">6.4</span> Credential Attacks</a>
+                        <a href="6-5-lateral-movement.html" class="nav-link"><span class="nav-link-number">6.5</span> Lateral Movement</a>
+                        <a href="6-6-persistence-techniques.html" class="nav-link"><span class="nav-link-number">6.6</span> Persistence Techniques</a>
+                        <a href="6-7-defense-evasion.html" class="nav-link"><span class="nav-link-number">6.7</span> Defense Evasion</a>
+                        <a href="6-8-data-exfiltration.html" class="nav-link"><span class="nav-link-number">6.8</span> Data Exfiltration</a>
+                        <a href="6-9-ad-attacks.html" class="nav-link"><span class="nav-link-number">6.9</span> AD Attacks</a>
+                        <a href="6-10-detection-engineering.html" class="nav-link"><span class="nav-link-number">6.10</span> Detection Engineering</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="defensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Defensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-defensive-overview.html" class="nav-link"><span class="nav-link-number">7.1</span> Defensive Overview</a>
+                        <a href="7-2-hardening-scripts.html" class="nav-link"><span class="nav-link-number">7.2</span> Hardening Scripts</a>
+                        <a href="7-3-monitoring-scripts.html" class="nav-link"><span class="nav-link-number">7.3</span> Monitoring Scripts</a>
+                        <a href="7-4-detection-scripts.html" class="nav-link"><span class="nav-link-number">7.4</span> Detection Scripts</a>
+                        <a href="7-5-response-automation.html" class="nav-link"><span class="nav-link-number">7.5</span> Response Automation</a>
+                        <a href="7-6-recovery-scripts.html" class="nav-link"><span class="nav-link-number">7.6</span> Recovery Scripts</a>
+                        <a href="7-7-threat-intel-scripts.html" class="nav-link"><span class="nav-link-number">7.7</span> Threat Intel Scripts</a>
+                        <a href="7-8-hunting-playbooks.html" class="nav-link"><span class="nav-link-number">7.8</span> Hunting Playbooks</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🏗️</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-project-soc-toolkit.html" class="nav-link"><span class="nav-link-number">8.1</span> SOC Toolkit Project</a>
+                        <a href="8-2-project-ir-collector.html" class="nav-link"><span class="nav-link-number">8.2</span> IR Collector Project</a>
+                        <a href="8-3-project-vuln-scanner.html" class="nav-link"><span class="nav-link-number">8.3</span> Vulnerability Scanner</a>
+                        <a href="8-4-project-log-analyzer.html" class="nav-link"><span class="nav-link-number">8.4</span> Log Analyzer Project</a>
+                        <a href="8-5-project-ad-auditor.html" class="nav-link"><span class="nav-link-number">8.5</span> AD Auditor Project</a>
+                        <a href="8-6-project-network-monitor.html" class="nav-link"><span class="nav-link-number">8.6</span> Network Monitor Project</a>
+                        <a href="8-7-project-phishing-analyzer.html" class="nav-link"><span class="nav-link-number">8.7</span> Phishing Analyzer</a>
+                        <a href="8-8-project-compliance-checker.html" class="nav-link"><span class="nav-link-number">8.8</span> Compliance Checker</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="crossplatform">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-cross-platform-overview.html" class="nav-link"><span class="nav-link-number">9.1</span> Cross-Platform Overview</a>
+                        <a href="9-2-ps-bash-integration.html" class="nav-link"><span class="nav-link-number">9.2</span> PS & Bash Integration</a>
+                        <a href="9-3-api-scripting.html" class="nav-link"><span class="nav-link-number">9.3</span> API Scripting</a>
+                        <a href="9-4-database-scripting.html" class="nav-link"><span class="nav-link-number">9.4</span> Database Scripting</a>
+                        <a href="9-5-container-scripting.html" class="nav-link"><span class="nav-link-number">9.5</span> Container Scripting</a>
+                        <a href="9-6-ci-cd-integration.html" class="nav-link"><span class="nav-link-number">9.6</span> CI/CD Integration</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-coding-standards.html" class="nav-link"><span class="nav-link-number">10.1</span> Coding Standards</a>
+                        <a href="10-2-security-considerations.html" class="nav-link"><span class="nav-link-number">10.2</span> Security Considerations</a>
+                        <a href="10-3-performance-optimization.html" class="nav-link"><span class="nav-link-number">10.3</span> Performance Optimization</a>
+                        <a href="10-4-testing-validation.html" class="nav-link"><span class="nav-link-number">10.4</span> Testing & Validation</a>
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>PowerShell Introduction</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.1 PowerShell Introduction</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>The history and evolution of PowerShell from Monad to PowerShell 7</li>
+                        <li>Key differences between Windows PowerShell 5.1 and PowerShell 7.x</li>
+                        <li>How to install PowerShell on Windows, Linux, and macOS</li>
+                        <li>Why PowerShell is essential for security professionals</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>What is PowerShell?</h2>
+                <p>
+                    PowerShell is Microsoft's task automation and configuration management framework. 
+                    Unlike traditional command-line interfaces that work with text, PowerShell is built 
+                    on the .NET framework and works with <strong>objects</strong>—structured data with 
+                    properties and methods.
+                </p>
+
+                <p>
+                    For security professionals, PowerShell is indispensable. It provides native access 
+                    to Windows internals, Active Directory, the registry, event logs, and virtually 
+                    every Microsoft security product through dedicated modules and APIs.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: PowerShell as a Swiss Army Knife</div>
+                    </div>
+                    <ul>
+                        <li><strong>Shell</strong> = Interactive command-line interface</li>
+                        <li><strong>Scripting Language</strong> = Full programming capabilities</li>
+                        <li><strong>Configuration Engine</strong> = DSC for infrastructure as code</li>
+                        <li><strong>Automation Framework</strong> = Modules for every Microsoft product</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Think of PowerShell as a Swiss Army Knife: one tool with many blades, 
+                        each designed for a specific purpose but all working together.</em>
+                    </p>
+                </div>
+
+                <!-- History Timeline -->
+                <h2>PowerShell Evolution</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 PowerShell Timeline</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         POWERSHELL EVOLUTION                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+2002        2006         2009         2012         2016         2018+
+  │           │            │            │            │            │
+  ▼           ▼            ▼            ▼            ▼            ▼
+┌─────┐   ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
+│Monad│   │ PS 1.0  │  │ PS 2.0  │  │ PS 3.0  │  │ PS 5.1  │  │  PS 7+  │
+│     │──►│ Windows │──►│ Windows │──►│ Windows │──►│ Windows │──►│ Cross-  │
+│     │   │   XP+   │  │ 7/2008R2│  │ 8/2012  │  │ 10/2016 │  │Platform │
+└─────┘   └─────────┘  └─────────┘  └─────────┘  └─────────┘  └─────────┘
+  │           │            │            │            │            │
+  │       • Cmdlets    • Remoting   • Workflows  • Classes    • Open Source
+  │       • Pipeline   • Modules    • CIM        • PSGallery  • .NET Core
+  │       • Objects    • ISE        • Jobs       • DSC v2     • Linux/Mac
+  │                    • Background             • OOP        • SSH Support
+  │                      Jobs                               • Parallel
+  ▼
+ Birth of
+ PowerShell
+ Concept
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ KEY MILESTONE: 2016 - PowerShell went open source and cross-platform!       │
+│ Repository: https://github.com/PowerShell/PowerShell                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Version Comparison -->
+                <h2>Windows PowerShell 5.1 vs PowerShell 7.x</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Windows PowerShell 5.1</th>
+                                <th>PowerShell 7.x</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Executable</strong></td>
+                                <td>powershell.exe</td>
+                                <td>pwsh.exe</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.NET Version</strong></td>
+                                <td>.NET Framework 4.x</td>
+                                <td>.NET 6/7/8+</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Platforms</strong></td>
+                                <td>Windows only</td>
+                                <td>Windows, Linux, macOS</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Updates</strong></td>
+                                <td>Security fixes only</td>
+                                <td>Active development</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Side-by-Side</strong></td>
+                                <td>Built into Windows</td>
+                                <td>Installs alongside 5.1</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ForEach-Object -Parallel</strong></td>
+                                <td>❌ Not available</td>
+                                <td>✅ Available</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ternary Operator</strong></td>
+                                <td>❌ Not available</td>
+                                <td>✅ $x ? "yes" : "no"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SSH Remoting</strong></td>
+                                <td>❌ Not available</td>
+                                <td>✅ Native support</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Windows-Specific Modules</strong></td>
+                                <td>✅ Full support</td>
+                                <td>⚠️ Compatibility module needed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Warning: Version Considerations</div>
+                    </div>
+                    <ul>
+                        <li><strong>Windows PowerShell 5.1</strong> is NOT being retired—it ships with Windows and receives security updates</li>
+                        <li><strong>PowerShell 7.x</strong> installs alongside 5.1—you can have both on the same system</li>
+                        <li>Some Windows-specific modules (like ActiveDirectory) may require the Windows Compatibility layer in PS 7</li>
+                        <li>For maximum compatibility with Windows administration, test scripts in both versions</li>
+                    </ul>
+                </div>
+
+                <!-- Installation -->
+                <h2>Installing PowerShell</h2>
+
+                <h3>Windows</h3>
+                <p>Windows PowerShell 5.1 is pre-installed on Windows 10/11 and Windows Server 2016+. 
+                For PowerShell 7+:</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Install PS 7 via winget
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install PowerShell 7 using Windows Package Manager</span>
+winget install Microsoft.PowerShell
+
+<span class="token-comment"># Or download from GitHub releases:</span>
+<span class="token-comment"># https://github.com/PowerShell/PowerShell/releases</span>
+
+<span class="token-comment"># Verify installation</span>
+pwsh --version</code></pre>
+                    </div>
+                </div>
+
+                <h3>Linux (Ubuntu/Debian)</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Install PowerShell on Ubuntu
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Update package list and install prerequisites</span>
+sudo apt-get update
+sudo apt-get install -y wget apt-transport-https software-properties-common
+
+<span class="token-comment"># Download and register Microsoft repository GPG keys</span>
+wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
+sudo dpkg -i packages-microsoft-prod.deb
+
+<span class="token-comment"># Install PowerShell</span>
+sudo apt-get update
+sudo apt-get install -y powershell
+
+<span class="token-comment"># Start PowerShell</span>
+pwsh</code></pre>
+                    </div>
+                </div>
+
+                <h3>macOS</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🍎</span>
+                            Bash - Install PowerShell on macOS
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install using Homebrew</span>
+brew install --cask powershell
+
+<span class="token-comment"># Start PowerShell</span>
+pwsh
+
+<span class="token-comment"># Verify version</span>
+$PSVersionTable</code></pre>
+                    </div>
+                </div>
+
+                <!-- PowerShell for Security -->
+                <h2>Why PowerShell for Security?</h2>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">PowerShell Security Superpowers</div>
+                    </div>
+                    <ul>
+                        <li><strong>Native Windows Integration:</strong> Direct access to WMI, registry, event logs, services, processes</li>
+                        <li><strong>Active Directory Module:</strong> Complete AD management without additional tools</li>
+                        <li><strong>Microsoft Security Products:</strong> Native modules for Defender, Exchange, Azure AD, Sentinel</li>
+                        <li><strong>Remoting Capabilities:</strong> Execute commands on hundreds of systems simultaneously</li>
+                        <li><strong>Forensic Data Collection:</strong> Rich object output makes parsing and analysis straightforward</li>
+                        <li><strong>Threat Detection:</strong> Query running processes, network connections, scheduled tasks</li>
+                    </ul>
+                </div>
+
+                <!-- First Commands -->
+                <h2>Your First PowerShell Commands</h2>
+
+                <p>Let's explore some fundamental PowerShell commands that every security professional should know:</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Essential First Commands
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check your PowerShell version</span>
+<span class="token-variable">$PSVersionTable</span>
+
+<span class="token-comment"># Get help for any command (the most important command!)</span>
+<span class="token-cmdlet">Get-Help</span> <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Full</span>
+
+<span class="token-comment"># Find commands by keyword</span>
+<span class="token-cmdlet">Get-Command</span> <span class="token-parameter">-Name</span> *process*
+
+<span class="token-comment"># Explore object properties and methods</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Get-Member</span>
+
+<span class="token-comment"># List running processes</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> CPU <span class="token-parameter">-Descending</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">10</span>
+
+<span class="token-comment"># Check network connections</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established
+
+<span class="token-comment"># View recent security events</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> Security <span class="token-parameter">-MaxEvents</span> <span class="token-number">10</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- The Big Three -->
+                <h2>The Big Three: Get-Help, Get-Command, Get-Member</h2>
+
+                <p>
+                    These three cmdlets are your keys to self-discovery in PowerShell. Master them, 
+                    and you can figure out almost anything without leaving the console.
+                </p>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 The PowerShell Discovery Trinity</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    THE BIG THREE - DISCOVERY CMDLETS                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────┐
+│     GET-HELP        │  │    GET-COMMAND      │  │    GET-MEMBER       │
+├─────────────────────┤  ├─────────────────────┤  ├─────────────────────┤
+│                     │  │                     │  │                     │
+│  "How do I use      │  │  "What commands     │  │  "What can I do     │
+│   this command?"    │  │   are available?"   │  │   with this object?"│
+│                     │  │                     │  │                     │
+│  Get-Help Get-      │  │  Get-Command *AD*   │  │  $user | Get-Member │
+│   Process -Full     │  │                     │  │                     │
+│                     │  │  Get-Command -Verb  │  │  Shows:             │
+│  -Examples          │  │   Get -Module AD    │  │  • Properties       │
+│  -Online            │  │                     │  │  • Methods          │
+│  -ShowWindow        │  │  Lists all cmdlets  │  │  • Object type      │
+│                     │  │  matching pattern   │  │                     │
+└─────────────────────┘  └─────────────────────┘  └─────────────────────┘
+         │                        │                        │
+         └────────────────────────┼────────────────────────┘
+                                  │
+                                  ▼
+                    ┌─────────────────────────┐
+                    │   SELF-SUFFICIENT       │
+                    │   POWERSHELL USER       │
+                    └─────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What makes PowerShell different from other shells?"</li>
+                        <li><strong>Strong Answer:</strong> PowerShell passes <em>objects</em> through the pipeline, not text. This means you can access properties and methods directly without parsing.</li>
+                        <li><strong>Follow-up:</strong> "Can you give an example?" → <code>Get-Process | Where-Object {$_.CPU -gt 100}</code> filters on actual numeric values, not string patterns</li>
+                        <li><strong>Bonus:</strong> Mention that PowerShell 7 is cross-platform, open-source, and actively developed</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>PowerShell is an object-based shell, scripting language, and automation framework</li>
+                    <li>Windows PowerShell 5.1 (powershell.exe) and PowerShell 7+ (pwsh.exe) can run side-by-side</li>
+                    <li>PowerShell 7+ is cross-platform and open-source</li>
+                    <li>The Big Three (Get-Help, Get-Command, Get-Member) enable self-discovery</li>
+                    <li>PowerShell is essential for Windows security operations and Microsoft ecosystem integration</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="1-12-debugging.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 1.12 Debugging</span>
+                    </a>
+                    <a href="2-2-cmdlet-anatomy.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.2 Cmdlet Anatomy →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

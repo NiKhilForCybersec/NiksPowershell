@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.12 Bash Networking - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-12-bash-networking.html" class="nav-link active"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#bash">Bash Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Bash Networking</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>3.12 Bash Networking</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Network configuration and troubleshooting commands</li>
+                        <li>Socket connections with netcat and curl</li>
+                        <li>Network monitoring and analysis tools</li>
+                        <li>Building network reconnaissance scripts</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Linux Network Tools for Security</h2>
+                <p>
+                    Linux provides a rich set of networking tools that are essential for security 
+                    professionals. From basic connectivity testing to packet capture and analysis, 
+                    these tools form the foundation of network security operations.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Core Network Tools</div>
+                    </div>
+                    <ul>
+                        <li><strong>ip / ifconfig</strong> → Interface configuration</li>
+                        <li><strong>ss / netstat</strong> → Socket statistics, connections</li>
+                        <li><strong>ping / traceroute</strong> → Connectivity testing</li>
+                        <li><strong>dig / nslookup</strong> → DNS queries</li>
+                        <li><strong>curl / wget</strong> → HTTP requests, downloads</li>
+                        <li><strong>nc (netcat)</strong> → TCP/UDP connections, the "Swiss Army knife"</li>
+                        <li><strong>tcpdump / tshark</strong> → Packet capture</li>
+                        <li><strong>nmap</strong> → Port scanning, service detection</li>
+                    </ul>
+                </div>
+
+                <!-- Network Configuration -->
+                <h2>Network Configuration</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Network Configuration
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Show all interfaces (modern)</span>
+<span class="token-function">ip</span> addr show
+<span class="token-function">ip</span> a            <span class="token-comment"># Short form</span>
+
+<span class="token-comment"># Show specific interface</span>
+<span class="token-function">ip</span> addr show eth0
+
+<span class="token-comment"># Show only IPv4 addresses</span>
+<span class="token-function">ip</span> -4 addr
+
+<span class="token-comment"># Legacy ifconfig (may need net-tools package)</span>
+<span class="token-function">ifconfig</span>
+<span class="token-function">ifconfig</span> eth0
+
+<span class="token-comment"># Show routing table</span>
+<span class="token-function">ip</span> route show
+<span class="token-function">route</span> -n       <span class="token-comment"># Legacy</span>
+
+<span class="token-comment"># Show default gateway</span>
+<span class="token-function">ip</span> route | <span class="token-function">grep</span> default
+
+<span class="token-comment"># Show ARP cache (MAC to IP mappings)</span>
+<span class="token-function">ip</span> neigh show
+<span class="token-function">arp</span> -a         <span class="token-comment"># Legacy</span>
+
+<span class="token-comment"># Show DNS servers</span>
+<span class="token-function">cat</span> /etc/resolv.conf
+resolvectl status
+
+<span class="token-comment"># Get public IP</span>
+<span class="token-function">curl</span> -s ifconfig.me
+<span class="token-function">curl</span> -s ipinfo.io/ip
+<span class="token-function">curl</span> -s ipinfo.io/json | jq</code></pre>
+                    </div>
+                </div>
+
+                <!-- Socket Statistics -->
+                <h2>Socket Statistics (ss/netstat)</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Socket Statistics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># ss - Socket Statistics (modern, faster than netstat)</span>
+
+<span class="token-comment"># All TCP connections</span>
+<span class="token-function">ss</span> -t
+
+<span class="token-comment"># All listening ports</span>
+<span class="token-function">ss</span> -l
+
+<span class="token-comment"># Listening TCP ports with process info</span>
+<span class="token-function">ss</span> -tlnp
+
+<span class="token-comment"># All established connections</span>
+<span class="token-function">ss</span> -t state established
+
+<span class="token-comment"># UDP sockets</span>
+<span class="token-function">ss</span> -u
+
+<span class="token-comment"># All sockets with process names</span>
+<span class="token-function">ss</span> -tunlp
+
+<span class="token-comment"># Filter by port</span>
+<span class="token-function">ss</span> -t sport = :22           <span class="token-comment"># Source port 22</span>
+<span class="token-function">ss</span> -t dport = :443          <span class="token-comment"># Destination port 443</span>
+<span class="token-function">ss</span> -t '( dport = :80 or dport = :443 )'
+
+<span class="token-comment"># Filter by state</span>
+<span class="token-function">ss</span> -t state time-wait
+<span class="token-function">ss</span> -t state close-wait      <span class="token-comment"># Potential connection issues</span>
+
+<span class="token-comment"># Count connections by state</span>
+<span class="token-function">ss</span> -t | <span class="token-function">awk</span> <span class="token-string">'NR>1 {print $1}'</span> | <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c
+
+<span class="token-comment"># Legacy netstat (slower but familiar)</span>
+<span class="token-function">netstat</span> -tulnp             <span class="token-comment"># TCP/UDP listening with process</span>
+<span class="token-function">netstat</span> -an | <span class="token-function">grep</span> ESTABLISHED</code></pre>
+                    </div>
+                </div>
+
+                <!-- Connectivity Testing -->
+                <h2>Connectivity Testing</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Connectivity Tests
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic ping</span>
+<span class="token-function">ping</span> -c 4 google.com
+
+<span class="token-comment"># Ping with timestamp</span>
+<span class="token-function">ping</span> -c 4 -D google.com
+
+<span class="token-comment"># Traceroute</span>
+<span class="token-function">traceroute</span> google.com
+<span class="token-function">traceroute</span> -n google.com    <span class="token-comment"># No DNS resolution (faster)</span>
+
+<span class="token-comment"># MTR - combines ping and traceroute</span>
+<span class="token-function">mtr</span> google.com
+<span class="token-function">mtr</span> --report -c 10 google.com  <span class="token-comment"># Report mode</span>
+
+<span class="token-comment"># Test specific port with nc (netcat)</span>
+<span class="token-function">nc</span> -zv google.com 443
+<span class="token-function">nc</span> -zv -w 3 192.168.1.1 22   <span class="token-comment"># 3 second timeout</span>
+
+<span class="token-comment"># Test port range</span>
+<span class="token-function">nc</span> -zv 192.168.1.1 20-25
+
+<span class="token-comment"># Quick TCP port test with bash</span>
+<span class="token-keyword">if</span> timeout 1 bash -c <span class="token-string">"</dev/tcp/google.com/443"</span> 2>/dev/null; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Port open"</span>
+<span class="token-keyword">else</span>
+    <span class="token-function">echo</span> <span class="token-string">"Port closed"</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Check multiple hosts</span>
+<span class="token-keyword">for</span> host <span class="token-keyword">in</span> 8.8.8.8 1.1.1.1 9.9.9.9; <span class="token-keyword">do</span>
+    <span class="token-function">ping</span> -c 1 -W 1 <span class="token-variable">$host</span> &>/dev/null && \
+        <span class="token-function">echo</span> <span class="token-string">"$host: UP"</span> || <span class="token-function">echo</span> <span class="token-string">"$host: DOWN"</span>
+<span class="token-keyword">done</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- DNS -->
+                <h2>DNS Queries</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - DNS Queries
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># dig - DNS lookup utility (recommended)</span>
+
+<span class="token-comment"># Basic A record lookup</span>
+<span class="token-function">dig</span> google.com
+
+<span class="token-comment"># Short output</span>
+<span class="token-function">dig</span> +short google.com
+
+<span class="token-comment"># Specific record types</span>
+<span class="token-function">dig</span> google.com A           <span class="token-comment"># IPv4</span>
+<span class="token-function">dig</span> google.com AAAA        <span class="token-comment"># IPv6</span>
+<span class="token-function">dig</span> google.com MX          <span class="token-comment"># Mail servers</span>
+<span class="token-function">dig</span> google.com NS          <span class="token-comment"># Name servers</span>
+<span class="token-function">dig</span> google.com TXT         <span class="token-comment"># TXT records (SPF, DKIM)</span>
+<span class="token-function">dig</span> google.com SOA         <span class="token-comment"># Start of Authority</span>
+<span class="token-function">dig</span> google.com ANY         <span class="token-comment"># All records</span>
+
+<span class="token-comment"># Reverse DNS lookup</span>
+<span class="token-function">dig</span> -x 8.8.8.8
+
+<span class="token-comment"># Use specific DNS server</span>
+<span class="token-function">dig</span> @8.8.8.8 google.com
+<span class="token-function">dig</span> @1.1.1.1 google.com
+
+<span class="token-comment"># Trace DNS resolution path</span>
+<span class="token-function">dig</span> +trace google.com
+
+<span class="token-comment"># nslookup (legacy but still useful)</span>
+<span class="token-function">nslookup</span> google.com
+<span class="token-function">nslookup</span> google.com 8.8.8.8
+
+<span class="token-comment"># host command (simple output)</span>
+<span class="token-function">host</span> google.com
+<span class="token-function">host</span> -t MX google.com
+
+<span class="token-comment"># Bulk DNS lookup</span>
+<span class="token-keyword">for</span> domain <span class="token-keyword">in</span> google.com amazon.com microsoft.com; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$domain: $(dig +short $domain | head -1)"</span>
+<span class="token-keyword">done</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- curl -->
+                <h2>HTTP Requests with curl</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - curl HTTP Requests
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic GET request</span>
+<span class="token-function">curl</span> https://api.ipify.org?format=json
+
+<span class="token-comment"># Silent mode (no progress)</span>
+<span class="token-function">curl</span> -s https://api.ipify.org?format=json
+
+<span class="token-comment"># Include response headers</span>
+<span class="token-function">curl</span> -i https://httpbin.org/get
+
+<span class="token-comment"># Only headers</span>
+<span class="token-function">curl</span> -I https://google.com
+
+<span class="token-comment"># Follow redirects</span>
+<span class="token-function">curl</span> -L https://google.com
+
+<span class="token-comment"># POST request with JSON</span>
+<span class="token-function">curl</span> -X POST https://httpbin.org/post \
+    -H <span class="token-string">"Content-Type: application/json"</span> \
+    -d <span class="token-string">'{"name": "test", "value": 123}'</span>
+
+<span class="token-comment"># POST with form data</span>
+<span class="token-function">curl</span> -X POST https://httpbin.org/post \
+    -d <span class="token-string">"username=admin&password=secret"</span>
+
+<span class="token-comment"># Custom headers</span>
+<span class="token-function">curl</span> -H <span class="token-string">"Authorization: Bearer TOKEN"</span> \
+    -H <span class="token-string">"Accept: application/json"</span> \
+    https://api.example.com/data
+
+<span class="token-comment"># Save output to file</span>
+<span class="token-function">curl</span> -o output.html https://example.com
+<span class="token-function">curl</span> -O https://example.com/file.zip  <span class="token-comment"># Keep original filename</span>
+
+<span class="token-comment"># Show timing information</span>
+<span class="token-function">curl</span> -w <span class="token-string">"DNS: %{time_namelookup}s\nConnect: %{time_connect}s\nTotal: %{time_total}s\n"</span> \
+    -o /dev/null -s https://google.com
+
+<span class="token-comment"># Verbose mode for debugging</span>
+<span class="token-function">curl</span> -v https://example.com
+
+<span class="token-comment"># Ignore SSL certificate errors (testing only!)</span>
+<span class="token-function">curl</span> -k https://self-signed.example.com
+
+<span class="token-comment"># Set timeout</span>
+<span class="token-function">curl</span> --connect-timeout 5 --max-time 10 https://example.com</code></pre>
+                    </div>
+                </div>
+
+                <!-- Netcat -->
+                <h2>Netcat (nc) - The Swiss Army Knife</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Netcat Usage
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Port scanning</span>
+<span class="token-function">nc</span> -zv target.com 1-1000
+
+<span class="token-comment"># Banner grabbing</span>
+<span class="token-function">echo</span> <span class="token-string">""</span> | <span class="token-function">nc</span> -v target.com 22
+<span class="token-function">nc</span> -v target.com 80 <<< <span class="token-string">"HEAD / HTTP/1.0\r\n\r\n"</span>
+
+<span class="token-comment"># Simple listener (for testing)</span>
+<span class="token-function">nc</span> -lvp 4444
+
+<span class="token-comment"># Connect to listener</span>
+<span class="token-function">nc</span> target.com 4444
+
+<span class="token-comment"># File transfer</span>
+<span class="token-comment"># Receiver:</span>
+<span class="token-function">nc</span> -lvp 4444 > received_file.txt
+<span class="token-comment"># Sender:</span>
+<span class="token-function">nc</span> target.com 4444 < file_to_send.txt
+
+<span class="token-comment"># Simple chat</span>
+<span class="token-comment"># Server: nc -lvp 4444</span>
+<span class="token-comment"># Client: nc server_ip 4444</span>
+
+<span class="token-comment"># UDP mode</span>
+<span class="token-function">nc</span> -u target.com 53
+
+<span class="token-comment"># HTTP request via netcat</span>
+<span class="token-function">echo</span> -e <span class="token-string">"GET / HTTP/1.1\r\nHost: example.com\r\n\r\n"</span> | <span class="token-function">nc</span> example.com 80</code></pre>
+                    </div>
+                </div>
+
+                <!-- Port Scanning -->
+                <h2>Port Scanning with Nmap</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Nmap Scanning
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic TCP scan</span>
+<span class="token-function">nmap</span> target.com
+
+<span class="token-comment"># Scan specific ports</span>
+<span class="token-function">nmap</span> -p 22,80,443 target.com
+<span class="token-function">nmap</span> -p 1-1000 target.com
+<span class="token-function">nmap</span> -p- target.com         <span class="token-comment"># All 65535 ports</span>
+
+<span class="token-comment"># Fast scan (top 100 ports)</span>
+<span class="token-function">nmap</span> -F target.com
+
+<span class="token-comment"># Service version detection</span>
+<span class="token-function">nmap</span> -sV target.com
+
+<span class="token-comment"># OS detection</span>
+<span class="token-function">nmap</span> -O target.com
+
+<span class="token-comment"># Aggressive scan (OS, version, scripts, traceroute)</span>
+<span class="token-function">nmap</span> -A target.com
+
+<span class="token-comment"># UDP scan</span>
+<span class="token-function">sudo</span> <span class="token-function">nmap</span> -sU target.com
+
+<span class="token-comment"># Stealth SYN scan</span>
+<span class="token-function">sudo</span> <span class="token-function">nmap</span> -sS target.com
+
+<span class="token-comment"># Ping sweep (discover hosts)</span>
+<span class="token-function">nmap</span> -sn 192.168.1.0/24
+
+<span class="token-comment"># Skip host discovery (assume online)</span>
+<span class="token-function">nmap</span> -Pn target.com
+
+<span class="token-comment"># Output formats</span>
+<span class="token-function">nmap</span> -oN normal.txt target.com      <span class="token-comment"># Normal</span>
+<span class="token-function">nmap</span> -oX output.xml target.com      <span class="token-comment"># XML</span>
+<span class="token-function">nmap</span> -oG grepable.txt target.com    <span class="token-comment"># Grepable</span>
+<span class="token-function">nmap</span> -oA all_formats target.com     <span class="token-comment"># All formats</span>
+
+<span class="token-comment"># Script scanning (NSE)</span>
+<span class="token-function">nmap</span> --script=vuln target.com       <span class="token-comment"># Vulnerability scripts</span>
+<span class="token-function">nmap</span> --script=default target.com    <span class="token-comment"># Default scripts</span>
+<span class="token-function">nmap</span> --script=http-enum target.com  <span class="token-comment"># Specific script</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Recon Script -->
+                <h2>Security Reconnaissance Script</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Recon Script
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+<span class="token-comment"># Quick reconnaissance script</span>
+
+TARGET=<span class="token-string">"$1"</span>
+
+<span class="token-keyword">if</span> [[ -z <span class="token-string">"$TARGET"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Usage: $0 <target>"</span>
+    <span class="token-function">exit</span> 1
+<span class="token-keyword">fi</span>
+
+<span class="token-function">echo</span> <span class="token-string">"============================================"</span>
+<span class="token-function">echo</span> <span class="token-string">"       RECONNAISSANCE: $TARGET"</span>
+<span class="token-function">echo</span> <span class="token-string">"============================================"</span>
+
+<span class="token-comment"># DNS Information</span>
+<span class="token-function">echo</span> -e <span class="token-string">"\n[*] DNS Records"</span>
+<span class="token-function">echo</span> <span class="token-string">"A Record:    $(dig +short $TARGET A | head -1)"</span>
+<span class="token-function">echo</span> <span class="token-string">"MX Records:  $(dig +short $TARGET MX)"</span>
+<span class="token-function">echo</span> <span class="token-string">"NS Records:  $(dig +short $TARGET NS)"</span>
+
+<span class="token-comment"># WHOIS</span>
+<span class="token-function">echo</span> -e <span class="token-string">"\n[*] WHOIS Info"</span>
+<span class="token-function">whois</span> <span class="token-variable">$TARGET</span> 2>/dev/null | <span class="token-function">grep</span> -iE <span class="token-string">"registrar|creation|expir|name server"</span> | <span class="token-function">head</span> -10
+
+<span class="token-comment"># HTTP Headers</span>
+<span class="token-function">echo</span> -e <span class="token-string">"\n[*] HTTP Headers"</span>
+<span class="token-function">curl</span> -sI https://<span class="token-variable">$TARGET</span> 2>/dev/null | <span class="token-function">head</span> -15
+
+<span class="token-comment"># SSL Certificate</span>
+<span class="token-function">echo</span> -e <span class="token-string">"\n[*] SSL Certificate"</span>
+<span class="token-function">echo</span> | openssl s_client -connect <span class="token-variable">$TARGET</span>:443 2>/dev/null | \
+    openssl x509 -noout -subject -dates 2>/dev/null
+
+<span class="token-comment"># Quick port scan</span>
+<span class="token-function">echo</span> -e <span class="token-string">"\n[*] Common Ports"</span>
+<span class="token-keyword">for</span> port <span class="token-keyword">in</span> 21 22 23 25 53 80 110 143 443 445 3306 3389 8080; <span class="token-keyword">do</span>
+    timeout 1 bash -c <span class="token-string">"</dev/tcp/$TARGET/$port"</span> 2>/dev/null && \
+        <span class="token-function">echo</span> <span class="token-string">"  Port $port: OPEN"</span>
+<span class="token-keyword">done</span>
+
+<span class="token-function">echo</span> -e <span class="token-string">"\n[*] Recon complete"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Packet Capture -->
+                <h2>Packet Capture (tcpdump)</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - tcpdump
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Capture all traffic on interface</span>
+<span class="token-function">sudo</span> tcpdump -i eth0
+
+<span class="token-comment"># Capture with verbose output</span>
+<span class="token-function">sudo</span> tcpdump -v -i eth0
+
+<span class="token-comment"># Filter by host</span>
+<span class="token-function">sudo</span> tcpdump host 192.168.1.100
+
+<span class="token-comment"># Filter by port</span>
+<span class="token-function">sudo</span> tcpdump port 443
+<span class="token-function">sudo</span> tcpdump port 80 or port 443
+
+<span class="token-comment"># Filter by protocol</span>
+<span class="token-function">sudo</span> tcpdump tcp
+<span class="token-function">sudo</span> tcpdump udp
+<span class="token-function">sudo</span> tcpdump icmp
+
+<span class="token-comment"># Capture to file</span>
+<span class="token-function">sudo</span> tcpdump -w capture.pcap -i eth0
+
+<span class="token-comment"># Read from file</span>
+tcpdump -r capture.pcap
+
+<span class="token-comment"># Limit packet count</span>
+<span class="token-function">sudo</span> tcpdump -c 100 -i eth0
+
+<span class="token-comment"># Show packet contents in ASCII</span>
+<span class="token-function">sudo</span> tcpdump -A -i eth0 port 80
+
+<span class="token-comment"># Show packet contents in hex and ASCII</span>
+<span class="token-function">sudo</span> tcpdump -XX -i eth0
+
+<span class="token-comment"># Complex filter: HTTP traffic to/from specific IP</span>
+<span class="token-function">sudo</span> tcpdump <span class="token-string">'host 192.168.1.100 and (port 80 or port 443)'</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <h2>Linux vs PowerShell Network Commands</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Linux/Bash</th>
+                                <th>PowerShell</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>IP Config</strong></td>
+                                <td><code>ip addr</code> / <code>ifconfig</code></td>
+                                <td><code>Get-NetIPAddress</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Connections</strong></td>
+                                <td><code>ss -tunlp</code> / <code>netstat</code></td>
+                                <td><code>Get-NetTCPConnection</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>DNS Lookup</strong></td>
+                                <td><code>dig</code> / <code>nslookup</code></td>
+                                <td><code>Resolve-DnsName</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ping</strong></td>
+                                <td><code>ping</code></td>
+                                <td><code>Test-Connection</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Port Test</strong></td>
+                                <td><code>nc -zv</code></td>
+                                <td><code>Test-NetConnection -Port</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>HTTP Request</strong></td>
+                                <td><code>curl</code> / <code>wget</code></td>
+                                <td><code>Invoke-RestMethod</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Route Table</strong></td>
+                                <td><code>ip route</code> / <code>route</code></td>
+                                <td><code>Get-NetRoute</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>ARP Cache</strong></td>
+                                <td><code>ip neigh</code> / <code>arp</code></td>
+                                <td><code>Get-NetNeighbor</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you troubleshoot network connectivity issues in Linux?"</li>
+                        <li><strong>Strong Answer:</strong> Start with <code>ping</code> for basic connectivity, then <code>traceroute</code> to find where packets stop. Check <code>ip addr</code> for interface config, <code>ip route</code> for routing, <code>ss -tunlp</code> for open ports. Use <code>dig</code> for DNS issues. For deeper analysis, capture traffic with <code>tcpdump</code>.</li>
+                        <li><strong>Bonus:</strong> Mention checking firewall rules (<code>iptables -L</code> or <code>ufw status</code>) and system logs (<code>/var/log/syslog</code>)</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>ip</code> (modern) over <code>ifconfig</code> (legacy) for interface config</li>
+                    <li>Use <code>ss</code> (faster) over <code>netstat</code> for socket statistics</li>
+                    <li><code>dig</code> is the most powerful DNS tool; use <code>+short</code> for clean output</li>
+                    <li><code>curl</code> is essential for HTTP testing and API work</li>
+                    <li><code>nc</code> (netcat) is the Swiss Army knife for TCP/UDP operations</li>
+                    <li><code>nmap</code> is the standard for port scanning and service detection</li>
+                    <li>Always use <code>sudo</code> for packet capture and raw socket operations</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="3-11-bash-regex.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 3.11 Bash Regex</span>
+                    </a>
+                    <a href="3-13-bash-system-admin.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.13 System Administration →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

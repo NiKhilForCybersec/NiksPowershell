@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.1 Common Errors - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link active"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#troubleshooting">Troubleshooting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Common Errors</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>9.1 Common Errors & Solutions</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Diagnose and fix common PowerShell errors</li>
+                        <li>Resolve typical Bash scripting issues</li>
+                        <li>Handle permission and access problems</li>
+                        <li>Debug remote execution failures</li>
+                    </ul>
+                </div>
+
+                <!-- PowerShell Errors -->
+                <h2>PowerShell Common Errors</h2>
+
+                <!-- Error 1 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">Execution Policy Error</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>File cannot be loaded because running scripts is disabled on this system</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Fix Execution Policy
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check current policy</span>
+<span class="token-cmdlet">Get-ExecutionPolicy</span> <span class="token-parameter">-List</span>
+
+<span class="token-comment"># Fix: Set policy for current user</span>
+<span class="token-cmdlet">Set-ExecutionPolicy</span> <span class="token-parameter">-ExecutionPolicy</span> RemoteSigned <span class="token-parameter">-Scope</span> CurrentUser
+
+<span class="token-comment"># Or bypass for single session</span>
+powershell.exe <span class="token-parameter">-ExecutionPolicy</span> Bypass <span class="token-parameter">-File</span> script.ps1
+
+<span class="token-comment"># Unblock downloaded script</span>
+<span class="token-cmdlet">Unblock-File</span> <span class="token-parameter">-Path</span> .\downloaded_script.ps1</code></pre>
+                    </div>
+                </div>
+
+                <!-- Error 2 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">Access Denied / Insufficient Permissions</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>Access to the path is denied</code> or <code>Requested registry access is not allowed</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Permission Issues
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check if running as admin</span>
+<span class="token-variable">$IsAdmin</span> = ([Security.Principal.WindowsPrincipal] `
+    [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(`
+    [Security.Principal.WindowsBuiltInRole]::Administrator)
+
+<span class="token-keyword">if</span> (-not <span class="token-variable">$IsAdmin</span>) {
+    Write-Warning <span class="token-string">"This script requires administrator privileges"</span>
+    <span class="token-comment"># Restart elevated</span>
+    Start-Process powershell <span class="token-parameter">-Verb</span> RunAs <span class="token-parameter">-ArgumentList</span> <span class="token-string">"-File `"$PSCommandPath`""</span>
+    <span class="token-function">exit</span>
+}
+
+<span class="token-comment"># Check file permissions</span>
+<span class="token-cmdlet">Get-Acl</span> <span class="token-string">"C:\Path\To\File"</span> | <span class="token-cmdlet">Format-List</span>
+
+<span class="token-comment"># Take ownership (admin required)</span>
+takeown /f <span class="token-string">"C:\Path\To\File"</span>
+icacls <span class="token-string">"C:\Path\To\File"</span> /grant <span class="token-string">"$env:USERNAME:F"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Error 3 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">Module Not Found</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>The term 'Get-ADUser' is not recognized as a cmdlet</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Module Issues
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Find which module contains the command</span>
+<span class="token-cmdlet">Get-Command</span> Get-ADUser -ErrorAction SilentlyContinue
+<span class="token-cmdlet">Get-Module</span> <span class="token-parameter">-ListAvailable</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.ExportedCommands.Keys <span class="token-operator">-contains</span> <span class="token-string">'Get-ADUser'</span> }
+
+<span class="token-comment"># Install missing module</span>
+Install-Module <span class="token-parameter">-Name</span> ActiveDirectory <span class="token-parameter">-Scope</span> CurrentUser
+
+<span class="token-comment"># Import module explicitly</span>
+Import-Module ActiveDirectory
+
+<span class="token-comment"># For RSAT tools (AD module)</span>
+<span class="token-comment"># Windows 10/11:</span>
+Add-WindowsCapability <span class="token-parameter">-Online</span> <span class="token-parameter">-Name</span> <span class="token-string">"Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0"</span>
+
+<span class="token-comment"># Check module path</span>
+<span class="token-variable">$env:PSModulePath</span> -split <span class="token-string">';'</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Error 4 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">WinRM / Remoting Errors</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>WinRM cannot complete the operation</code> or <code>Access is denied</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Remoting Issues
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Enable WinRM on target</span>
+Enable-PSRemoting <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Add to trusted hosts (client side)</span>
+<span class="token-cmdlet">Set-Item</span> WSMan:\localhost\Client\TrustedHosts <span class="token-parameter">-Value</span> <span class="token-string">"Server01,Server02"</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Test connection</span>
+<span class="token-cmdlet">Test-WSMan</span> <span class="token-parameter">-ComputerName</span> Server01
+
+<span class="token-comment"># Check WinRM service</span>
+<span class="token-cmdlet">Get-Service</span> WinRM | <span class="token-cmdlet">Select-Object</span> Status, StartType
+
+<span class="token-comment"># Firewall rule</span>
+<span class="token-cmdlet">Get-NetFirewallRule</span> <span class="token-parameter">-Name</span> <span class="token-string">"WINRM*"</span> | <span class="token-cmdlet">Select-Object</span> Name, Enabled
+
+<span class="token-comment"># Connect with explicit credentials</span>
+<span class="token-variable">$Cred</span> = <span class="token-cmdlet">Get-Credential</span>
+<span class="token-cmdlet">Enter-PSSession</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-Credential</span> <span class="token-variable">$Cred</span>
+
+<span class="token-comment"># Use IP with SSL</span>
+<span class="token-cmdlet">Enter-PSSession</span> <span class="token-parameter">-ComputerName</span> <span class="token-string">"192.168.1.10"</span> <span class="token-parameter">-UseSSL</span> <span class="token-parameter">-Credential</span> <span class="token-variable">$Cred</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Errors -->
+                <h2>Bash Common Errors</h2>
+
+                <!-- Bash Error 1 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">Permission Denied on Script</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>bash: ./script.sh: Permission denied</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Script Permission Fix
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Make script executable</span>
+<span class="token-function">chmod</span> +x script.sh
+
+<span class="token-comment"># Or run with bash explicitly</span>
+<span class="token-function">bash</span> script.sh
+
+<span class="token-comment"># Check current permissions</span>
+<span class="token-function">ls</span> -la script.sh
+
+<span class="token-comment"># Set specific permissions</span>
+<span class="token-function">chmod</span> <span class="token-number">755</span> script.sh  <span class="token-comment"># rwxr-xr-x</span>
+<span class="token-function">chmod</span> <span class="token-number">700</span> script.sh  <span class="token-comment"># rwx------ (owner only)</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Error 2 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">Bad Interpreter / Line Endings</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>bad interpreter: /bin/bash^M: no such file or directory</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Line Ending Fix
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Convert Windows line endings (CRLF) to Unix (LF)</span>
+<span class="token-function">sed</span> -i <span class="token-string">'s/\r$//'</span> script.sh
+
+<span class="token-comment"># Or use dos2unix</span>
+<span class="token-function">dos2unix</span> script.sh
+
+<span class="token-comment"># Check file type</span>
+<span class="token-function">file</span> script.sh
+
+<span class="token-comment"># View hidden characters</span>
+<span class="token-function">cat</span> -A script.sh | <span class="token-function">head</span> -5  <span class="token-comment"># ^M shows CRLF</span>
+
+<span class="token-comment"># In vim: set fileformat</span>
+<span class="token-comment"># :set ff=unix</span>
+<span class="token-comment"># :wq</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Error 3 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">Command Not Found</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>command not found</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Command Not Found
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check if command exists</span>
+<span class="token-function">which</span> nmap
+<span class="token-function">type</span> nmap
+<span class="token-keyword">command</span> -v nmap
+
+<span class="token-comment"># Check PATH</span>
+<span class="token-function">echo</span> <span class="token-variable">$PATH</span>
+
+<span class="token-comment"># Add to PATH temporarily</span>
+<span class="token-variable">export</span> PATH=<span class="token-string">"$PATH:/opt/tools/bin"</span>
+
+<span class="token-comment"># Add to PATH permanently (add to ~/.bashrc)</span>
+<span class="token-function">echo</span> <span class="token-string">'export PATH="$PATH:/opt/tools/bin"'</span> >> ~/.bashrc
+<span class="token-function">source</span> ~/.bashrc
+
+<span class="token-comment"># Install missing command</span>
+<span class="token-function">sudo</span> apt-get install nmap      <span class="token-comment"># Debian/Ubuntu</span>
+<span class="token-function">sudo</span> yum install nmap          <span class="token-comment"># RHEL/CentOS</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Error 4 -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">❌</div>
+                        <div class="info-box-title">Syntax Error: Unexpected Token</div>
+                    </div>
+                    <p><strong>Error:</strong> <code>syntax error near unexpected token</code></p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Common Syntax Fixes
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Wrong: spaces around = in assignment</span>
+name = <span class="token-string">"John"</span>      <span class="token-comment"># ❌ Error</span>
+name=<span class="token-string">"John"</span>        <span class="token-comment"># ✓ Correct</span>
+
+<span class="token-comment"># Wrong: missing spaces in test brackets</span>
+<span class="token-keyword">if</span> [<span class="token-variable">$x</span> -eq <span class="token-number">5</span>]; <span class="token-keyword">then</span>     <span class="token-comment"># ❌ Error</span>
+<span class="token-keyword">if</span> [ <span class="token-variable">$x</span> -eq <span class="token-number">5</span> ]; <span class="token-keyword">then</span>   <span class="token-comment"># ✓ Correct</span>
+
+<span class="token-comment"># Wrong: using == in [ ] test</span>
+<span class="token-keyword">if</span> [ <span class="token-variable">$x</span> == <span class="token-string">"yes"</span> ]     <span class="token-comment"># Works but use = for POSIX</span>
+<span class="token-keyword">if</span> [[ <span class="token-variable">$x</span> == <span class="token-string">"yes"</span> ]]   <span class="token-comment"># ✓ Use [[ ]] for ==</span>
+
+<span class="token-comment"># Check syntax without running</span>
+<span class="token-function">bash</span> -n script.sh
+
+<span class="token-comment"># Debug mode - shows each command</span>
+<span class="token-function">bash</span> -x script.sh</code></pre>
+                    </div>
+                </div>
+
+                <!-- Quick Reference Table -->
+                <h2>Quick Reference: Error → Solution</h2>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Error</th>
+                            <th>Cause</th>
+                            <th>Quick Fix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Execution policy</td>
+                            <td>Scripts disabled</td>
+                            <td><code>Set-ExecutionPolicy RemoteSigned</code></td>
+                        </tr>
+                        <tr>
+                            <td>Access denied</td>
+                            <td>Need admin rights</td>
+                            <td>Run as Administrator</td>
+                        </tr>
+                        <tr>
+                            <td>Module not found</td>
+                            <td>Module not installed</td>
+                            <td><code>Install-Module ModuleName</code></td>
+                        </tr>
+                        <tr>
+                            <td>WinRM error</td>
+                            <td>Remoting disabled</td>
+                            <td><code>Enable-PSRemoting -Force</code></td>
+                        </tr>
+                        <tr>
+                            <td>Permission denied (Bash)</td>
+                            <td>Not executable</td>
+                            <td><code>chmod +x script.sh</code></td>
+                        </tr>
+                        <tr>
+                            <td>Bad interpreter ^M</td>
+                            <td>Windows line endings</td>
+                            <td><code>sed -i 's/\r$//' script.sh</code></td>
+                        </tr>
+                        <tr>
+                            <td>Command not found</td>
+                            <td>Not in PATH</td>
+                            <td>Install or update PATH</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Troubleshooting</div>
+                    </div>
+                    <ul>
+                        <li><strong>Read the error message:</strong> It usually tells you exactly what's wrong</li>
+                        <li><strong>Use -Verbose and -Debug:</strong> Get more information in PowerShell</li>
+                        <li><strong>Use set -x in Bash:</strong> Debug mode shows each command</li>
+                        <li><strong>Check prerequisites:</strong> Modules, permissions, services</li>
+                        <li><strong>Test in isolation:</strong> Run commands individually first</li>
+                        <li><strong>Search error codes:</strong> Many errors have specific solutions</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Execution policy errors: Use <code>Set-ExecutionPolicy</code> or bypass</li>
+                    <li>Permission errors: Check admin rights, file ACLs</li>
+                    <li>Module errors: Install and import required modules</li>
+                    <li>WinRM errors: Enable remoting, check firewall</li>
+                    <li>Bash permission: Use <code>chmod +x</code></li>
+                    <li>Line endings: Convert with <code>dos2unix</code> or <code>sed</code></li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="8-3-asset-inventory.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 8.3 Asset Inventory</span>
+                    </a>
+                    <a href="9-2-debugging-techniques.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">9.2 Debugging Techniques →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.8 Forensic Analysis Scripts - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting Scripts</a>
+                        <a href="5-8-forensic-analysis.html" class="nav-link active"><span class="nav-link-number">5.8</span> Forensic Analysis</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#security">Security Automation</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Forensic Analysis Scripts</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>5.8 Forensic Analysis Scripts</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Collect forensic artifacts from Windows systems</li>
+                        <li>Analyze file system timestamps and metadata</li>
+                        <li>Extract evidence from registry, prefetch, and browser data</li>
+                        <li>Build timeline analysis and evidence collection tools</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Digital Forensics with PowerShell</h2>
+                <p>
+                    Digital forensics involves collecting, preserving, and analyzing evidence from 
+                    computer systems. PowerShell provides powerful capabilities for live forensics 
+                    and artifact collection on Windows systems.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Key Artifact Locations</div>
+                    </div>
+                    <ul>
+                        <li><strong>Registry</strong> → User activity, installed software, persistence</li>
+                        <li><strong>Prefetch</strong> → C:\Windows\Prefetch - Program execution history</li>
+                        <li><strong>Event Logs</strong> → C:\Windows\System32\winevt\Logs</li>
+                        <li><strong>NTUSER.DAT</strong> → User-specific registry (per user profile)</li>
+                        <li><strong>$MFT</strong> → Master File Table - all file metadata</li>
+                        <li><strong>Browser Data</strong> → AppData\Local\{Browser}</li>
+                        <li><strong>Recent Files</strong> → %APPDATA%\Microsoft\Windows\Recent</li>
+                    </ul>
+                </div>
+
+                <!-- Warning -->
+                <div class="info-box critical-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🚨</div>
+                        <div class="info-box-title">Forensic Best Practice</div>
+                    </div>
+                    <ul>
+                        <li><strong>Document everything:</strong> Record your actions with timestamps</li>
+                        <li><strong>Preserve evidence:</strong> Work on copies when possible</li>
+                        <li><strong>Hash files:</strong> Calculate hashes before and after collection</li>
+                        <li><strong>Chain of custody:</strong> Track who handled the evidence</li>
+                        <li><strong>Minimize footprint:</strong> Running scripts modifies timestamps</li>
+                    </ul>
+                </div>
+
+                <!-- File Hashing -->
+                <h2>File Integrity and Hashing</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - File Hashing
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Single file hash</span>
+<span class="token-cmdlet">Get-FileHash</span> <span class="token-parameter">-Path</span> C:\Windows\System32\cmd.exe <span class="token-parameter">-Algorithm</span> SHA256
+
+<span class="token-comment"># Multiple algorithms</span>
+<span class="token-variable">$File</span> = <span class="token-string">"C:\Evidence\suspicious.exe"</span>
+@(<span class="token-string">'MD5'</span>, <span class="token-string">'SHA1'</span>, <span class="token-string">'SHA256'</span>) | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$Hash</span> = <span class="token-cmdlet">Get-FileHash</span> <span class="token-parameter">-Path</span> <span class="token-variable">$File</span> <span class="token-parameter">-Algorithm</span> <span class="token-variable">$_</span>
+    [PSCustomObject]@{
+        Algorithm = <span class="token-variable">$_</span>
+        Hash = <span class="token-variable">$Hash</span>.Hash
+    }
+}
+
+<span class="token-comment"># Hash all files in directory</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-DirectoryHashes</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Path</span>,
+        [string]<span class="token-variable">$Algorithm</span> = <span class="token-string">'SHA256'</span>
+    )
+    
+    <span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Path</span> <span class="token-variable">$Path</span> <span class="token-parameter">-File</span> <span class="token-parameter">-Recurse</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-keyword">try</span> {
+            <span class="token-variable">$Hash</span> = <span class="token-cmdlet">Get-FileHash</span> <span class="token-parameter">-Path</span> <span class="token-variable">$_</span>.FullName <span class="token-parameter">-Algorithm</span> <span class="token-variable">$Algorithm</span> -ErrorAction Stop
+            [PSCustomObject]@{
+                Path = <span class="token-variable">$_</span>.FullName
+                Hash = <span class="token-variable">$Hash</span>.Hash
+                Size = <span class="token-variable">$_</span>.Length
+                LastWriteTime = <span class="token-variable">$_</span>.LastWriteTime
+            }
+        }
+        <span class="token-keyword">catch</span> {
+            Write-Warning <span class="token-string">"Cannot hash: $($_.FullName)"</span>
+        }
+    }
+}
+
+<span class="token-comment"># Compare file hash to known malware hash</span>
+<span class="token-variable">$KnownBadHashes</span> = @(
+    <span class="token-string">'44D88612FEA8A8F36DE82E1278ABB02F'</span>,  <span class="token-comment"># EICAR test file MD5</span>
+    <span class="token-string">'275A021BBFB6489E54D471899F7DB9D1663FC695EC2FE2A2C4538AABF651FD0F'</span>  <span class="token-comment"># SHA256</span>
+)
+
+<span class="token-variable">$FileHash</span> = (<span class="token-cmdlet">Get-FileHash</span> <span class="token-variable">$File</span> <span class="token-parameter">-Algorithm</span> SHA256).Hash
+<span class="token-keyword">if</span> (<span class="token-variable">$FileHash</span> <span class="token-operator">-in</span> <span class="token-variable">$KnownBadHashes</span>) {
+    Write-Warning <span class="token-string">"ALERT: Known malicious file detected!"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Timestamp Analysis -->
+                <h2>File Timestamp Analysis (MACB)</h2>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: MACB Timestamps</div>
+                    </div>
+                    <ul>
+                        <li><strong>M</strong>odified → Content last changed</li>
+                        <li><strong>A</strong>ccessed → Last read/opened</li>
+                        <li><strong>C</strong>hanged (MFT) → Metadata changed (permissions, name)</li>
+                        <li><strong>B</strong>irth (Created) → File creation time</li>
+                    </ul>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Timestamp Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-FileTimestamps</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Gets all timestamps for forensic analysis.
+    #&gt;</span>
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [string]<span class="token-variable">$Path</span>
+    )
+    
+    <span class="token-keyword">process</span> {
+        <span class="token-variable">$File</span> = <span class="token-cmdlet">Get-Item</span> <span class="token-parameter">-Path</span> <span class="token-variable">$Path</span> <span class="token-parameter">-Force</span>
+        
+        [PSCustomObject]@{
+            FullPath = <span class="token-variable">$File</span>.FullName
+            Created = <span class="token-variable">$File</span>.CreationTime
+            CreatedUTC = <span class="token-variable">$File</span>.CreationTimeUtc
+            Modified = <span class="token-variable">$File</span>.LastWriteTime
+            ModifiedUTC = <span class="token-variable">$File</span>.LastWriteTimeUtc
+            Accessed = <span class="token-variable">$File</span>.LastAccessTime
+            AccessedUTC = <span class="token-variable">$File</span>.LastAccessTimeUtc
+            Size = <span class="token-variable">$File</span>.Length
+            Attributes = <span class="token-variable">$File</span>.Attributes
+        }
+    }
+}
+
+<span class="token-comment"># Detect timestomping (suspicious timestamp patterns)</span>
+<span class="token-keyword">function</span> <span class="token-function">Find-SuspiciousTimestamps</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Path</span> = <span class="token-string">"C:\Windows\System32"</span>
+    )
+    
+    <span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Path</span> <span class="token-variable">$Path</span> <span class="token-parameter">-File</span> -ErrorAction SilentlyContinue | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$Suspicious</span> = @()
+        
+        <span class="token-comment"># Created after modified (timestomping indicator)</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$_</span>.CreationTime <span class="token-operator">-gt</span> <span class="token-variable">$_</span>.LastWriteTime) {
+            <span class="token-variable">$Suspicious</span> += <span class="token-string">"Created &gt; Modified"</span>
+        }
+        
+        <span class="token-comment"># Very old timestamp (before Windows installation)</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$_</span>.CreationTime.Year <span class="token-operator">-lt</span> <span class="token-number">2000</span>) {
+            <span class="token-variable">$Suspicious</span> += <span class="token-string">"Unusually old"</span>
+        }
+        
+        <span class="token-comment"># Timestamps at exactly midnight (possible manipulation)</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$_</span>.CreationTime.TimeOfDay.TotalSeconds <span class="token-operator">-eq</span> <span class="token-number">0</span>) {
+            <span class="token-variable">$Suspicious</span> += <span class="token-string">"Midnight timestamp"</span>
+        }
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Suspicious</span>.Count <span class="token-operator">-gt</span> <span class="token-number">0</span>) {
+            [PSCustomObject]@{
+                File = <span class="token-variable">$_</span>.FullName
+                Created = <span class="token-variable">$_</span>.CreationTime
+                Modified = <span class="token-variable">$_</span>.LastWriteTime
+                Flags = <span class="token-variable">$Suspicious</span> -join <span class="token-string">', '</span>
+            }
+        }
+    }
+}
+
+<span class="token-comment"># Find recently modified files</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-RecentlyModified</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Path</span>,
+        [int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>
+    )
+    
+    <span class="token-variable">$Cutoff</span> = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    
+    <span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Path</span> <span class="token-variable">$Path</span> <span class="token-parameter">-Recurse</span> <span class="token-parameter">-File</span> -ErrorAction SilentlyContinue |
+        <span class="token-cmdlet">Where-Object</span> LastWriteTime <span class="token-operator">-gt</span> <span class="token-variable">$Cutoff</span> |
+        <span class="token-cmdlet">Sort-Object</span> LastWriteTime <span class="token-parameter">-Descending</span> |
+        <span class="token-cmdlet">Select-Object</span> FullName, LastWriteTime, Length
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Prefetch Analysis -->
+                <h2>Prefetch Analysis</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Prefetch Files
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-PrefetchInfo</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Analyzes Windows Prefetch files for program execution evidence.
+    .NOTES
+        Prefetch shows programs that have been executed on the system.
+    #&gt;</span>
+    
+    <span class="token-variable">$PrefetchPath</span> = <span class="token-string">"$env:SystemRoot\Prefetch"</span>
+    
+    <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$PrefetchPath</span>)) {
+        Write-Warning <span class="token-string">"Prefetch folder not accessible"</span>
+        <span class="token-keyword">return</span>
+    }
+    
+    <span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Path</span> <span class="token-variable">$PrefetchPath</span> <span class="token-parameter">-Filter</span> <span class="token-string">"*.pf"</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-comment"># Parse filename: PROGRAM.EXE-HASH.pf</span>
+        <span class="token-variable">$Name</span> = <span class="token-variable">$_</span>.BaseName
+        <span class="token-keyword">if</span> (<span class="token-variable">$Name</span> <span class="token-operator">-match</span> <span class="token-string">'^(.+)-([A-F0-9]{8})$'</span>) {
+            <span class="token-variable">$ExeName</span> = <span class="token-variable">$Matches</span>[1]
+            <span class="token-variable">$Hash</span> = <span class="token-variable">$Matches</span>[2]
+        } <span class="token-keyword">else</span> {
+            <span class="token-variable">$ExeName</span> = <span class="token-variable">$Name</span>
+            <span class="token-variable">$Hash</span> = <span class="token-string">""</span>
+        }
+        
+        [PSCustomObject]@{
+            ExecutableName = <span class="token-variable">$ExeName</span>
+            PrefetchHash = <span class="token-variable">$Hash</span>
+            Created = <span class="token-variable">$_</span>.CreationTime
+            LastRun = <span class="token-variable">$_</span>.LastWriteTime
+            Size = <span class="token-variable">$_</span>.Length
+            PrefetchFile = <span class="token-variable">$_</span>.Name
+        }
+    } | <span class="token-cmdlet">Sort-Object</span> LastRun <span class="token-parameter">-Descending</span>
+}
+
+<span class="token-comment"># Find suspicious executed programs</span>
+<span class="token-variable">$SuspiciousTools</span> = @(
+    <span class="token-string">'MIMIKATZ'</span>, <span class="token-string">'PSEXEC'</span>, <span class="token-string">'PROCDUMP'</span>, <span class="token-string">'NMAP'</span>, 
+    <span class="token-string">'NETCAT'</span>, <span class="token-string">'NC'</span>, <span class="token-string">'RUBEUS'</span>, <span class="token-string">'SHARPHOUND'</span>,
+    <span class="token-string">'BLOODHOUND'</span>, <span class="token-string">'LAZAGNE'</span>, <span class="token-string">'WINPEAS'</span>
+)
+
+Get-PrefetchInfo | <span class="token-cmdlet">Where-Object</span> {
+    <span class="token-variable">$Name</span> = <span class="token-variable">$_</span>.ExecutableName
+    <span class="token-variable">$SuspiciousTools</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$Name</span> <span class="token-operator">-like</span> <span class="token-string">"*$_*"</span> }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Registry Forensics -->
+                <h2>Registry Forensics</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Registry Artifacts
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-RegistryForensicArtifacts</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects forensically relevant registry artifacts.
+    #&gt;</span>
+    
+    <span class="token-variable">$Artifacts</span> = @{}
+    
+    <span class="token-comment"># Recent Documents (RecentDocs)</span>
+    <span class="token-variable">$Artifacts</span>.RecentDocs = <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">"HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs"</span> -ErrorAction SilentlyContinue
+    
+    <span class="token-comment"># Run/RunOnce keys (persistence)</span>
+    <span class="token-variable">$Artifacts</span>.RunKeys = @(
+        <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"</span> -ErrorAction SilentlyContinue
+        <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"</span> -ErrorAction SilentlyContinue
+        <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-string">"HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"</span> -ErrorAction SilentlyContinue
+        <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-string">"HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"</span> -ErrorAction SilentlyContinue
+    )
+    
+    <span class="token-comment"># UserAssist (encoded program execution)</span>
+    <span class="token-variable">$Artifacts</span>.UserAssist = <span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist"</span> -Recurse -ErrorAction SilentlyContinue
+    
+    <span class="token-comment"># TypedPaths (Explorer address bar history)</span>
+    <span class="token-variable">$Artifacts</span>.TypedPaths = <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-string">"HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths"</span> -ErrorAction SilentlyContinue
+    
+    <span class="token-comment"># MountedDevices</span>
+    <span class="token-variable">$Artifacts</span>.MountedDevices = <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-string">"HKLM:\SYSTEM\MountedDevices"</span> -ErrorAction SilentlyContinue
+    
+    <span class="token-comment"># USB History</span>
+    <span class="token-variable">$Artifacts</span>.USBHistory = <span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"HKLM:\SYSTEM\CurrentControlSet\Enum\USBSTOR"</span> -ErrorAction SilentlyContinue |
+        <span class="token-cmdlet">Get-ItemProperty</span> | <span class="token-cmdlet">Select-Object</span> PSChildName, FriendlyName
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Artifacts</span>
+}
+
+<span class="token-comment"># Decode ROT13 for UserAssist entries</span>
+<span class="token-keyword">function</span> <span class="token-function">ConvertFrom-ROT13</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Text</span>)
+    
+    <span class="token-variable">$Result</span> = <span class="token-variable">$Text</span>.ToCharArray() | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-keyword">if</span> (<span class="token-variable">$_</span> <span class="token-operator">-match</span> <span class="token-string">'[A-Za-z]'</span>) {
+            <span class="token-variable">$Base</span> = <span class="token-keyword">if</span> (<span class="token-variable">$_</span> <span class="token-operator">-cmatch</span> <span class="token-string">'[A-Z]'</span>) { [int][char]<span class="token-string">'A'</span> } <span class="token-keyword">else</span> { [int][char]<span class="token-string">'a'</span> }
+            [char]((<span class="token-variable">$_</span> - <span class="token-variable">$Base</span> + <span class="token-number">13</span>) % <span class="token-number">26</span> + <span class="token-variable">$Base</span>)
+        } <span class="token-keyword">else</span> {
+            <span class="token-variable">$_</span>
+        }
+    }
+    -join <span class="token-variable">$Result</span>
+}
+
+<span class="token-comment"># Get UserAssist decoded</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-UserAssistDecoded</span> {
+    <span class="token-variable">$Path</span> = <span class="token-string">"HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\*\Count"</span>
+    
+    <span class="token-cmdlet">Get-Item</span> <span class="token-variable">$Path</span> -ErrorAction SilentlyContinue | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$_</span>.Property | <span class="token-cmdlet">ForEach-Object</span> {
+            [PSCustomObject]@{
+                EncodedName = <span class="token-variable">$_</span>
+                DecodedName = ConvertFrom-ROT13 <span class="token-variable">$_</span>
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Browser Forensics -->
+                <h2>Browser Artifact Collection</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Browser Forensics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-BrowserArtifacts</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Locates browser artifact files for collection.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$UserProfile</span> = <span class="token-variable">$env:USERPROFILE</span>
+    )
+    
+    <span class="token-variable">$Artifacts</span> = @()
+    
+    <span class="token-comment"># Chrome</span>
+    <span class="token-variable">$ChromePath</span> = <span class="token-string">"$UserProfile\AppData\Local\Google\Chrome\User Data\Default"</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$ChromePath</span>) {
+        <span class="token-variable">$Artifacts</span> += [PSCustomObject]@{
+            Browser = <span class="token-string">'Chrome'</span>
+            History = <span class="token-string">"$ChromePath\History"</span>
+            Cookies = <span class="token-string">"$ChromePath\Cookies"</span>
+            Downloads = <span class="token-string">"$ChromePath\History"</span>
+            Bookmarks = <span class="token-string">"$ChromePath\Bookmarks"</span>
+            LoginData = <span class="token-string">"$ChromePath\Login Data"</span>
+        }
+    }
+    
+    <span class="token-comment"># Firefox</span>
+    <span class="token-variable">$FirefoxPath</span> = <span class="token-string">"$UserProfile\AppData\Roaming\Mozilla\Firefox\Profiles"</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$FirefoxPath</span>) {
+        <span class="token-cmdlet">Get-ChildItem</span> <span class="token-variable">$FirefoxPath</span> <span class="token-parameter">-Directory</span> | <span class="token-cmdlet">ForEach-Object</span> {
+            <span class="token-variable">$ProfilePath</span> = <span class="token-variable">$_</span>.FullName
+            <span class="token-variable">$Artifacts</span> += [PSCustomObject]@{
+                Browser = <span class="token-string">'Firefox'</span>
+                History = <span class="token-string">"$ProfilePath\places.sqlite"</span>
+                Cookies = <span class="token-string">"$ProfilePath\cookies.sqlite"</span>
+                Downloads = <span class="token-string">"$ProfilePath\places.sqlite"</span>
+                Bookmarks = <span class="token-string">"$ProfilePath\places.sqlite"</span>
+                LoginData = <span class="token-string">"$ProfilePath\logins.json"</span>
+            }
+        }
+    }
+    
+    <span class="token-comment"># Edge (Chromium)</span>
+    <span class="token-variable">$EdgePath</span> = <span class="token-string">"$UserProfile\AppData\Local\Microsoft\Edge\User Data\Default"</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$EdgePath</span>) {
+        <span class="token-variable">$Artifacts</span> += [PSCustomObject]@{
+            Browser = <span class="token-string">'Edge'</span>
+            History = <span class="token-string">"$EdgePath\History"</span>
+            Cookies = <span class="token-string">"$EdgePath\Cookies"</span>
+            Downloads = <span class="token-string">"$EdgePath\History"</span>
+            Bookmarks = <span class="token-string">"$EdgePath\Bookmarks"</span>
+            LoginData = <span class="token-string">"$EdgePath\Login Data"</span>
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Artifacts</span>
+}
+
+<span class="token-comment"># Copy browser artifacts for analysis</span>
+<span class="token-keyword">function</span> <span class="token-function">Copy-BrowserArtifacts</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\BrowserArtifacts"</span>
+    )
+    
+    <span class="token-cmdlet">New-Item</span> <span class="token-parameter">-Path</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | Out-Null
+    
+    <span class="token-variable">$Artifacts</span> = Get-BrowserArtifacts
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Browser</span> <span class="token-keyword">in</span> <span class="token-variable">$Artifacts</span>) {
+        <span class="token-variable">$BrowserDir</span> = <span class="token-string">"$OutputPath\$($Browser.Browser)"</span>
+        <span class="token-cmdlet">New-Item</span> <span class="token-parameter">-Path</span> <span class="token-variable">$BrowserDir</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | Out-Null
+        
+        @(<span class="token-string">'History'</span>, <span class="token-string">'Cookies'</span>, <span class="token-string">'Bookmarks'</span>, <span class="token-string">'LoginData'</span>) | <span class="token-cmdlet">ForEach-Object</span> {
+            <span class="token-variable">$Source</span> = <span class="token-variable">$Browser</span>.<span class="token-variable">$_</span>
+            <span class="token-keyword">if</span> (<span class="token-variable">$Source</span> <span class="token-operator">-and</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$Source</span>)) {
+                <span class="token-keyword">try</span> {
+                    <span class="token-cmdlet">Copy-Item</span> <span class="token-parameter">-Path</span> <span class="token-variable">$Source</span> <span class="token-parameter">-Destination</span> <span class="token-string">"$BrowserDir\$_"</span> <span class="token-parameter">-Force</span>
+                    Write-Host <span class="token-string">"[+] Copied $_ for $($Browser.Browser)"</span> -ForegroundColor Green
+                }
+                <span class="token-keyword">catch</span> {
+                    Write-Warning <span class="token-string">"Could not copy $_ (file may be locked)"</span>
+                }
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Master Collection Script -->
+                <h2>Comprehensive Artifact Collection</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Full Artifact Collection
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-ForensicCollection</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects comprehensive forensic artifacts from a Windows system.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">"C:\ForensicCollection_$(Get-Date -Format 'yyyyMMdd_HHmmss')"</span>,
+        [string]<span class="token-variable">$CaseName</span> = <span class="token-string">"Case001"</span>
+    )
+    
+    Write-Host @<span class="token-string">"
+╔════════════════════════════════════════════════════════════╗
+║           FORENSIC ARTIFACT COLLECTION                      ║
+║                    Case: $CaseName                          ║
+╚════════════════════════════════════════════════════════════╝
+"@ -ForegroundColor Cyan
+    
+    <span class="token-comment"># Create output structure</span>
+    <span class="token-variable">$Folders</span> = @(<span class="token-string">'Registry'</span>, <span class="token-string">'EventLogs'</span>, <span class="token-string">'Prefetch'</span>, <span class="token-string">'Browser'</span>, <span class="token-string">'System'</span>, <span class="token-string">'Timeline'</span>)
+    <span class="token-variable">$Folders</span> | <span class="token-cmdlet">ForEach-Object</span> { <span class="token-cmdlet">New-Item</span> <span class="token-string">"$OutputPath\$_"</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | Out-Null }
+    
+    <span class="token-comment"># Start collection log</span>
+    <span class="token-variable">$LogFile</span> = <span class="token-string">"$OutputPath\collection.log"</span>
+    <span class="token-string">"Collection started: $(Get-Date)`nComputer: $env:COMPUTERNAME`nUser: $env:USERNAME"</span> | <span class="token-cmdlet">Out-File</span> <span class="token-variable">$LogFile</span>
+    
+    <span class="token-comment"># System Information</span>
+    Write-Host <span class="token-string">"[*] Collecting system information..."</span> -ForegroundColor Yellow
+    <span class="token-cmdlet">Get-ComputerInfo</span> | <span class="token-cmdlet">Export-Clixml</span> <span class="token-string">"$OutputPath\System\ComputerInfo.xml"</span>
+    <span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\System\Processes.csv"</span>
+    <span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\System\Services.csv"</span>
+    <span class="token-cmdlet">Get-NetTCPConnection</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\System\Connections.csv"</span>
+    
+    <span class="token-comment"># Registry</span>
+    Write-Host <span class="token-string">"[*] Collecting registry artifacts..."</span> -ForegroundColor Yellow
+    <span class="token-cmdlet">reg</span> export HKLM\SOFTWARE <span class="token-string">"$OutputPath\Registry\HKLM_SOFTWARE.reg"</span> /y 2>$null
+    <span class="token-cmdlet">reg</span> export HKCU\SOFTWARE <span class="token-string">"$OutputPath\Registry\HKCU_SOFTWARE.reg"</span> /y 2>$null
+    
+    <span class="token-comment"># Event Logs</span>
+    Write-Host <span class="token-string">"[*] Collecting event logs..."</span> -ForegroundColor Yellow
+    @(<span class="token-string">'Security'</span>, <span class="token-string">'System'</span>, <span class="token-string">'Application'</span>, <span class="token-string">'Microsoft-Windows-PowerShell/Operational'</span>) | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$SafeName</span> = <span class="token-variable">$_</span> -replace <span class="token-string">'[/\\]'</span>, <span class="token-string">'-'</span>
+        wevtutil epl <span class="token-variable">$_</span> <span class="token-string">"$OutputPath\EventLogs\$SafeName.evtx"</span> 2>$null
+    }
+    
+    <span class="token-comment"># Prefetch</span>
+    Write-Host <span class="token-string">"[*] Collecting prefetch files..."</span> -ForegroundColor Yellow
+    <span class="token-cmdlet">Copy-Item</span> <span class="token-string">"$env:SystemRoot\Prefetch\*.pf"</span> <span class="token-string">"$OutputPath\Prefetch\"</span> -ErrorAction SilentlyContinue
+    
+    <span class="token-comment"># Browser Artifacts</span>
+    Write-Host <span class="token-string">"[*] Collecting browser artifacts..."</span> -ForegroundColor Yellow
+    Copy-BrowserArtifacts <span class="token-parameter">-OutputPath</span> <span class="token-string">"$OutputPath\Browser"</span>
+    
+    <span class="token-comment"># Create timeline of recent file activity</span>
+    Write-Host <span class="token-string">"[*] Building file timeline..."</span> -ForegroundColor Yellow
+    Get-RecentlyModified <span class="token-parameter">-Path</span> C:\ <span class="token-parameter">-Hours</span> <span class="token-number">72</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\Timeline\RecentFiles.csv"</span>
+    
+    <span class="token-comment"># Calculate collection hash</span>
+    Write-Host <span class="token-string">"[*] Calculating hashes..."</span> -ForegroundColor Yellow
+    Get-DirectoryHashes <span class="token-parameter">-Path</span> <span class="token-variable">$OutputPath</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\collection_hashes.csv"</span>
+    
+    <span class="token-comment"># Complete</span>
+    <span class="token-string">"Collection completed: $(Get-Date)"</span> | <span class="token-cmdlet">Add-Content</span> <span class="token-variable">$LogFile</span>
+    
+    Write-Host <span class="token-string">"`n[+] Collection complete: $OutputPath"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"[+] Review collection.log for details"</span> -ForegroundColor Green
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What forensic artifacts would you collect from a compromised Windows system?"</li>
+                        <li><strong>Strong Answer:</strong> Start with volatile data (processes, connections, memory). Then collect Event Logs (Security for 4624/4625, PowerShell logs), Prefetch files (execution evidence), Registry (Run keys, UserAssist, USB history), browser artifacts (history, downloads), and file system timestamps. Always hash everything for integrity and maintain chain of custody documentation.</li>
+                        <li><strong>Key artifacts to mention:</strong> NTUSER.DAT, SAM/SYSTEM/SECURITY hives, $MFT, Amcache.hve, SRUM database</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Always hash files before and after collection for integrity</li>
+                    <li>Prefetch files show program execution history</li>
+                    <li>Registry contains rich user activity and persistence evidence</li>
+                    <li>MACB timestamps can reveal timestomping attempts</li>
+                    <li>Document all collection activities with timestamps</li>
+                    <li>Volatile data (processes, connections) should be collected first</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="5-7-threat-hunting-scripts.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 5.7 Threat Hunting Scripts</span>
+                    </a>
+                    <a href="5-9-malware-analysis.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">5.9 Malware Analysis →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

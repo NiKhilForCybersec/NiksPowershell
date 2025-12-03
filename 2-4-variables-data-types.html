@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.4 Variables & Data Types - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-introduction.html" class="nav-link"><span class="nav-link-number">2.1</span> Introduction</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link active"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Variables & Data Types</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.4 Variables & Data Types</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Create and use variables in PowerShell</li>
+                        <li>Understand common data types</li>
+                        <li>Work with arrays and hashtables</li>
+                        <li>Use automatic and preference variables</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Variable Basics</div>
+                    </div>
+                    <ul>
+                        <li><strong>$</strong> → All variables start with dollar sign</li>
+                        <li><strong>[type]</strong> → Cast/constrain with brackets</li>
+                        <li><strong>@()</strong> → Array</li>
+                        <li><strong>@{}</strong> → Hashtable</li>
+                        <li><strong>$null</strong> → Empty/no value</li>
+                    </ul>
+                </div>
+
+                <!-- Variable Basics -->
+                <h2>Variable Basics</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Creating Variables
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple assignment</span>
+<span class="token-variable">$Name</span> = <span class="token-string">"Server01"</span>
+<span class="token-variable">$Count</span> = <span class="token-number">42</span>
+<span class="token-variable">$IsEnabled</span> = <span class="token-variable">$true</span>
+
+<span class="token-comment"># Check variable type</span>
+<span class="token-variable">$Name</span>.GetType().Name     <span class="token-comment"># String</span>
+<span class="token-variable">$Count</span>.GetType().Name    <span class="token-comment"># Int32</span>
+
+<span class="token-comment"># Type-constrained variable</span>
+[string]<span class="token-variable">$Server</span> = <span class="token-string">"DC01"</span>
+[int]<span class="token-variable">$Port</span> = <span class="token-number">443</span>
+[datetime]<span class="token-variable">$StartDate</span> = <span class="token-string">"2024-01-15"</span>
+
+<span class="token-comment"># Variable in strings (expansion)</span>
+<span class="token-variable">$Message</span> = <span class="token-string">"Connecting to $Server on port $Port"</span>
+
+<span class="token-comment"># No expansion with single quotes</span>
+<span class="token-variable">$Literal</span> = <span class="token-string">'Variable is $Server'</span>  <span class="token-comment"># Outputs: Variable is $Server</span>
+
+<span class="token-comment"># Complex expressions in strings</span>
+<span class="token-variable">$Info</span> = <span class="token-string">"Total processes: $((Get-Process).Count)"</span>
+
+<span class="token-comment"># Clear/remove variable</span>
+<span class="token-cmdlet">Remove-Variable</span> <span class="token-parameter">-Name</span> Count
+<span class="token-variable">$Server</span> = <span class="token-variable">$null</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Data Types -->
+                <h2>Common Data Types</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Data Types
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># String</span>
+[string]<span class="token-variable">$Text</span> = <span class="token-string">"Hello World"</span>
+<span class="token-variable">$Text</span>.Length                        <span class="token-comment"># 11</span>
+<span class="token-variable">$Text</span>.ToUpper()                     <span class="token-comment"># HELLO WORLD</span>
+<span class="token-variable">$Text</span>.Replace(<span class="token-string">"World"</span>, <span class="token-string">"PowerShell"</span>) <span class="token-comment"># Hello PowerShell</span>
+
+<span class="token-comment"># Integer</span>
+[int]<span class="token-variable">$Number</span> = <span class="token-number">100</span>
+[int64]<span class="token-variable">$BigNumber</span> = <span class="token-number">9999999999</span>
+
+<span class="token-comment"># Boolean</span>
+[bool]<span class="token-variable">$Flag</span> = <span class="token-variable">$true</span>
+<span class="token-variable">$Flag</span> = <span class="token-variable">$false</span>
+
+<span class="token-comment"># DateTime</span>
+[datetime]<span class="token-variable">$Now</span> = Get-Date
+[datetime]<span class="token-variable">$Custom</span> = <span class="token-string">"2024-06-15 14:30:00"</span>
+<span class="token-variable">$Now</span>.AddDays(<span class="token-number">7</span>)                      <span class="token-comment"># Add 7 days</span>
+<span class="token-variable">$Now</span>.ToString(<span class="token-string">"yyyy-MM-dd"</span>)          <span class="token-comment"># Format output</span>
+
+<span class="token-comment"># Double (decimal)</span>
+[double]<span class="token-variable">$Price</span> = <span class="token-number">19.99</span>
+
+<span class="token-comment"># Type casting</span>
+[int]<span class="token-string">"42"</span>                            <span class="token-comment"># String to int</span>
+[string]<span class="token-number">100</span>                          <span class="token-comment"># Int to string</span>
+[datetime]<span class="token-string">"2024-01-01"</span>              <span class="token-comment"># String to datetime</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Arrays -->
+                <h2>Arrays</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Arrays
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Create array</span>
+<span class="token-variable">$Servers</span> = @(<span class="token-string">"DC01"</span>, <span class="token-string">"DC02"</span>, <span class="token-string">"WEB01"</span>, <span class="token-string">"SQL01"</span>)
+
+<span class="token-comment"># Alternative syntax</span>
+<span class="token-variable">$Numbers</span> = <span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>, <span class="token-number">4</span>, <span class="token-number">5</span>
+
+<span class="token-comment"># Range operator</span>
+<span class="token-variable">$Range</span> = <span class="token-number">1</span>..<span class="token-number">10</span>
+
+<span class="token-comment"># Access elements (0-indexed)</span>
+<span class="token-variable">$Servers</span>[<span class="token-number">0</span>]                        <span class="token-comment"># DC01 (first)</span>
+<span class="token-variable">$Servers</span>[-<span class="token-number">1</span>]                       <span class="token-comment"># SQL01 (last)</span>
+<span class="token-variable">$Servers</span>[<span class="token-number">0</span>..<span class="token-number">1</span>]                     <span class="token-comment"># DC01, DC02 (slice)</span>
+
+<span class="token-comment"># Array properties</span>
+<span class="token-variable">$Servers</span>.Count                     <span class="token-comment"># 4</span>
+<span class="token-variable">$Servers</span>.Length                    <span class="token-comment"># 4</span>
+
+<span class="token-comment"># Add to array (creates new array!)</span>
+<span class="token-variable">$Servers</span> += <span class="token-string">"APP01"</span>
+
+<span class="token-comment"># Better: Use ArrayList for frequent additions</span>
+<span class="token-variable">$List</span> = [System.Collections.ArrayList]@()
+[void]<span class="token-variable">$List</span>.Add(<span class="token-string">"Server1"</span>)
+[void]<span class="token-variable">$List</span>.Add(<span class="token-string">"Server2"</span>)
+
+<span class="token-comment"># Check if contains</span>
+<span class="token-variable">$Servers</span> <span class="token-operator">-contains</span> <span class="token-string">"DC01"</span>          <span class="token-comment"># True</span>
+<span class="token-string">"DC01"</span> <span class="token-operator">-in</span> <span class="token-variable">$Servers</span>                <span class="token-comment"># True</span>
+
+<span class="token-comment"># Loop through array</span>
+<span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Servers</span>) {
+    Write-Host <span class="token-string">"Processing: $Server"</span>
+}
+
+<span class="token-comment"># Filter array</span>
+<span class="token-variable">$DCServers</span> = <span class="token-variable">$Servers</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> <span class="token-operator">-like</span> <span class="token-string">"DC*"</span> }</code></pre>
+                    </div>
+                </div>
+
+                <!-- Hashtables -->
+                <h2>Hashtables</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Hashtables
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Create hashtable</span>
+<span class="token-variable">$ServerInfo</span> = @{
+    Name = <span class="token-string">"DC01"</span>
+    IP = <span class="token-string">"192.168.1.10"</span>
+    Role = <span class="token-string">"Domain Controller"</span>
+    Port = <span class="token-number">389</span>
+}
+
+<span class="token-comment"># Access values</span>
+<span class="token-variable">$ServerInfo</span>[<span class="token-string">"Name"</span>]               <span class="token-comment"># DC01</span>
+<span class="token-variable">$ServerInfo</span>.IP                    <span class="token-comment"># 192.168.1.10</span>
+
+<span class="token-comment"># Add/modify keys</span>
+<span class="token-variable">$ServerInfo</span>[<span class="token-string">"OS"</span>] = <span class="token-string">"Windows Server 2022"</span>
+<span class="token-variable">$ServerInfo</span>.Location = <span class="token-string">"DataCenter1"</span>
+
+<span class="token-comment"># Remove key</span>
+<span class="token-variable">$ServerInfo</span>.Remove(<span class="token-string">"Port"</span>)
+
+<span class="token-comment"># Check for key</span>
+<span class="token-variable">$ServerInfo</span>.ContainsKey(<span class="token-string">"Name"</span>)    <span class="token-comment"># True</span>
+
+<span class="token-comment"># Get all keys/values</span>
+<span class="token-variable">$ServerInfo</span>.Keys
+<span class="token-variable">$ServerInfo</span>.Values
+
+<span class="token-comment"># Loop through hashtable</span>
+<span class="token-keyword">foreach</span> (<span class="token-variable">$Key</span> <span class="token-keyword">in</span> <span class="token-variable">$ServerInfo</span>.Keys) {
+    Write-Host <span class="token-string">"$Key : $($ServerInfo[$Key])"</span>
+}
+
+<span class="token-comment"># Ordered hashtable (maintains insertion order)</span>
+<span class="token-variable">$OrderedHash</span> = [ordered]@{
+    First = <span class="token-number">1</span>
+    Second = <span class="token-number">2</span>
+    Third = <span class="token-number">3</span>
+}
+
+<span class="token-comment"># Splatting with hashtables</span>
+<span class="token-variable">$Params</span> = @{
+    ComputerName = <span class="token-string">"DC01"</span>
+    Credential = <span class="token-variable">$Cred</span>
+    ScriptBlock = { Get-Service }
+}
+<span class="token-cmdlet">Invoke-Command</span> @Params   <span class="token-comment"># Splat with @</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Special Variables -->
+                <h2>Automatic & Special Variables</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Special Variables
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Automatic variables</span>
+<span class="token-variable">$_</span>              <span class="token-comment"># Current pipeline object</span>
+<span class="token-variable">$PSItem</span>         <span class="token-comment"># Same as $_</span>
+<span class="token-variable">$null</span>           <span class="token-comment"># Null/empty value</span>
+<span class="token-variable">$true</span>           <span class="token-comment"># Boolean true</span>
+<span class="token-variable">$false</span>          <span class="token-comment"># Boolean false</span>
+<span class="token-variable">$Error</span>          <span class="token-comment"># Array of recent errors</span>
+<span class="token-variable">$?</span>              <span class="token-comment"># Success of last command</span>
+<span class="token-variable">$LASTEXITCODE</span>   <span class="token-comment"># Exit code of last native command</span>
+<span class="token-variable">$PWD</span>            <span class="token-comment"># Current directory</span>
+<span class="token-variable">$HOME</span>           <span class="token-comment"># User's home directory</span>
+<span class="token-variable">$Host</span>           <span class="token-comment"># Host application info</span>
+<span class="token-variable">$PID</span>            <span class="token-comment"># Process ID of PowerShell</span>
+<span class="token-variable">$PSVersionTable</span> <span class="token-comment"># PowerShell version info</span>
+
+<span class="token-comment"># Environment variables</span>
+<span class="token-variable">$env:USERNAME</span>          <span class="token-comment"># Current user</span>
+<span class="token-variable">$env:COMPUTERNAME</span>      <span class="token-comment"># Computer name</span>
+<span class="token-variable">$env:PATH</span>              <span class="token-comment"># System PATH</span>
+<span class="token-variable">$env:TEMP</span>              <span class="token-comment"># Temp directory</span>
+
+<span class="token-comment"># Set environment variable</span>
+<span class="token-variable">$env:MY_VAR</span> = <span class="token-string">"MyValue"</span>
+
+<span class="token-comment"># Preference variables</span>
+<span class="token-variable">$ErrorActionPreference</span> = <span class="token-string">'Stop'</span>      <span class="token-comment"># Stop on errors</span>
+<span class="token-variable">$VerbosePreference</span> = <span class="token-string">'Continue'</span>      <span class="token-comment"># Show verbose output</span>
+<span class="token-variable">$DebugPreference</span> = <span class="token-string">'Continue'</span>        <span class="token-comment"># Show debug output</span>
+<span class="token-variable">$ConfirmPreference</span> = <span class="token-string">'None'</span>          <span class="token-comment"># Suppress confirmations</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Variables</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use meaningful names:</strong> <code>$ServerList</code> not <code>$s</code></li>
+                        <li><strong>PascalCase convention:</strong> <code>$ComputerName</code></li>
+                        <li><strong>Type-constrain when needed:</strong> <code>[int]$Port</code></li>
+                        <li><strong>Use ArrayList for growth:</strong> Avoid <code>+=</code> on arrays</li>
+                        <li><strong>Prefer ordered hashtables:</strong> When order matters</li>
+                        <li><strong>Use splatting:</strong> For cleaner cmdlet calls</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between <code>@()</code> and <code>@{}</code>?"</li>
+                        <li><strong>Strong Answer:</strong> <code>@()</code> creates an array—an ordered collection accessed by index (0, 1, 2). <code>@{}</code> creates a hashtable—a key-value collection accessed by key name. Arrays are best for lists of similar items; hashtables are best for configuration or properties with named values.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Variables start with <code>$</code> and are dynamically typed</li>
+                    <li>Use <code>[type]</code> to constrain variable types</li>
+                    <li>Arrays (<code>@()</code>) are ordered, accessed by index</li>
+                    <li>Hashtables (<code>@{}</code>) are key-value pairs</li>
+                    <li>Use ArrayList instead of <code>+=</code> for performance</li>
+                    <li>Splatting (<code>@Params</code>) makes cmdlet calls cleaner</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-3-pipeline-mastery.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.3 Pipeline Mastery</span>
+                    </a>
+                    <a href="2-5-working-with-objects.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.5 Working with Objects →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

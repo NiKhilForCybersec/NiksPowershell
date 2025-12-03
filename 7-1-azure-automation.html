@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.1 Azure Automation - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud & DevOps
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link active"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                        <a href="7-2-aws-scripting.html" class="nav-link"><span class="nav-link-number">7.2</span> AWS Scripting</a>
+                        <a href="7-3-ci-cd-integration.html" class="nav-link"><span class="nav-link-number">7.3</span> CI/CD Integration</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#cloud">Cloud & DevOps</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Azure Automation</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>7.1 Azure Automation</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Connect to Azure with PowerShell</li>
+                        <li>Manage Azure resources programmatically</li>
+                        <li>Query Azure security configurations</li>
+                        <li>Automate Azure security operations</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Key Azure Modules</div>
+                    </div>
+                    <ul>
+                        <li><strong>Az.Accounts</strong> → Authentication, subscriptions</li>
+                        <li><strong>Az.Resources</strong> → Resource groups, deployments</li>
+                        <li><strong>Az.Compute</strong> → VMs, disks, snapshots</li>
+                        <li><strong>Az.Network</strong> → VNets, NSGs, load balancers</li>
+                        <li><strong>Az.Security</strong> → Security Center, alerts</li>
+                        <li><strong>Az.Monitor</strong> → Logs, metrics, alerts</li>
+                    </ul>
+                </div>
+
+                <!-- Setup -->
+                <h2>Setting Up Azure PowerShell</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Azure Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install Azure PowerShell module</span>
+Install-Module <span class="token-parameter">-Name</span> Az <span class="token-parameter">-AllowClobber</span> <span class="token-parameter">-Scope</span> CurrentUser
+
+<span class="token-comment"># Import the module</span>
+Import-Module Az
+
+<span class="token-comment"># Connect to Azure (interactive)</span>
+Connect-AzAccount
+
+<span class="token-comment"># Connect with service principal (automation)</span>
+<span class="token-variable">$SecurePassword</span> = ConvertTo-SecureString <span class="token-string">"ClientSecret"</span> <span class="token-parameter">-AsPlainText</span> <span class="token-parameter">-Force</span>
+<span class="token-variable">$Credential</span> = <span class="token-cmdlet">New-Object</span> PSCredential(<span class="token-string">"AppId"</span>, <span class="token-variable">$SecurePassword</span>)
+Connect-AzAccount <span class="token-parameter">-ServicePrincipal</span> <span class="token-parameter">-Credential</span> <span class="token-variable">$Credential</span> <span class="token-parameter">-TenantId</span> <span class="token-string">"TenantId"</span>
+
+<span class="token-comment"># List subscriptions</span>
+<span class="token-cmdlet">Get-AzSubscription</span>
+
+<span class="token-comment"># Set active subscription</span>
+<span class="token-cmdlet">Set-AzContext</span> <span class="token-parameter">-SubscriptionId</span> <span class="token-string">"subscription-id"</span>
+
+<span class="token-comment"># Get current context</span>
+<span class="token-cmdlet">Get-AzContext</span>
+
+<span class="token-comment"># Disconnect</span>
+Disconnect-AzAccount</code></pre>
+                    </div>
+                </div>
+
+                <!-- Resource Management -->
+                <h2>Resource Management</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Azure Resources
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># List all resource groups</span>
+<span class="token-cmdlet">Get-AzResourceGroup</span> | <span class="token-cmdlet">Select-Object</span> ResourceGroupName, Location
+
+<span class="token-comment"># List all resources</span>
+<span class="token-cmdlet">Get-AzResource</span> | <span class="token-cmdlet">Select-Object</span> Name, ResourceType, ResourceGroupName
+
+<span class="token-comment"># Filter by resource type</span>
+<span class="token-cmdlet">Get-AzResource</span> <span class="token-parameter">-ResourceType</span> <span class="token-string">"Microsoft.Compute/virtualMachines"</span>
+
+<span class="token-comment"># Get VMs with status</span>
+<span class="token-cmdlet">Get-AzVM</span> <span class="token-parameter">-Status</span> | <span class="token-cmdlet">Select-Object</span> Name, ResourceGroupName, PowerState
+
+<span class="token-comment"># Find VMs without encryption</span>
+<span class="token-cmdlet">Get-AzVM</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$DiskEncryption</span> = <span class="token-cmdlet">Get-AzVMDiskEncryptionStatus</span> <span class="token-parameter">-ResourceGroupName</span> <span class="token-variable">$_</span>.ResourceGroupName <span class="token-parameter">-VMName</span> <span class="token-variable">$_</span>.Name -ErrorAction SilentlyContinue
+    [PSCustomObject]@{
+        VMName = <span class="token-variable">$_</span>.Name
+        ResourceGroup = <span class="token-variable">$_</span>.ResourceGroupName
+        OSDiskEncrypted = <span class="token-variable">$DiskEncryption</span>.OsVolumeEncrypted
+        DataDisksEncrypted = <span class="token-variable">$DiskEncryption</span>.DataVolumesEncrypted
+    }
+} | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.OSDiskEncrypted <span class="token-operator">-ne</span> <span class="token-string">'Encrypted'</span> }
+
+<span class="token-comment"># Get storage accounts</span>
+<span class="token-cmdlet">Get-AzStorageAccount</span> | <span class="token-cmdlet">Select-Object</span> StorageAccountName, ResourceGroupName, EnableHttpsTrafficOnly
+
+<span class="token-comment"># Find storage accounts without HTTPS required</span>
+<span class="token-cmdlet">Get-AzStorageAccount</span> | <span class="token-cmdlet">Where-Object</span> EnableHttpsTrafficOnly <span class="token-operator">-eq</span> <span class="token-variable">$false</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Network Security -->
+                <h2>Network Security</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Azure Network Security
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># List all NSGs</span>
+<span class="token-cmdlet">Get-AzNetworkSecurityGroup</span> | <span class="token-cmdlet">Select-Object</span> Name, ResourceGroupName
+
+<span class="token-comment"># Get NSG rules</span>
+<span class="token-variable">$NSG</span> = <span class="token-cmdlet">Get-AzNetworkSecurityGroup</span> <span class="token-parameter">-Name</span> <span class="token-string">"MyNSG"</span> <span class="token-parameter">-ResourceGroupName</span> <span class="token-string">"MyRG"</span>
+<span class="token-variable">$NSG</span>.SecurityRules | <span class="token-cmdlet">Select-Object</span> Name, Direction, Access, SourceAddressPrefix, 
+    DestinationPortRange, Priority
+
+<span class="token-comment"># Find overly permissive rules (Any source)</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-PermissiveNSGRules</span> {
+    <span class="token-cmdlet">Get-AzNetworkSecurityGroup</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$NSGName</span> = <span class="token-variable">$_</span>.Name
+        <span class="token-variable">$_</span>.SecurityRules | <span class="token-cmdlet">Where-Object</span> {
+            <span class="token-variable">$_</span>.SourceAddressPrefix <span class="token-operator">-eq</span> <span class="token-string">'*'</span> <span class="token-operator">-and</span> 
+            <span class="token-variable">$_</span>.Access <span class="token-operator">-eq</span> <span class="token-string">'Allow'</span> <span class="token-operator">-and</span>
+            <span class="token-variable">$_</span>.Direction <span class="token-operator">-eq</span> <span class="token-string">'Inbound'</span>
+        } | <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'NSG'</span>;E={<span class="token-variable">$NSGName</span>}}, Name, DestinationPortRange, Priority
+    }
+}
+
+<span class="token-comment"># Find public IPs</span>
+<span class="token-cmdlet">Get-AzPublicIpAddress</span> | <span class="token-cmdlet">Select-Object</span> Name, IpAddress, ResourceGroupName
+
+<span class="token-comment"># Check for RDP/SSH exposed to internet</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-ExposedManagementPorts</span> {
+    <span class="token-variable">$DangerousPorts</span> = @(<span class="token-string">'22'</span>, <span class="token-string">'3389'</span>, <span class="token-string">'445'</span>, <span class="token-string">'135'</span>)
+    
+    <span class="token-cmdlet">Get-AzNetworkSecurityGroup</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$NSGName</span> = <span class="token-variable">$_</span>.Name
+        <span class="token-variable">$_</span>.SecurityRules | <span class="token-cmdlet">Where-Object</span> {
+            <span class="token-variable">$_</span>.Direction <span class="token-operator">-eq</span> <span class="token-string">'Inbound'</span> <span class="token-operator">-and</span>
+            <span class="token-variable">$_</span>.Access <span class="token-operator">-eq</span> <span class="token-string">'Allow'</span> <span class="token-operator">-and</span>
+            (<span class="token-variable">$_</span>.SourceAddressPrefix <span class="token-operator">-eq</span> <span class="token-string">'*'</span> <span class="token-operator">-or</span> <span class="token-variable">$_</span>.SourceAddressPrefix <span class="token-operator">-eq</span> <span class="token-string">'Internet'</span>) <span class="token-operator">-and</span>
+            (<span class="token-variable">$_</span>.DestinationPortRange <span class="token-operator">-in</span> <span class="token-variable">$DangerousPorts</span> <span class="token-operator">-or</span> <span class="token-variable">$_</span>.DestinationPortRange <span class="token-operator">-eq</span> <span class="token-string">'*'</span>)
+        } | <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'NSG'</span>;E={<span class="token-variable">$NSGName</span>}}, Name, DestinationPortRange
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Center -->
+                <h2>Azure Security Center / Defender</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Azure Security
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Get security alerts</span>
+<span class="token-cmdlet">Get-AzSecurityAlert</span> | <span class="token-cmdlet">Select-Object</span> AlertDisplayName, Severity, Status, TimeGenerated
+
+<span class="token-comment"># Get high severity alerts</span>
+<span class="token-cmdlet">Get-AzSecurityAlert</span> | <span class="token-cmdlet">Where-Object</span> Severity <span class="token-operator">-eq</span> <span class="token-string">'High'</span>
+
+<span class="token-comment"># Get security recommendations</span>
+<span class="token-cmdlet">Get-AzSecurityTask</span> | <span class="token-cmdlet">Select-Object</span> Name, State, RecommendationType
+
+<span class="token-comment"># Get secure score</span>
+<span class="token-cmdlet">Get-AzSecuritySecureScore</span>
+
+<span class="token-comment"># Get compliance results</span>
+<span class="token-cmdlet">Get-AzSecurityCompliance</span>
+
+<span class="token-comment"># Security assessment function</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-AzureSecurityPosture</span> {
+    <span class="token-variable">$Report</span> = [PSCustomObject]@{
+        Timestamp = Get-Date
+        Subscription = (<span class="token-cmdlet">Get-AzContext</span>).Subscription.Name
+        
+        <span class="token-comment"># Alerts</span>
+        HighAlerts = (<span class="token-cmdlet">Get-AzSecurityAlert</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Severity <span class="token-operator">-eq</span> <span class="token-string">'High'</span> <span class="token-operator">-and</span> <span class="token-variable">$_</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Active'</span> }).Count
+        MediumAlerts = (<span class="token-cmdlet">Get-AzSecurityAlert</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Severity <span class="token-operator">-eq</span> <span class="token-string">'Medium'</span> <span class="token-operator">-and</span> <span class="token-variable">$_</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Active'</span> }).Count
+        
+        <span class="token-comment"># Resources</span>
+        TotalVMs = (<span class="token-cmdlet">Get-AzVM</span>).Count
+        TotalStorageAccounts = (<span class="token-cmdlet">Get-AzStorageAccount</span>).Count
+        TotalNSGs = (<span class="token-cmdlet">Get-AzNetworkSecurityGroup</span>).Count
+        
+        <span class="token-comment"># Compliance</span>
+        UnhealthyResources = (<span class="token-cmdlet">Get-AzSecurityTask</span> | <span class="token-cmdlet">Where-Object</span> State <span class="token-operator">-eq</span> <span class="token-string">'Unhealthy'</span>).Count
+    }
+    
+    <span class="token-variable">$Report</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Log Analytics -->
+                <h2>Azure Monitor & Log Analytics</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Azure Logs
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Query Log Analytics workspace</span>
+<span class="token-variable">$WorkspaceId</span> = <span class="token-string">"workspace-id"</span>
+
+<span class="token-comment"># Run KQL query</span>
+<span class="token-variable">$Query</span> = @<span class="token-string">"
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID == 4625
+| summarize FailedLogons = count() by TargetAccount
+| order by FailedLogons desc
+| take 10
+"@</span>
+
+<span class="token-variable">$Results</span> = <span class="token-cmdlet">Invoke-AzOperationalInsightsQuery</span> <span class="token-parameter">-WorkspaceId</span> <span class="token-variable">$WorkspaceId</span> <span class="token-parameter">-Query</span> <span class="token-variable">$Query</span>
+<span class="token-variable">$Results</span>.Results
+
+<span class="token-comment"># Get activity log (audit trail)</span>
+<span class="token-cmdlet">Get-AzActivityLog</span> <span class="token-parameter">-StartTime</span> (Get-Date).AddDays(-7) | 
+    <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.OperationName <span class="token-operator">-like</span> <span class="token-string">'*delete*'</span> } |
+    <span class="token-cmdlet">Select-Object</span> EventTimestamp, Caller, OperationName, Status
+
+<span class="token-comment"># Get resource changes</span>
+<span class="token-cmdlet">Get-AzActivityLog</span> <span class="token-parameter">-StartTime</span> (Get-Date).AddHours(-24) |
+    <span class="token-cmdlet">Where-Object</span> Authorization <span class="token-operator">-ne</span> <span class="token-variable">$null</span> |
+    <span class="token-cmdlet">Select-Object</span> EventTimestamp, Caller, 
+        @{N=<span class="token-string">'Action'</span>;E={<span class="token-variable">$_</span>.Authorization.Action}},
+        @{N=<span class="token-string">'Resource'</span>;E={<span class="token-variable">$_</span>.ResourceId}}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Azure Automation</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use service principals:</strong> Not interactive login for automation</li>
+                        <li><strong>Apply least privilege:</strong> Minimal RBAC roles for scripts</li>
+                        <li><strong>Store secrets in Key Vault:</strong> Never hardcode credentials</li>
+                        <li><strong>Use managed identities:</strong> For Azure-hosted automation</li>
+                        <li><strong>Log all actions:</strong> Enable activity logging</li>
+                        <li><strong>Test in dev first:</strong> Use separate subscription for testing</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you automate Azure security assessments?"</li>
+                        <li><strong>Strong Answer:</strong> Use Azure PowerShell with a service principal for authentication. Query NSGs for overly permissive rules, check storage accounts for HTTPS enforcement, verify VM disk encryption, and pull Security Center alerts. Schedule with Azure Automation runbooks or Logic Apps, output to Log Analytics, and alert via Azure Monitor.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Install Az module and connect with <code>Connect-AzAccount</code></li>
+                    <li>Use service principals for automated scripts</li>
+                    <li>Query NSGs, storage, VMs for security misconfigurations</li>
+                    <li>Leverage Security Center APIs for alerts and recommendations</li>
+                    <li>Use Log Analytics for centralized security monitoring</li>
+                    <li>Store credentials in Azure Key Vault, not scripts</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="5-13-log-analysis.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 5.13 Log Analysis</span>
+                    </a>
+                    <a href="7-2-aws-scripting.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">7.2 AWS Scripting →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

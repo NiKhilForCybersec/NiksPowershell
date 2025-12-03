@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.5 Cheat Sheets - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="offensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">⚔️</span>
+                        Offensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-offensive-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Offensive Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="defensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Defensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-defensive-overview.html" class="nav-link"><span class="nav-link-number">7.1</span> Defensive Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🏗️</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-project-soc-toolkit.html" class="nav-link"><span class="nav-link-number">8.1</span> SOC Toolkit Project</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="crossplatform">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-cross-platform-overview.html" class="nav-link"><span class="nav-link-number">9.1</span> Cross-Platform Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-coding-standards.html" class="nav-link"><span class="nav-link-number">10.1</span> Coding Standards</a>
+                        <a href="10-2-security-considerations.html" class="nav-link"><span class="nav-link-number">10.2</span> Security Considerations</a>
+                        <a href="10-3-performance-optimization.html" class="nav-link"><span class="nav-link-number">10.3</span> Performance Optimization</a>
+                        <a href="10-4-testing-validation.html" class="nav-link"><span class="nav-link-number">10.4</span> Testing & Validation</a>
+                        <a href="10-5-cheat-sheets.html" class="nav-link active"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#reference">Best Practices & Reference</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Cheat Sheets</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>10.5 Cheat Sheets</h1>
+
+                <!-- Overview -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">Quick Reference Guide</div>
+                    </div>
+                    <p>
+                        This page provides quick-reference cheat sheets for PowerShell, Bash, and Batch 
+                        scripting. Use these as a rapid lookup resource during development and interviews.
+                    </p>
+                </div>
+
+                <!-- PowerShell Cheat Sheet -->
+                <h2>🔷 PowerShell Cheat Sheet</h2>
+
+                <h3>Essential Cmdlets</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Cmdlet</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Get help</td>
+                                <td><code>Get-Help</code></td>
+                                <td><code>Get-Help Get-Process -Full</code></td>
+                            </tr>
+                            <tr>
+                                <td>Find commands</td>
+                                <td><code>Get-Command</code></td>
+                                <td><code>Get-Command *service*</code></td>
+                            </tr>
+                            <tr>
+                                <td>List properties</td>
+                                <td><code>Get-Member</code></td>
+                                <td><code>Get-Process | Get-Member</code></td>
+                            </tr>
+                            <tr>
+                                <td>Filter objects</td>
+                                <td><code>Where-Object</code></td>
+                                <td><code>Get-Process | Where CPU -gt 100</code></td>
+                            </tr>
+                            <tr>
+                                <td>Select properties</td>
+                                <td><code>Select-Object</code></td>
+                                <td><code>Get-Service | Select Name, Status</code></td>
+                            </tr>
+                            <tr>
+                                <td>Sort output</td>
+                                <td><code>Sort-Object</code></td>
+                                <td><code>Get-Process | Sort CPU -Desc</code></td>
+                            </tr>
+                            <tr>
+                                <td>Iterate objects</td>
+                                <td><code>ForEach-Object</code></td>
+                                <td><code>1..5 | ForEach { $_ * 2 }</code></td>
+                            </tr>
+                            <tr>
+                                <td>Group objects</td>
+                                <td><code>Group-Object</code></td>
+                                <td><code>Get-Process | Group Company</code></td>
+                            </tr>
+                            <tr>
+                                <td>Export to CSV</td>
+                                <td><code>Export-Csv</code></td>
+                                <td><code>$data | Export-Csv file.csv</code></td>
+                            </tr>
+                            <tr>
+                                <td>Convert to JSON</td>
+                                <td><code>ConvertTo-Json</code></td>
+                                <td><code>$obj | ConvertTo-Json</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Comparison Operators</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>-eq</code></td><td>Equals</td><td><code>$a -eq $b</code></td></tr>
+                            <tr><td><code>-ne</code></td><td>Not equals</td><td><code>$a -ne $b</code></td></tr>
+                            <tr><td><code>-gt</code></td><td>Greater than</td><td><code>$a -gt 5</code></td></tr>
+                            <tr><td><code>-lt</code></td><td>Less than</td><td><code>$a -lt 5</code></td></tr>
+                            <tr><td><code>-ge</code></td><td>Greater or equal</td><td><code>$a -ge 5</code></td></tr>
+                            <tr><td><code>-le</code></td><td>Less or equal</td><td><code>$a -le 5</code></td></tr>
+                            <tr><td><code>-like</code></td><td>Wildcard match</td><td><code>$a -like "*test*"</code></td></tr>
+                            <tr><td><code>-match</code></td><td>Regex match</td><td><code>$a -match "^\d+"</code></td></tr>
+                            <tr><td><code>-contains</code></td><td>Collection contains</td><td><code>$arr -contains "x"</code></td></tr>
+                            <tr><td><code>-in</code></td><td>Value in collection</td><td><code>"x" -in $arr</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Security-Focused Cmdlets</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Quick Reference
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Process Investigation</span>
+<span class="token-cmdlet">Get-Process</span>                               <span class="token-comment"># All processes</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort</span> CPU <span class="token-parameter">-Desc</span> | <span class="token-cmdlet">Select</span> <span class="token-parameter">-First</span> <span class="token-number">10</span>  <span class="token-comment"># Top CPU</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Process | <span class="token-cmdlet">Select</span> Name, CommandLine
+
+<span class="token-comment"># Network Connections</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established
+<span class="token-cmdlet">Get-NetTCPConnection</span> | <span class="token-cmdlet">Where</span> RemotePort <span class="token-operator">-eq</span> <span class="token-number">443</span>
+
+<span class="token-comment"># Event Logs</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> Security <span class="token-parameter">-MaxEvents</span> <span class="token-number">100</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{LogName=<span class="token-string">'Security'</span>;Id=<span class="token-number">4625</span>}  <span class="token-comment"># Failed logins</span>
+
+<span class="token-comment"># Services</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where</span> Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where</span> StartType <span class="token-operator">-eq</span> <span class="token-string">'Automatic'</span>
+
+<span class="token-comment"># Scheduled Tasks</span>
+<span class="token-cmdlet">Get-ScheduledTask</span> | <span class="token-cmdlet">Where</span> State <span class="token-operator">-eq</span> <span class="token-string">'Ready'</span>
+
+<span class="token-comment"># Active Directory (requires AD module)</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> * <span class="token-parameter">-Properties</span> LastLogonDate
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> {Enabled <span class="token-operator">-eq</span> <span class="token-variable">$false</span>}
+<span class="token-cmdlet">Get-ADGroupMember</span> <span class="token-parameter">-Identity</span> <span class="token-string">"Domain Admins"</span>
+
+<span class="token-comment"># File Hashing</span>
+<span class="token-cmdlet">Get-FileHash</span> file.exe <span class="token-parameter">-Algorithm</span> SHA256
+<span class="token-cmdlet">Get-ChildItem</span> *.exe | <span class="token-cmdlet">Get-FileHash</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Cheat Sheet -->
+                <h2>🐧 Bash Cheat Sheet</h2>
+
+                <h3>Essential Commands</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Command</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>List files</td>
+                                <td><code>ls</code></td>
+                                <td><code>ls -la</code></td>
+                            </tr>
+                            <tr>
+                                <td>Find files</td>
+                                <td><code>find</code></td>
+                                <td><code>find / -name "*.log"</code></td>
+                            </tr>
+                            <tr>
+                                <td>Search text</td>
+                                <td><code>grep</code></td>
+                                <td><code>grep -r "error" /var/log</code></td>
+                            </tr>
+                            <tr>
+                                <td>Text columns</td>
+                                <td><code>awk</code></td>
+                                <td><code>awk '{print $1}' file</code></td>
+                            </tr>
+                            <tr>
+                                <td>Find/replace</td>
+                                <td><code>sed</code></td>
+                                <td><code>sed 's/old/new/g' file</code></td>
+                            </tr>
+                            <tr>
+                                <td>Sort lines</td>
+                                <td><code>sort</code></td>
+                                <td><code>sort -n file</code></td>
+                            </tr>
+                            <tr>
+                                <td>Unique lines</td>
+                                <td><code>uniq</code></td>
+                                <td><code>sort file | uniq -c</code></td>
+                            </tr>
+                            <tr>
+                                <td>Count lines</td>
+                                <td><code>wc</code></td>
+                                <td><code>wc -l file</code></td>
+                            </tr>
+                            <tr>
+                                <td>First/last lines</td>
+                                <td><code>head/tail</code></td>
+                                <td><code>tail -f /var/log/syslog</code></td>
+                            </tr>
+                            <tr>
+                                <td>Cut columns</td>
+                                <td><code>cut</code></td>
+                                <td><code>cut -d: -f1 /etc/passwd</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Test Operators</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>-eq</code></td><td>Integer equals</td><td><code>[ $a -eq $b ]</code></td></tr>
+                            <tr><td><code>-ne</code></td><td>Integer not equals</td><td><code>[ $a -ne $b ]</code></td></tr>
+                            <tr><td><code>-gt</code></td><td>Greater than</td><td><code>[ $a -gt 5 ]</code></td></tr>
+                            <tr><td><code>-lt</code></td><td>Less than</td><td><code>[ $a -lt 5 ]</code></td></tr>
+                            <tr><td><code>=</code></td><td>String equals</td><td><code>[ "$a" = "$b" ]</code></td></tr>
+                            <tr><td><code>!=</code></td><td>String not equals</td><td><code>[ "$a" != "$b" ]</code></td></tr>
+                            <tr><td><code>-z</code></td><td>String is empty</td><td><code>[ -z "$a" ]</code></td></tr>
+                            <tr><td><code>-n</code></td><td>String not empty</td><td><code>[ -n "$a" ]</code></td></tr>
+                            <tr><td><code>-f</code></td><td>Is file</td><td><code>[ -f /etc/passwd ]</code></td></tr>
+                            <tr><td><code>-d</code></td><td>Is directory</td><td><code>[ -d /var/log ]</code></td></tr>
+                            <tr><td><code>-r</code></td><td>Is readable</td><td><code>[ -r file ]</code></td></tr>
+                            <tr><td><code>-x</code></td><td>Is executable</td><td><code>[ -x script.sh ]</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Security One-Liners</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Security Quick Reference
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Failed SSH logins - top IPs</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> /var/log/auth.log | \
+    <span class="token-function">grep</span> -oE <span class="token-string">'[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'</span> | \
+    <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | <span class="token-function">sort</span> -rn | <span class="token-function">head</span>
+
+<span class="token-comment"># Listening ports</span>
+<span class="token-function">ss</span> -tulnp | <span class="token-function">grep</span> LISTEN
+<span class="token-function">netstat</span> -tulnp 2>/dev/null | <span class="token-function">grep</span> LISTEN
+
+<span class="token-comment"># Established connections</span>
+<span class="token-function">ss</span> -tunap | <span class="token-function">grep</span> ESTABLISHED
+
+<span class="token-comment"># Find SUID binaries</span>
+<span class="token-function">find</span> / -perm -4000 -type f 2>/dev/null
+
+<span class="token-comment"># World-writable files</span>
+<span class="token-function">find</span> / -type f -perm -o+w 2>/dev/null
+
+<span class="token-comment"># Recently modified files (last 24h)</span>
+<span class="token-function">find</span> /var/log -mtime -1 -type f
+
+<span class="token-comment"># Users with UID 0 (root)</span>
+<span class="token-function">awk</span> -F: <span class="token-string">'$3 == 0 {print $1}'</span> /etc/passwd
+
+<span class="token-comment"># Cron jobs - all users</span>
+<span class="token-keyword">for</span> user <span class="token-keyword">in</span> $(<span class="token-function">cut</span> -d: -f1 /etc/passwd); <span class="token-keyword">do</span>
+    <span class="token-function">crontab</span> -u <span class="token-variable">$user</span> -l 2>/dev/null
+<span class="token-keyword">done</span>
+
+<span class="token-comment"># Process tree</span>
+<span class="token-function">ps</span> auxf
+
+<span class="token-comment"># File hash</span>
+<span class="token-function">sha256sum</span> /usr/bin/bash
+
+<span class="token-comment"># Open files by process</span>
+<span class="token-function">lsof</span> -p <span class="token-variable">$PID</span>
+
+<span class="token-comment"># Monitor file changes in real-time</span>
+<span class="token-function">inotifywait</span> -m /path/to/watch</code></pre>
+                    </div>
+                </div>
+
+                <!-- Batch Cheat Sheet -->
+                <h2>📦 Batch/CMD Cheat Sheet</h2>
+
+                <h3>Essential Commands</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Command</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Display text</td>
+                                <td><code>echo</code></td>
+                                <td><code>echo Hello World</code></td>
+                            </tr>
+                            <tr>
+                                <td>Set variable</td>
+                                <td><code>set</code></td>
+                                <td><code>set VAR=value</code></td>
+                            </tr>
+                            <tr>
+                                <td>If statement</td>
+                                <td><code>if</code></td>
+                                <td><code>if exist file.txt echo Found</code></td>
+                            </tr>
+                            <tr>
+                                <td>Loop</td>
+                                <td><code>for</code></td>
+                                <td><code>for %%f in (*.txt) do echo %%f</code></td>
+                            </tr>
+                            <tr>
+                                <td>List files</td>
+                                <td><code>dir</code></td>
+                                <td><code>dir /b /s *.log</code></td>
+                            </tr>
+                            <tr>
+                                <td>Find text</td>
+                                <td><code>findstr</code></td>
+                                <td><code>findstr /i "error" file.log</code></td>
+                            </tr>
+                            <tr>
+                                <td>System info</td>
+                                <td><code>systeminfo</code></td>
+                                <td><code>systeminfo | findstr /i "boot"</code></td>
+                            </tr>
+                            <tr>
+                                <td>Network info</td>
+                                <td><code>ipconfig</code></td>
+                                <td><code>ipconfig /all</code></td>
+                            </tr>
+                            <tr>
+                                <td>Connections</td>
+                                <td><code>netstat</code></td>
+                                <td><code>netstat -an | findstr ESTABLISHED</code></td>
+                            </tr>
+                            <tr>
+                                <td>Tasks</td>
+                                <td><code>tasklist</code></td>
+                                <td><code>tasklist /v</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Batch Security Commands</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch - Security Quick Reference
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">@echo off</span>
+<span class="token-comment">REM System Information</span>
+<span class="token-function">hostname</span>
+<span class="token-function">systeminfo</span> | <span class="token-function">findstr</span> /i "OS Name OS Version"
+
+<span class="token-comment">REM Network Status</span>
+<span class="token-function">ipconfig</span> /all
+<span class="token-function">netstat</span> -an | <span class="token-function">findstr</span> LISTENING
+<span class="token-function">netstat</span> -an | <span class="token-function">findstr</span> ESTABLISHED
+
+<span class="token-comment">REM User Information</span>
+<span class="token-function">whoami</span> /all
+<span class="token-function">net</span> user
+<span class="token-function">net</span> localgroup administrators
+
+<span class="token-comment">REM Running Processes</span>
+<span class="token-function">tasklist</span> /v
+<span class="token-function">wmic</span> process get name,processid,commandline
+
+<span class="token-comment">REM Services</span>
+<span class="token-function">sc</span> query state= all
+<span class="token-function">net</span> start
+
+<span class="token-comment">REM Scheduled Tasks</span>
+<span class="token-function">schtasks</span> /query /fo LIST /v
+
+<span class="token-comment">REM Startup Programs</span>
+<span class="token-function">wmic</span> startup get caption,command
+
+<span class="token-comment">REM File Search</span>
+<span class="token-function">dir</span> /s /b C:\*.exe 2>nul | <span class="token-function">findstr</span> /i "suspicious"</code></pre>
+                    </div>
+                </div>
+
+                <!-- Cross-Language Comparison -->
+                <h2>Cross-Language Quick Comparison</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>PowerShell</th>
+                                <th>Bash</th>
+                                <th>Batch</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Print text</strong></td>
+                                <td><code>Write-Host "Hi"</code></td>
+                                <td><code>echo "Hi"</code></td>
+                                <td><code>echo Hi</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Variable</strong></td>
+                                <td><code>$var = "value"</code></td>
+                                <td><code>var="value"</code></td>
+                                <td><code>set var=value</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Use variable</strong></td>
+                                <td><code>$var</code></td>
+                                <td><code>$var</code></td>
+                                <td><code>%var%</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>If statement</strong></td>
+                                <td><code>if ($x -eq 1) {}</code></td>
+                                <td><code>if [ $x -eq 1 ]; then</code></td>
+                                <td><code>if %x%==1 ()</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>For loop</strong></td>
+                                <td><code>foreach ($i in 1..5)</code></td>
+                                <td><code>for i in {1..5}; do</code></td>
+                                <td><code>for /L %%i in (1,1,5)</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>List files</strong></td>
+                                <td><code>Get-ChildItem</code></td>
+                                <td><code>ls -la</code></td>
+                                <td><code>dir /b</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Search text</strong></td>
+                                <td><code>Select-String</code></td>
+                                <td><code>grep</code></td>
+                                <td><code>findstr</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Processes</strong></td>
+                                <td><code>Get-Process</code></td>
+                                <td><code>ps aux</code></td>
+                                <td><code>tasklist</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network</strong></td>
+                                <td><code>Get-NetTCPConnection</code></td>
+                                <td><code>ss -tunap</code></td>
+                                <td><code>netstat -an</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Services</strong></td>
+                                <td><code>Get-Service</code></td>
+                                <td><code>systemctl list-units</code></td>
+                                <td><code>sc query</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Common Event IDs -->
+                <h2>🔒 Security Event ID Reference</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event ID</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>4624</strong></td><td>Successful logon</td><td>Logon</td></tr>
+                            <tr><td><strong>4625</strong></td><td>Failed logon</td><td>Logon</td></tr>
+                            <tr><td><strong>4634</strong></td><td>Logoff</td><td>Logon</td></tr>
+                            <tr><td><strong>4648</strong></td><td>Explicit credentials logon</td><td>Logon</td></tr>
+                            <tr><td><strong>4672</strong></td><td>Special privileges assigned</td><td>Privilege</td></tr>
+                            <tr><td><strong>4688</strong></td><td>Process created</td><td>Process</td></tr>
+                            <tr><td><strong>4689</strong></td><td>Process terminated</td><td>Process</td></tr>
+                            <tr><td><strong>4720</strong></td><td>User account created</td><td>Account</td></tr>
+                            <tr><td><strong>4722</strong></td><td>User account enabled</td><td>Account</td></tr>
+                            <tr><td><strong>4725</strong></td><td>User account disabled</td><td>Account</td></tr>
+                            <tr><td><strong>4726</strong></td><td>User account deleted</td><td>Account</td></tr>
+                            <tr><td><strong>4728</strong></td><td>Member added to security group</td><td>Group</td></tr>
+                            <tr><td><strong>4732</strong></td><td>Member added to local group</td><td>Group</td></tr>
+                            <tr><td><strong>4740</strong></td><td>Account locked out</td><td>Account</td></tr>
+                            <tr><td><strong>4776</strong></td><td>NTLM authentication</td><td>Auth</td></tr>
+                            <tr><td><strong>7045</strong></td><td>Service installed</td><td>Service</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Quick Language Selection</div>
+                    </div>
+                    <ul>
+                        <li><strong>Windows + AD/Registry/Events?</strong> → PowerShell</li>
+                        <li><strong>Linux + Log Analysis?</strong> → Bash</li>
+                        <li><strong>Cross-platform + APIs?</strong> → Python (or PowerShell 7)</li>
+                        <li><strong>Legacy Windows + Simple Task?</strong> → Batch</li>
+                    </ul>
+                </div>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="10-4-testing-validation.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 10.4 Testing & Validation</span>
+                    </a>
+                    <a href="10-6-interview-preparation.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">10.6 Interview Preparation →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

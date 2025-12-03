@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.10 Registry Operations - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI and CIM</a>
+                        <a href="2-10-registry.html" class="nav-link active"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-15-event-logs.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Registry Operations</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.10 Registry Operations</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Navigate and query the Windows Registry</li>
+                        <li>Read, create, and modify registry values</li>
+                        <li>Find security-relevant registry keys</li>
+                        <li>Audit persistence mechanisms in the registry</li>
+                    </ul>
+                </div>
+
+                <!-- Registry Structure -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Registry Hive Structure</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        WINDOWS REGISTRY HIVES                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+HKEY_LOCAL_MACHINE (HKLM)              HKEY_CURRENT_USER (HKCU)
+├── SOFTWARE                           ├── SOFTWARE
+│   ├── Microsoft                      │   ├── Microsoft
+│   │   ├── Windows                    │   │   └── Windows
+│   │   │   └── CurrentVersion         │   │       └── CurrentVersion
+│   │   │       └── Run ←── STARTUP    │   │           └── Run ←── USER STARTUP
+│   │   └── Windows Defender           │   └── Classes
+│   └── Policies                       └── Environment
+├── SYSTEM
+│   ├── CurrentControlSet
+│   │   ├── Services ←── SERVICES
+│   │   └── Control
+│   └── Select
+└── SECURITY
+
+HKEY_CLASSES_ROOT (HKCR)    →    File associations, COM objects
+HKEY_USERS (HKU)            →    All user profiles  
+HKEY_CURRENT_CONFIG (HKCC)  →    Hardware profile
+
+PowerShell Drives: HKLM: , HKCU: , Registry::HKEY_USERS
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Security-Critical Registry Locations</div>
+                    </div>
+                    <ul>
+                        <li><strong>Run Keys</strong> → Startup programs (persistence)</li>
+                        <li><strong>Services</strong> → Service configurations</li>
+                        <li><strong>Winlogon</strong> → Shell, userinit (persistence)</li>
+                        <li><strong>Image File Execution</strong> → Debugger hijacking</li>
+                        <li><strong>AppInit_DLLs</strong> → DLL injection</li>
+                        <li><strong>LSA</strong> → Security packages, authentication</li>
+                    </ul>
+                </div>
+
+                <!-- Basic Operations -->
+                <h2>Basic Registry Operations</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Registry Navigation
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Registry is accessed like a file system drive</span>
+<span class="token-cmdlet">Get-PSDrive</span> <span class="token-parameter">-PSProvider</span> Registry
+
+<span class="token-comment"># Navigate to registry</span>
+<span class="token-cmdlet">Set-Location</span> HKLM:\SOFTWARE\Microsoft
+<span class="token-cmdlet">Get-ChildItem</span>  <span class="token-comment"># List subkeys</span>
+
+<span class="token-comment"># List subkeys (like folders)</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion'</span>
+
+<span class="token-comment"># Get properties (values) of a key</span>
+<span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion'</span>
+
+<span class="token-comment"># Get specific property value</span>
+<span class="token-cmdlet">Get-ItemPropertyValue</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion'</span> <span class="token-parameter">-Name</span> <span class="token-string">'ProgramFilesDir'</span>
+
+<span class="token-comment"># Check if key exists</span>
+<span class="token-cmdlet">Test-Path</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span>
+
+<span class="token-comment"># Access HKEY_USERS (not mounted by default)</span>
+<span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'Registry::HKEY_USERS\.DEFAULT\Environment'</span>
+
+<span class="token-comment"># Search for key by name</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE'</span> <span class="token-parameter">-Recurse</span> -ErrorAction SilentlyContinue | 
+    <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-like</span> <span class="token-string">'*Python*'</span>
+
+<span class="token-comment"># Search for value by name</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE'</span> <span class="token-parameter">-Recurse</span> -ErrorAction SilentlyContinue | 
+    <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$Key</span> = <span class="token-variable">$_</span>
+        <span class="token-variable">$Key</span>.GetValueNames() | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> <span class="token-operator">-like</span> <span class="token-string">'*path*'</span> } | <span class="token-cmdlet">ForEach-Object</span> {
+            [PSCustomObject]@{
+                Key = <span class="token-variable">$Key</span>.Name
+                ValueName = <span class="token-variable">$_</span>
+                Value = <span class="token-variable">$Key</span>.GetValue(<span class="token-variable">$_</span>)
+            }
+        }
+    }</code></pre>
+                    </div>
+                </div>
+
+                <!-- Reading Values -->
+                <h2>Reading Registry Values</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Reading Registry
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Get all values in a key</span>
+<span class="token-variable">$RunKey</span> = <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span>
+<span class="token-variable">$RunKey</span>
+
+<span class="token-comment"># Get specific value</span>
+(<span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'</span>).ProductName
+
+<span class="token-comment"># Get value with type information</span>
+<span class="token-cmdlet">Get-Item</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span> | 
+    <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-ExpandProperty</span> Property
+
+<span class="token-comment"># Get value name, type, and data</span>
+<span class="token-variable">$Key</span> = <span class="token-cmdlet">Get-Item</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span>
+<span class="token-variable">$Key</span>.GetValueNames() | <span class="token-cmdlet">ForEach-Object</span> {
+    [PSCustomObject]@{
+        Name = <span class="token-variable">$_</span>
+        Type = <span class="token-variable">$Key</span>.GetValueKind(<span class="token-variable">$_</span>)
+        Value = <span class="token-variable">$Key</span>.GetValue(<span class="token-variable">$_</span>)
+    }
+}
+
+<span class="token-comment"># Read binary value as bytes</span>
+<span class="token-variable">$Bytes</span> = (<span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager'</span>).BootExecute
+
+<span class="token-comment"># Read multi-string value</span>
+<span class="token-variable">$MultiString</span> = (<span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager'</span>).PendingFileRenameOperations
+
+<span class="token-comment"># Compare against expected values</span>
+<span class="token-variable">$ExpectedShell</span> = <span class="token-string">'explorer.exe'</span>
+<span class="token-variable">$ActualShell</span> = (<span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'</span>).Shell
+
+<span class="token-keyword">if</span> (<span class="token-variable">$ActualShell</span> <span class="token-operator">-ne</span> <span class="token-variable">$ExpectedShell</span>) {
+    Write-Warning <span class="token-string">"Shell modified! Expected: $ExpectedShell, Found: $ActualShell"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Writing Values -->
+                <h2>Creating and Modifying Values</h2>
+
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Warning: Registry Modifications</div>
+                    </div>
+                    <p>Incorrect registry changes can make Windows unbootable. Always back up keys before modifying and test in a lab environment first.</p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Modifying Registry
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Create new key</span>
+<span class="token-cmdlet">New-Item</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Create new value (String)</span>
+<span class="token-cmdlet">New-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Name</span> <span class="token-string">'Setting1'</span> <span class="token-parameter">-Value</span> <span class="token-string">'Enabled'</span> <span class="token-parameter">-PropertyType</span> String
+
+<span class="token-comment"># Create DWORD value</span>
+<span class="token-cmdlet">New-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Name</span> <span class="token-string">'Count'</span> <span class="token-parameter">-Value</span> <span class="token-number">42</span> <span class="token-parameter">-PropertyType</span> DWord
+
+<span class="token-comment"># Create ExpandString (variables expand at runtime)</span>
+<span class="token-cmdlet">New-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Name</span> <span class="token-string">'LogPath'</span> <span class="token-parameter">-Value</span> <span class="token-string">'%USERPROFILE%\Logs'</span> <span class="token-parameter">-PropertyType</span> ExpandString
+
+<span class="token-comment"># Create MultiString</span>
+<span class="token-cmdlet">New-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Name</span> <span class="token-string">'Servers'</span> <span class="token-parameter">-Value</span> @(<span class="token-string">'Server1'</span>,<span class="token-string">'Server2'</span>) <span class="token-parameter">-PropertyType</span> MultiString
+
+<span class="token-comment"># Modify existing value</span>
+<span class="token-cmdlet">Set-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Name</span> <span class="token-string">'Setting1'</span> <span class="token-parameter">-Value</span> <span class="token-string">'Disabled'</span>
+
+<span class="token-comment"># Remove value</span>
+<span class="token-cmdlet">Remove-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Name</span> <span class="token-string">'Setting1'</span>
+
+<span class="token-comment"># Remove key and all subkeys</span>
+<span class="token-cmdlet">Remove-Item</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKCU:\SOFTWARE\MyApp'</span> <span class="token-parameter">-Recurse</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Backup key to file</span>
+reg export <span class="token-string">'HKCU\SOFTWARE\MyApp'</span> <span class="token-string">'C:\Backup\myapp.reg'</span>
+
+<span class="token-comment"># Restore from backup</span>
+reg import <span class="token-string">'C:\Backup\myapp.reg'</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Auditing -->
+                <h2>Security-Focused Registry Auditing</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Persistence Hunting
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-RegistryPersistence</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Audits common registry persistence locations.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>()
+    
+    <span class="token-variable">$PersistenceLocations</span> = @(
+        <span class="token-comment"># Run keys (most common)</span>
+        @{Path=<span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span>; Description=<span class="token-string">'Machine Run'</span>},
+        @{Path=<span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce'</span>; Description=<span class="token-string">'Machine RunOnce'</span>},
+        @{Path=<span class="token-string">'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span>; Description=<span class="token-string">'User Run'</span>},
+        @{Path=<span class="token-string">'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce'</span>; Description=<span class="token-string">'User RunOnce'</span>},
+        
+        <span class="token-comment"># Winlogon</span>
+        @{Path=<span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'</span>; Description=<span class="token-string">'Winlogon'</span>},
+        
+        <span class="token-comment"># Services</span>
+        @{Path=<span class="token-string">'HKLM:\SYSTEM\CurrentControlSet\Services'</span>; Description=<span class="token-string">'Services'</span>},
+        
+        <span class="token-comment"># Image File Execution Options (debugger hijacking)</span>
+        @{Path=<span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options'</span>; Description=<span class="token-string">'IFEO'</span>},
+        
+        <span class="token-comment"># AppInit DLLs</span>
+        @{Path=<span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows'</span>; Description=<span class="token-string">'AppInit_DLLs'</span>}
+    )
+    
+    <span class="token-variable">$Results</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Location</span> <span class="token-keyword">in</span> <span class="token-variable">$PersistenceLocations</span>) {
+        <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$Location</span>.Path) {
+            <span class="token-keyword">try</span> {
+                <span class="token-variable">$Key</span> = <span class="token-cmdlet">Get-Item</span> <span class="token-variable">$Location</span>.Path -ErrorAction Stop
+                
+                <span class="token-keyword">foreach</span> (<span class="token-variable">$ValueName</span> <span class="token-keyword">in</span> <span class="token-variable">$Key</span>.GetValueNames()) {
+                    <span class="token-keyword">if</span> (<span class="token-variable">$ValueName</span>) {
+                        <span class="token-variable">$Results</span> += [PSCustomObject]@{
+                            Location = <span class="token-variable">$Location</span>.Description
+                            Path = <span class="token-variable">$Location</span>.Path
+                            Name = <span class="token-variable">$ValueName</span>
+                            Value = <span class="token-variable">$Key</span>.GetValue(<span class="token-variable">$ValueName</span>)
+                            Type = <span class="token-variable">$Key</span>.GetValueKind(<span class="token-variable">$ValueName</span>)
+                        }
+                    }
+                }
+            }
+            <span class="token-keyword">catch</span> {
+                Write-Verbose <span class="token-string">"Cannot access: $($Location.Path)"</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}
+
+<span class="token-comment"># Check for suspicious Winlogon values</span>
+<span class="token-keyword">function</span> <span class="token-function">Test-WinlogonIntegrity</span> {
+    <span class="token-variable">$Winlogon</span> = <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-parameter">-Path</span> <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'</span>
+    
+    <span class="token-variable">$Checks</span> = @()
+    
+    <span class="token-comment"># Shell should be explorer.exe</span>
+    <span class="token-variable">$Checks</span> += [PSCustomObject]@{
+        Check = <span class="token-string">'Shell'</span>
+        Expected = <span class="token-string">'explorer.exe'</span>
+        Actual = <span class="token-variable">$Winlogon</span>.Shell
+        Status = <span class="token-keyword">if</span> (<span class="token-variable">$Winlogon</span>.Shell <span class="token-operator">-eq</span> <span class="token-string">'explorer.exe'</span>) { <span class="token-string">'OK'</span> } <span class="token-keyword">else</span> { <span class="token-string">'SUSPICIOUS'</span> }
+    }
+    
+    <span class="token-comment"># Userinit should be userinit.exe</span>
+    <span class="token-variable">$Checks</span> += [PSCustomObject]@{
+        Check = <span class="token-string">'Userinit'</span>
+        Expected = <span class="token-string">'C:\Windows\system32\userinit.exe,'</span>
+        Actual = <span class="token-variable">$Winlogon</span>.Userinit
+        Status = <span class="token-keyword">if</span> (<span class="token-variable">$Winlogon</span>.Userinit <span class="token-operator">-match</span> <span class="token-string">'^C:\\Windows\\system32\\userinit\.exe,$'</span>) { <span class="token-string">'OK'</span> } <span class="token-keyword">else</span> { <span class="token-string">'SUSPICIOUS'</span> }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Checks</span>
+}
+
+<span class="token-comment"># Check Image File Execution Options for debuggers</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-IFEODebuggers</span> {
+    <span class="token-variable">$IFEOPath</span> = <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options'</span>
+    
+    <span class="token-cmdlet">Get-ChildItem</span> <span class="token-variable">$IFEOPath</span> -ErrorAction SilentlyContinue | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$Debugger</span> = (<span class="token-cmdlet">Get-ItemProperty</span> <span class="token-variable">$_</span>.PSPath -ErrorAction SilentlyContinue).Debugger
+        <span class="token-keyword">if</span> (<span class="token-variable">$Debugger</span>) {
+            [PSCustomObject]@{
+                Executable = <span class="token-variable">$_</span>.PSChildName
+                Debugger = <span class="token-variable">$Debugger</span>
+                Status = <span class="token-string">'SUSPICIOUS - Debugger Hijacking!'</span>
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Installed Software -->
+                <h2>Installed Software from Registry</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Installed Software Query
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-InstalledSoftware</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Gets installed software from registry (faster than Win32_Product).
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>()
+    
+    <span class="token-variable">$Paths</span> = @(
+        <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*'</span>,
+        <span class="token-string">'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*'</span>,
+        <span class="token-string">'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*'</span>
+    )
+    
+    <span class="token-variable">$Paths</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-variable">$_</span> -ErrorAction SilentlyContinue
+    } | <span class="token-cmdlet">Where-Object</span> DisplayName | 
+        <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'Name'</span>;E={<span class="token-variable">$_</span>.DisplayName}},
+            @{N=<span class="token-string">'Version'</span>;E={<span class="token-variable">$_</span>.DisplayVersion}},
+            @{N=<span class="token-string">'Publisher'</span>;E={<span class="token-variable">$_</span>.Publisher}},
+            @{N=<span class="token-string">'InstallDate'</span>;E={<span class="token-variable">$_</span>.InstallDate}},
+            @{N=<span class="token-string">'InstallLocation'</span>;E={<span class="token-variable">$_</span>.InstallLocation}} |
+        <span class="token-cmdlet">Sort-Object</span> Name <span class="token-parameter">-Unique</span>
+}
+
+<span class="token-comment"># Find recently installed software</span>
+Get-InstalledSoftware | <span class="token-cmdlet">Where-Object</span> InstallDate <span class="token-operator">-gt</span> (Get-Date).AddDays(-7).ToString(<span class="token-string">'yyyyMMdd'</span>)</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Registry Operations</div>
+                    </div>
+                    <ul>
+                        <li><strong>Always backup first:</strong> Use <code>reg export</code> before modifications</li>
+                        <li><strong>Use Test-Path:</strong> Verify key exists before accessing</li>
+                        <li><strong>Query, don't enumerate services:</strong> Registry is faster than Win32_Product</li>
+                        <li><strong>Monitor persistence locations:</strong> Run keys, Winlogon, IFEO, Services</li>
+                        <li><strong>Use Registry:: provider:</strong> For accessing HKU and other root keys</li>
+                        <li><strong>Handle errors:</strong> Access denied is common for protected keys</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What registry locations do you check for malware persistence?"</li>
+                        <li><strong>Strong Answer:</strong> Run/RunOnce keys in both HKLM and HKCU for startup programs. Winlogon Shell and Userinit values for shell hijacking. Image File Execution Options for debugger-based persistence. Services key for malicious services. AppInit_DLLs for DLL injection. Also check Scheduled Tasks via COM objects in HKCR.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Registry accessed via <code>HKLM:</code> and <code>HKCU:</code> drives</li>
+                    <li>Use <code>Get-ItemProperty</code> for values, <code>Get-ChildItem</code> for subkeys</li>
+                    <li>Key persistence locations: Run, Winlogon, IFEO, Services</li>
+                    <li>Query Uninstall keys for software (faster than Win32_Product)</li>
+                    <li>Always backup before modifying with <code>reg export</code></li>
+                    <li>Monitor for unexpected changes in security-critical keys</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-9-wmi-cim.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.9 WMI and CIM</span>
+                    </a>
+                    <a href="2-15-event-logs.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.15 Event Log Analysis →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.8 Working with Files - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link active"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI and CIM</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Working with Files</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.8 Working with Files</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Read and write text files</li>
+                        <li>Navigate and manipulate the filesystem</li>
+                        <li>Work with CSV and JSON data</li>
+                        <li>Handle file paths and attributes</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: File Cmdlets</div>
+                    </div>
+                    <ul>
+                        <li><strong>Get-Content</strong> → Read file (alias: gc, cat, type)</li>
+                        <li><strong>Set-Content</strong> → Write/overwrite file</li>
+                        <li><strong>Add-Content</strong> → Append to file</li>
+                        <li><strong>Out-File</strong> → Redirect output to file</li>
+                        <li><strong>Get-ChildItem</strong> → List files (alias: dir, ls)</li>
+                        <li><strong>Test-Path</strong> → Check if path exists</li>
+                    </ul>
+                </div>
+
+                <!-- Reading Files -->
+                <h2>Reading Files</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Reading Files
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Read entire file as array of lines</span>
+<span class="token-variable">$Lines</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-string">"C:\Logs\app.log"</span>
+<span class="token-variable">$Lines</span>.Count                              <span class="token-comment"># Number of lines</span>
+<span class="token-variable">$Lines</span>[<span class="token-number">0</span>]                                 <span class="token-comment"># First line</span>
+
+<span class="token-comment"># Read as single string</span>
+<span class="token-variable">$Content</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-string">"file.txt"</span> <span class="token-parameter">-Raw</span>
+
+<span class="token-comment"># Read specific lines</span>
+<span class="token-cmdlet">Get-Content</span> <span class="token-string">"file.txt"</span> <span class="token-parameter">-TotalCount</span> <span class="token-number">10</span>     <span class="token-comment"># First 10 lines</span>
+<span class="token-cmdlet">Get-Content</span> <span class="token-string">"file.txt"</span> <span class="token-parameter">-Tail</span> <span class="token-number">20</span>          <span class="token-comment"># Last 20 lines</span>
+
+<span class="token-comment"># Follow file (like tail -f)</span>
+<span class="token-cmdlet">Get-Content</span> <span class="token-string">"app.log"</span> <span class="token-parameter">-Wait</span>
+
+<span class="token-comment"># Read with encoding</span>
+<span class="token-cmdlet">Get-Content</span> <span class="token-string">"unicode.txt"</span> <span class="token-parameter">-Encoding</span> UTF8
+
+<span class="token-comment"># Filter while reading</span>
+<span class="token-cmdlet">Get-Content</span> <span class="token-string">"app.log"</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> <span class="token-operator">-match</span> <span class="token-string">'error'</span> }
+
+<span class="token-comment"># Read binary file</span>
+<span class="token-variable">$Bytes</span> = [System.IO.File]::ReadAllBytes(<span class="token-string">"file.bin"</span>)</code></pre>
+                    </div>
+                </div>
+
+                <!-- Writing Files -->
+                <h2>Writing Files</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Writing Files
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Overwrite file</span>
+<span class="token-cmdlet">Set-Content</span> <span class="token-parameter">-Path</span> <span class="token-string">"output.txt"</span> <span class="token-parameter">-Value</span> <span class="token-string">"Hello World"</span>
+
+<span class="token-comment"># Write array (each element = line)</span>
+<span class="token-variable">$Data</span> = @(<span class="token-string">"Line 1"</span>, <span class="token-string">"Line 2"</span>, <span class="token-string">"Line 3"</span>)
+<span class="token-cmdlet">Set-Content</span> <span class="token-string">"output.txt"</span> <span class="token-variable">$Data</span>
+
+<span class="token-comment"># Append to file</span>
+<span class="token-cmdlet">Add-Content</span> <span class="token-parameter">-Path</span> <span class="token-string">"log.txt"</span> <span class="token-parameter">-Value</span> <span class="token-string">"$(Get-Date): New entry"</span>
+
+<span class="token-comment"># Out-File (preserves formatting)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"processes.txt"</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"processes.txt"</span> <span class="token-parameter">-Append</span>
+
+<span class="token-comment"># Redirect operators</span>
+<span class="token-cmdlet">Get-Service</span> > <span class="token-string">"services.txt"</span>              <span class="token-comment"># Overwrite</span>
+<span class="token-cmdlet">Get-Service</span> >> <span class="token-string">"services.txt"</span>             <span class="token-comment"># Append</span>
+
+<span class="token-comment"># Specify encoding</span>
+<span class="token-cmdlet">Set-Content</span> <span class="token-string">"utf8.txt"</span> <span class="token-parameter">-Value</span> <span class="token-variable">$Data</span> <span class="token-parameter">-Encoding</span> UTF8
+<span class="token-cmdlet">Out-File</span> <span class="token-string">"output.txt"</span> <span class="token-parameter">-Encoding</span> ASCII
+
+<span class="token-comment"># Force create directories</span>
+<span class="token-cmdlet">Set-Content</span> <span class="token-string">"C:\NewFolder\output.txt"</span> <span class="token-parameter">-Value</span> <span class="token-string">"Test"</span> <span class="token-parameter">-Force</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- File Operations -->
+                <h2>File Operations</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - File Management
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># List files</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"C:\Logs"</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"C:\Logs"</span> <span class="token-parameter">-Recurse</span>           <span class="token-comment"># Include subdirs</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"C:\Logs"</span> <span class="token-parameter">-Filter</span> <span class="token-string">"*.log"</span>    <span class="token-comment"># Filter by extension</span>
+
+<span class="token-comment"># Find files by criteria</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Recurse</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Length <span class="token-operator">-gt</span> <span class="token-number">1</span>MB }
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-parameter">-Recurse</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.LastWriteTime <span class="token-operator">-lt</span> (Get-Date).AddDays(-<span class="token-number">30</span>) }
+
+<span class="token-comment"># Check if exists</span>
+<span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-string">"C:\Config\app.conf"</span>) {
+    Write-Host <span class="token-string">"File exists"</span>
+}
+
+<span class="token-comment"># Copy/Move/Remove</span>
+<span class="token-cmdlet">Copy-Item</span> <span class="token-string">"source.txt"</span> <span class="token-string">"destination.txt"</span>
+<span class="token-cmdlet">Copy-Item</span> <span class="token-string">"C:\Logs\*"</span> <span class="token-string">"C:\Backup\"</span> <span class="token-parameter">-Recurse</span>
+<span class="token-cmdlet">Move-Item</span> <span class="token-string">"old.txt"</span> <span class="token-string">"new.txt"</span>
+<span class="token-cmdlet">Remove-Item</span> <span class="token-string">"temp.txt"</span>
+<span class="token-cmdlet">Remove-Item</span> <span class="token-string">"C:\Temp\*"</span> <span class="token-parameter">-Recurse</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Create directory</span>
+<span class="token-cmdlet">New-Item</span> <span class="token-parameter">-Path</span> <span class="token-string">"C:\NewFolder"</span> <span class="token-parameter">-ItemType</span> Directory
+
+<span class="token-comment"># Get file info</span>
+<span class="token-variable">$File</span> = <span class="token-cmdlet">Get-Item</span> <span class="token-string">"app.log"</span>
+<span class="token-variable">$File</span>.Length                              <span class="token-comment"># Size in bytes</span>
+<span class="token-variable">$File</span>.CreationTime
+<span class="token-variable">$File</span>.LastWriteTime
+<span class="token-variable">$File</span>.Extension</code></pre>
+                    </div>
+                </div>
+
+                <!-- CSV and JSON -->
+                <h2>Working with CSV and JSON</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - CSV and JSON
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Import CSV</span>
+<span class="token-variable">$Users</span> = <span class="token-cmdlet">Import-Csv</span> <span class="token-string">"users.csv"</span>
+<span class="token-variable">$Users</span>[<span class="token-number">0</span>].Name                            <span class="token-comment"># Access column</span>
+<span class="token-variable">$Users</span> | <span class="token-cmdlet">Where-Object</span> Department <span class="token-operator">-eq</span> <span class="token-string">'IT'</span>
+
+<span class="token-comment"># Export CSV</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> Name, CPU, Id | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"processes.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+
+<span class="token-comment"># Import JSON</span>
+<span class="token-variable">$Config</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-string">"config.json"</span> | <span class="token-cmdlet">ConvertFrom-Json</span>
+<span class="token-variable">$Config</span>.settings.timeout
+
+<span class="token-comment"># Export JSON</span>
+<span class="token-variable">$Data</span> = @{
+    Name = <span class="token-string">"Server01"</span>
+    IP = <span class="token-string">"192.168.1.10"</span>
+    Roles = @(<span class="token-string">"Web"</span>, <span class="token-string">"API"</span>)
+}
+<span class="token-variable">$Data</span> | <span class="token-cmdlet">ConvertTo-Json</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"server.json"</span>
+
+<span class="token-comment"># Deep JSON conversion</span>
+<span class="token-variable">$ComplexData</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">5</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"deep.json"</span>
+
+<span class="token-comment"># XML</span>
+[xml]<span class="token-variable">$Xml</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-string">"config.xml"</span>
+<span class="token-variable">$Xml</span>.configuration.appSettings.add</code></pre>
+                    </div>
+                </div>
+
+                <!-- Path Operations -->
+                <h2>Path Operations</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Path Handling
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Join paths safely</span>
+<span class="token-variable">$FullPath</span> = <span class="token-cmdlet">Join-Path</span> <span class="token-string">"C:\Logs"</span> <span class="token-string">"app.log"</span>
+
+<span class="token-comment"># Split path components</span>
+<span class="token-cmdlet">Split-Path</span> <span class="token-string">"C:\Logs\app.log"</span> <span class="token-parameter">-Parent</span>     <span class="token-comment"># C:\Logs</span>
+<span class="token-cmdlet">Split-Path</span> <span class="token-string">"C:\Logs\app.log"</span> <span class="token-parameter">-Leaf</span>       <span class="token-comment"># app.log</span>
+
+<span class="token-comment"># Get file extension</span>
+[System.IO.Path]::GetExtension(<span class="token-string">"file.txt"</span>)  <span class="token-comment"># .txt</span>
+
+<span class="token-comment"># Change extension</span>
+[System.IO.Path]::ChangeExtension(<span class="token-string">"file.txt"</span>, <span class="token-string">".bak"</span>)
+
+<span class="token-comment"># Resolve full path</span>
+<span class="token-cmdlet">Resolve-Path</span> <span class="token-string">".\relative\path"</span>
+
+<span class="token-comment"># Current directory</span>
+<span class="token-cmdlet">Get-Location</span>
+<span class="token-cmdlet">Set-Location</span> <span class="token-string">"C:\Scripts"</span>
+
+<span class="token-comment"># Temporary file</span>
+<span class="token-variable">$TempFile</span> = [System.IO.Path]::GetTempFileName()</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: File Operations</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use Join-Path:</strong> Handles path separators correctly</li>
+                        <li><strong>Test-Path first:</strong> Check existence before operations</li>
+                        <li><strong>Use -ErrorAction:</strong> Handle missing files gracefully</li>
+                        <li><strong>Specify encoding:</strong> Avoid character issues</li>
+                        <li><strong>Use -NoTypeInformation:</strong> Cleaner CSV exports</li>
+                        <li><strong>Large files:</strong> Stream with pipeline instead of -Raw</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How do you process a large log file efficiently?"</li>
+                        <li><strong>Strong Answer:</strong> Use <code>Get-Content</code> with pipeline filtering rather than <code>-Raw</code> to avoid loading entire file into memory. For example: <code>Get-Content log.txt | Where-Object { $_ -match 'error' } | ForEach-Object { ... }</code>. For very large files, use <code>-ReadCount</code> to batch process or <code>[System.IO.StreamReader]</code> for line-by-line reading.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><code>Get-Content</code> reads files; <code>Set-Content</code> writes/overwrites</li>
+                    <li><code>Add-Content</code> appends; <code>Out-File</code> preserves formatting</li>
+                    <li>Use <code>-Raw</code> to read entire file as single string</li>
+                    <li><code>Import-Csv</code>/<code>Export-Csv</code> for CSV data</li>
+                    <li><code>ConvertFrom-Json</code>/<code>ConvertTo-Json</code> for JSON</li>
+                    <li>Always use <code>Join-Path</code> for cross-platform compatibility</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-7-functions.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.7 Functions</span>
+                    </a>
+                    <a href="2-9-wmi-cim.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.9 WMI and CIM →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

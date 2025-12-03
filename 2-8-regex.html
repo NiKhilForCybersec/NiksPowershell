@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.8 Regular Expressions - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-regex.html" class="nav-link active"><span class="nav-link-number">2.8</span> Regular Expressions</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI and CIM</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Regular Expressions</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.8 Regular Expressions</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Use -match and -replace operators</li>
+                        <li>Extract data with capture groups</li>
+                        <li>Build patterns for security log parsing</li>
+                        <li>Validate input with regex</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Common Patterns</div>
+                    </div>
+                    <ul>
+                        <li><strong>\d</strong> → Digit (0-9)</li>
+                        <li><strong>\w</strong> → Word character (a-z, A-Z, 0-9, _)</li>
+                        <li><strong>\s</strong> → Whitespace</li>
+                        <li><strong>.</strong> → Any character</li>
+                        <li><strong>*</strong> → Zero or more</li>
+                        <li><strong>+</strong> → One or more</li>
+                        <li><strong>?</strong> → Zero or one</li>
+                        <li><strong>{n,m}</strong> → n to m occurrences</li>
+                    </ul>
+                </div>
+
+                <!-- Basic Operators -->
+                <h2>Basic Regex Operators</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Match and Replace
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># -match operator (returns True/False)</span>
+<span class="token-string">"Hello World"</span> <span class="token-operator">-match</span> <span class="token-string">"World"</span>        <span class="token-comment"># True</span>
+<span class="token-string">"Error 404"</span> <span class="token-operator">-match</span> <span class="token-string">"\d+"</span>           <span class="token-comment"># True (has digits)</span>
+
+<span class="token-comment"># Case-insensitive by default, use -cmatch for case-sensitive</span>
+<span class="token-string">"Hello"</span> <span class="token-operator">-match</span> <span class="token-string">"hello"</span>             <span class="token-comment"># True</span>
+<span class="token-string">"Hello"</span> <span class="token-operator">-cmatch</span> <span class="token-string">"hello"</span>            <span class="token-comment"># False</span>
+
+<span class="token-comment"># -notmatch</span>
+<span class="token-string">"success"</span> <span class="token-operator">-notmatch</span> <span class="token-string">"error"</span>        <span class="token-comment"># True</span>
+
+<span class="token-comment"># -replace operator</span>
+<span class="token-string">"Hello World"</span> <span class="token-operator">-replace</span> <span class="token-string">"World"</span>, <span class="token-string">"PowerShell"</span>
+<span class="token-comment"># Output: Hello PowerShell</span>
+
+<span class="token-comment"># Replace with regex</span>
+<span class="token-string">"Error: 404, Error: 500"</span> <span class="token-operator">-replace</span> <span class="token-string">"Error: \d+"</span>, <span class="token-string">"[REDACTED]"</span>
+<span class="token-comment"># Output: [REDACTED], [REDACTED]</span>
+
+<span class="token-comment"># Remove pattern (replace with nothing)</span>
+<span class="token-string">"User: admin123"</span> <span class="token-operator">-replace</span> <span class="token-string">"\d+"</span>, <span class="token-string">""</span>
+<span class="token-comment"># Output: User: admin</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Capture Groups -->
+                <h2>Capture Groups and $Matches</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Capture Groups
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># $Matches automatic variable stores capture results</span>
+<span class="token-variable">$Text</span> = <span class="token-string">"User: john.doe@company.com"</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$Text</span> <span class="token-operator">-match</span> <span class="token-string">'User: (\S+)'</span>) {
+    <span class="token-variable">$Matches</span>[<span class="token-number">0</span>]  <span class="token-comment"># Full match: User: john.doe@company.com</span>
+    <span class="token-variable">$Matches</span>[<span class="token-number">1</span>]  <span class="token-comment"># First capture: john.doe@company.com</span>
+}
+
+<span class="token-comment"># Named capture groups</span>
+<span class="token-variable">$LogLine</span> = <span class="token-string">"2024-01-15 10:30:45 ERROR Connection failed"</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$LogLine</span> <span class="token-operator">-match</span> <span class="token-string">'(?&lt;Date&gt;\d{4}-\d{2}-\d{2}) (?&lt;Time&gt;\d{2}:\d{2}:\d{2}) (?&lt;Level&gt;\w+) (?&lt;Message&gt;.+)'</span>) {
+    <span class="token-variable">$Matches</span>.Date     <span class="token-comment"># 2024-01-15</span>
+    <span class="token-variable">$Matches</span>.Time     <span class="token-comment"># 10:30:45</span>
+    <span class="token-variable">$Matches</span>.Level    <span class="token-comment"># ERROR</span>
+    <span class="token-variable">$Matches</span>.Message  <span class="token-comment"># Connection failed</span>
+}
+
+<span class="token-comment"># Multiple captures</span>
+<span class="token-variable">$IP</span> = <span class="token-string">"192.168.1.100"</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$IP</span> <span class="token-operator">-match</span> <span class="token-string">'(\d+)\.(\d+)\.(\d+)\.(\d+)'</span>) {
+    <span class="token-variable">$Octets</span> = <span class="token-variable">$Matches</span>[<span class="token-number">1</span>], <span class="token-variable">$Matches</span>[<span class="token-number">2</span>], <span class="token-variable">$Matches</span>[<span class="token-number">3</span>], <span class="token-variable">$Matches</span>[<span class="token-number">4</span>]
+    <span class="token-comment"># 192, 168, 1, 100</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Patterns -->
+                <h2>Security-Focused Patterns</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Regex Patterns
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># IP Address pattern</span>
+<span class="token-variable">$IPPattern</span> = <span class="token-string">'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'</span>
+
+<span class="token-comment"># Extract IPs from log</span>
+<span class="token-variable">$Log</span> = <span class="token-string">"Failed login from 192.168.1.50 and 10.0.0.25"</span>
+[regex]::Matches(<span class="token-variable">$Log</span>, <span class="token-variable">$IPPattern</span>).Value
+<span class="token-comment"># Output: 192.168.1.50, 10.0.0.25</span>
+
+<span class="token-comment"># Email pattern</span>
+<span class="token-variable">$EmailPattern</span> = <span class="token-string">'[\w.+-]+@[\w.-]+\.\w{2,}'</span>
+<span class="token-string">"Contact: admin@company.com"</span> <span class="token-operator">-match</span> <span class="token-variable">$EmailPattern</span>
+<span class="token-variable">$Matches</span>[<span class="token-number">0</span>]  <span class="token-comment"># admin@company.com</span>
+
+<span class="token-comment"># URL pattern</span>
+<span class="token-variable">$URLPattern</span> = <span class="token-string">'https?://[\w.-]+(?:/[\w./-]*)?'</span>
+
+<span class="token-comment"># Windows username (DOMAIN\User or user@domain)</span>
+<span class="token-variable">$UserPattern</span> = <span class="token-string">'(?:[\w-]+\\[\w.-]+|[\w.-]+@[\w.-]+)'</span>
+
+<span class="token-comment"># Parse failed login from Security log</span>
+<span class="token-variable">$EventMessage</span> = <span class="token-string">"Account For Which Logon Failed: Account Name: jsmith"</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$EventMessage</span> <span class="token-operator">-match</span> <span class="token-string">'Account Name:\s+(\S+)'</span>) {
+    Write-Host <span class="token-string">"Failed user: $($Matches[1])"</span>
+}
+
+<span class="token-comment"># Extract source IP from logon event</span>
+<span class="token-variable">$Pattern</span> = <span class="token-string">'Source Network Address:\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$EventMessage</span> <span class="token-operator">-match</span> <span class="token-variable">$Pattern</span>) {
+    <span class="token-variable">$SourceIP</span> = <span class="token-variable">$Matches</span>[<span class="token-number">1</span>]
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Select-String -->
+                <h2>Select-String for File Search</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Select-String
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Search file for pattern (like grep)</span>
+<span class="token-cmdlet">Select-String</span> <span class="token-parameter">-Path</span> <span class="token-string">"C:\logs\*.log"</span> <span class="token-parameter">-Pattern</span> <span class="token-string">"error"</span>
+
+<span class="token-comment"># Case-sensitive search</span>
+<span class="token-cmdlet">Select-String</span> <span class="token-parameter">-Path</span> <span class="token-string">"*.log"</span> <span class="token-parameter">-Pattern</span> <span class="token-string">"ERROR"</span> <span class="token-parameter">-CaseSensitive</span>
+
+<span class="token-comment"># Get context (lines before/after)</span>
+<span class="token-cmdlet">Select-String</span> <span class="token-parameter">-Path</span> <span class="token-string">"app.log"</span> <span class="token-parameter">-Pattern</span> <span class="token-string">"exception"</span> <span class="token-parameter">-Context</span> <span class="token-number">2</span>,<span class="token-number">2</span>
+
+<span class="token-comment"># Multiple patterns</span>
+<span class="token-cmdlet">Select-String</span> <span class="token-parameter">-Path</span> <span class="token-string">"*.log"</span> <span class="token-parameter">-Pattern</span> <span class="token-string">"error"</span>, <span class="token-string">"warning"</span>, <span class="token-string">"critical"</span>
+
+<span class="token-comment"># Return only matching text</span>
+<span class="token-cmdlet">Select-String</span> <span class="token-parameter">-Path</span> <span class="token-string">"access.log"</span> <span class="token-parameter">-Pattern</span> <span class="token-string">'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'</span> <span class="token-parameter">-AllMatches</span> |
+    <span class="token-cmdlet">ForEach-Object</span> { <span class="token-variable">$_</span>.Matches.Value }
+
+<span class="token-comment"># Security: Find potential SQL injection attempts</span>
+<span class="token-variable">$SQLPatterns</span> = <span class="token-string">"('|--|;|union|select|drop|insert|update|delete)"</span>
+<span class="token-cmdlet">Select-String</span> <span class="token-parameter">-Path</span> <span class="token-string">"C:\inetpub\logs\*.log"</span> <span class="token-parameter">-Pattern</span> <span class="token-variable">$SQLPatterns</span>
+
+<span class="token-comment"># Find all IP addresses in logs</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"C:\logs"</span> <span class="token-parameter">-Filter</span> <span class="token-string">"*.log"</span> | 
+    <span class="token-cmdlet">Select-String</span> <span class="token-parameter">-Pattern</span> <span class="token-string">'\b\d{1,3}(\.\d{1,3}){3}\b'</span> <span class="token-parameter">-AllMatches</span> |
+    <span class="token-cmdlet">ForEach-Object</span> { <span class="token-variable">$_</span>.Matches.Value } |
+    <span class="token-cmdlet">Sort-Object</span> <span class="token-parameter">-Unique</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Validation -->
+                <h2>Input Validation Patterns</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Validation
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Test-ValidIP</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$IP</span>)
+    <span class="token-variable">$Pattern</span> = <span class="token-string">'^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)$'</span>
+    <span class="token-variable">$IP</span> <span class="token-operator">-match</span> <span class="token-variable">$Pattern</span>
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Test-ValidEmail</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Email</span>)
+    <span class="token-variable">$Pattern</span> = <span class="token-string">'^[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}$'</span>
+    <span class="token-variable">$Email</span> <span class="token-operator">-match</span> <span class="token-variable">$Pattern</span>
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Test-StrongPassword</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Password</span>)
+    <span class="token-comment"># 8+ chars, upper, lower, digit, special</span>
+    <span class="token-variable">$Checks</span> = @(
+        (<span class="token-variable">$Password</span>.Length <span class="token-operator">-ge</span> <span class="token-number">8</span>),
+        (<span class="token-variable">$Password</span> <span class="token-operator">-cmatch</span> <span class="token-string">'[A-Z]'</span>),
+        (<span class="token-variable">$Password</span> <span class="token-operator">-cmatch</span> <span class="token-string">'[a-z]'</span>),
+        (<span class="token-variable">$Password</span> <span class="token-operator">-match</span> <span class="token-string">'\d'</span>),
+        (<span class="token-variable">$Password</span> <span class="token-operator">-match</span> <span class="token-string">'[!@#$%^&*(),.?":{}|&lt;&gt;]'</span>)
+    )
+    (<span class="token-variable">$Checks</span> <span class="token-operator">-notcontains</span> <span class="token-variable">$false</span>)
+}
+
+<span class="token-comment"># ValidatePattern attribute in functions</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-ServerInfo</span> {
+    <span class="token-keyword">param</span>(
+        [ValidatePattern(<span class="token-string">'^\d{1,3}(\.\d{1,3}){3}$'</span>)]
+        [string]<span class="token-variable">$IPAddress</span>
+    )
+    <span class="token-comment"># PowerShell validates before function runs</span>
+    <span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$IPAddress</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Regex Quick Reference -->
+                <h2>Quick Reference</h2>
+
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pattern</th>
+                                <th>Matches</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>\d+</code></td>
+                                <td>One or more digits</td>
+                                <td>123, 4567</td>
+                            </tr>
+                            <tr>
+                                <td><code>\w+</code></td>
+                                <td>Word characters</td>
+                                <td>hello, user_1</td>
+                            </tr>
+                            <tr>
+                                <td><code>\s+</code></td>
+                                <td>Whitespace</td>
+                                <td>spaces, tabs</td>
+                            </tr>
+                            <tr>
+                                <td><code>^...$</code></td>
+                                <td>Start and end anchors</td>
+                                <td>Full string match</td>
+                            </tr>
+                            <tr>
+                                <td><code>(group)</code></td>
+                                <td>Capture group</td>
+                                <td>$Matches[1]</td>
+                            </tr>
+                            <tr>
+                                <td><code>(?&lt;name&gt;)</code></td>
+                                <td>Named capture</td>
+                                <td>$Matches.name</td>
+                            </tr>
+                            <tr>
+                                <td><code>[abc]</code></td>
+                                <td>Character class</td>
+                                <td>a, b, or c</td>
+                            </tr>
+                            <tr>
+                                <td><code>[^abc]</code></td>
+                                <td>Negated class</td>
+                                <td>Not a, b, or c</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Regex</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use named groups:</strong> More readable than $Matches[1]</li>
+                        <li><strong>Test patterns:</strong> Use regex101.com for testing</li>
+                        <li><strong>Escape special chars:</strong> Use [regex]::Escape() for literals</li>
+                        <li><strong>Be specific:</strong> Avoid overly broad patterns</li>
+                        <li><strong>Use -cmatch for case-sensitive:</strong> Default is case-insensitive</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><code>-match</code> tests patterns and populates <code>$Matches</code></li>
+                    <li>Use capture groups <code>()</code> to extract specific parts</li>
+                    <li>Named groups <code>(?&lt;name&gt;)</code> improve readability</li>
+                    <li><code>Select-String</code> is PowerShell's grep for file searching</li>
+                    <li><code>[regex]::Matches()</code> finds all occurrences</li>
+                    <li>Regex is essential for log parsing and data extraction</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-7-functions.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.7 Functions</span>
+                    </a>
+                    <a href="2-9-wmi-cim.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.9 WMI and CIM →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

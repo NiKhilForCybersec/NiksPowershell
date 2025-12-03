@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.9 WMI and CIM - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link active"><span class="nav-link-number">2.9</span> WMI and CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>WMI and CIM</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.9 WMI and CIM</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Understand WMI vs CIM and when to use each</li>
+                        <li>Query system information with Get-CimInstance</li>
+                        <li>Use WQL queries for advanced filtering</li>
+                        <li>Retrieve security-relevant system data</li>
+                    </ul>
+                </div>
+
+                <!-- WMI vs CIM -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 WMI vs CIM Cmdlets</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    WMI vs CIM - WHICH TO USE?                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────────────────┐    ┌─────────────────────────────┐
+    │   WMI (Legacy)              │    │   CIM (Modern) ✓            │
+    │   Get-WmiObject             │    │   Get-CimInstance           │
+    │                             │    │                             │
+    │ • Uses DCOM (RPC)           │    │ • Uses WS-Man (WinRM)       │
+    │ • Firewall unfriendly       │    │ • Firewall friendly         │
+    │ • Windows only              │    │ • Cross-platform (PS 7+)    │
+    │ • Deprecated                │    │ • Recommended               │
+    │ • PS 5.1 compatible         │    │ • Modern sessions           │
+    └─────────────────────────────┘    └─────────────────────────────┘
+                │                                  │
+                └──────────────┬───────────────────┘
+                               │
+                               ▼
+                    ┌───────────────────────┐
+                    │   SAME DATA SOURCE    │
+                    │   (WMI Repository)    │
+                    │   Win32_*, CIM_*      │
+                    └───────────────────────┘
+
+    Rule: Always use Get-CimInstance unless you need PS 2.0 compatibility
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Common WMI Classes</div>
+                    </div>
+                    <ul>
+                        <li><strong>Win32_OperatingSystem</strong> → OS info, uptime, memory</li>
+                        <li><strong>Win32_ComputerSystem</strong> → Computer name, domain, model</li>
+                        <li><strong>Win32_Process</strong> → Running processes, command lines</li>
+                        <li><strong>Win32_Service</strong> → Services, paths, accounts</li>
+                        <li><strong>Win32_LogicalDisk</strong> → Disk space, drive letters</li>
+                        <li><strong>Win32_NetworkAdapterConfiguration</strong> → IP, MAC, DNS</li>
+                        <li><strong>Win32_UserAccount</strong> → Local user accounts</li>
+                        <li><strong>Win32_StartupCommand</strong> → Startup programs</li>
+                    </ul>
+                </div>
+
+                <!-- Basic CIM Queries -->
+                <h2>Basic CIM Queries</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Get-CimInstance Basics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Operating System information</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_OperatingSystem | <span class="token-cmdlet">Select-Object</span> Caption, Version, 
+    BuildNumber, LastBootUpTime, FreePhysicalMemory
+
+<span class="token-comment"># Computer system info</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_ComputerSystem | <span class="token-cmdlet">Select-Object</span> Name, Domain, 
+    Manufacturer, Model, TotalPhysicalMemory
+
+<span class="token-comment"># BIOS information</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_BIOS | <span class="token-cmdlet">Select-Object</span> Manufacturer, SMBIOSBIOSVersion, 
+    SerialNumber, ReleaseDate
+
+<span class="token-comment"># Processor info</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Processor | <span class="token-cmdlet">Select-Object</span> Name, NumberOfCores, 
+    NumberOfLogicalProcessors, MaxClockSpeed
+
+<span class="token-comment"># Disk information</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_LogicalDisk | <span class="token-cmdlet">Where-Object</span> DriveType <span class="token-operator">-eq</span> <span class="token-number">3</span> |
+    <span class="token-cmdlet">Select-Object</span> DeviceID, 
+        @{N=<span class="token-string">'SizeGB'</span>;E={[math]::Round(<span class="token-variable">$_</span>.Size / <span class="token-number">1GB</span>, <span class="token-number">2</span>)}},
+        @{N=<span class="token-string">'FreeGB'</span>;E={[math]::Round(<span class="token-variable">$_</span>.FreeSpace / <span class="token-number">1GB</span>, <span class="token-number">2</span>)}},
+        @{N=<span class="token-string">'UsedPercent'</span>;E={[math]::Round(((<span class="token-variable">$_</span>.Size - <span class="token-variable">$_</span>.FreeSpace) / <span class="token-variable">$_</span>.Size) * <span class="token-number">100</span>, <span class="token-number">1</span>)}}
+
+<span class="token-comment"># Network adapter configuration</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_NetworkAdapterConfiguration | 
+    <span class="token-cmdlet">Where-Object</span> IPEnabled | 
+    <span class="token-cmdlet">Select-Object</span> Description, IPAddress, MACAddress, DefaultIPGateway, DNSServerSearchOrder
+
+<span class="token-comment"># List all available classes</span>
+<span class="token-cmdlet">Get-CimClass</span> <span class="token-parameter">-Namespace</span> root/cimv2 | <span class="token-cmdlet">Where-Object</span> CimClassName <span class="token-operator">-like</span> <span class="token-string">'Win32_*'</span>
+
+<span class="token-comment"># Explore class properties</span>
+<span class="token-cmdlet">Get-CimClass</span> Win32_Process | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-ExpandProperty</span> CimClassProperties | 
+    <span class="token-cmdlet">Select-Object</span> Name, CimType</code></pre>
+                    </div>
+                </div>
+
+                <!-- Process Information -->
+                <h2>Process Information</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Process Queries
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># All processes with command lines (security gold!)</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Process | 
+    <span class="token-cmdlet">Select-Object</span> Name, ProcessId, ParentProcessId, CommandLine, 
+        CreationDate, ExecutablePath |
+    <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+
+<span class="token-comment"># Find process owner</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Process | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$Owner</span> = <span class="token-cmdlet">Invoke-CimMethod</span> <span class="token-parameter">-InputObject</span> <span class="token-variable">$_</span> <span class="token-parameter">-MethodName</span> GetOwner
+    [PSCustomObject]@{
+        Name = <span class="token-variable">$_</span>.Name
+        PID = <span class="token-variable">$_</span>.ProcessId
+        Owner = <span class="token-string">"$($Owner.Domain)\$($Owner.User)"</span>
+        CommandLine = <span class="token-variable">$_</span>.CommandLine
+    }
+} | <span class="token-cmdlet">Where-Object</span> Owner <span class="token-operator">-notlike</span> <span class="token-string">'*\SYSTEM'</span>
+
+<span class="token-comment"># Processes with network connections (WQL filter)</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> <span class="token-string">"SELECT * FROM Win32_Process WHERE Name = 'powershell.exe'"</span>
+
+<span class="token-comment"># Find PowerShell processes with encoded commands</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Process | 
+    <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.CommandLine <span class="token-operator">-match</span> <span class="token-string">'-[Ee]nc|-[Ee]ncodedCommand'</span> } |
+    <span class="token-cmdlet">Select-Object</span> Name, ProcessId, CommandLine
+
+<span class="token-comment"># Processes running from suspicious locations</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Process | 
+    <span class="token-cmdlet">Where-Object</span> { 
+        <span class="token-variable">$_</span>.ExecutablePath <span class="token-operator">-like</span> <span class="token-string">'*\Temp\*'</span> <span class="token-operator">-or</span>
+        <span class="token-variable">$_</span>.ExecutablePath <span class="token-operator">-like</span> <span class="token-string">'*\AppData\*'</span> <span class="token-operator">-or</span>
+        <span class="token-variable">$_</span>.ExecutablePath <span class="token-operator">-like</span> <span class="token-string">'*\Downloads\*'</span>
+    } | <span class="token-cmdlet">Select-Object</span> Name, ProcessId, ExecutablePath</code></pre>
+                    </div>
+                </div>
+
+                <!-- Service Information -->
+                <h2>Service Information</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Service Queries
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># All services with details (more info than Get-Service)</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Service | <span class="token-cmdlet">Select-Object</span> Name, DisplayName, State, 
+    StartMode, StartName, PathName, ProcessId | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+
+<span class="token-comment"># Running services</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> <span class="token-string">"SELECT * FROM Win32_Service WHERE State = 'Running'"</span>
+
+<span class="token-comment"># Services running as LocalSystem (potential privilege escalation)</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Service | 
+    <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.StartName <span class="token-operator">-eq</span> <span class="token-string">'LocalSystem'</span> <span class="token-operator">-and</span> <span class="token-variable">$_</span>.State <span class="token-operator">-eq</span> <span class="token-string">'Running'</span> } |
+    <span class="token-cmdlet">Select-Object</span> Name, PathName, ProcessId
+
+<span class="token-comment"># Services with unquoted paths (vulnerability check)</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Service | 
+    <span class="token-cmdlet">Where-Object</span> { 
+        <span class="token-variable">$_</span>.PathName <span class="token-operator">-and</span> 
+        <span class="token-variable">$_</span>.PathName <span class="token-operator">-notmatch</span> <span class="token-string">'^"'</span> <span class="token-operator">-and</span> 
+        <span class="token-variable">$_</span>.PathName <span class="token-operator">-match</span> <span class="token-string">'\s'</span> 
+    } | <span class="token-cmdlet">Select-Object</span> Name, PathName
+
+<span class="token-comment"># Services with non-standard paths</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Service | 
+    <span class="token-cmdlet">Where-Object</span> { 
+        <span class="token-variable">$_</span>.PathName <span class="token-operator">-and</span> 
+        <span class="token-variable">$_</span>.PathName <span class="token-operator">-notlike</span> <span class="token-string">'*\Windows\*'</span> <span class="token-operator">-and</span>
+        <span class="token-variable">$_</span>.PathName <span class="token-operator">-notlike</span> <span class="token-string">'*\Program Files*'</span>
+    } | <span class="token-cmdlet">Select-Object</span> Name, StartName, PathName
+
+<span class="token-comment"># Start/Stop service using CIM methods</span>
+<span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_Service <span class="token-parameter">-Filter</span> <span class="token-string">"Name='Spooler'"</span>
+<span class="token-cmdlet">Invoke-CimMethod</span> <span class="token-parameter">-InputObject</span> <span class="token-variable">$Service</span> <span class="token-parameter">-MethodName</span> StopService
+<span class="token-cmdlet">Invoke-CimMethod</span> <span class="token-parameter">-InputObject</span> <span class="token-variable">$Service</span> <span class="token-parameter">-MethodName</span> StartService</code></pre>
+                    </div>
+                </div>
+
+                <!-- User and Security -->
+                <h2>User and Security Information</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Queries
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Local user accounts</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_UserAccount <span class="token-parameter">-Filter</span> <span class="token-string">"LocalAccount=True"</span> |
+    <span class="token-cmdlet">Select-Object</span> Name, FullName, Disabled, PasswordRequired, 
+        PasswordChangeable, SID
+
+<span class="token-comment"># Local groups and members</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Group <span class="token-parameter">-Filter</span> <span class="token-string">"LocalAccount=True"</span> |
+    <span class="token-cmdlet">Select-Object</span> Name, Description, SID
+
+<span class="token-comment"># Startup commands (persistence mechanism)</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_StartupCommand | 
+    <span class="token-cmdlet">Select-Object</span> Name, Command, Location, User
+
+<span class="token-comment"># Installed software</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Product | 
+    <span class="token-cmdlet">Select-Object</span> Name, Version, Vendor, InstallDate |
+    <span class="token-cmdlet">Sort-Object</span> InstallDate <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Faster: Query registry instead</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> @<span class="token-string">"
+SELECT * FROM Win32_InstalledWin32Program
+"@</span>
+
+<span class="token-comment"># Shares (potential lateral movement paths)</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Share | <span class="token-cmdlet">Select-Object</span> Name, Path, Description, Type
+
+<span class="token-comment"># Logged on users</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_LoggedOnUser | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$User</span> = [wmi]<span class="token-variable">$_</span>.Antecedent
+    [PSCustomObject]@{
+        Name = <span class="token-variable">$User</span>.Name
+        Domain = <span class="token-variable">$User</span>.Domain
+    }
+} | <span class="token-cmdlet">Sort-Object</span> <span class="token-parameter">-Unique</span> Domain, Name
+
+<span class="token-comment"># Scheduled tasks via CIM</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Namespace</span> Root\Microsoft\Windows\TaskScheduler <span class="token-parameter">-ClassName</span> MSFT_ScheduledTask |
+    <span class="token-cmdlet">Select-Object</span> TaskName, State, TaskPath</code></pre>
+                    </div>
+                </div>
+
+                <!-- Remote Queries -->
+                <h2>Remote CIM Sessions</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Remote CIM
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple remote query</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_OperatingSystem <span class="token-parameter">-ComputerName</span> <span class="token-string">"Server01"</span>
+
+<span class="token-comment"># Create persistent CIM session (faster for multiple queries)</span>
+<span class="token-variable">$Session</span> = <span class="token-cmdlet">New-CimSession</span> <span class="token-parameter">-ComputerName</span> <span class="token-string">"Server01"</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_OperatingSystem <span class="token-parameter">-CimSession</span> <span class="token-variable">$Session</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_Process <span class="token-parameter">-CimSession</span> <span class="token-variable">$Session</span>
+<span class="token-cmdlet">Remove-CimSession</span> <span class="token-variable">$Session</span>
+
+<span class="token-comment"># With credentials</span>
+<span class="token-variable">$Cred</span> = <span class="token-cmdlet">Get-Credential</span>
+<span class="token-variable">$Session</span> = <span class="token-cmdlet">New-CimSession</span> <span class="token-parameter">-ComputerName</span> <span class="token-string">"Server01"</span> <span class="token-parameter">-Credential</span> <span class="token-variable">$Cred</span>
+
+<span class="token-comment"># Multiple computers</span>
+<span class="token-variable">$Servers</span> = @(<span class="token-string">"Server01"</span>, <span class="token-string">"Server02"</span>, <span class="token-string">"Server03"</span>)
+<span class="token-variable">$Sessions</span> = <span class="token-cmdlet">New-CimSession</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Servers</span>
+<span class="token-cmdlet">Get-CimInstance</span> Win32_OperatingSystem <span class="token-parameter">-CimSession</span> <span class="token-variable">$Sessions</span> |
+    <span class="token-cmdlet">Select-Object</span> PSComputerName, Caption, LastBootUpTime
+<span class="token-cmdlet">Remove-CimSession</span> <span class="token-variable">$Sessions</span>
+
+<span class="token-comment"># Use DCOM (for legacy systems without WinRM)</span>
+<span class="token-variable">$SessionOption</span> = <span class="token-cmdlet">New-CimSessionOption</span> <span class="token-parameter">-Protocol</span> Dcom
+<span class="token-variable">$Session</span> = <span class="token-cmdlet">New-CimSession</span> <span class="token-parameter">-ComputerName</span> <span class="token-string">"OldServer"</span> <span class="token-parameter">-SessionOption</span> <span class="token-variable">$SessionOption</span>
+
+<span class="token-comment"># Query all domain computers for specific process</span>
+<span class="token-variable">$Computers</span> = (<span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> *).Name
+<span class="token-keyword">foreach</span> (<span class="token-variable">$Computer</span> <span class="token-keyword">in</span> <span class="token-variable">$Computers</span>) {
+    <span class="token-keyword">try</span> {
+        <span class="token-cmdlet">Get-CimInstance</span> Win32_Process <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Computer</span> -ErrorAction Stop |
+            <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'mimikatz.exe'</span> |
+            <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'Computer'</span>;E={<span class="token-variable">$Computer</span>}}, Name, ProcessId, CommandLine
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"Cannot connect to $Computer"</span>
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- WQL Queries -->
+                <h2>WQL Queries</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - WQL (WMI Query Language)
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># WQL is SQL-like syntax for WMI queries</span>
+<span class="token-comment"># Faster than PowerShell Where-Object filtering</span>
+
+<span class="token-comment"># Basic WQL query</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> <span class="token-string">"SELECT * FROM Win32_Process WHERE Name = 'explorer.exe'"</span>
+
+<span class="token-comment"># Select specific properties</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> <span class="token-string">"SELECT Name, ProcessId, CommandLine FROM Win32_Process"</span>
+
+<span class="token-comment"># LIKE operator for pattern matching</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> <span class="token-string">"SELECT * FROM Win32_Service WHERE Name LIKE 'Win%'"</span>
+
+<span class="token-comment"># Multiple conditions</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> @<span class="token-string">"
+SELECT * FROM Win32_Service 
+WHERE State = 'Running' 
+AND StartMode = 'Auto'
+"@</span>
+
+<span class="token-comment"># NOT and OR</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> @<span class="token-string">"
+SELECT * FROM Win32_Process 
+WHERE Name != 'System' 
+AND (ParentProcessId = 0 OR ParentProcessId = 4)
+"@</span>
+
+<span class="token-comment"># Associators - find related objects</span>
+<span class="token-comment"># Find all processes for a specific service</span>
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> @<span class="token-string">"
+ASSOCIATORS OF {Win32_Service.Name='Spooler'} 
+WHERE AssocClass = Win32_DependentService
+"@</span>
+
+<span class="token-comment"># Security-focused: Find processes with specific parent</span>
+<span class="token-variable">$CmdPID</span> = (<span class="token-cmdlet">Get-Process</span> cmd | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">1</span>).Id
+<span class="token-cmdlet">Get-CimInstance</span> <span class="token-parameter">-Query</span> <span class="token-string">"SELECT * FROM Win32_Process WHERE ParentProcessId = $CmdPID"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: WMI/CIM</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use Get-CimInstance:</strong> Modern, uses WinRM, cross-platform</li>
+                        <li><strong>Use -Filter or -Query:</strong> Faster than Where-Object (filters server-side)</li>
+                        <li><strong>Create CIM sessions:</strong> Reuse for multiple queries to same host</li>
+                        <li><strong>Select specific properties:</strong> Reduces data transfer</li>
+                        <li><strong>Handle errors:</strong> Remote systems may be offline</li>
+                        <li><strong>Avoid Win32_Product:</strong> Slow and triggers MSI reconfiguration</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between WMI and CIM cmdlets?"</li>
+                        <li><strong>Strong Answer:</strong> Both access the same WMI repository, but CIM cmdlets (<code>Get-CimInstance</code>) use WS-Man/WinRM for remote access (firewall-friendly, cross-platform in PS7), while WMI cmdlets (<code>Get-WmiObject</code>) use DCOM/RPC (legacy, Windows-only). Always use CIM cmdlets for new scripts—WMI cmdlets are deprecated.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>Get-CimInstance</code> instead of <code>Get-WmiObject</code></li>
+                    <li>Common classes: Win32_Process, Win32_Service, Win32_OperatingSystem</li>
+                    <li>Use <code>-Filter</code> or <code>-Query</code> for server-side filtering</li>
+                    <li>Create CIM sessions for multiple remote queries</li>
+                    <li>WQL syntax is SQL-like: SELECT, WHERE, LIKE, AND, OR</li>
+                    <li>CIM provides rich system data for security investigations</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-8-modules.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.8 Modules & Profiles</span>
+                    </a>
+                    <a href="2-10-registry.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.10 Registry Operations →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

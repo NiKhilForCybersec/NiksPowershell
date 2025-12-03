@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1 Bash Introduction - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link active"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-basics.html" class="nav-link"><span class="nav-link-number">3.2</span> Bash Basics</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Bash Variables</a>
+                        <a href="3-4-bash-strings.html" class="nav-link"><span class="nav-link-number">3.4</span> Bash Strings</a>
+                        <a href="3-5-bash-arrays.html" class="nav-link"><span class="nav-link-number">3.5</span> Bash Arrays</a>
+                        <a href="3-6-bash-conditionals.html" class="nav-link"><span class="nav-link-number">3.6</span> Bash Conditionals</a>
+                        <a href="3-7-bash-loops.html" class="nav-link"><span class="nav-link-number">3.7</span> Bash Loops</a>
+                        <a href="3-8-bash-functions.html" class="nav-link"><span class="nav-link-number">3.8</span> Bash Functions</a>
+                        <a href="3-9-bash-io-redirection.html" class="nav-link"><span class="nav-link-number">3.9</span> I/O Redirection</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-11-bash-regex.html" class="nav-link"><span class="nav-link-number">3.11</span> Bash Regex</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                        <a href="3-13-bash-system-admin.html" class="nav-link"><span class="nav-link-number">3.13</span> System Administration</a>
+                        <a href="3-14-bash-security-tools.html" class="nav-link"><span class="nav-link-number">3.14</span> Security Tools Integration</a>
+                        <a href="3-15-bash-best-practices.html" class="nav-link"><span class="nav-link-number">3.15</span> Bash Best Practices</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-security-scripting-overview.html" class="nav-link"><span class="nav-link-number">5.1</span> Security Scripting Overview</a>
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="offensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">⚔️</span>
+                        Offensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-offensive-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Offensive Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="defensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Defensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-defensive-overview.html" class="nav-link"><span class="nav-link-number">7.1</span> Defensive Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🏗️</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-project-soc-toolkit.html" class="nav-link"><span class="nav-link-number">8.1</span> SOC Toolkit Project</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="crossplatform">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-cross-platform-overview.html" class="nav-link"><span class="nav-link-number">9.1</span> Cross-Platform Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#bash">Bash Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Bash Introduction</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>3.1 Bash Introduction</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>What Bash is and its role in the Unix/Linux ecosystem</li>
+                        <li>The Unix philosophy and how it shapes Bash scripting</li>
+                        <li>Shell variants: Bash vs Zsh vs sh vs other shells</li>
+                        <li>Why Bash is essential for security professionals</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>What is Bash?</h2>
+                <p>
+                    Bash (<strong>B</strong>ourne <strong>A</strong>gain <strong>Sh</strong>ell) is the default 
+                    command-line interpreter for most Linux distributions and macOS. Created in 1989 as a 
+                    free replacement for the Bourne shell (sh), Bash has become the de facto standard for 
+                    Unix shell scripting.
+                </p>
+
+                <p>
+                    Unlike PowerShell which passes objects through pipelines, Bash follows the traditional 
+                    Unix philosophy of treating everything as text streams. This makes it incredibly 
+                    powerful for text processing, log analysis, and working with command-line tools.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: The Unix Philosophy</div>
+                    </div>
+                    <ul>
+                        <li><strong>Do one thing well</strong> → Small, focused tools (grep, sed, awk)</li>
+                        <li><strong>Text is universal</strong> → Everything is a text stream</li>
+                        <li><strong>Compose via pipes</strong> → Chain tools together: cmd1 | cmd2 | cmd3</li>
+                        <li><strong>Silence is golden</strong> → No output = success (unless you ask for it)</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Unix tools are like LEGO blocks—simple pieces that combine into powerful solutions!</em>
+                    </p>
+                </div>
+
+                <!-- Bash History Timeline -->
+                <h2>Bash Evolution</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Shell Evolution Timeline</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         UNIX SHELL EVOLUTION                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+1971        1977         1979         1989         1990s        2019+
+  │           │            │            │            │            │
+  ▼           ▼            ▼            ▼            ▼            ▼
+┌─────┐   ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
+│ sh  │   │   csh   │  │   ksh   │  │  BASH   │  │   zsh   │  │  Modern │
+│     │──►│ C Shell │──►│ Korn    │──►│         │──►│         │──►│  Bash  │
+│     │   │         │  │ Shell   │  │  1.0    │  │         │  │  5.x    │
+└─────┘   └─────────┘  └─────────┘  └─────────┘  └─────────┘  └─────────┘
+  │           │            │            │            │            │
+  │       • C-like     • sh compat  • GNU/Free  • Advanced   • Assoc.
+  │         syntax     • Advanced   • sh + csh    completion   arrays
+  │       • History      features     features  • Theming    • Better
+  │         subst.     • Functions  • Tab       • Plugin       perf.
+  │                    • Arrays       complete    system
+  ▼
+Thompson
+Shell
+(first)
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ KEY FACT: Bash is the default shell on most Linux distros and macOS         │
+│ (though macOS switched default to zsh in Catalina)                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Shell Comparison -->
+                <h2>Shell Comparison</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Bash</th>
+                                <th>Zsh</th>
+                                <th>sh (POSIX)</th>
+                                <th>Fish</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Default On</strong></td>
+                                <td>Most Linux distros</td>
+                                <td>macOS (Catalina+)</td>
+                                <td>Minimal systems</td>
+                                <td>None (user choice)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>POSIX Compliant</strong></td>
+                                <td>Yes (mostly)</td>
+                                <td>Yes (in sh mode)</td>
+                                <td>Yes (defines it)</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Arrays</strong></td>
+                                <td>Indexed + Associative</td>
+                                <td>Advanced arrays</td>
+                                <td>Limited</td>
+                                <td>Lists</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tab Completion</strong></td>
+                                <td>Good</td>
+                                <td>Excellent</td>
+                                <td>Basic</td>
+                                <td>Excellent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Plugin Ecosystem</strong></td>
+                                <td>Moderate</td>
+                                <td>Rich (Oh My Zsh)</td>
+                                <td>None</td>
+                                <td>Rich</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Portability</strong></td>
+                                <td>High</td>
+                                <td>Medium</td>
+                                <td>Highest</td>
+                                <td>Low</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Security Scripts</strong></td>
+                                <td>Most common</td>
+                                <td>Growing</td>
+                                <td>Maximum compat.</td>
+                                <td>Rare</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: Script Portability</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use #!/bin/bash</strong> for scripts requiring Bash features</li>
+                        <li><strong>Use #!/bin/sh</strong> for maximum portability (POSIX only)</li>
+                        <li><strong>Avoid bashisms</strong> if your script must run on minimal systems (Docker, busybox)</li>
+                        <li><strong>Test on target systems</strong> before deployment—shells differ subtly</li>
+                    </ul>
+                </div>
+
+                <!-- Bash vs PowerShell -->
+                <h2>Bash vs PowerShell</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Bash</th>
+                                <th>PowerShell</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pipeline Data</strong></td>
+                                <td>Text streams</td>
+                                <td>.NET Objects</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Native Platform</strong></td>
+                                <td>Linux, macOS, WSL</td>
+                                <td>Windows (7 is cross-platform)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Text Processing</strong></td>
+                                <td>Excellent (grep, sed, awk)</td>
+                                <td>Good (regex, Select-String)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System APIs</strong></td>
+                                <td>Everything is a file</td>
+                                <td>.NET Framework/Core</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Security Tool Integration</strong></td>
+                                <td>Nmap, Nessus, Metasploit</td>
+                                <td>MDE, Sentinel, AD modules</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Learning Curve</strong></td>
+                                <td>Steeper for beginners</td>
+                                <td>More discoverable (Get-Help)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Scripting Style</strong></td>
+                                <td>Terse, uses many special characters</td>
+                                <td>Verbose, self-documenting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Getting Started -->
+                <h2>Getting Started with Bash</h2>
+
+                <h3>Checking Your Shell</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Basic Commands
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check which shell you're using</span>
+<span class="token-function">echo</span> <span class="token-variable">$SHELL</span>
+<span class="token-comment"># Output: /bin/bash or /bin/zsh</span>
+
+<span class="token-comment"># Check Bash version</span>
+<span class="token-function">bash</span> --version
+<span class="token-comment"># GNU bash, version 5.1.16(1)-release</span>
+
+<span class="token-comment"># See all available shells</span>
+<span class="token-function">cat</span> /etc/shells
+
+<span class="token-comment"># Change your default shell</span>
+<span class="token-function">chsh</span> -s /bin/bash
+
+<span class="token-comment"># Start a new Bash session</span>
+<span class="token-function">bash</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Your First Bash Script</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - hello.sh
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+<span class="token-comment"># My first Bash script</span>
+<span class="token-comment"># The shebang (#!/bin/bash) tells the system which interpreter to use</span>
+
+<span class="token-comment"># Variables (no spaces around =)</span>
+<span class="token-variable">NAME</span>=<span class="token-string">"Security Analyst"</span>
+<span class="token-variable">DATE</span>=$(<span class="token-function">date</span> +%Y-%m-%d)
+
+<span class="token-comment"># Print output</span>
+<span class="token-function">echo</span> <span class="token-string">"Hello, $NAME!"</span>
+<span class="token-function">echo</span> <span class="token-string">"Today is: $DATE"</span>
+
+<span class="token-comment"># Command substitution</span>
+<span class="token-function">echo</span> <span class="token-string">"Current directory: $(pwd)"</span>
+<span class="token-function">echo</span> <span class="token-string">"Files here: $(ls | wc -l)"</span>
+
+<span class="token-comment"># Exit with success</span>
+<span class="token-function">exit</span> 0</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Running the Script
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Make script executable</span>
+<span class="token-function">chmod</span> +x hello.sh
+
+<span class="token-comment"># Run it</span>
+./hello.sh
+
+<span class="token-comment"># Or run with bash explicitly</span>
+<span class="token-function">bash</span> hello.sh</code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash for Security -->
+                <h2>Why Bash for Security?</h2>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Bash Security Superpowers</div>
+                    </div>
+                    <ul>
+                        <li><strong>Log Analysis:</strong> grep, awk, sed for parsing any log format</li>
+                        <li><strong>Tool Integration:</strong> nmap, nikto, sqlmap, metasploit all have CLI interfaces</li>
+                        <li><strong>Server Administration:</strong> SSH, systemctl, journalctl for remote management</li>
+                        <li><strong>Container Security:</strong> Docker, Kubernetes, Podman are Bash-native</li>
+                        <li><strong>Cloud CLIs:</strong> AWS CLI, Azure CLI, gcloud—all Bash-friendly</li>
+                        <li><strong>Rapid Prototyping:</strong> Quick one-liners for investigation and analysis</li>
+                    </ul>
+                </div>
+
+                <h3>Security One-Liners</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Security One-Liners
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Find failed SSH login attempts</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> /var/log/auth.log | <span class="token-function">tail</span> -20
+
+<span class="token-comment"># Count login attempts by IP</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> /var/log/auth.log | \
+    <span class="token-function">grep</span> -oE <span class="token-string">'[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'</span> | \
+    <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | <span class="token-function">sort</span> -rn | <span class="token-function">head</span> -10
+
+<span class="token-comment"># Find world-writable files</span>
+<span class="token-function">find</span> / -type f -perm -o+w 2>/dev/null
+
+<span class="token-comment"># List all listening ports</span>
+<span class="token-function">ss</span> -tulnp | <span class="token-function">grep</span> LISTEN
+
+<span class="token-comment"># Check for unauthorized SUID binaries</span>
+<span class="token-function">find</span> / -perm -4000 -type f 2>/dev/null
+
+<span class="token-comment"># Monitor network connections in real-time</span>
+<span class="token-function">watch</span> -n 1 <span class="token-string">'ss -tunap | grep ESTABLISHED'</span>
+
+<span class="token-comment"># Extract IPs from a file</span>
+<span class="token-function">grep</span> -oE <span class="token-string">'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'</span> suspicious.log
+
+<span class="token-comment"># Quick hash verification</span>
+<span class="token-function">sha256sum</span> /usr/bin/* | <span class="token-function">grep</span> -v <span class="token-string">"expected_hash"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash on Windows -->
+                <h2>Bash on Windows (WSL)</h2>
+
+                <p>
+                    With Windows Subsystem for Linux (WSL), you can run Bash natively on Windows. This 
+                    gives security professionals the best of both worlds—PowerShell for Windows and Bash 
+                    for Linux tools.
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Installing WSL
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install WSL with Ubuntu (run as Administrator)</span>
+wsl --install
+
+<span class="token-comment"># List available distributions</span>
+wsl --list --online
+
+<span class="token-comment"># Install a specific distro</span>
+wsl --install -d Ubuntu-22.04
+
+<span class="token-comment"># Start WSL</span>
+wsl
+
+<span class="token-comment"># Run a single Bash command from PowerShell</span>
+wsl grep <span class="token-string">"error"</span> /var/log/syslog</code></pre>
+                    </div>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between Bash and sh?"</li>
+                        <li><strong>Strong Answer:</strong> Bash is a superset of sh (POSIX shell). Bash adds features like arrays, [[ ]] tests, and brace expansion. Scripts using #!/bin/sh should be POSIX-compatible, while #!/bin/bash can use Bash-specific features.</li>
+                        <li><strong>Follow-up:</strong> "When would you use sh over Bash?" → For maximum portability, minimal Docker images, or systems where Bash isn't installed.</li>
+                        <li><strong>Bonus:</strong> Mention that you test scripts on both for compatibility</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Bash is the default shell on most Linux distributions—essential for security work</li>
+                    <li>Unix philosophy: small tools that do one thing well, chained via pipes</li>
+                    <li>Bash pipelines pass text streams, unlike PowerShell's object pipeline</li>
+                    <li>Use #!/bin/bash for Bash features, #!/bin/sh for maximum portability</li>
+                    <li>WSL brings Bash to Windows—use both PowerShell and Bash for full coverage</li>
+                    <li>Bash excels at log analysis, tool integration, and server administration</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-20-dsc-basics.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.20 DSC Basics</span>
+                    </a>
+                    <a href="3-2-bash-basics.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.2 Bash Basics →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

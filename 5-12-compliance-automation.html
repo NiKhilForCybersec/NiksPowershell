@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.12 Compliance Automation - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-8-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scanning</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-compliance-automation.html" class="nav-link active"><span class="nav-link-number">5.12</span> Compliance Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#security">Security Automation</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Compliance Automation</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>5.12 Compliance Automation</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Automate CIS benchmark compliance checks</li>
+                        <li>Verify password policy and account settings</li>
+                        <li>Audit system configurations against standards</li>
+                        <li>Generate compliance reports for auditors</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Compliance Automation Overview</h2>
+                <p>
+                    Compliance automation ensures systems meet security standards like CIS Benchmarks, 
+                    NIST, PCI-DSS, and HIPAA. PowerShell enables continuous compliance monitoring 
+                    and generates audit-ready reports.
+                </p>
+
+                <!-- Compliance Frameworks -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Common Compliance Frameworks</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        COMPLIANCE FRAMEWORKS                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────┐  ┌────────────────┐  ┌────────────────┐  ┌────────────────┐
+│ CIS BENCHMARKS │  │     NIST       │  │    PCI-DSS     │  │    HIPAA       │
+│                │  │                │  │                │  │                │
+│ • OS hardening │  │ • 800-53       │  │ • Cardholder   │  │ • Healthcare   │
+│ • Browser      │  │ • 800-171      │  │   data         │  │   data         │
+│ • Application  │  │ • CSF          │  │ • Network      │  │ • PHI          │
+│ • Cloud        │  │                │  │   security     │  │   protection   │
+└────────────────┘  └────────────────┘  └────────────────┘  └────────────────┘
+        │                   │                   │                   │
+        └───────────────────┴───────────────────┴───────────────────┘
+                                    │
+                                    ▼
+                    ┌───────────────────────────────┐
+                    │    AUTOMATED COMPLIANCE       │
+                    │    • Check configurations     │
+                    │    • Generate reports         │
+                    │    • Track remediation        │
+                    │    • Continuous monitoring    │
+                    └───────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: CIS Control Categories</div>
+                    </div>
+                    <ul>
+                        <li><strong>Account Policies</strong> → Password, lockout, Kerberos settings</li>
+                        <li><strong>Local Policies</strong> → Audit, user rights, security options</li>
+                        <li><strong>Event Logging</strong> → What gets logged, retention</li>
+                        <li><strong>Network Security</strong> → Firewall, protocols, encryption</li>
+                        <li><strong>System Services</strong> → What's running, startup type</li>
+                    </ul>
+                </div>
+
+                <!-- Password Policy Check -->
+                <h2>Password Policy Compliance</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Password Policy Check
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Test-PasswordPolicyCompliance</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Checks password policy against CIS benchmarks.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$MinPasswordLength</span> = <span class="token-number">14</span>,
+        [int]<span class="token-variable">$MaxPasswordAge</span> = <span class="token-number">365</span>,
+        [int]<span class="token-variable">$MinPasswordAge</span> = <span class="token-number">1</span>,
+        [int]<span class="token-variable">$PasswordHistoryCount</span> = <span class="token-number">24</span>,
+        [int]<span class="token-variable">$LockoutThreshold</span> = <span class="token-number">5</span>,
+        [int]<span class="token-variable">$LockoutDuration</span> = <span class="token-number">15</span>
+    )
+    
+    <span class="token-variable">$Results</span> = @()
+    
+    <span class="token-comment"># Get current policy using net accounts</span>
+    <span class="token-variable">$NetAccounts</span> = net accounts 2>&1
+    
+    <span class="token-comment"># Parse password length</span>
+    <span class="token-variable">$CurrentMinLength</span> = <span class="token-number">0</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$NetAccounts</span> <span class="token-operator">-match</span> <span class="token-string">'Minimum password length:\s+(\d+)'</span>) {
+        <span class="token-variable">$CurrentMinLength</span> = [int]<span class="token-variable">$Matches</span>[<span class="token-number">1</span>]
+    }
+    
+    <span class="token-variable">$Results</span> += [PSCustomObject]@{
+        Control = <span class="token-string">'Minimum Password Length'</span>
+        Expected = <span class="token-string">"$MinPasswordLength characters"</span>
+        Current = <span class="token-string">"$CurrentMinLength characters"</span>
+        Status = <span class="token-keyword">if</span> (<span class="token-variable">$CurrentMinLength</span> <span class="token-operator">-ge</span> <span class="token-variable">$MinPasswordLength</span>) { <span class="token-string">'PASS'</span> } <span class="token-keyword">else</span> { <span class="token-string">'FAIL'</span> }
+        CISReference = <span class="token-string">'1.1.1'</span>
+    }
+    
+    <span class="token-comment"># Parse max password age</span>
+    <span class="token-variable">$CurrentMaxAge</span> = <span class="token-number">0</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$NetAccounts</span> <span class="token-operator">-match</span> <span class="token-string">'Maximum password age \(days\):\s+(\d+)'</span>) {
+        <span class="token-variable">$CurrentMaxAge</span> = [int]<span class="token-variable">$Matches</span>[<span class="token-number">1</span>]
+    }
+    
+    <span class="token-variable">$Results</span> += [PSCustomObject]@{
+        Control = <span class="token-string">'Maximum Password Age'</span>
+        Expected = <span class="token-string">"<= $MaxPasswordAge days"</span>
+        Current = <span class="token-string">"$CurrentMaxAge days"</span>
+        Status = <span class="token-keyword">if</span> (<span class="token-variable">$CurrentMaxAge</span> <span class="token-operator">-le</span> <span class="token-variable">$MaxPasswordAge</span> <span class="token-operator">-and</span> <span class="token-variable">$CurrentMaxAge</span> <span class="token-operator">-gt</span> <span class="token-number">0</span>) { <span class="token-string">'PASS'</span> } <span class="token-keyword">else</span> { <span class="token-string">'FAIL'</span> }
+        CISReference = <span class="token-string">'1.1.2'</span>
+    }
+    
+    <span class="token-comment"># Parse lockout threshold</span>
+    <span class="token-variable">$CurrentLockout</span> = <span class="token-number">0</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$NetAccounts</span> <span class="token-operator">-match</span> <span class="token-string">'Lockout threshold:\s+(\d+|Never)'</span>) {
+        <span class="token-variable">$CurrentLockout</span> = <span class="token-keyword">if</span> (<span class="token-variable">$Matches</span>[<span class="token-number">1</span>] <span class="token-operator">-eq</span> <span class="token-string">'Never'</span>) { <span class="token-number">0</span> } <span class="token-keyword">else</span> { [int]<span class="token-variable">$Matches</span>[<span class="token-number">1</span>] }
+    }
+    
+    <span class="token-variable">$Results</span> += [PSCustomObject]@{
+        Control = <span class="token-string">'Account Lockout Threshold'</span>
+        Expected = <span class="token-string">"<= $LockoutThreshold attempts"</span>
+        Current = <span class="token-keyword">if</span> (<span class="token-variable">$CurrentLockout</span> <span class="token-operator">-eq</span> <span class="token-number">0</span>) { <span class="token-string">'Not configured'</span> } <span class="token-keyword">else</span> { <span class="token-string">"$CurrentLockout attempts"</span> }
+        Status = <span class="token-keyword">if</span> (<span class="token-variable">$CurrentLockout</span> <span class="token-operator">-gt</span> <span class="token-number">0</span> <span class="token-operator">-and</span> <span class="token-variable">$CurrentLockout</span> <span class="token-operator">-le</span> <span class="token-variable">$LockoutThreshold</span>) { <span class="token-string">'PASS'</span> } <span class="token-keyword">else</span> { <span class="token-string">'FAIL'</span> }
+        CISReference = <span class="token-string">'1.2.1'</span>
+    }
+    
+    <span class="token-comment"># Check password complexity via registry</span>
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$SecPolicy</span> = secedit /export /cfg <span class="token-string">"$env:TEMP\secpol.cfg"</span> 2>&1
+        <span class="token-variable">$SecContent</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-string">"$env:TEMP\secpol.cfg"</span> -ErrorAction SilentlyContinue
+        
+        <span class="token-variable">$ComplexityEnabled</span> = <span class="token-variable">$SecContent</span> <span class="token-operator">-match</span> <span class="token-string">'PasswordComplexity\s*=\s*1'</span>
+        
+        <span class="token-variable">$Results</span> += [PSCustomObject]@{
+            Control = <span class="token-string">'Password Complexity'</span>
+            Expected = <span class="token-string">'Enabled'</span>
+            Current = <span class="token-keyword">if</span> (<span class="token-variable">$ComplexityEnabled</span>) { <span class="token-string">'Enabled'</span> } <span class="token-keyword">else</span> { <span class="token-string">'Disabled'</span> }
+            Status = <span class="token-keyword">if</span> (<span class="token-variable">$ComplexityEnabled</span>) { <span class="token-string">'PASS'</span> } <span class="token-keyword">else</span> { <span class="token-string">'FAIL'</span> }
+            CISReference = <span class="token-string">'1.1.5'</span>
+        }
+        
+        <span class="token-cmdlet">Remove-Item</span> <span class="token-string">"$env:TEMP\secpol.cfg"</span> -Force -ErrorAction SilentlyContinue
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"Could not check password complexity"</span>
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Audit Policy Check -->
+                <h2>Audit Policy Compliance</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Audit Policy Check
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Test-AuditPolicyCompliance</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Verifies audit policy settings against CIS requirements.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>()
+    
+    <span class="token-comment"># CIS recommended audit settings</span>
+    <span class="token-variable">$RequiredAudits</span> = @{
+        <span class="token-string">'Credential Validation'</span> = <span class="token-string">'Success and Failure'</span>
+        <span class="token-string">'Security Group Management'</span> = <span class="token-string">'Success'</span>
+        <span class="token-string">'User Account Management'</span> = <span class="token-string">'Success and Failure'</span>
+        <span class="token-string">'Process Creation'</span> = <span class="token-string">'Success'</span>
+        <span class="token-string">'Logon'</span> = <span class="token-string">'Success and Failure'</span>
+        <span class="token-string">'Logoff'</span> = <span class="token-string">'Success'</span>
+        <span class="token-string">'Special Logon'</span> = <span class="token-string">'Success'</span>
+        <span class="token-string">'Audit Policy Change'</span> = <span class="token-string">'Success and Failure'</span>
+        <span class="token-string">'Authentication Policy Change'</span> = <span class="token-string">'Success'</span>
+        <span class="token-string">'Sensitive Privilege Use'</span> = <span class="token-string">'Success and Failure'</span>
+        <span class="token-string">'System Integrity'</span> = <span class="token-string">'Success and Failure'</span>
+    }
+    
+    <span class="token-variable">$Results</span> = @()
+    
+    <span class="token-comment"># Get current audit policy</span>
+    <span class="token-variable">$AuditPolicy</span> = auditpol /get /category:* 2>&1
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Setting</span> <span class="token-keyword">in</span> <span class="token-variable">$RequiredAudits</span>.GetEnumerator()) {
+        <span class="token-variable">$CategoryName</span> = <span class="token-variable">$Setting</span>.Key
+        <span class="token-variable">$RequiredValue</span> = <span class="token-variable">$Setting</span>.Value
+        
+        <span class="token-comment"># Find matching line in audit policy</span>
+        <span class="token-variable">$MatchLine</span> = <span class="token-variable">$AuditPolicy</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> <span class="token-operator">-match</span> <span class="token-variable">$CategoryName</span> } | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">1</span>
+        
+        <span class="token-variable">$CurrentValue</span> = <span class="token-string">'Not Found'</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$MatchLine</span> <span class="token-operator">-match</span> <span class="token-string">'(Success and Failure|Success|Failure|No Auditing)'</span>) {
+            <span class="token-variable">$CurrentValue</span> = <span class="token-variable">$Matches</span>[<span class="token-number">1</span>]
+        }
+        
+        <span class="token-variable">$Status</span> = <span class="token-string">'FAIL'</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$CurrentValue</span> <span class="token-operator">-eq</span> <span class="token-variable">$RequiredValue</span>) {
+            <span class="token-variable">$Status</span> = <span class="token-string">'PASS'</span>
+        }
+        <span class="token-keyword">elseif</span> (<span class="token-variable">$RequiredValue</span> <span class="token-operator">-eq</span> <span class="token-string">'Success'</span> <span class="token-operator">-and</span> <span class="token-variable">$CurrentValue</span> <span class="token-operator">-eq</span> <span class="token-string">'Success and Failure'</span>) {
+            <span class="token-variable">$Status</span> = <span class="token-string">'PASS'</span>  <span class="token-comment"># More auditing is acceptable</span>
+        }
+        
+        <span class="token-variable">$Results</span> += [PSCustomObject]@{
+            Control = <span class="token-variable">$CategoryName</span>
+            Expected = <span class="token-variable">$RequiredValue</span>
+            Current = <span class="token-variable">$CurrentValue</span>
+            Status = <span class="token-variable">$Status</span>
+            Category = <span class="token-string">'Audit Policy'</span>
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Service Compliance -->
+                <h2>Service Configuration Compliance</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Service Compliance
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Test-ServiceCompliance</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Checks that risky services are disabled per CIS benchmarks.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>()
+    
+    <span class="token-comment"># Services that should be disabled (CIS Level 1)</span>
+    <span class="token-variable">$DisabledServices</span> = @{
+        <span class="token-string">'RemoteRegistry'</span> = <span class="token-string">'Remote Registry - allows remote registry modification'</span>
+        <span class="token-string">'Telnet'</span> = <span class="token-string">'Telnet - unencrypted remote access'</span>
+        <span class="token-string">'SNMP'</span> = <span class="token-string">'SNMP Service - often misconfigured'</span>
+        <span class="token-string">'W3SVC'</span> = <span class="token-string">'IIS Web Server - disable if not needed'</span>
+        <span class="token-string">'FTPSVC'</span> = <span class="token-string">'FTP Server - cleartext credentials'</span>
+        <span class="token-string">'SSDPSRV'</span> = <span class="token-string">'SSDP Discovery - UPnP'</span>
+        <span class="token-string">'upnphost'</span> = <span class="token-string">'UPnP Device Host'</span>
+        <span class="token-string">'lltdsvc'</span> = <span class="token-string">'Link-Layer Topology Discovery Mapper'</span>
+        <span class="token-string">'Browser'</span> = <span class="token-string">'Computer Browser - legacy network browsing'</span>
+    }
+    
+    <span class="token-comment"># Services that should be running</span>
+    <span class="token-variable">$RequiredServices</span> = @{
+        <span class="token-string">'WinDefend'</span> = <span class="token-string">'Windows Defender Antivirus Service'</span>
+        <span class="token-string">'EventLog'</span> = <span class="token-string">'Windows Event Log'</span>
+        <span class="token-string">'MpsSvc'</span> = <span class="token-string">'Windows Firewall'</span>
+    }
+    
+    <span class="token-variable">$Results</span> = @()
+    
+    <span class="token-comment"># Check services that should be disabled</span>
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Svc</span> <span class="token-keyword">in</span> <span class="token-variable">$DisabledServices</span>.GetEnumerator()) {
+        <span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-parameter">-Name</span> <span class="token-variable">$Svc</span>.Key -ErrorAction SilentlyContinue
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Service</span>) {
+            <span class="token-variable">$Status</span> = <span class="token-keyword">if</span> (<span class="token-variable">$Service</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Stopped'</span> <span class="token-operator">-and</span> <span class="token-variable">$Service</span>.StartType <span class="token-operator">-eq</span> <span class="token-string">'Disabled'</span>) { <span class="token-string">'PASS'</span> } <span class="token-keyword">else</span> { <span class="token-string">'FAIL'</span> }
+            
+            <span class="token-variable">$Results</span> += [PSCustomObject]@{
+                Control = <span class="token-variable">$Svc</span>.Key
+                Description = <span class="token-variable">$Svc</span>.Value
+                Expected = <span class="token-string">'Disabled/Stopped'</span>
+                Current = <span class="token-string">"$($Service.StartType)/$($Service.Status)"</span>
+                Status = <span class="token-variable">$Status</span>
+                Category = <span class="token-string">'Risky Service'</span>
+            }
+        } <span class="token-keyword">else</span> {
+            <span class="token-variable">$Results</span> += [PSCustomObject]@{
+                Control = <span class="token-variable">$Svc</span>.Key
+                Description = <span class="token-variable">$Svc</span>.Value
+                Expected = <span class="token-string">'Disabled/Stopped'</span>
+                Current = <span class="token-string">'Not Installed'</span>
+                Status = <span class="token-string">'PASS'</span>
+                Category = <span class="token-string">'Risky Service'</span>
+            }
+        }
+    }
+    
+    <span class="token-comment"># Check services that should be running</span>
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Svc</span> <span class="token-keyword">in</span> <span class="token-variable">$RequiredServices</span>.GetEnumerator()) {
+        <span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-parameter">-Name</span> <span class="token-variable">$Svc</span>.Key -ErrorAction SilentlyContinue
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Service</span>) {
+            <span class="token-variable">$Status</span> = <span class="token-keyword">if</span> (<span class="token-variable">$Service</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>) { <span class="token-string">'PASS'</span> } <span class="token-keyword">else</span> { <span class="token-string">'FAIL'</span> }
+            
+            <span class="token-variable">$Results</span> += [PSCustomObject]@{
+                Control = <span class="token-variable">$Svc</span>.Key
+                Description = <span class="token-variable">$Svc</span>.Value
+                Expected = <span class="token-string">'Running'</span>
+                Current = <span class="token-variable">$Service</span>.Status
+                Status = <span class="token-variable">$Status</span>
+                Category = <span class="token-string">'Required Service'</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Full Compliance Report -->
+                <h2>Generate Compliance Report</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Compliance Report Generator
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">New-ComplianceReport</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Generates a comprehensive compliance report.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\ComplianceReport_$(Get-Date -Format 'yyyyMMdd').html"</span>,
+        [string]<span class="token-variable">$Framework</span> = <span class="token-string">'CIS'</span>
+    )
+    
+    Write-Host <span class="token-string">"[*] Generating $Framework Compliance Report..."</span> -ForegroundColor Cyan
+    
+    <span class="token-comment"># Collect all compliance data</span>
+    Write-Host <span class="token-string">"  [*] Checking password policies..."</span>
+    <span class="token-variable">$PasswordResults</span> = Test-PasswordPolicyCompliance
+    
+    Write-Host <span class="token-string">"  [*] Checking audit policies..."</span>
+    <span class="token-variable">$AuditResults</span> = Test-AuditPolicyCompliance
+    
+    Write-Host <span class="token-string">"  [*] Checking service configurations..."</span>
+    <span class="token-variable">$ServiceResults</span> = Test-ServiceCompliance
+    
+    <span class="token-comment"># Combine results</span>
+    <span class="token-variable">$AllResults</span> = @()
+    <span class="token-variable">$AllResults</span> += <span class="token-variable">$PasswordResults</span>
+    <span class="token-variable">$AllResults</span> += <span class="token-variable">$AuditResults</span>
+    <span class="token-variable">$AllResults</span> += <span class="token-variable">$ServiceResults</span>
+    
+    <span class="token-comment"># Calculate summary</span>
+    <span class="token-variable">$TotalChecks</span> = <span class="token-variable">$AllResults</span>.Count
+    <span class="token-variable">$PassedChecks</span> = (<span class="token-variable">$AllResults</span> | <span class="token-cmdlet">Where-Object</span> Status <span class="token-operator">-eq</span> <span class="token-string">'PASS'</span>).Count
+    <span class="token-variable">$FailedChecks</span> = (<span class="token-variable">$AllResults</span> | <span class="token-cmdlet">Where-Object</span> Status <span class="token-operator">-eq</span> <span class="token-string">'FAIL'</span>).Count
+    <span class="token-variable">$ComplianceScore</span> = [math]::Round((<span class="token-variable">$PassedChecks</span> / <span class="token-variable">$TotalChecks</span>) * <span class="token-number">100</span>, <span class="token-number">2</span>)
+    
+    <span class="token-comment"># Generate HTML report</span>
+    <span class="token-variable">$HTML</span> = @<span class="token-string">"
+<!DOCTYPE html>
+<html>
+<head>
+    <title>$Framework Compliance Report - $env:COMPUTERNAME</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #1a1a2e; color: #eee; }
+        h1, h2 { color: #00d4ff; }
+        .summary { display: flex; gap: 20px; margin-bottom: 30px; }
+        .card { background: #16213e; padding: 20px; border-radius: 8px; text-align: center; }
+        .score { font-size: 48px; font-weight: bold; }
+        .pass { color: #10b981; }
+        .fail { color: #ef4444; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #0f3460; }
+        tr:hover { background: #1f4287; }
+        .status-pass { color: #10b981; font-weight: bold; }
+        .status-fail { color: #ef4444; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>$Framework Compliance Report</h1>
+    <p>Computer: $env:COMPUTERNAME | Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')</p>
+    
+    <div class="summary">
+        <div class="card">
+            <div class="score">$ComplianceScore%</div>
+            <div>Compliance Score</div>
+        </div>
+        <div class="card">
+            <div class="score pass">$PassedChecks</div>
+            <div>Passed</div>
+        </div>
+        <div class="card">
+            <div class="score fail">$FailedChecks</div>
+            <div>Failed</div>
+        </div>
+    </div>
+    
+    <h2>Detailed Results</h2>
+    <table>
+        <tr>
+            <th>Control</th>
+            <th>Expected</th>
+            <th>Current</th>
+            <th>Status</th>
+        </tr>
+"@
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Result</span> <span class="token-keyword">in</span> <span class="token-variable">$AllResults</span>) {
+        <span class="token-variable">$StatusClass</span> = <span class="token-keyword">if</span> (<span class="token-variable">$Result</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'PASS'</span>) { <span class="token-string">'status-pass'</span> } <span class="token-keyword">else</span> { <span class="token-string">'status-fail'</span> }
+        <span class="token-variable">$HTML</span> += @<span class="token-string">"
+        <tr>
+            <td>$($Result.Control)</td>
+            <td>$($Result.Expected)</td>
+            <td>$($Result.Current)</td>
+            <td class="$StatusClass">$($Result.Status)</td>
+        </tr>
+"@
+    }
+    
+    <span class="token-variable">$HTML</span> += <span class="token-string">"</table></body></html>"</span>
+    
+    <span class="token-variable">$HTML</span> | <span class="token-cmdlet">Out-File</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-Encoding</span> UTF8
+    
+    Write-Host <span class="token-string">"`n=== Compliance Summary ==="</span> -ForegroundColor Cyan
+    Write-Host <span class="token-string">"Total Checks: $TotalChecks"</span>
+    Write-Host <span class="token-string">"Passed: $PassedChecks"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"Failed: $FailedChecks"</span> -ForegroundColor Red
+    Write-Host <span class="token-string">"Score: $ComplianceScore%"</span> -ForegroundColor $(if ($ComplianceScore -ge 80) { 'Green' } elseif ($ComplianceScore -ge 60) { 'Yellow' } else { 'Red' })
+    Write-Host <span class="token-string">"`nReport saved to: $OutputPath"</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$AllResults</span>
+}
+
+<span class="token-comment"># Run the compliance check</span>
+<span class="token-comment"># New-ComplianceReport -Framework 'CIS' -OutputPath "C:\Reports\CIS_Report.html"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Compliance Automation</div>
+                    </div>
+                    <ul>
+                        <li><strong>Schedule regular scans:</strong> Run compliance checks weekly or daily</li>
+                        <li><strong>Baseline first:</strong> Document current state before enforcing</li>
+                        <li><strong>Track remediation:</strong> Log when issues are fixed and by whom</li>
+                        <li><strong>Exception management:</strong> Document approved deviations</li>
+                        <li><strong>Version control:</strong> Keep compliance scripts in source control</li>
+                        <li><strong>Alert on failures:</strong> Notify security team of new findings</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How do you approach compliance automation?"</li>
+                        <li><strong>Strong Answer:</strong> Start with a framework (CIS, NIST), create a baseline of current configurations, automate checks using PowerShell/DSC, schedule regular scans, generate reports for auditors, track remediation in a ticketing system, and document exceptions with business justification. Focus on continuous compliance rather than point-in-time audits.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Automate compliance checks against standards like CIS Benchmarks</li>
+                    <li>Check password policies, audit settings, and service configurations</li>
+                    <li>Generate audit-ready HTML or CSV reports</li>
+                    <li>Calculate compliance scores for executive reporting</li>
+                    <li>Schedule regular scans for continuous compliance</li>
+                    <li>Document and track exceptions</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="5-11-edr-automation.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 5.11 EDR Automation</span>
+                    </a>
+                    <a href="5-13-log-analysis.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">5.13 Log Analysis →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

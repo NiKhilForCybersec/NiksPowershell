@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.1 Security Dashboard Project - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link active"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#projects">Real-World Projects</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Security Dashboard</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>8.1 Security Dashboard Project</h1>
+
+                <!-- Project Overview -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🚀</div>
+                        <div class="info-box-title">Project Overview</div>
+                    </div>
+                    <ul>
+                        <li><strong>Goal:</strong> Build an HTML security dashboard with PowerShell</li>
+                        <li><strong>Skills:</strong> Data collection, HTML generation, scheduling</li>
+                        <li><strong>Output:</strong> Auto-refreshing security metrics dashboard</li>
+                        <li><strong>Time:</strong> ~2 hours to build, great for portfolio</li>
+                    </ul>
+                </div>
+
+                <!-- Architecture -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Dashboard Architecture</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    SECURITY DASHBOARD ARCHITECTURE                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+    │  Data Sources   │    │   PowerShell    │    │    Output       │
+    │                 │───▶│   Collector     │───▶│                 │
+    │ • Event Logs    │    │                 │    │ • HTML Dashboard│
+    │ • Services      │    │ • Get-WinEvent  │    │ • JSON Data     │
+    │ • Processes     │    │ • Get-Service   │    │ • CSV Reports   │
+    │ • Network       │    │ • Get-Process   │    │                 │
+    │ • Firewall      │    │ • Get-NetConn   │    │                 │
+    └─────────────────┘    └─────────────────┘    └─────────────────┘
+                                   │
+                                   ▼
+                    ┌───────────────────────────┐
+                    │    Scheduled Task         │
+                    │    (Runs every 5 min)     │
+                    └───────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Data Collection Module -->
+                <h2>Step 1: Data Collection Functions</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Data Collectors
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># SecurityDashboard.psm1 - Data Collection Module</span>
+
+<span class="token-keyword">function</span> <span class="token-function">Get-SecurityMetrics</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects all security metrics for the dashboard.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>
+    )
+    
+    <span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    
+    <span class="token-variable">$Metrics</span> = [PSCustomObject]@{
+        Timestamp = Get-Date -Format <span class="token-string">'yyyy-MM-dd HH:mm:ss'</span>
+        ComputerName = <span class="token-variable">$env:COMPUTERNAME</span>
+        
+        <span class="token-comment"># Authentication metrics</span>
+        FailedLogons = <span class="token-number">0</span>
+        SuccessfulLogons = <span class="token-number">0</span>
+        LockedAccounts = <span class="token-number">0</span>
+        
+        <span class="token-comment"># System metrics</span>
+        RunningServices = <span class="token-number">0</span>
+        StoppedCriticalServices = @()
+        SuspiciousProcesses = @()
+        
+        <span class="token-comment"># Network metrics</span>
+        ActiveConnections = <span class="token-number">0</span>
+        ListeningPorts = @()
+        
+        <span class="token-comment"># Security status</span>
+        FirewallEnabled = <span class="token-variable">$false</span>
+        DefenderEnabled = <span class="token-variable">$false</span>
+        LastScanTime = <span class="token-variable">$null</span>
+        
+        <span class="token-comment"># Alerts</span>
+        Alerts = @()
+    }
+    
+    <span class="token-comment"># Collect authentication events</span>
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$FailedLogons</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+            LogName = <span class="token-string">'Security'</span>
+            Id = <span class="token-number">4625</span>
+            StartTime = <span class="token-variable">$StartTime</span>
+        } -ErrorAction SilentlyContinue
+        <span class="token-variable">$Metrics</span>.FailedLogons = <span class="token-keyword">if</span> (<span class="token-variable">$FailedLogons</span>) { <span class="token-variable">$FailedLogons</span>.Count } <span class="token-keyword">else</span> { <span class="token-number">0</span> }
+        
+        <span class="token-variable">$SuccessLogons</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+            LogName = <span class="token-string">'Security'</span>
+            Id = <span class="token-number">4624</span>
+            StartTime = <span class="token-variable">$StartTime</span>
+        } -ErrorAction SilentlyContinue
+        <span class="token-variable">$Metrics</span>.SuccessfulLogons = <span class="token-keyword">if</span> (<span class="token-variable">$SuccessLogons</span>) { <span class="token-variable">$SuccessLogons</span>.Count } <span class="token-keyword">else</span> { <span class="token-number">0</span> }
+    } <span class="token-keyword">catch</span> { }
+    
+    <span class="token-comment"># Check critical services</span>
+    <span class="token-variable">$CriticalServices</span> = @(<span class="token-string">'WinDefend'</span>, <span class="token-string">'EventLog'</span>, <span class="token-string">'MpsSvc'</span>, <span class="token-string">'wuauserv'</span>)
+    <span class="token-variable">$Metrics</span>.RunningServices = (<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>).Count
+    <span class="token-variable">$Metrics</span>.StoppedCriticalServices = <span class="token-variable">$CriticalServices</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$Svc</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-variable">$_</span> -ErrorAction SilentlyContinue
+        <span class="token-keyword">if</span> (<span class="token-variable">$Svc</span> <span class="token-operator">-and</span> <span class="token-variable">$Svc</span>.Status <span class="token-operator">-ne</span> <span class="token-string">'Running'</span>) { <span class="token-variable">$_</span> }
+    }
+    
+    <span class="token-comment"># Network connections</span>
+    <span class="token-variable">$Connections</span> = <span class="token-cmdlet">Get-NetTCPConnection</span> -ErrorAction SilentlyContinue
+    <span class="token-variable">$Metrics</span>.ActiveConnections = (<span class="token-variable">$Connections</span> | <span class="token-cmdlet">Where-Object</span> State <span class="token-operator">-eq</span> <span class="token-string">'Established'</span>).Count
+    <span class="token-variable">$Metrics</span>.ListeningPorts = (<span class="token-variable">$Connections</span> | <span class="token-cmdlet">Where-Object</span> State <span class="token-operator">-eq</span> <span class="token-string">'Listen'</span> | 
+        <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-ExpandProperty</span> LocalPort <span class="token-parameter">-Unique</span> | <span class="token-cmdlet">Sort-Object</span>)
+    
+    <span class="token-comment"># Windows Defender status</span>
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$Defender</span> = <span class="token-cmdlet">Get-MpComputerStatus</span> -ErrorAction SilentlyContinue
+        <span class="token-keyword">if</span> (<span class="token-variable">$Defender</span>) {
+            <span class="token-variable">$Metrics</span>.DefenderEnabled = <span class="token-variable">$Defender</span>.AntivirusEnabled
+            <span class="token-variable">$Metrics</span>.LastScanTime = <span class="token-variable">$Defender</span>.QuickScanEndTime
+        }
+    } <span class="token-keyword">catch</span> { }
+    
+    <span class="token-comment"># Firewall status</span>
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$FW</span> = <span class="token-cmdlet">Get-NetFirewallProfile</span> -ErrorAction SilentlyContinue
+        <span class="token-variable">$Metrics</span>.FirewallEnabled = (<span class="token-variable">$FW</span> | <span class="token-cmdlet">Where-Object</span> Enabled).Count <span class="token-operator">-gt</span> <span class="token-number">0</span>
+    } <span class="token-keyword">catch</span> { }
+    
+    <span class="token-comment"># Generate alerts</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$Metrics</span>.FailedLogons <span class="token-operator">-gt</span> <span class="token-number">50</span>) {
+        <span class="token-variable">$Metrics</span>.Alerts += <span class="token-string">"High number of failed logons: $($Metrics.FailedLogons)"</span>
+    }
+    <span class="token-keyword">if</span> (<span class="token-variable">$Metrics</span>.StoppedCriticalServices.Count <span class="token-operator">-gt</span> <span class="token-number">0</span>) {
+        <span class="token-variable">$Metrics</span>.Alerts += <span class="token-string">"Critical services stopped: $($Metrics.StoppedCriticalServices -join ', ')"</span>
+    }
+    <span class="token-keyword">if</span> (-not <span class="token-variable">$Metrics</span>.DefenderEnabled) {
+        <span class="token-variable">$Metrics</span>.Alerts += <span class="token-string">"Windows Defender is disabled!"</span>
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Metrics</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- HTML Generator -->
+                <h2>Step 2: HTML Dashboard Generator</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - HTML Generator
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">New-SecurityDashboard</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Generates an HTML security dashboard.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">"C:\SecurityDashboard\dashboard.html"</span>,
+        [int]<span class="token-variable">$RefreshSeconds</span> = <span class="token-number">300</span>
+    )
+    
+    <span class="token-comment"># Collect metrics</span>
+    <span class="token-variable">$Metrics</span> = Get-SecurityMetrics
+    
+    <span class="token-comment"># Determine status colors</span>
+    <span class="token-variable">$FailedLogonClass</span> = <span class="token-keyword">if</span> (<span class="token-variable">$Metrics</span>.FailedLogons <span class="token-operator">-gt</span> <span class="token-number">50</span>) { <span class="token-string">'critical'</span> } 
+        <span class="token-keyword">elseif</span> (<span class="token-variable">$Metrics</span>.FailedLogons <span class="token-operator">-gt</span> <span class="token-number">20</span>) { <span class="token-string">'warning'</span> } 
+        <span class="token-keyword">else</span> { <span class="token-string">'ok'</span> }
+    
+    <span class="token-variable">$DefenderClass</span> = <span class="token-keyword">if</span> (<span class="token-variable">$Metrics</span>.DefenderEnabled) { <span class="token-string">'ok'</span> } <span class="token-keyword">else</span> { <span class="token-string">'critical'</span> }
+    <span class="token-variable">$FirewallClass</span> = <span class="token-keyword">if</span> (<span class="token-variable">$Metrics</span>.FirewallEnabled) { <span class="token-string">'ok'</span> } <span class="token-keyword">else</span> { <span class="token-string">'critical'</span> }
+    
+    <span class="token-comment"># Build alerts HTML</span>
+    <span class="token-variable">$AlertsHTML</span> = <span class="token-string">""</span>
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Alert</span> <span class="token-keyword">in</span> <span class="token-variable">$Metrics</span>.Alerts) {
+        <span class="token-variable">$AlertsHTML</span> += <span class="token-string">"&lt;div class='alert'&gt;⚠️ $Alert&lt;/div&gt;"</span>
+    }
+    <span class="token-keyword">if</span> (-not <span class="token-variable">$AlertsHTML</span>) {
+        <span class="token-variable">$AlertsHTML</span> = <span class="token-string">"&lt;div class='alert ok'&gt;✅ No active alerts&lt;/div&gt;"</span>
+    }
+    
+    <span class="token-comment"># Generate HTML</span>
+    <span class="token-variable">$HTML</span> = @<span class="token-string">"
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Security Dashboard - $($Metrics.ComputerName)&lt;/title&gt;
+    &lt;meta http-equiv="refresh" content="$RefreshSeconds"&gt;
+    &lt;style&gt;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0e17 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #00d4ff;
+            font-size: 2.5em;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .header .timestamp {
+            color: #888;
+            margin-top: 10px;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(22, 33, 62, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+        .card h3 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .card .label { color: #888; font-size: 0.9em; }
+        .ok { color: #10b981; }
+        .warning { color: #f59e0b; }
+        .critical { color: #ef4444; }
+        .alerts-section {
+            grid-column: 1 / -1;
+            background: rgba(22, 33, 62, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .alerts-section h3 { color: #ef4444; margin-bottom: 15px; }
+        .alert {
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 6px;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+        }
+        .alert.ok {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        .status-indicator.ok { background: #10b981; }
+        .status-indicator.critical { background: #ef4444; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;🛡️ Security Dashboard&lt;/h1&gt;
+        &lt;div class="timestamp"&gt;$($Metrics.ComputerName) | Last Updated: $($Metrics.Timestamp)&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="dashboard"&gt;
+        &lt;div class="card"&gt;
+            &lt;h3&gt;Failed Logons (24h)&lt;/h3&gt;
+            &lt;div class="value $FailedLogonClass"&gt;$($Metrics.FailedLogons)&lt;/div&gt;
+            &lt;div class="label"&gt;Authentication failures&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h3&gt;Successful Logons (24h)&lt;/h3&gt;
+            &lt;div class="value ok"&gt;$($Metrics.SuccessfulLogons)&lt;/div&gt;
+            &lt;div class="label"&gt;Authentication successes&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h3&gt;Active Connections&lt;/h3&gt;
+            &lt;div class="value"&gt;$($Metrics.ActiveConnections)&lt;/div&gt;
+            &lt;div class="label"&gt;Established TCP connections&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h3&gt;Running Services&lt;/h3&gt;
+            &lt;div class="value"&gt;$($Metrics.RunningServices)&lt;/div&gt;
+            &lt;div class="label"&gt;Active system services&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h3&gt;Windows Defender&lt;/h3&gt;
+            &lt;div class="value"&gt;
+                &lt;span class="status-indicator $DefenderClass"&gt;&lt;/span&gt;
+                &lt;span class="$DefenderClass"&gt;$(if($Metrics.DefenderEnabled){'ENABLED'}else{'DISABLED'})&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="label"&gt;Real-time protection&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="card"&gt;
+            &lt;h3&gt;Windows Firewall&lt;/h3&gt;
+            &lt;div class="value"&gt;
+                &lt;span class="status-indicator $FirewallClass"&gt;&lt;/span&gt;
+                &lt;span class="$FirewallClass"&gt;$(if($Metrics.FirewallEnabled){'ENABLED'}else{'DISABLED'})&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="label"&gt;Network protection&lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="alerts-section"&gt;
+            &lt;h3&gt;🚨 Active Alerts&lt;/h3&gt;
+            $AlertsHTML
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"@</span>
+    
+    <span class="token-comment"># Ensure output directory exists</span>
+    <span class="token-variable">$OutputDir</span> = <span class="token-cmdlet">Split-Path</span> <span class="token-variable">$OutputPath</span> -Parent
+    <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$OutputDir</span>)) {
+        <span class="token-cmdlet">New-Item</span> <span class="token-variable">$OutputDir</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | <span class="token-cmdlet">Out-Null</span>
+    }
+    
+    <span class="token-comment"># Write dashboard</span>
+    <span class="token-variable">$HTML</span> | <span class="token-cmdlet">Out-File</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-Encoding</span> UTF8
+    
+    Write-Host <span class="token-string">"Dashboard generated: $OutputPath"</span> -ForegroundColor Green
+    <span class="token-keyword">return</span> <span class="token-variable">$OutputPath</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Scheduling -->
+                <h2>Step 3: Schedule Automatic Updates</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Task Scheduler
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Register-DashboardTask</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Creates a scheduled task to update the dashboard.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$ScriptPath</span> = <span class="token-string">"C:\SecurityDashboard\Update-Dashboard.ps1"</span>,
+        [int]<span class="token-variable">$IntervalMinutes</span> = <span class="token-number">5</span>
+    )
+    
+    <span class="token-comment"># Create the update script</span>
+    <span class="token-variable">$ScriptContent</span> = @<span class="token-string">'
+# Update-Dashboard.ps1
+Import-Module C:\SecurityDashboard\SecurityDashboard.psm1 -Force
+New-SecurityDashboard -OutputPath "C:\SecurityDashboard\dashboard.html"
+'@</span>
+    
+    <span class="token-variable">$ScriptDir</span> = <span class="token-cmdlet">Split-Path</span> <span class="token-variable">$ScriptPath</span> -Parent
+    <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$ScriptDir</span>)) {
+        <span class="token-cmdlet">New-Item</span> <span class="token-variable">$ScriptDir</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | <span class="token-cmdlet">Out-Null</span>
+    }
+    <span class="token-variable">$ScriptContent</span> | <span class="token-cmdlet">Out-File</span> <span class="token-variable">$ScriptPath</span> <span class="token-parameter">-Encoding</span> UTF8
+    
+    <span class="token-comment"># Create scheduled task</span>
+    <span class="token-variable">$Action</span> = <span class="token-cmdlet">New-ScheduledTaskAction</span> <span class="token-parameter">-Execute</span> <span class="token-string">"powershell.exe"</span> `
+        <span class="token-parameter">-Argument</span> <span class="token-string">"-NoProfile -ExecutionPolicy Bypass -File `"$ScriptPath`""</span>
+    
+    <span class="token-variable">$Trigger</span> = <span class="token-cmdlet">New-ScheduledTaskTrigger</span> <span class="token-parameter">-Once</span> <span class="token-parameter">-At</span> (Get-Date) `
+        <span class="token-parameter">-RepetitionInterval</span> (New-TimeSpan -Minutes <span class="token-variable">$IntervalMinutes</span>)
+    
+    <span class="token-variable">$Principal</span> = <span class="token-cmdlet">New-ScheduledTaskPrincipal</span> <span class="token-parameter">-UserId</span> <span class="token-string">"SYSTEM"</span> <span class="token-parameter">-RunLevel</span> Highest
+    
+    <span class="token-variable">$Settings</span> = <span class="token-cmdlet">New-ScheduledTaskSettingsSet</span> <span class="token-parameter">-StartWhenAvailable</span> <span class="token-parameter">-DontStopOnIdleEnd</span>
+    
+    <span class="token-cmdlet">Register-ScheduledTask</span> <span class="token-parameter">-TaskName</span> <span class="token-string">"SecurityDashboardUpdate"</span> `
+        <span class="token-parameter">-Action</span> <span class="token-variable">$Action</span> <span class="token-parameter">-Trigger</span> <span class="token-variable">$Trigger</span> <span class="token-parameter">-Principal</span> <span class="token-variable">$Principal</span> `
+        <span class="token-parameter">-Settings</span> <span class="token-variable">$Settings</span> <span class="token-parameter">-Force</span>
+    
+    Write-Host <span class="token-string">"Scheduled task created: SecurityDashboardUpdate"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"Dashboard will update every $IntervalMinutes minutes"</span>
+}
+
+<span class="token-comment"># Deploy the dashboard</span>
+<span class="token-comment"># Register-DashboardTask -IntervalMinutes 5</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Dashboard Projects</div>
+                    </div>
+                    <ul>
+                        <li><strong>Modularize code:</strong> Separate data collection from presentation</li>
+                        <li><strong>Handle errors gracefully:</strong> Use try/catch for all data sources</li>
+                        <li><strong>Set appropriate thresholds:</strong> Tune alerts to your environment</li>
+                        <li><strong>Secure the output:</strong> Restrict access to dashboard files</li>
+                        <li><strong>Add timestamps:</strong> Always show when data was collected</li>
+                        <li><strong>Test incrementally:</strong> Build and test each component</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Portfolio Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Screenshot the output:</strong> Include dashboard visuals in portfolio</li>
+                        <li><strong>Document the process:</strong> Explain design decisions</li>
+                        <li><strong>Show extensibility:</strong> Describe how you'd add more metrics</li>
+                        <li><strong>Discuss scalability:</strong> How would this work for 100+ servers?</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Separate data collection into reusable functions</li>
+                    <li>Generate HTML with embedded CSS for portable dashboards</li>
+                    <li>Use meta refresh for auto-updating browser display</li>
+                    <li>Schedule with Task Scheduler for continuous updates</li>
+                    <li>Include alerting thresholds for actionable insights</li>
+                    <li>Great portfolio project demonstrating multiple skills</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="7-3-ci-cd-integration.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 7.3 CI/CD Integration</span>
+                    </a>
+                    <a href="8-2-log-aggregator.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">8.2 Log Aggregator →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.2 Debugging Techniques - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link active"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#troubleshooting">Troubleshooting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Debugging Techniques</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>9.2 Debugging Techniques</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Debug PowerShell scripts with built-in tools</li>
+                        <li>Use Bash debugging options effectively</li>
+                        <li>Add strategic logging to scripts</li>
+                        <li>Step through code execution</li>
+                    </ul>
+                </div>
+
+                <!-- PowerShell Debugging -->
+                <h2>PowerShell Debugging</h2>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: PowerShell Debug Tools</div>
+                    </div>
+                    <ul>
+                        <li><strong>-Verbose</strong> → Show detailed operation info</li>
+                        <li><strong>-Debug</strong> → Prompt at debug points</li>
+                        <li><strong>Set-PSBreakpoint</strong> → Stop at line/variable</li>
+                        <li><strong>Write-Debug</strong> → Output when debugging</li>
+                        <li><strong>$DebugPreference</strong> → Control debug output</li>
+                    </ul>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Debug Output
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Enable verbose output</span>
+<span class="token-variable">$VerbosePreference</span> = <span class="token-string">'Continue'</span>
+Write-Verbose <span class="token-string">"Processing started..."</span>
+
+<span class="token-comment"># Enable debug output</span>
+<span class="token-variable">$DebugPreference</span> = <span class="token-string">'Continue'</span>
+Write-Debug <span class="token-string">"Variable value: $MyVar"</span>
+
+<span class="token-comment"># Use in functions with CmdletBinding</span>
+<span class="token-keyword">function</span> <span class="token-function">Test-Debug</span> {
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Name</span>)
+    
+    Write-Verbose <span class="token-string">"Starting with Name: $Name"</span>
+    Write-Debug <span class="token-string">"Debug: Entering main logic"</span>
+    
+    <span class="token-comment"># Your code here</span>
+    <span class="token-variable">$Result</span> = <span class="token-string">"Hello, $Name"</span>
+    
+    Write-Verbose <span class="token-string">"Completed processing"</span>
+    <span class="token-keyword">return</span> <span class="token-variable">$Result</span>
+}
+
+<span class="token-comment"># Call with verbose</span>
+Test-Debug <span class="token-parameter">-Name</span> <span class="token-string">"World"</span> <span class="token-parameter">-Verbose</span>
+
+<span class="token-comment"># Call with debug (prompts at each Write-Debug)</span>
+Test-Debug <span class="token-parameter">-Name</span> <span class="token-string">"World"</span> <span class="token-parameter">-Debug</span></code></pre>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Breakpoints
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Set breakpoint at line number</span>
+<span class="token-cmdlet">Set-PSBreakpoint</span> <span class="token-parameter">-Script</span> <span class="token-string">".\script.ps1"</span> <span class="token-parameter">-Line</span> <span class="token-number">25</span>
+
+<span class="token-comment"># Set breakpoint on variable read/write</span>
+<span class="token-cmdlet">Set-PSBreakpoint</span> <span class="token-parameter">-Variable</span> <span class="token-string">"MyVar"</span> <span class="token-parameter">-Mode</span> ReadWrite
+
+<span class="token-comment"># Set breakpoint on command</span>
+<span class="token-cmdlet">Set-PSBreakpoint</span> <span class="token-parameter">-Command</span> <span class="token-string">"Get-Process"</span>
+
+<span class="token-comment"># List all breakpoints</span>
+<span class="token-cmdlet">Get-PSBreakpoint</span>
+
+<span class="token-comment"># Remove breakpoint</span>
+<span class="token-cmdlet">Remove-PSBreakpoint</span> <span class="token-parameter">-Id</span> <span class="token-number">1</span>
+
+<span class="token-comment"># Remove all breakpoints</span>
+<span class="token-cmdlet">Get-PSBreakpoint</span> | <span class="token-cmdlet">Remove-PSBreakpoint</span>
+
+<span class="token-comment"># Debugger commands when stopped:</span>
+<span class="token-comment"># s - Step into</span>
+<span class="token-comment"># v - Step over</span>
+<span class="token-comment"># o - Step out</span>
+<span class="token-comment"># c - Continue</span>
+<span class="token-comment"># l - List source</span>
+<span class="token-comment"># q - Quit debugger</span>
+<span class="token-comment"># ? - Help</span>
+
+<span class="token-comment"># Conditional breakpoint</span>
+<span class="token-cmdlet">Set-PSBreakpoint</span> <span class="token-parameter">-Script</span> <span class="token-string">".\script.ps1"</span> <span class="token-parameter">-Line</span> <span class="token-number">50</span> <span class="token-parameter">-Action</span> {
+    <span class="token-keyword">if</span> (<span class="token-variable">$Counter</span> <span class="token-operator">-gt</span> <span class="token-number">100</span>) { <span class="token-keyword">break</span> }
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Error Investigation
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># View last error details</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>] | <span class="token-cmdlet">Format-List</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Get full exception info</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>].Exception | <span class="token-cmdlet">Format-List</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Get stack trace</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>].ScriptStackTrace
+
+<span class="token-comment"># Get invocation info (line number, script)</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>].InvocationInfo | <span class="token-cmdlet">Format-List</span>
+
+<span class="token-comment"># Clear error variable</span>
+<span class="token-variable">$Error</span>.Clear()
+
+<span class="token-comment"># Stop on all errors</span>
+<span class="token-variable">$ErrorActionPreference</span> = <span class="token-string">'Stop'</span>
+
+<span class="token-comment"># Detailed try/catch</span>
+<span class="token-keyword">try</span> {
+    <span class="token-comment"># Your code</span>
+    <span class="token-cmdlet">Get-Content</span> <span class="token-string">"nonexistent.txt"</span> <span class="token-parameter">-ErrorAction</span> Stop
+} <span class="token-keyword">catch</span> {
+    Write-Host <span class="token-string">"Error Type: $($_.Exception.GetType().Name)"</span>
+    Write-Host <span class="token-string">"Message: $($_.Exception.Message)"</span>
+    Write-Host <span class="token-string">"Line: $($_.InvocationInfo.ScriptLineNumber)"</span>
+    Write-Host <span class="token-string">"Command: $($_.InvocationInfo.Line.Trim())"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Debugging -->
+                <h2>Bash Debugging</h2>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Bash Debug Options</div>
+                    </div>
+                    <ul>
+                        <li><strong>set -x</strong> → Print each command before execution</li>
+                        <li><strong>set -v</strong> → Print shell input lines</li>
+                        <li><strong>set -e</strong> → Exit on first error</li>
+                        <li><strong>set -u</strong> → Error on undefined variables</li>
+                        <li><strong>bash -x script.sh</strong> → Run with trace</li>
+                    </ul>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Debug Mode
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Enable debug mode at script start</span>
+<span class="token-keyword">set</span> -x  <span class="token-comment"># Trace commands</span>
+
+<span class="token-comment"># Or selectively enable/disable</span>
+<span class="token-keyword">set</span> -x
+<span class="token-comment"># ... code to debug ...</span>
+<span class="token-keyword">set</span> +x
+
+<span class="token-comment"># Strict mode (recommended for debugging)</span>
+<span class="token-keyword">set</span> -euo pipefail
+
+<span class="token-comment"># -e = Exit on error</span>
+<span class="token-comment"># -u = Error on undefined variable</span>
+<span class="token-comment"># -o pipefail = Fail on pipe errors</span>
+
+<span class="token-comment"># Run script with debug from command line</span>
+<span class="token-function">bash</span> -x script.sh          <span class="token-comment"># Trace all commands</span>
+<span class="token-function">bash</span> -v script.sh          <span class="token-comment"># Verbose (show lines read)</span>
+<span class="token-function">bash</span> -xv script.sh         <span class="token-comment"># Both</span>
+
+<span class="token-comment"># Check syntax without running</span>
+<span class="token-function">bash</span> -n script.sh
+
+<span class="token-comment"># Custom PS4 for better trace output</span>
+<span class="token-variable">export</span> PS4=<span class="token-string">'+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'</span>
+<span class="token-keyword">set</span> -x
+
+<span class="token-comment"># Shows: +(script.sh:25): my_function(): command</span></code></pre>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Logging Functions
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Debug logging function</span>
+DEBUG=<span class="token-variable">true</span>
+LOG_FILE=<span class="token-string">"/var/log/script_debug.log"</span>
+
+log_debug() {
+    <span class="token-keyword">if</span> [[ <span class="token-string">"$DEBUG"</span> == <span class="token-string">"true"</span> ]]; <span class="token-keyword">then</span>
+        <span class="token-function">echo</span> <span class="token-string">"[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $*"</span> | <span class="token-function">tee</span> -a <span class="token-string">"$LOG_FILE"</span>
+    <span class="token-keyword">fi</span>
+}
+
+log_info() {
+    <span class="token-function">echo</span> <span class="token-string">"[INFO]  $(date '+%Y-%m-%d %H:%M:%S') - $*"</span> | <span class="token-function">tee</span> -a <span class="token-string">"$LOG_FILE"</span>
+}
+
+log_error() {
+    <span class="token-function">echo</span> <span class="token-string">"[ERROR] $(date '+%Y-%m-%d %H:%M:%S') - $*"</span> | <span class="token-function">tee</span> -a <span class="token-string">"$LOG_FILE"</span> >&<span class="token-number">2</span>
+}
+
+<span class="token-comment"># Usage</span>
+log_debug <span class="token-string">"Starting function with arg: $1"</span>
+log_info <span class="token-string">"Processing complete"</span>
+log_error <span class="token-string">"Failed to connect"</span>
+
+<span class="token-comment"># Trap for debugging exit</span>
+<span class="token-keyword">trap</span> <span class="token-string">'echo "Error on line $LINENO. Exit code: $?"'</span> ERR
+
+<span class="token-comment"># Show function call stack on error</span>
+<span class="token-keyword">trap</span> <span class="token-string">'echo "Error at ${FUNCNAME[0]}:${BASH_LINENO[0]}"'</span> ERR</code></pre>
+                    </div>
+                </div>
+
+                <!-- Strategic Logging -->
+                <h2>Strategic Logging Pattern</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Logging Framework
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple logging framework</span>
+<span class="token-variable">$Script:LogFile</span> = <span class="token-string">"C:\Logs\script_$(Get-Date -Format 'yyyyMMdd').log"</span>
+<span class="token-variable">$Script:LogLevel</span> = <span class="token-string">'DEBUG'</span>  <span class="token-comment"># DEBUG, INFO, WARN, ERROR</span>
+
+<span class="token-keyword">function</span> <span class="token-function">Write-Log</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Message</span>,
+        [ValidateSet(<span class="token-string">'DEBUG'</span>,<span class="token-string">'INFO'</span>,<span class="token-string">'WARN'</span>,<span class="token-string">'ERROR'</span>)]
+        [string]<span class="token-variable">$Level</span> = <span class="token-string">'INFO'</span>
+    )
+    
+    <span class="token-variable">$Levels</span> = @{<span class="token-string">'DEBUG'</span>=<span class="token-number">0</span>; <span class="token-string">'INFO'</span>=<span class="token-number">1</span>; <span class="token-string">'WARN'</span>=<span class="token-number">2</span>; <span class="token-string">'ERROR'</span>=<span class="token-number">3</span>}
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Levels</span>[<span class="token-variable">$Level</span>] <span class="token-operator">-ge</span> <span class="token-variable">$Levels</span>[<span class="token-variable">$Script:LogLevel</span>]) {
+        <span class="token-variable">$Timestamp</span> = Get-Date -Format <span class="token-string">'yyyy-MM-dd HH:mm:ss'</span>
+        <span class="token-variable">$LogLine</span> = <span class="token-string">"[$Timestamp] [$Level] $Message"</span>
+        
+        <span class="token-comment"># Write to file</span>
+        <span class="token-variable">$LogLine</span> | <span class="token-cmdlet">Out-File</span> <span class="token-variable">$Script:LogFile</span> <span class="token-parameter">-Append</span>
+        
+        <span class="token-comment"># Write to console with color</span>
+        <span class="token-variable">$Color</span> = <span class="token-keyword">switch</span> (<span class="token-variable">$Level</span>) {
+            <span class="token-string">'DEBUG'</span> { <span class="token-string">'Gray'</span> }
+            <span class="token-string">'INFO'</span>  { <span class="token-string">'White'</span> }
+            <span class="token-string">'WARN'</span>  { <span class="token-string">'Yellow'</span> }
+            <span class="token-string">'ERROR'</span> { <span class="token-string">'Red'</span> }
+        }
+        Write-Host <span class="token-variable">$LogLine</span> -ForegroundColor <span class="token-variable">$Color</span>
+    }
+}
+
+<span class="token-comment"># Usage</span>
+Write-Log <span class="token-string">"Script started"</span> -Level INFO
+Write-Log <span class="token-string">"Variable X = $X"</span> -Level DEBUG
+Write-Log <span class="token-string">"Connection timeout"</span> -Level WARN
+Write-Log <span class="token-string">"Failed to process"</span> -Level ERROR</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Debugging</div>
+                    </div>
+                    <ul>
+                        <li><strong>Add CmdletBinding:</strong> Enables -Verbose and -Debug for free</li>
+                        <li><strong>Use Write-Verbose:</strong> Not Write-Host for debug output</li>
+                        <li><strong>Check $Error:</strong> Contains detailed error information</li>
+                        <li><strong>Use set -x selectively:</strong> Too much output is hard to read</li>
+                        <li><strong>Log to file:</strong> Console output gets lost</li>
+                        <li><strong>Include context:</strong> Variable values, line numbers, timestamps</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How do you debug a failing script?"</li>
+                        <li><strong>Strong Answer:</strong> Start by checking the error message and <code>$Error[0]</code> for stack trace. Add <code>-Verbose</code> to see operation details. Use <code>Set-PSBreakpoint</code> to stop at specific lines and inspect variables. For Bash, use <code>set -x</code> to trace execution and <code>set -e</code> to stop on errors. Add strategic logging at key points to track data flow.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>PowerShell: Use <code>-Verbose</code>, <code>-Debug</code>, and <code>Set-PSBreakpoint</code></li>
+                    <li>Bash: Use <code>set -x</code> for tracing, <code>set -e</code> for strict mode</li>
+                    <li>Check <code>$Error[0]</code> for detailed exception information</li>
+                    <li>Add strategic logging with timestamps and context</li>
+                    <li>Use conditional debug output controlled by variables</li>
+                    <li>Test scripts incrementally, not all at once</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="9-1-common-errors.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 9.1 Common Errors</span>
+                    </a>
+                    <a href="9-3-performance-issues.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">9.3 Performance Issues →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1 Batch Introduction - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link active"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-basics.html" class="nav-link"><span class="nav-link-number">4.2</span> Batch Basics</a>
+                        <a href="4-3-batch-commands.html" class="nav-link"><span class="nav-link-number">4.3</span> Batch Commands</a>
+                        <a href="4-4-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.4</span> Batch Control Flow</a>
+                        <a href="4-5-batch-arguments.html" class="nav-link"><span class="nav-link-number">4.5</span> Batch Arguments</a>
+                        <a href="4-6-batch-errorhandling.html" class="nav-link"><span class="nav-link-number">4.6</span> Batch Error Handling</a>
+                        <a href="4-7-batch-security-tasks.html" class="nav-link"><span class="nav-link-number">4.7</span> Batch Security Tasks</a>
+                        <a href="4-8-batch-to-powershell.html" class="nav-link"><span class="nav-link-number">4.8</span> Batch to PowerShell</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="offensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">⚔️</span>
+                        Offensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-offensive-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Offensive Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="defensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Defensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-defensive-overview.html" class="nav-link"><span class="nav-link-number">7.1</span> Defensive Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🏗️</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-project-soc-toolkit.html" class="nav-link"><span class="nav-link-number">8.1</span> SOC Toolkit Project</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="crossplatform">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-cross-platform-overview.html" class="nav-link"><span class="nav-link-number">9.1</span> Cross-Platform Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#batch">Batch/CMD Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Batch Introduction</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>4.1 Batch Introduction</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>What Batch scripting is and when to use it</li>
+                        <li>The history and evolution of Windows command-line scripting</li>
+                        <li>When Batch makes sense vs. PowerShell</li>
+                        <li>Basic Batch syntax and your first script</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>What is Batch Scripting?</h2>
+                <p>
+                    Batch scripting (also called CMD scripting or .bat/.cmd files) is the original 
+                    Windows command-line scripting language. Dating back to MS-DOS in the 1980s, 
+                    Batch files automate sequences of commands that would otherwise be typed manually 
+                    at the command prompt.
+                </p>
+
+                <p>
+                    While PowerShell has largely replaced Batch for modern automation, understanding 
+                    Batch remains valuable for security professionals who encounter legacy systems, 
+                    analyze malware, or need scripts that run without dependencies.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: When to Use Batch</div>
+                    </div>
+                    <ul>
+                        <li><strong>L</strong>egacy systems without PowerShell</li>
+                        <li><strong>E</strong>mergency recovery (Safe Mode, WinPE)</li>
+                        <li><strong>G</strong>uaranteed availability (no dependencies)</li>
+                        <li><strong>A</strong>nalysis of malware droppers</li>
+                        <li><strong>C</strong>ross-version compatibility (XP through 11)</li>
+                        <li><strong>Y</strong>ielding to existing infrastructure</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>LEGACY - Batch is your key to legacy Windows!</em>
+                    </p>
+                </div>
+
+                <!-- Evolution Timeline -->
+                <h2>Windows Command-Line Evolution</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Windows CLI Evolution</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    WINDOWS COMMAND-LINE HISTORY                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+1981        1987         1993         2006         2016         2019+
+  │           │            │            │            │            │
+  ▼           ▼            ▼            ▼            ▼            ▼
+┌─────┐   ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
+│ DOS │   │  DOS    │  │  CMD    │  │ Power-  │  │  PS 5.1 │  │  PS 7+  │
+│     │──►│  3.x    │──►│  .EXE   │──►│ Shell   │──►│ (WMF5)  │──►│ (Core)  │
+│     │   │ Batch   │  │ NT 3.1  │  │  1.0    │  │         │  │         │
+└─────┘   └─────────┘  └─────────┘  └─────────┘  └─────────┘  └─────────┘
+  │           │            │            │            │            │
+  │       • AUTOEXEC   • 32-bit     • Object     • Default   • Cross-
+  │         .BAT       • Long         pipeline    on Win10    platform
+  │       • CONFIG       filenames  • .NET       • DSC       • Open
+  │         .SYS       • %VAR%        based      • Classes     source
+  │                      syntax
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ KEY INSIGHT: Batch syntax hasn't fundamentally changed since DOS 3.x        │
+│ This is why it works everywhere but feels archaic!                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Batch vs PowerShell -->
+                <h2>Batch vs PowerShell Comparison</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Batch (.bat/.cmd)</th>
+                                <th>PowerShell (.ps1)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Data Type</strong></td>
+                                <td>Text strings only</td>
+                                <td>.NET objects</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Availability</strong></td>
+                                <td>Every Windows version</td>
+                                <td>XP SP2+ (varies by version)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Execution Policy</strong></td>
+                                <td>None - runs by default</td>
+                                <td>Restricted by default</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Safe Mode</strong></td>
+                                <td>✅ Available</td>
+                                <td>❌ Often unavailable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>WinPE/Recovery</strong></td>
+                                <td>✅ Full support</td>
+                                <td>⚠️ Limited</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Error Handling</strong></td>
+                                <td>Basic (ERRORLEVEL)</td>
+                                <td>Advanced (try/catch)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Modern APIs</strong></td>
+                                <td>❌ Limited to CLI tools</td>
+                                <td>✅ Full .NET access</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Malware Use</strong></td>
+                                <td>Very common (droppers)</td>
+                                <td>Common (fileless)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Learning Curve</strong></td>
+                                <td>Low but quirky</td>
+                                <td>Higher but consistent</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- When to Use Batch -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: When to Choose Batch</div>
+                    </div>
+                    <ul>
+                        <li><strong>Zero-dependency requirement:</strong> Script must run on any Windows machine without prerequisites</li>
+                        <li><strong>Recovery environments:</strong> WinPE, Safe Mode, or minimal boot scenarios</li>
+                        <li><strong>Legacy system support:</strong> Windows XP, Server 2003, or older</li>
+                        <li><strong>Group Policy logon scripts:</strong> Sometimes Batch is simpler for basic tasks</li>
+                        <li><strong>Quick one-liners:</strong> Simple file operations, basic automation</li>
+                        <li><strong>Malware analysis:</strong> Understanding dropper scripts and attack chains</li>
+                    </ul>
+                </div>
+
+                <!-- File Extensions -->
+                <h2>.BAT vs .CMD</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Extension</th>
+                                <th>Origin</th>
+                                <th>Behavior Difference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>.BAT</strong></td>
+                                <td>MS-DOS era</td>
+                                <td>Sets ERRORLEVEL on every command (legacy behavior)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>.CMD</strong></td>
+                                <td>Windows NT</td>
+                                <td>Only sets ERRORLEVEL on actual errors (preferred)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>
+                    For new scripts, use <code>.cmd</code> extension. The behavior difference is subtle 
+                    but <code>.cmd</code> provides more predictable error handling.
+                </p>
+
+                <!-- Your First Batch Script -->
+                <h2>Your First Batch Script</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch - hello.cmd
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">@echo off</span>
+<span class="token-comment">REM My first Batch script</span>
+<span class="token-comment">REM @echo off hides command echoing</span>
+
+<span class="token-comment">REM Set a variable (no spaces around =)</span>
+<span class="token-keyword">set</span> <span class="token-variable">NAME</span>=Security Analyst
+
+<span class="token-comment">REM Display output</span>
+<span class="token-function">echo</span> Hello, %NAME%!
+<span class="token-function">echo</span>.
+<span class="token-function">echo</span> Today is: %DATE%
+<span class="token-function">echo</span> Time is: %TIME%
+<span class="token-function">echo</span> Computer: %COMPUTERNAME%
+<span class="token-function">echo</span> User: %USERNAME%
+
+<span class="token-comment">REM Pause to see output (optional)</span>
+<span class="token-function">pause</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Running the Script</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch - Running Scripts
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">REM Method 1: Double-click in Explorer</span>
+
+<span class="token-comment">REM Method 2: Run from CMD</span>
+C:\Scripts\hello.cmd
+
+<span class="token-comment">REM Method 3: Call from another script</span>
+<span class="token-keyword">call</span> hello.cmd
+
+<span class="token-comment">REM Method 4: Run and stay open (for debugging)</span>
+cmd /k hello.cmd</code></pre>
+                    </div>
+                </div>
+
+                <!-- Key Syntax -->
+                <h2>Essential Batch Syntax</h2>
+
+                <h3>Variables</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch - Variables
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">REM Set a variable (no spaces!)</span>
+<span class="token-keyword">set</span> <span class="token-variable">MYVAR</span>=Hello World
+
+<span class="token-comment">REM Use a variable (wrap in %)</span>
+<span class="token-function">echo</span> %MYVAR%
+
+<span class="token-comment">REM User input</span>
+<span class="token-keyword">set</span> /p <span class="token-variable">USERNAME</span>=Enter your name: 
+
+<span class="token-comment">REM Arithmetic</span>
+<span class="token-keyword">set</span> /a <span class="token-variable">RESULT</span>=5+3
+<span class="token-function">echo</span> Result: %RESULT%
+
+<span class="token-comment">REM Environment variables (built-in)</span>
+<span class="token-function">echo</span> %PATH%
+<span class="token-function">echo</span> %USERPROFILE%
+<span class="token-function">echo</span> %TEMP%
+<span class="token-function">echo</span> %SYSTEMROOT%</code></pre>
+                    </div>
+                </div>
+
+                <h3>Conditionals</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch - If Statements
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">REM String comparison (case-insensitive by default)</span>
+<span class="token-keyword">if</span> "%USERNAME%"=="Administrator" (
+    <span class="token-function">echo</span> Running as admin
+) <span class="token-keyword">else</span> (
+    <span class="token-function">echo</span> Standard user
+)
+
+<span class="token-comment">REM File existence</span>
+<span class="token-keyword">if</span> <span class="token-keyword">exist</span> "C:\Windows\System32\cmd.exe" (
+    <span class="token-function">echo</span> CMD exists
+)
+
+<span class="token-comment">REM NOT operator</span>
+<span class="token-keyword">if not</span> <span class="token-keyword">exist</span> "config.txt" (
+    <span class="token-function">echo</span> Config not found!
+    <span class="token-function">exit</span> /b 1
+)
+
+<span class="token-comment">REM Error level check</span>
+<span class="token-function">ping</span> 192.168.1.1 -n 1
+<span class="token-keyword">if</span> %ERRORLEVEL%==0 (
+    <span class="token-function">echo</span> Host is up
+) <span class="token-keyword">else</span> (
+    <span class="token-function">echo</span> Host is down
+)</code></pre>
+                    </div>
+                </div>
+
+                <h3>Loops</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch - For Loops
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">REM Loop through files</span>
+<span class="token-keyword">for</span> %%f <span class="token-keyword">in</span> (*.txt) <span class="token-keyword">do</span> (
+    <span class="token-function">echo</span> Found: %%f
+)
+
+<span class="token-comment">REM Note: Use %f in command line, %%f in scripts</span>
+
+<span class="token-comment">REM Numeric loop (start, step, end)</span>
+<span class="token-keyword">for</span> /L %%i <span class="token-keyword">in</span> (1,1,10) <span class="token-keyword">do</span> (
+    <span class="token-function">echo</span> Number: %%i
+)
+
+<span class="token-comment">REM Loop through command output</span>
+<span class="token-keyword">for</span> /f "tokens=1,2" %%a <span class="token-keyword">in</span> ('ipconfig ^| findstr IPv4') <span class="token-keyword">do</span> (
+    <span class="token-function">echo</span> IP Address: %%b
+)
+
+<span class="token-comment">REM Recursive directory loop</span>
+<span class="token-keyword">for</span> /R "C:\Logs" %%f <span class="token-keyword">in</span> (*.log) <span class="token-keyword">do</span> (
+    <span class="token-function">echo</span> %%f
+)</code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Use Cases -->
+                <h2>Security Use Cases for Batch</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch - Quick Security Checks
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">@echo off</span>
+<span class="token-comment">REM Quick system security check</span>
+<span class="token-function">echo</span> === SYSTEM INFO ===
+<span class="token-function">hostname</span>
+<span class="token-function">whoami</span>
+
+<span class="token-function">echo</span>.
+<span class="token-function">echo</span> === LOCAL ADMINS ===
+<span class="token-function">net</span> localgroup administrators
+
+<span class="token-function">echo</span>.
+<span class="token-function">echo</span> === LISTENING PORTS ===
+<span class="token-function">netstat</span> -an | <span class="token-function">findstr</span> LISTENING
+
+<span class="token-function">echo</span>.
+<span class="token-function">echo</span> === RUNNING SERVICES ===
+<span class="token-function">net</span> start | <span class="token-function">findstr</span> /i "remote"
+
+<span class="token-function">echo</span>.
+<span class="token-function">echo</span> === SCHEDULED TASKS ===
+<span class="token-function">schtasks</span> /query /fo LIST | <span class="token-function">findstr</span> /i "taskname"
+
+<span class="token-function">echo</span>.
+<span class="token-function">echo</span> === STARTUP PROGRAMS ===
+<span class="token-function">wmic</span> startup get caption,command 2>nul</code></pre>
+                    </div>
+                </div>
+
+                <!-- Warning about Malware -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Security Note: Batch in Malware</div>
+                    </div>
+                    <p>
+                        Batch scripts are commonly used in malware as "droppers" due to their:
+                    </p>
+                    <ul>
+                        <li>Universal availability on Windows</li>
+                        <li>No execution policy restrictions</li>
+                        <li>Ability to download and execute payloads</li>
+                        <li>Simple obfuscation techniques</li>
+                    </ul>
+                    <p>
+                        Understanding Batch syntax helps you analyze suspicious scripts during incident response.
+                    </p>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "When would you use Batch over PowerShell?"</li>
+                        <li><strong>Strong Answer:</strong> Batch when I need zero dependencies, like Safe Mode recovery, WinPE environments, or legacy XP systems. Also useful for quick system triage when I'm unsure if PowerShell is available or restricted.</li>
+                        <li><strong>Bonus:</strong> Mention that understanding Batch helps with malware analysis, as many droppers use .bat files</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Batch is legacy but still valuable for zero-dependency scenarios</li>
+                    <li>Use <code>.cmd</code> extension for better error handling behavior</li>
+                    <li>Variables use <code>%VAR%</code> syntax (no spaces around <code>=</code>)</li>
+                    <li>Use <code>%%</code> in scripts, <code>%</code> on command line for loop variables</li>
+                    <li>Common in malware—understanding Batch aids security analysis</li>
+                    <li>When possible, prefer PowerShell for new automation projects</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="3-15-bash-best-practices.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 3.15 Bash Best Practices</span>
+                    </a>
+                    <a href="4-2-batch-basics.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">4.2 Batch Basics →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

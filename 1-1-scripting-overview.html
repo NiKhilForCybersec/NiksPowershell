@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1 Scripting Overview - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link active"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-terminal-basics.html" class="nav-link"><span class="nav-link-number">1.3</span> Terminal Basics</a>
+                        <a href="1-4-shell-comparison.html" class="nav-link"><span class="nav-link-number">1.4</span> Shell Comparison</a>
+                        <a href="1-5-script-execution.html" class="nav-link"><span class="nav-link-number">1.5</span> Script Execution</a>
+                        <a href="1-6-variables-datatypes.html" class="nav-link"><span class="nav-link-number">1.6</span> Variables & Data Types</a>
+                        <a href="1-7-operators.html" class="nav-link"><span class="nav-link-number">1.7</span> Operators</a>
+                        <a href="1-8-control-flow.html" class="nav-link"><span class="nav-link-number">1.8</span> Control Flow</a>
+                        <a href="1-9-functions-modules.html" class="nav-link"><span class="nav-link-number">1.9</span> Functions & Modules</a>
+                        <a href="1-10-error-handling.html" class="nav-link"><span class="nav-link-number">1.10</span> Error Handling</a>
+                        <a href="1-11-input-output.html" class="nav-link"><span class="nav-link-number">1.11</span> Input/Output</a>
+                        <a href="1-12-debugging.html" class="nav-link"><span class="nav-link-number">1.12</span> Debugging</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-objects-properties.html" class="nav-link"><span class="nav-link-number">2.4</span> Objects & Properties</a>
+                        <a href="2-5-providers-drives.html" class="nav-link"><span class="nav-link-number">2.5</span> Providers & Drives</a>
+                        <a href="2-6-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.6</span> WMI & CIM</a>
+                        <a href="2-7-remoting.html" class="nav-link"><span class="nav-link-number">2.7</span> Remoting</a>
+                        <a href="2-8-modules-management.html" class="nav-link"><span class="nav-link-number">2.8</span> Modules Management</a>
+                        <a href="2-9-profile-customization.html" class="nav-link"><span class="nav-link-number">2.9</span> Profile Customization</a>
+                        <a href="2-10-regex-powershell.html" class="nav-link"><span class="nav-link-number">2.10</span> Regex in PowerShell</a>
+                        <a href="2-11-file-operations.html" class="nav-link"><span class="nav-link-number">2.11</span> File Operations</a>
+                        <a href="2-12-registry-operations.html" class="nav-link"><span class="nav-link-number">2.12</span> Registry Operations</a>
+                        <a href="2-13-services-processes.html" class="nav-link"><span class="nav-link-number">2.13</span> Services & Processes</a>
+                        <a href="2-14-scheduled-tasks.html" class="nav-link"><span class="nav-link-number">2.14</span> Scheduled Tasks</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests</a>
+                        <a href="2-19-background-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Background Jobs</a>
+                        <a href="2-20-dsc-basics.html" class="nav-link"><span class="nav-link-number">2.20</span> DSC Basics</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-basics.html" class="nav-link"><span class="nav-link-number">3.2</span> Bash Basics</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Bash Variables</a>
+                        <a href="3-4-bash-strings.html" class="nav-link"><span class="nav-link-number">3.4</span> Bash Strings</a>
+                        <a href="3-5-bash-arrays.html" class="nav-link"><span class="nav-link-number">3.5</span> Bash Arrays</a>
+                        <a href="3-6-bash-conditionals.html" class="nav-link"><span class="nav-link-number">3.6</span> Bash Conditionals</a>
+                        <a href="3-7-bash-loops.html" class="nav-link"><span class="nav-link-number">3.7</span> Bash Loops</a>
+                        <a href="3-8-bash-functions.html" class="nav-link"><span class="nav-link-number">3.8</span> Bash Functions</a>
+                        <a href="3-9-bash-io-redirection.html" class="nav-link"><span class="nav-link-number">3.9</span> I/O Redirection</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-11-bash-regex.html" class="nav-link"><span class="nav-link-number">3.11</span> Bash Regex</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                        <a href="3-13-bash-system-admin.html" class="nav-link"><span class="nav-link-number">3.13</span> System Administration</a>
+                        <a href="3-14-bash-security-tools.html" class="nav-link"><span class="nav-link-number">3.14</span> Security Tools Integration</a>
+                        <a href="3-15-bash-best-practices.html" class="nav-link"><span class="nav-link-number">3.15</span> Bash Best Practices</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-basics.html" class="nav-link"><span class="nav-link-number">4.2</span> Batch Basics</a>
+                        <a href="4-3-batch-commands.html" class="nav-link"><span class="nav-link-number">4.3</span> Batch Commands</a>
+                        <a href="4-4-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.4</span> Batch Control Flow</a>
+                        <a href="4-5-batch-arguments.html" class="nav-link"><span class="nav-link-number">4.5</span> Batch Arguments</a>
+                        <a href="4-6-batch-errorhandling.html" class="nav-link"><span class="nav-link-number">4.6</span> Batch Error Handling</a>
+                        <a href="4-7-batch-security-tasks.html" class="nav-link"><span class="nav-link-number">4.7</span> Batch Security Tasks</a>
+                        <a href="4-8-batch-to-powershell.html" class="nav-link"><span class="nav-link-number">4.8</span> Batch to PowerShell</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-security-scripting-overview.html" class="nav-link"><span class="nav-link-number">5.1</span> Security Scripting Overview</a>
+                        <a href="5-2-log-analysis-scripts.html" class="nav-link"><span class="nav-link-number">5.2</span> Log Analysis Scripts</a>
+                        <a href="5-3-user-audit-scripts.html" class="nav-link"><span class="nav-link-number">5.3</span> User Audit Scripts</a>
+                        <a href="5-4-network-security-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Network Security Scripts</a>
+                        <a href="5-5-malware-analysis-scripts.html" class="nav-link"><span class="nav-link-number">5.5</span> Malware Analysis Scripts</a>
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting Scripts</a>
+                        <a href="5-8-vulnerability-scripts.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scripts</a>
+                        <a href="5-9-compliance-scripts.html" class="nav-link"><span class="nav-link-number">5.9</span> Compliance Scripts</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-cloud-security-scripts.html" class="nav-link"><span class="nav-link-number">5.12</span> Cloud Security Scripts</a>
+                        <a href="5-13-email-security-scripts.html" class="nav-link"><span class="nav-link-number">5.13</span> Email Security Scripts</a>
+                        <a href="5-14-reporting-automation.html" class="nav-link"><span class="nav-link-number">5.14</span> Reporting Automation</a>
+                        <a href="5-15-orchestration-basics.html" class="nav-link"><span class="nav-link-number">5.15</span> Orchestration Basics</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Offensive Security Scripting -->
+                <div class="nav-section collapsed" data-section="offensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">⚔️</span>
+                        Offensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-offensive-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Offensive Introduction</a>
+                        <a href="6-2-recon-scripts.html" class="nav-link"><span class="nav-link-number">6.2</span> Recon Scripts</a>
+                        <a href="6-3-exploitation-frameworks.html" class="nav-link"><span class="nav-link-number">6.3</span> Exploitation Frameworks</a>
+                        <a href="6-4-credential-attacks.html" class="nav-link"><span class="nav-link-number">6.4</span> Credential Attacks</a>
+                        <a href="6-5-lateral-movement.html" class="nav-link"><span class="nav-link-number">6.5</span> Lateral Movement</a>
+                        <a href="6-6-persistence-techniques.html" class="nav-link"><span class="nav-link-number">6.6</span> Persistence Techniques</a>
+                        <a href="6-7-defense-evasion.html" class="nav-link"><span class="nav-link-number">6.7</span> Defense Evasion</a>
+                        <a href="6-8-data-exfiltration.html" class="nav-link"><span class="nav-link-number">6.8</span> Data Exfiltration</a>
+                        <a href="6-9-ad-attacks.html" class="nav-link"><span class="nav-link-number">6.9</span> AD Attacks</a>
+                        <a href="6-10-detection-engineering.html" class="nav-link"><span class="nav-link-number">6.10</span> Detection Engineering</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Defensive Scripting -->
+                <div class="nav-section collapsed" data-section="defensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Defensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-defensive-overview.html" class="nav-link"><span class="nav-link-number">7.1</span> Defensive Overview</a>
+                        <a href="7-2-hardening-scripts.html" class="nav-link"><span class="nav-link-number">7.2</span> Hardening Scripts</a>
+                        <a href="7-3-monitoring-scripts.html" class="nav-link"><span class="nav-link-number">7.3</span> Monitoring Scripts</a>
+                        <a href="7-4-detection-scripts.html" class="nav-link"><span class="nav-link-number">7.4</span> Detection Scripts</a>
+                        <a href="7-5-response-automation.html" class="nav-link"><span class="nav-link-number">7.5</span> Response Automation</a>
+                        <a href="7-6-recovery-scripts.html" class="nav-link"><span class="nav-link-number">7.6</span> Recovery Scripts</a>
+                        <a href="7-7-threat-intel-scripts.html" class="nav-link"><span class="nav-link-number">7.7</span> Threat Intel Scripts</a>
+                        <a href="7-8-hunting-playbooks.html" class="nav-link"><span class="nav-link-number">7.8</span> Hunting Playbooks</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🏗️</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-project-soc-toolkit.html" class="nav-link"><span class="nav-link-number">8.1</span> SOC Toolkit Project</a>
+                        <a href="8-2-project-ir-collector.html" class="nav-link"><span class="nav-link-number">8.2</span> IR Collector Project</a>
+                        <a href="8-3-project-vuln-scanner.html" class="nav-link"><span class="nav-link-number">8.3</span> Vulnerability Scanner</a>
+                        <a href="8-4-project-log-analyzer.html" class="nav-link"><span class="nav-link-number">8.4</span> Log Analyzer Project</a>
+                        <a href="8-5-project-ad-auditor.html" class="nav-link"><span class="nav-link-number">8.5</span> AD Auditor Project</a>
+                        <a href="8-6-project-network-monitor.html" class="nav-link"><span class="nav-link-number">8.6</span> Network Monitor Project</a>
+                        <a href="8-7-project-phishing-analyzer.html" class="nav-link"><span class="nav-link-number">8.7</span> Phishing Analyzer</a>
+                        <a href="8-8-project-compliance-checker.html" class="nav-link"><span class="nav-link-number">8.8</span> Compliance Checker</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Cross-Platform & Integration -->
+                <div class="nav-section collapsed" data-section="crossplatform">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-cross-platform-overview.html" class="nav-link"><span class="nav-link-number">9.1</span> Cross-Platform Overview</a>
+                        <a href="9-2-ps-bash-integration.html" class="nav-link"><span class="nav-link-number">9.2</span> PS & Bash Integration</a>
+                        <a href="9-3-api-scripting.html" class="nav-link"><span class="nav-link-number">9.3</span> API Scripting</a>
+                        <a href="9-4-database-scripting.html" class="nav-link"><span class="nav-link-number">9.4</span> Database Scripting</a>
+                        <a href="9-5-container-scripting.html" class="nav-link"><span class="nav-link-number">9.5</span> Container Scripting</a>
+                        <a href="9-6-ci-cd-integration.html" class="nav-link"><span class="nav-link-number">9.6</span> CI/CD Integration</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Best Practices & Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-coding-standards.html" class="nav-link"><span class="nav-link-number">10.1</span> Coding Standards</a>
+                        <a href="10-2-security-considerations.html" class="nav-link"><span class="nav-link-number">10.2</span> Security Considerations</a>
+                        <a href="10-3-performance-optimization.html" class="nav-link"><span class="nav-link-number">10.3</span> Performance Optimization</a>
+                        <a href="10-4-testing-validation.html" class="nav-link"><span class="nav-link-number">10.4</span> Testing & Validation</a>
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#fundamentals">Scripting Fundamentals</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Scripting Overview</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>1.1 Scripting Overview</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Understand the difference between scripting and programming</li>
+                        <li>Learn about interpreted vs compiled languages</li>
+                        <li>Discover when to use scripts in cybersecurity operations</li>
+                        <li>Identify the key scripting languages for security professionals</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>What is Scripting?</h2>
+                <p>
+                    Scripting is the art of writing small programs that automate tasks, process data, or interact 
+                    with systems. Unlike traditional programming, scripts are typically interpreted (executed line 
+                    by line) rather than compiled into machine code.
+                </p>
+
+                <p>
+                    For cybersecurity professionals, scripting is an essential skill that enables automation of 
+                    repetitive tasks, rapid response to security incidents, and integration between disparate 
+                    security tools.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Scripts vs Programs</div>
+                    </div>
+                    <ul>
+                        <li><strong>Scripts = Recipes</strong> → Step-by-step instructions, read and executed one at a time</li>
+                        <li><strong>Programs = Factories</strong> → Built once (compiled), then run repeatedly as a finished product</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Think of it this way: You follow a recipe each time you cook (interpreted), 
+                        but a factory's assembly line is built once and produces products repeatedly (compiled).</em>
+                    </p>
+                </div>
+
+                <!-- Scripting vs Programming -->
+                <h2>Scripting vs Programming</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Scripting</th>
+                                <th>Programming</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Execution</strong></td>
+                                <td>Interpreted (line by line)</td>
+                                <td>Compiled (all at once)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Speed</strong></td>
+                                <td>Slower execution</td>
+                                <td>Faster execution</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Development</strong></td>
+                                <td>Faster to write and test</td>
+                                <td>Requires compile step</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Complexity</strong></td>
+                                <td>Simpler, task-focused</td>
+                                <td>Complex, application-focused</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Examples</strong></td>
+                                <td>PowerShell, Bash, Python</td>
+                                <td>C, C++, Go, Rust</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Use Case</strong></td>
+                                <td>Automation, glue code, admin tasks</td>
+                                <td>Applications, system software</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ASCII Diagram -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Interpreted vs Compiled Execution</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         INTERPRETED (Scripting)                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│    ┌──────────┐     ┌─────────────┐     ┌──────────────────┐                │
+│    │  Script  │ ──► │ Interpreter │ ──► │ Execute Line 1   │                │
+│    │  .ps1    │     │  (Runtime)  │     │ Execute Line 2   │                │
+│    │  .sh     │     │             │     │ Execute Line 3   │                │
+│    │  .py     │     │             │     │ ...              │                │
+│    └──────────┘     └─────────────┘     └──────────────────┘                │
+│                                                                              │
+│    ✓ No compile step          ✓ Easy to modify          ✗ Slower execution │
+│                                                                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                            COMPILED (Programming)                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│    ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────────┐     │
+│    │  Source  │ ──► │ Compiler │ ──► │  Binary  │ ──► │   Execute    │     │
+│    │  .c      │     │          │     │  .exe    │     │   Directly   │     │
+│    │  .go     │     │          │     │  ELF     │     │              │     │
+│    └──────────┘     └──────────┘     └──────────┘     └──────────────┘     │
+│                                                                              │
+│    ✗ Requires compile step    ✗ Rebuild for changes    ✓ Fast execution    │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Scripting Languages for Security -->
+                <h2>Scripting Languages for Security Professionals</h2>
+                
+                <p>
+                    As a security professional, you'll encounter three primary scripting languages, each with 
+                    its own strengths and ideal use cases:
+                </p>
+
+                <h3>PowerShell</h3>
+                <p>
+                    Microsoft's task automation framework, built on .NET. PowerShell excels in Windows 
+                    environments and is the go-to choice for Windows system administration, Active Directory 
+                    management, and Microsoft security product integration.
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Get failed login attempts from Security Event Log</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    Id = <span class="token-number">4625</span>
+} <span class="token-operator">|</span> <span class="token-cmdlet">Select-Object</span> TimeCreated, Message <span class="token-operator">|</span> 
+    <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">10</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Bash</h3>
+                <p>
+                    The default shell on most Linux and macOS systems. Bash is essential for Linux server 
+                    administration, security tool automation, and working with text-based data streams.
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Find failed SSH login attempts</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> /var/log/auth.log | \
+    <span class="token-function">awk</span> <span class="token-string">'{print $11}'</span> | \
+    <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | \
+    <span class="token-function">sort</span> -rn | <span class="token-function">head</span> -10</code></pre>
+                    </div>
+                </div>
+
+                <h3>Batch/CMD</h3>
+                <p>
+                    The original Windows command-line scripting language. While largely superseded by 
+                    PowerShell, Batch remains relevant for legacy systems and simple automation tasks.
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language batch">
+                            <span class="code-language-icon">📦</span>
+                            Batch
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">@echo off</span>
+<span class="token-comment">REM Display active network connections</span>
+<span class="token-function">netstat</span> -an | <span class="token-function">findstr</span> ESTABLISHED
+<span class="token-keyword">pause</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- When to Use Scripts -->
+                <h2>When to Use Scripts in Cybersecurity</h2>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: Script These Tasks</div>
+                    </div>
+                    <ul>
+                        <li><strong>Log Analysis</strong> → Parse and filter security logs for indicators of compromise</li>
+                        <li><strong>User Auditing</strong> → Check for inactive accounts, privilege escalation, policy violations</li>
+                        <li><strong>Incident Response</strong> → Collect forensic data, isolate systems, document findings</li>
+                        <li><strong>Compliance Checks</strong> → Verify security configurations against baselines</li>
+                        <li><strong>Threat Hunting</strong> → Search for persistence mechanisms, lateral movement</li>
+                        <li><strong>Tool Integration</strong> → Connect SIEM, EDR, ticketing systems via APIs</li>
+                    </ul>
+                </div>
+
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Warning: When NOT to Script</div>
+                    </div>
+                    <ul>
+                        <li><strong>Performance-critical applications</strong> → Use compiled languages instead</li>
+                        <li><strong>Complex business logic</strong> → Consider proper software development</li>
+                        <li><strong>Untested production changes</strong> → Always test in lab environments first</li>
+                        <li><strong>Without proper authorization</strong> → Ensure you have approval for automation</li>
+                    </ul>
+                </div>
+
+                <!-- Security Scripting Workflow -->
+                <h2>Security Scripting Workflow</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Security Automation Development Lifecycle</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     SECURITY SCRIPTING WORKFLOW                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+    │ IDENTIFY │ ──► │  DESIGN  │ ──► │  DEVELOP │ ──► │   TEST   │
+    │   Task   │     │ Solution │     │  Script  │     │  in Lab  │
+    └──────────┘     └──────────┘     └──────────┘     └──────────┘
+         │                                                   │
+         │                                                   ▼
+    ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+    │ MAINTAIN │ ◄── │  DEPLOY  │ ◄── │  REVIEW  │ ◄── │ DOCUMENT │
+    │ & Update │     │ to Prod  │     │   Code   │     │  & Log   │
+    └──────────┘     └──────────┘     └──────────┘     └──────────┘
+
+    Key Principles:
+    ─────────────────────────────────────────────────────────────────
+    • Start small, iterate often
+    • Test in isolated environments
+    • Document everything
+    • Version control your scripts
+    • Log all actions for audit trails
+</pre>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between scripting and programming?"</li>
+                        <li><strong>Strong Answer:</strong> Focus on interpreted vs compiled execution, development speed vs runtime performance, and appropriate use cases for each</li>
+                        <li><strong>Bonus Points:</strong> Mention that modern languages like Python blur the line, and that the "best" language depends on the task and environment</li>
+                        <li><strong>Show Experience:</strong> Share a specific example of how you've used scripting to solve a security problem</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Scripts are interpreted programs ideal for automation and task-specific operations</li>
+                    <li>PowerShell dominates Windows/Microsoft environments, Bash rules Linux/Unix</li>
+                    <li>Security professionals use scripts for log analysis, incident response, compliance, and tool integration</li>
+                    <li>Always test scripts in lab environments before production deployment</li>
+                    <li>Documentation and version control are essential for maintainable scripts</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="index.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← Home</span>
+                    </a>
+                    <a href="1-2-choosing-right-tool.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">1.2 Choosing the Right Tool →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

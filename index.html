@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerShell & Scripting Ultimate Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests & APIs</a>
+                        <a href="2-19-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Remoting & Jobs</a>
+                        <a href="2-20-error-handling.html" class="nav-link"><span class="nav-link-number">2.20</span> Error Handling</a>
+                        <a href="2-21-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.21</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Variables & Data Types</a>
+                        <a href="3-4-control-structures.html" class="nav-link"><span class="nav-link-number">3.4</span> Control Structures</a>
+                        <a href="3-5-bash-functions.html" class="nav-link"><span class="nav-link-number">3.5</span> Functions & Scripts</a>
+                        <a href="3-6-file-io.html" class="nav-link"><span class="nav-link-number">3.6</span> File I/O</a>
+                        <a href="3-7-process-management.html" class="nav-link"><span class="nav-link-number">3.7</span> Process Management</a>
+                        <a href="3-8-system-admin.html" class="nav-link"><span class="nav-link-number">3.8</span> System Administration</a>
+                        <a href="3-9-regex.html" class="nav-link"><span class="nav-link-number">3.9</span> Regular Expressions</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting</a>
+                        <a href="5-8-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scanning</a>
+                        <a href="5-9-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.9</span> Digital Forensics</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.12</span> Compliance Automation</a>
+                        <a href="5-13-log-analysis.html" class="nav-link"><span class="nav-link-number">5.13</span> Log Analysis</a>
+                        <a href="5-14-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.14</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Cross-Platform Integration -->
+                <div class="nav-section collapsed" data-section="integration">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform Integration
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-integration.html" class="nav-link"><span class="nav-link-number">6.1</span> Python Integration</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud & DevOps -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud & DevOps
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Hero Section -->
+                <div class="hero">
+                    <h1>PowerShell & Scripting</h1>
+                    <p class="hero-subtitle">Ultimate Guide for Security Engineers</p>
+                    <p class="hero-description">
+                        Master PowerShell, Bash, and security automation with hands-on examples, 
+                        real-world projects, and interview preparation.
+                    </p>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">52</div>
+                        <div class="stat-label">Content Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Sections</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Code Examples</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Real Projects</div>
+                    </div>
+                </div>
+
+                <!-- Section Cards -->
+                <h2>Sections Overview</h2>
+                
+                <div class="section-cards">
+                    <!-- Fundamentals -->
+                    <div class="section-card fundamentals">
+                        <div class="section-card-icon">📚</div>
+                        <h3 class="section-card-title">Scripting Fundamentals</h3>
+                        <p class="section-card-description">
+                            Core concepts, environment setup, and choosing the right tool.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">3 pages</span>
+                            <a href="1-1-scripting-overview.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+
+                    <!-- PowerShell -->
+                    <div class="section-card powershell">
+                        <div class="section-card-icon">🔷</div>
+                        <h3 class="section-card-title">PowerShell Deep Dive</h3>
+                        <p class="section-card-description">
+                            Pipeline, objects, WMI/CIM, Active Directory, networking, and more.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">16 pages</span>
+                            <a href="2-1-powershell-intro.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+
+                    <!-- Bash -->
+                    <div class="section-card bash">
+                        <div class="section-card-icon">🐧</div>
+                        <h3 class="section-card-title">Bash Scripting</h3>
+                        <p class="section-card-description">
+                            Linux scripting, text processing, system administration, and networking.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">10 pages</span>
+                            <a href="3-1-bash-intro.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+
+                    <!-- Security -->
+                    <div class="section-card security">
+                        <div class="section-card-icon">🛡️</div>
+                        <h3 class="section-card-title">Security Automation</h3>
+                        <p class="section-card-description">
+                            Incident response, threat hunting, SIEM, EDR, forensics, and compliance.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">9 pages</span>
+                            <a href="5-6-incident-response-scripts.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+
+                    <!-- Cloud -->
+                    <div class="section-card cloud">
+                        <div class="section-card-icon">☁️</div>
+                        <h3 class="section-card-title">Cloud & Integration</h3>
+                        <p class="section-card-description">
+                            Azure automation, Python integration, and cross-platform scripting.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">2 pages</span>
+                            <a href="7-1-azure-automation.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+
+                    <!-- Projects -->
+                    <div class="section-card projects">
+                        <div class="section-card-icon">🚀</div>
+                        <h3 class="section-card-title">Real-World Projects</h3>
+                        <p class="section-card-description">
+                            Build a security dashboard, log aggregator, and asset inventory system.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">3 pages</span>
+                            <a href="8-1-security-dashboard.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+
+                    <!-- Troubleshooting -->
+                    <div class="section-card troubleshooting">
+                        <div class="section-card-icon">🔧</div>
+                        <h3 class="section-card-title">Troubleshooting</h3>
+                        <p class="section-card-description">
+                            Common errors, debugging techniques, and performance optimization.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">3 pages</span>
+                            <a href="9-1-common-errors.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+
+                    <!-- Reference -->
+                    <div class="section-card reference">
+                        <div class="section-card-icon">📋</div>
+                        <h3 class="section-card-title">Best Practices & Reference</h3>
+                        <p class="section-card-description">
+                            Cheat sheets, quick reference cards, and interview preparation.
+                        </p>
+                        <div class="section-card-meta">
+                            <span class="section-card-pages">2 pages</span>
+                            <a href="10-5-cheat-sheets.html" class="section-card-link">Start Learning →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Start Guide -->
+                <h2 class="mt-4">Quick Start</h2>
+                
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🚀</div>
+                        <div class="info-box-title">Getting Started</div>
+                    </div>
+                    <ul>
+                        <li><strong>New to scripting?</strong> Start with <a href="1-1-scripting-overview.html">Scripting Fundamentals</a></li>
+                        <li><strong>Windows admin?</strong> Jump to <a href="2-1-powershell-intro.html">PowerShell Deep Dive</a></li>
+                        <li><strong>Linux/security focused?</strong> Begin with <a href="3-1-bash-intro.html">Bash Scripting</a></li>
+                        <li><strong>Ready for security automation?</strong> Explore <a href="5-6-incident-response-scripts.html">Security Automation</a></li>
+                        <li><strong>Preparing for interviews?</strong> Check <a href="10-6-interview-preparation.html">Interview Preparation</a></li>
+                    </ul>
+                </div>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: The Scripting Triad</div>
+                    </div>
+                    <ul>
+                        <li><strong>PowerShell</strong> = Swiss Army Knife (objects, .NET, Windows-focused)</li>
+                        <li><strong>Bash</strong> = Unix Philosophy (text streams, pipes, Linux/Mac)</li>
+                        <li><strong>Python</strong> = Integration King (APIs, analysis, cross-platform)</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Choose based on: target OS, task complexity, and team expertise</em>
+                    </p>
+                </div>
+
+                <!-- Technology Stack -->
+                <h2 class="mt-4">Technologies Covered</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Technologies</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Languages</strong></td>
+                                <td>PowerShell 5.1/7.x, Bash, Batch/CMD, Python (integration)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Platforms</strong></td>
+                                <td>Windows, Linux, macOS, WSL, Azure</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Security Tools</strong></td>
+                                <td>Microsoft Defender, Cortex XDR, Splunk, Sentinel</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Integration</strong></td>
+                                <td>REST APIs, Active Directory, WMI/CIM, SSH</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Focus Areas</strong></td>
+                                <td>SOC Operations, Incident Response, Threat Hunting, Forensics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <div></div>
+                    <a href="1-1-scripting-overview.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">1.1 Scripting Overview →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.3 Asset Inventory Project - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link active"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                        <a href="8-4-vulnerability-scanner.html" class="nav-link"><span class="nav-link-number">8.4</span> Vulnerability Scanner</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#projects">Real-World Projects</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Asset Inventory</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>8.3 Asset Inventory Project</h1>
+
+                <!-- Project Overview -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🚀</div>
+                        <div class="info-box-title">Project Overview</div>
+                    </div>
+                    <ul>
+                        <li><strong>Goal:</strong> Automated discovery and inventory of network assets</li>
+                        <li><strong>Skills:</strong> Network scanning, WMI/CIM, Active Directory</li>
+                        <li><strong>Output:</strong> CSV/JSON inventory with hardware and software details</li>
+                        <li><strong>Time:</strong> ~2-3 hours to build complete system</li>
+                    </ul>
+                </div>
+
+                <!-- Architecture -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Asset Inventory Architecture</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       ASSET INVENTORY SYSTEM                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+  │    Active    │     │   Network    │     │    Manual    │
+  │  Directory   │     │    Scan      │     │    Input     │
+  └──────┬───────┘     └──────┬───────┘     └──────┬───────┘
+         │                    │                    │
+         └────────────────────┼────────────────────┘
+                              │
+                    ┌─────────▼─────────┐
+                    │   Asset Collector │
+                    │                   │
+                    │  • WMI/CIM Query  │
+                    │  • Software Enum  │
+                    │  • Network Info   │
+                    └─────────┬─────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+       ┌───────────┐   ┌───────────┐   ┌───────────┐
+       │    CSV    │   │   JSON    │   │   HTML    │
+       │  Export   │   │  Database │   │  Report   │
+       └───────────┘   └───────────┘   └───────────┘
+</pre>
+                </div>
+
+                <!-- Discovery Functions -->
+                <h2>Step 1: Asset Discovery</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Asset Discovery
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-NetworkAssets</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Discovers assets via multiple methods.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Subnet</span> = <span class="token-string">"192.168.1"</span>,
+        [int]<span class="token-variable">$StartIP</span> = <span class="token-number">1</span>,
+        [int]<span class="token-variable">$EndIP</span> = <span class="token-number">254</span>,
+        [switch]<span class="token-variable">$UseAD</span>
+    )
+    
+    <span class="token-variable">$Assets</span> = @()
+    
+    <span class="token-comment"># Method 1: Active Directory (if available)</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$UseAD</span>) {
+        Write-Host <span class="token-string">"[*] Querying Active Directory..."</span> -ForegroundColor Cyan
+        <span class="token-keyword">try</span> {
+            <span class="token-variable">$ADComputers</span> = <span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> * <span class="token-parameter">-Properties</span> Name, DNSHostName, OperatingSystem, LastLogonDate
+            <span class="token-variable">$Assets</span> += <span class="token-variable">$ADComputers</span> | <span class="token-cmdlet">ForEach-Object</span> {
+                [PSCustomObject]@{
+                    Name = <span class="token-variable">$_</span>.Name
+                    IPAddress = <span class="token-variable">$null</span>
+                    Source = <span class="token-string">"ActiveDirectory"</span>
+                    OS = <span class="token-variable">$_</span>.OperatingSystem
+                    LastSeen = <span class="token-variable">$_</span>.LastLogonDate
+                }
+            }
+        } <span class="token-keyword">catch</span> {
+            Write-Warning <span class="token-string">"AD query failed: $_"</span>
+        }
+    }
+    
+    <span class="token-comment"># Method 2: Network scan</span>
+    Write-Host <span class="token-string">"[*] Scanning network $Subnet.$StartIP-$EndIP..."</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Jobs</span> = <span class="token-variable">$StartIP</span>..<span class="token-variable">$EndIP</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$IP</span> = <span class="token-string">"$Subnet.$_"</span>
+        Start-Job -ScriptBlock {
+            <span class="token-keyword">param</span>(<span class="token-variable">$IP</span>)
+            <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$IP</span> -Count <span class="token-number">1</span> <span class="token-parameter">-Quiet</span> -TimeoutSeconds <span class="token-number">1</span>) {
+                <span class="token-keyword">try</span> {
+                    <span class="token-variable">$DNS</span> = [System.Net.Dns]::GetHostEntry(<span class="token-variable">$IP</span>).HostName
+                } <span class="token-keyword">catch</span> { <span class="token-variable">$DNS</span> = <span class="token-variable">$null</span> }
+                
+                [PSCustomObject]@{
+                    IPAddress = <span class="token-variable">$IP</span>
+                    Hostname = <span class="token-variable">$DNS</span>
+                    Online = <span class="token-variable">$true</span>
+                }
+            }
+        } -ArgumentList <span class="token-variable">$IP</span>
+    }
+    
+    <span class="token-variable">$ScanResults</span> = <span class="token-variable">$Jobs</span> | Wait-Job | Receive-Job
+    <span class="token-variable">$Jobs</span> | Remove-Job
+    
+    <span class="token-variable">$Assets</span> += <span class="token-variable">$ScanResults</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> } | <span class="token-cmdlet">ForEach-Object</span> {
+        [PSCustomObject]@{
+            Name = <span class="token-variable">$_</span>.Hostname
+            IPAddress = <span class="token-variable">$_</span>.IPAddress
+            Source = <span class="token-string">"NetworkScan"</span>
+            OS = <span class="token-variable">$null</span>
+            LastSeen = Get-Date
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Assets</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- System Info Collection -->
+                <h2>Step 2: System Information Collection</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - System Info Collection
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-AssetDetails</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects detailed system information from a remote computer.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [string]<span class="token-variable">$ComputerName</span>,
+        
+        [PSCredential]<span class="token-variable">$Credential</span>
+    )
+    
+    <span class="token-keyword">process</span> {
+        Write-Verbose <span class="token-string">"Collecting details from $ComputerName"</span>
+        
+        <span class="token-variable">$CimParams</span> = @{
+            ComputerName = <span class="token-variable">$ComputerName</span>
+            ErrorAction = <span class="token-string">'Stop'</span>
+        }
+        <span class="token-keyword">if</span> (<span class="token-variable">$Credential</span>) { <span class="token-variable">$CimParams</span>.Credential = <span class="token-variable">$Credential</span> }
+        
+        <span class="token-keyword">try</span> {
+            <span class="token-comment"># Computer System</span>
+            <span class="token-variable">$CS</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_ComputerSystem @CimParams
+            
+            <span class="token-comment"># Operating System</span>
+            <span class="token-variable">$OS</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_OperatingSystem @CimParams
+            
+            <span class="token-comment"># BIOS</span>
+            <span class="token-variable">$BIOS</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_BIOS @CimParams
+            
+            <span class="token-comment"># Processor</span>
+            <span class="token-variable">$CPU</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_Processor @CimParams | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">1</span>
+            
+            <span class="token-comment"># Memory</span>
+            <span class="token-variable">$RAM</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_PhysicalMemory @CimParams | 
+                <span class="token-cmdlet">Measure-Object</span> Capacity <span class="token-parameter">-Sum</span>
+            
+            <span class="token-comment"># Disk</span>
+            <span class="token-variable">$Disk</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_LogicalDisk @CimParams | 
+                <span class="token-cmdlet">Where-Object</span> DriveType <span class="token-operator">-eq</span> <span class="token-number">3</span>
+            
+            <span class="token-comment"># Network</span>
+            <span class="token-variable">$NIC</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_NetworkAdapterConfiguration @CimParams | 
+                <span class="token-cmdlet">Where-Object</span> IPEnabled
+            
+            [PSCustomObject]@{
+                ComputerName = <span class="token-variable">$ComputerName</span>
+                Manufacturer = <span class="token-variable">$CS</span>.Manufacturer
+                Model = <span class="token-variable">$CS</span>.Model
+                SerialNumber = <span class="token-variable">$BIOS</span>.SerialNumber
+                OSName = <span class="token-variable">$OS</span>.Caption
+                OSVersion = <span class="token-variable">$OS</span>.Version
+                OSBuild = <span class="token-variable">$OS</span>.BuildNumber
+                LastBoot = <span class="token-variable">$OS</span>.LastBootUpTime
+                Processor = <span class="token-variable">$CPU</span>.Name
+                Cores = <span class="token-variable">$CPU</span>.NumberOfCores
+                RAMTotal_GB = [math]::Round(<span class="token-variable">$RAM</span>.Sum / <span class="token-number">1</span>GB, <span class="token-number">2</span>)
+                DiskTotal_GB = [math]::Round((<span class="token-variable">$Disk</span>.Size | <span class="token-cmdlet">Measure-Object</span> <span class="token-parameter">-Sum</span>).Sum / <span class="token-number">1</span>GB, <span class="token-number">2</span>)
+                DiskFree_GB = [math]::Round((<span class="token-variable">$Disk</span>.FreeSpace | <span class="token-cmdlet">Measure-Object</span> <span class="token-parameter">-Sum</span>).Sum / <span class="token-number">1</span>GB, <span class="token-number">2</span>)
+                IPAddresses = (<span class="token-variable">$NIC</span>.IPAddress | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> }) <span class="token-operator">-join</span> <span class="token-string">', '</span>
+                MACAddresses = (<span class="token-variable">$NIC</span>.MACAddress | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> }) <span class="token-operator">-join</span> <span class="token-string">', '</span>
+                CollectedAt = Get-Date
+            }
+        } <span class="token-keyword">catch</span> {
+            Write-Warning <span class="token-string">"Failed to collect from $ComputerName : $_"</span>
+            [PSCustomObject]@{
+                ComputerName = <span class="token-variable">$ComputerName</span>
+                Error = <span class="token-variable">$_</span>.Exception.Message
+                CollectedAt = Get-Date
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Software Inventory -->
+                <h2>Step 3: Software Inventory</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Software Inventory
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-InstalledSoftware</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Gets installed software from remote computer.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$ComputerName</span>
+    )
+    
+    <span class="token-variable">$RegistryPaths</span> = @(
+        <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*"</span>
+        <span class="token-string">"HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"</span>
+    )
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$ComputerName</span> <span class="token-parameter">-ScriptBlock</span> {
+            <span class="token-keyword">param</span>(<span class="token-variable">$Paths</span>)
+            <span class="token-keyword">foreach</span> (<span class="token-variable">$Path</span> <span class="token-keyword">in</span> <span class="token-variable">$Paths</span>) {
+                <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-variable">$Path</span> <span class="token-parameter">-ErrorAction</span> SilentlyContinue | 
+                    <span class="token-cmdlet">Where-Object</span> DisplayName |
+                    <span class="token-cmdlet">Select-Object</span> DisplayName, DisplayVersion, Publisher, InstallDate
+            }
+        } -ArgumentList (,<span class="token-variable">$RegistryPaths</span>) | <span class="token-cmdlet">ForEach-Object</span> {
+            [PSCustomObject]@{
+                ComputerName = <span class="token-variable">$ComputerName</span>
+                Software = <span class="token-variable">$_</span>.DisplayName
+                Version = <span class="token-variable">$_</span>.DisplayVersion
+                Publisher = <span class="token-variable">$_</span>.Publisher
+                InstallDate = <span class="token-variable">$_</span>.InstallDate
+            }
+        }
+    } <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"Failed to get software from $ComputerName"</span>
+    }
+}
+
+<span class="token-comment"># Security check: Find specific software</span>
+<span class="token-keyword">function</span> <span class="token-function">Find-SecuritySoftware</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$ComputerName</span>)
+    
+    <span class="token-variable">$SecurityProducts</span> = @(<span class="token-string">"*Defender*"</span>, <span class="token-string">"*Norton*"</span>, <span class="token-string">"*McAfee*"</span>, <span class="token-string">"*Symantec*"</span>, <span class="token-string">"*CrowdStrike*"</span>)
+    
+    <span class="token-variable">$Software</span> = Get-InstalledSoftware <span class="token-variable">$ComputerName</span>
+    <span class="token-variable">$Software</span> | <span class="token-cmdlet">Where-Object</span> {
+        <span class="token-variable">$Name</span> = <span class="token-variable">$_</span>.Software
+        <span class="token-variable">$SecurityProducts</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$Name</span> <span class="token-operator">-like</span> <span class="token-variable">$_</span> }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Main Inventory Script -->
+                <h2>Step 4: Main Inventory Script</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Main Inventory
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-AssetInventory</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Complete asset inventory collection.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string[]]<span class="token-variable">$ComputerNames</span>,
+        [string]<span class="token-variable">$Subnet</span>,
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\Inventory_$(Get-Date -Format 'yyyyMMdd')"</span>,
+        [switch]<span class="token-variable">$IncludeSoftware</span>
+    )
+    
+    <span class="token-cmdlet">New-Item</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | <span class="token-cmdlet">Out-Null</span>
+    
+    <span class="token-comment"># Get target list</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$Subnet</span>) {
+        Write-Host <span class="token-string">"[*] Discovering assets on $Subnet..."</span> -ForegroundColor Cyan
+        <span class="token-variable">$Discovered</span> = Get-NetworkAssets <span class="token-parameter">-Subnet</span> <span class="token-variable">$Subnet</span>
+        <span class="token-variable">$ComputerNames</span> = <span class="token-variable">$Discovered</span> | <span class="token-cmdlet">Where-Object</span> IPAddress | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-ExpandProperty</span> IPAddress
+    }
+    
+    Write-Host <span class="token-string">"[*] Collecting details from $($ComputerNames.Count) assets..."</span> -ForegroundColor Cyan
+    
+    <span class="token-comment"># Collect hardware info</span>
+    <span class="token-variable">$HardwareInventory</span> = <span class="token-variable">$ComputerNames</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        Write-Host <span class="token-string">"    Processing $_"</span>
+        Get-AssetDetails <span class="token-parameter">-ComputerName</span> <span class="token-variable">$_</span>
+    }
+    
+    <span class="token-comment"># Export hardware</span>
+    <span class="token-variable">$HardwareInventory</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\hardware.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    <span class="token-variable">$HardwareInventory</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">3</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"$OutputPath\hardware.json"</span>
+    
+    <span class="token-comment"># Collect software if requested</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$IncludeSoftware</span>) {
+        Write-Host <span class="token-string">"[*] Collecting software inventory..."</span> -ForegroundColor Cyan
+        <span class="token-variable">$SoftwareInventory</span> = <span class="token-variable">$ComputerNames</span> | <span class="token-cmdlet">ForEach-Object</span> {
+            Get-InstalledSoftware <span class="token-parameter">-ComputerName</span> <span class="token-variable">$_</span>
+        }
+        <span class="token-variable">$SoftwareInventory</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\software.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    }
+    
+    <span class="token-comment"># Generate summary</span>
+    <span class="token-variable">$Summary</span> = [PSCustomObject]@{
+        ScanDate = Get-Date
+        TotalAssets = <span class="token-variable">$HardwareInventory</span>.Count
+        SuccessfulScans = (<span class="token-variable">$HardwareInventory</span> | <span class="token-cmdlet">Where-Object</span> { -not <span class="token-variable">$_</span>.Error }).Count
+        FailedScans = (<span class="token-variable">$HardwareInventory</span> | <span class="token-cmdlet">Where-Object</span> Error).Count
+        OSBreakdown = <span class="token-variable">$HardwareInventory</span> | <span class="token-cmdlet">Group-Object</span> OSName | <span class="token-cmdlet">Select-Object</span> Name, Count
+    }
+    
+    <span class="token-variable">$Summary</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">3</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"$OutputPath\summary.json"</span>
+    
+    Write-Host <span class="token-string">"`n[+] Inventory complete: $OutputPath"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"    Total: $($Summary.TotalAssets) | Success: $($Summary.SuccessfulScans) | Failed: $($Summary.FailedScans)"</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$HardwareInventory</span>
+}
+
+<span class="token-comment"># Usage</span>
+<span class="token-variable">$Inventory</span> = Invoke-AssetInventory <span class="token-parameter">-Subnet</span> <span class="token-string">"192.168.1"</span> <span class="token-parameter">-IncludeSoftware</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Asset Inventory</div>
+                    </div>
+                    <ul>
+                        <li><strong>Schedule regular scans:</strong> Weekly or monthly full inventory</li>
+                        <li><strong>Use parallelization:</strong> Jobs or runspaces for large networks</li>
+                        <li><strong>Handle failures gracefully:</strong> Don't stop on single failures</li>
+                        <li><strong>Track changes:</strong> Compare current to previous inventory</li>
+                        <li><strong>Secure credentials:</strong> Use credential manager for stored creds</li>
+                        <li><strong>Export multiple formats:</strong> CSV for Excel, JSON for automation</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Combine AD, network scan, and manual input for complete coverage</li>
+                    <li>Use CIM/WMI for hardware details (Win32_* classes)</li>
+                    <li>Query registry for installed software</li>
+                    <li>Export to CSV and JSON for flexibility</li>
+                    <li>Track security software presence for compliance</li>
+                    <li>Great project for demonstrating automation skills</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="8-2-log-aggregator.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 8.2 Log Aggregator</span>
+                    </a>
+                    <a href="8-4-vulnerability-scanner.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">8.4 Vulnerability Scanner →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

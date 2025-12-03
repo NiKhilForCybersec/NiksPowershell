@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.1 Python Integration - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="integration">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform Integration
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-integration.html" class="nav-link active"><span class="nav-link-number">6.1</span> Python Integration</a>
+                        <a href="6-2-api-automation.html" class="nav-link"><span class="nav-link-number">6.2</span> API Automation</a>
+                        <a href="6-3-data-formats.html" class="nav-link"><span class="nav-link-number">6.3</span> Data Formats</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#integration">Cross-Platform Integration</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Python Integration</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>6.1 Python Integration</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Call Python scripts from PowerShell and Bash</li>
+                        <li>Pass data between languages</li>
+                        <li>Use Python libraries for security tasks</li>
+                        <li>Build hybrid automation workflows</li>
+                    </ul>
+                </div>
+
+                <!-- When to Use What -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">When to Use Each Language</div>
+                    </div>
+                    <ul>
+                        <li><strong>PowerShell</strong> → Windows admin, AD, WMI, registry</li>
+                        <li><strong>Bash</strong> → Linux admin, text processing, quick scripts</li>
+                        <li><strong>Python</strong> → Complex logic, APIs, data analysis, ML, cross-platform</li>
+                        <li><strong>Combined</strong> → Best of all worlds for enterprise security</li>
+                    </ul>
+                </div>
+
+                <!-- Calling Python from PowerShell -->
+                <h2>Calling Python from PowerShell</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Running Python Scripts
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple execution</span>
+python script.py
+
+<span class="token-comment"># Capture output</span>
+<span class="token-variable">$Output</span> = python script.py
+Write-Host <span class="token-string">"Python returned: $Output"</span>
+
+<span class="token-comment"># Pass arguments</span>
+<span class="token-variable">$Target</span> = <span class="token-string">"192.168.1.100"</span>
+<span class="token-variable">$Result</span> = python scanner.py --target <span class="token-variable">$Target</span> --ports <span class="token-string">"22,80,443"</span>
+
+<span class="token-comment"># Pass data via pipeline (stdin)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">ConvertTo-Json</span> | python process_analyzer.py
+
+<span class="token-comment"># Run Python code inline</span>
+<span class="token-variable">$PythonCode</span> = @<span class="token-string">"
+import sys
+import json
+
+data = json.loads(sys.stdin.read())
+for proc in data[:5]:
+    print(f"Process: {proc['ProcessName']}, PID: {proc['Id']}")
+"@</span>
+
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> ProcessName, Id | <span class="token-cmdlet">ConvertTo-Json</span> | 
+    python -c <span class="token-variable">$PythonCode</span>
+
+<span class="token-comment"># Check Python version</span>
+<span class="token-variable">$PythonVersion</span> = python --version <span class="token-number">2</span>>&<span class="token-number">1</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$PythonVersion</span> <span class="token-operator">-match</span> <span class="token-string">'Python 3'</span>) {
+    Write-Host <span class="token-string">"Python 3 available"</span>
+}
+
+<span class="token-comment"># Handle JSON output from Python</span>
+<span class="token-variable">$JsonOutput</span> = python get_data.py | <span class="token-cmdlet">ConvertFrom-Json</span>
+<span class="token-variable">$JsonOutput</span>.results | <span class="token-cmdlet">ForEach-Object</span> {
+    Write-Host <span class="token-string">"Found: $($_.name)"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Calling Python from Bash -->
+                <h2>Calling Python from Bash</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Running Python Scripts
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Simple execution</span>
+python3 script.py
+
+<span class="token-comment"># Capture output</span>
+result=<span class="token-variable">$(</span>python3 script.py<span class="token-variable">)</span>
+<span class="token-function">echo</span> <span class="token-string">"Python returned: $result"</span>
+
+<span class="token-comment"># Pass arguments</span>
+target=<span class="token-string">"192.168.1.100"</span>
+python3 scanner.py --target <span class="token-string">"$target"</span> --ports <span class="token-string">"22,80,443"</span>
+
+<span class="token-comment"># Pass data via stdin</span>
+<span class="token-function">cat</span> /var/log/auth.log | python3 log_analyzer.py
+
+<span class="token-comment"># Pass environment variables</span>
+<span class="token-variable">export</span> API_KEY=<span class="token-string">"secret123"</span>
+python3 api_client.py
+
+<span class="token-comment"># Run Python one-liner</span>
+python3 -c <span class="token-string">"import socket; print(socket.gethostname())"</span>
+
+<span class="token-comment"># Parse JSON output with jq</span>
+python3 get_data.py | <span class="token-function">jq</span> <span class="token-string">'.results[] | .name'</span>
+
+<span class="token-comment"># Conditional based on Python exit code</span>
+<span class="token-keyword">if</span> python3 check_compliance.py; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Compliance check passed"</span>
+<span class="token-keyword">else</span>
+    <span class="token-function">echo</span> <span class="token-string">"Compliance check failed"</span>
+    <span class="token-function">exit</span> <span class="token-number">1</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Here document for inline Python</span>
+python3 &lt;&lt;EOF
+import os
+import json
+
+hostname = os.uname().nodename
+print(json.dumps({"hostname": hostname}))
+EOF</code></pre>
+                    </div>
+                </div>
+
+                <!-- Python Security Scripts -->
+                <h2>Python Security Scripts</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language python">
+                            <span class="code-language-icon">🐍</span>
+                            Python - Port Scanner
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/usr/bin/env python3</span>
+<span class="token-comment"># port_scanner.py - Simple port scanner for shell integration</span>
+
+<span class="token-keyword">import</span> argparse
+<span class="token-keyword">import</span> socket
+<span class="token-keyword">import</span> json
+<span class="token-keyword">import</span> sys
+<span class="token-keyword">from</span> concurrent.futures <span class="token-keyword">import</span> ThreadPoolExecutor
+
+<span class="token-keyword">def</span> <span class="token-function">scan_port</span>(host, port, timeout=<span class="token-number">1</span>):
+    <span class="token-keyword">try</span>:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        result = sock.connect_ex((host, port))
+        sock.close()
+        <span class="token-keyword">return</span> port <span class="token-keyword">if</span> result == <span class="token-number">0</span> <span class="token-keyword">else</span> <span class="token-keyword">None</span>
+    <span class="token-keyword">except</span>:
+        <span class="token-keyword">return</span> <span class="token-keyword">None</span>
+
+<span class="token-keyword">def</span> <span class="token-function">main</span>():
+    parser = argparse.ArgumentParser(description=<span class="token-string">'Port Scanner'</span>)
+    parser.add_argument(<span class="token-string">'--target'</span>, required=<span class="token-keyword">True</span>, help=<span class="token-string">'Target IP/hostname'</span>)
+    parser.add_argument(<span class="token-string">'--ports'</span>, default=<span class="token-string">'22,80,443,3389'</span>, help=<span class="token-string">'Comma-separated ports'</span>)
+    parser.add_argument(<span class="token-string">'--json'</span>, action=<span class="token-string">'store_true'</span>, help=<span class="token-string">'Output as JSON'</span>)
+    args = parser.parse_args()
+    
+    ports = [<span class="token-function">int</span>(p) <span class="token-keyword">for</span> p <span class="token-keyword">in</span> args.ports.split(<span class="token-string">','</span>)]
+    
+    <span class="token-keyword">with</span> ThreadPoolExecutor(max_workers=<span class="token-number">50</span>) <span class="token-keyword">as</span> executor:
+        results = executor.map(<span class="token-keyword">lambda</span> p: scan_port(args.target, p), ports)
+    
+    open_ports = [p <span class="token-keyword">for</span> p <span class="token-keyword">in</span> results <span class="token-keyword">if</span> p]
+    
+    <span class="token-keyword">if</span> args.json:
+        output = {<span class="token-string">"target"</span>: args.target, <span class="token-string">"open_ports"</span>: open_ports}
+        <span class="token-function">print</span>(json.dumps(output))
+    <span class="token-keyword">else</span>:
+        <span class="token-keyword">for</span> port <span class="token-keyword">in</span> open_ports:
+            <span class="token-function">print</span>(<span class="token-string">f"<span class="token-variable">{args.target}</span>:<span class="token-variable">{port}</span> OPEN"</span>)
+    
+    sys.exit(<span class="token-number">0</span> <span class="token-keyword">if</span> open_ports <span class="token-keyword">else</span> <span class="token-number">1</span>)
+
+<span class="token-keyword">if</span> __name__ == <span class="token-string">'__main__'</span>:
+    main()</code></pre>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language python">
+                            <span class="code-language-icon">🐍</span>
+                            Python - Log Analyzer
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/usr/bin/env python3</span>
+<span class="token-comment"># log_analyzer.py - Analyze logs from stdin</span>
+
+<span class="token-keyword">import</span> sys
+<span class="token-keyword">import</span> re
+<span class="token-keyword">import</span> json
+<span class="token-keyword">from</span> collections <span class="token-keyword">import</span> Counter
+
+<span class="token-keyword">def</span> <span class="token-function">analyze_auth_log</span>(lines):
+    <span class="token-string">"""Analyze authentication log entries."""</span>
+    failed_logins = Counter()
+    successful_logins = Counter()
+    
+    failed_pattern = re.<span class="token-function">compile</span>(<span class="token-string">r'Failed password for (\S+) from (\S+)'</span>)
+    success_pattern = re.<span class="token-function">compile</span>(<span class="token-string">r'Accepted \S+ for (\S+) from (\S+)'</span>)
+    
+    <span class="token-keyword">for</span> line <span class="token-keyword">in</span> lines:
+        failed_match = failed_pattern.search(line)
+        <span class="token-keyword">if</span> failed_match:
+            user, ip = failed_match.groups()
+            failed_logins[ip] += <span class="token-number">1</span>
+        
+        success_match = success_pattern.search(line)
+        <span class="token-keyword">if</span> success_match:
+            user, ip = success_match.groups()
+            successful_logins[user] += <span class="token-number">1</span>
+    
+    <span class="token-keyword">return</span> {
+        <span class="token-string">"failed_by_ip"</span>: <span class="token-function">dict</span>(failed_logins.most_common(<span class="token-number">10</span>)),
+        <span class="token-string">"successful_by_user"</span>: <span class="token-function">dict</span>(successful_logins.most_common(<span class="token-number">10</span>)),
+        <span class="token-string">"total_failed"</span>: <span class="token-function">sum</span>(failed_logins.values()),
+        <span class="token-string">"total_success"</span>: <span class="token-function">sum</span>(successful_logins.values()),
+        <span class="token-string">"unique_attackers"</span>: <span class="token-function">len</span>(failed_logins)
+    }
+
+<span class="token-keyword">if</span> __name__ == <span class="token-string">'__main__'</span>:
+    lines = sys.stdin.readlines()
+    results = analyze_auth_log(lines)
+    <span class="token-function">print</span>(json.dumps(results, indent=<span class="token-number">2</span>))</code></pre>
+                    </div>
+                </div>
+
+                <!-- Hybrid Workflow -->
+                <h2>Hybrid Workflow Example</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Hybrid Security Scan
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Hybrid workflow: PowerShell orchestration + Python analysis</span>
+
+<span class="token-keyword">function</span> <span class="token-function">Invoke-HybridSecurityScan</span> {
+    <span class="token-keyword">param</span>(
+        [string[]]<span class="token-variable">$Targets</span>,
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\SecurityScan_$(Get-Date -Format 'yyyyMMdd')"</span>
+    )
+    
+    <span class="token-cmdlet">New-Item</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Force</span> | <span class="token-cmdlet">Out-Null</span>
+    
+    <span class="token-variable">$Results</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Target</span> <span class="token-keyword">in</span> <span class="token-variable">$Targets</span>) {
+        Write-Host <span class="token-string">"[*] Scanning $Target..."</span> -ForegroundColor Cyan
+        
+        <span class="token-comment"># Step 1: PowerShell - Get Windows info if reachable</span>
+        <span class="token-variable">$WinInfo</span> = <span class="token-keyword">try</span> {
+            <span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Target</span> <span class="token-parameter">-ScriptBlock</span> {
+                @{
+                    Hostname = <span class="token-variable">$env:COMPUTERNAME</span>
+                    OS = (<span class="token-cmdlet">Get-CimInstance</span> Win32_OperatingSystem).Caption
+                    Services = (<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>).Count
+                }
+            } -ErrorAction SilentlyContinue
+        } <span class="token-keyword">catch</span> { <span class="token-variable">$null</span> }
+        
+        <span class="token-comment"># Step 2: Python - Port scan (works for any target)</span>
+        <span class="token-variable">$PortScan</span> = python port_scanner.py --target <span class="token-variable">$Target</span> --ports <span class="token-string">"22,80,443,3389,5985"</span> --json | 
+            <span class="token-cmdlet">ConvertFrom-Json</span>
+        
+        <span class="token-comment"># Step 3: Python - Vulnerability check</span>
+        <span class="token-variable">$VulnCheck</span> = python vuln_checker.py --target <span class="token-variable">$Target</span> --json 2><span class="token-variable">$null</span> | 
+            <span class="token-cmdlet">ConvertFrom-Json</span>
+        
+        <span class="token-comment"># Combine results</span>
+        <span class="token-variable">$Results</span> += [PSCustomObject]@{
+            Target = <span class="token-variable">$Target</span>
+            WindowsInfo = <span class="token-variable">$WinInfo</span>
+            OpenPorts = <span class="token-variable">$PortScan</span>.open_ports
+            Vulnerabilities = <span class="token-variable">$VulnCheck</span>.findings
+            ScanTime = Get-Date
+        }
+    }
+    
+    <span class="token-comment"># Export results</span>
+    <span class="token-variable">$Results</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">5</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"$OutputPath\scan_results.json"</span>
+    
+    <span class="token-comment"># Generate HTML report with Python</span>
+    <span class="token-variable">$Results</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">5</span> | 
+        python generate_report.py --output <span class="token-string">"$OutputPath\report.html"</span>
+    
+    Write-Host <span class="token-string">"[+] Scan complete: $OutputPath"</span> -ForegroundColor Green
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}
+
+<span class="token-comment"># Usage</span>
+<span class="token-variable">$Targets</span> = @(<span class="token-string">"192.168.1.10"</span>, <span class="token-string">"192.168.1.20"</span>, <span class="token-string">"192.168.1.30"</span>)
+Invoke-HybridSecurityScan <span class="token-parameter">-Targets</span> <span class="token-variable">$Targets</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Language Integration</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use JSON for data exchange:</strong> Universal format between languages</li>
+                        <li><strong>Check return codes:</strong> Handle Python script failures properly</li>
+                        <li><strong>Virtual environments:</strong> Manage Python dependencies cleanly</li>
+                        <li><strong>Path handling:</strong> Use full paths or verify Python is in PATH</li>
+                        <li><strong>Error streams:</strong> Capture stderr separately from stdout</li>
+                        <li><strong>Play to strengths:</strong> Use each language where it excels</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "When would you use Python vs PowerShell?"</li>
+                        <li><strong>Strong Answer:</strong> PowerShell excels at Windows administration—AD queries, registry, WMI, Exchange. Bash is best for Linux admin and text processing. Python shines for complex logic, API integrations, data analysis, and cross-platform tools. In enterprise security, I often combine them: PowerShell collects Windows data, passes to Python for analysis/ML, then uses results for remediation actions.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Call Python scripts with <code>python script.py</code> and capture output</li>
+                    <li>Use JSON (<code>ConvertTo-Json</code>/<code>ConvertFrom-Json</code>) for data exchange</li>
+                    <li>Pass data via arguments, stdin, or environment variables</li>
+                    <li>Check Python exit codes for success/failure handling</li>
+                    <li>Combine strengths: PowerShell for Windows, Python for complex logic</li>
+                    <li>Build hybrid workflows for comprehensive security automation</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="5-14-malware-analysis.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 5.14 Malware Analysis</span>
+                    </a>
+                    <a href="6-2-api-automation.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">6.2 API Automation →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

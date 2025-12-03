@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.7 Threat Hunting Scripts - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link active"><span class="nav-link-number">5.7</span> Threat Hunting Scripts</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#security">Security Automation</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Threat Hunting Scripts</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>5.7 Threat Hunting Scripts</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Proactively search for indicators of compromise (IOCs)</li>
+                        <li>Detect persistence mechanisms and lateral movement</li>
+                        <li>Hunt for suspicious processes, services, and scheduled tasks</li>
+                        <li>Build repeatable threat hunting workflows</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Threat Hunting vs Incident Response</h2>
+                <p>
+                    While incident response is reactive (responding to known alerts), threat hunting is 
+                    proactive—searching for threats that may have evaded detection. PowerShell enables 
+                    rapid, scalable threat hunting across your environment.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: MITRE ATT&CK Hunt Categories</div>
+                    </div>
+                    <ul>
+                        <li><strong>Persistence</strong> → Registry run keys, scheduled tasks, services, startup folders</li>
+                        <li><strong>Execution</strong> → Suspicious PowerShell, WMI, scripting engines</li>
+                        <li><strong>Lateral Movement</strong> → RDP, PsExec, WMI remote, Pass-the-Hash</li>
+                        <li><strong>Discovery</strong> → AD enumeration, network scanning, system info</li>
+                        <li><strong>Collection</strong> → Archive creation, clipboard access, screen capture</li>
+                        <li><strong>Exfiltration</strong> → Large transfers, unusual protocols, DNS tunneling</li>
+                    </ul>
+                </div>
+
+                <!-- Persistence Hunting -->
+                <h2>Hunting for Persistence</h2>
+
+                <h3>Registry Run Keys</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Hunt Registry Persistence
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Find-RegistryPersistence</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Hunts for persistence in common registry locations.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>()
+    
+    <span class="token-comment"># Common persistence locations</span>
+    <span class="token-variable">$RegistryPaths</span> = @(
+        <span class="token-comment"># HKLM Run Keys</span>
+        <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"</span>,
+        <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"</span>,
+        <span class="token-string">"HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run"</span>,
+        
+        <span class="token-comment"># HKCU Run Keys</span>
+        <span class="token-string">"HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"</span>,
+        <span class="token-string">"HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"</span>,
+        
+        <span class="token-comment"># Services</span>
+        <span class="token-string">"HKLM:\SYSTEM\CurrentControlSet\Services"</span>,
+        
+        <span class="token-comment"># Winlogon</span>
+        <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"</span>,
+        
+        <span class="token-comment"># Image File Execution Options (IFEO) - debugger hijacking</span>
+        <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options"</span>,
+        
+        <span class="token-comment"># AppInit DLLs</span>
+        <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows"</span>
+    )
+    
+    <span class="token-variable">$Findings</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Path</span> <span class="token-keyword">in</span> <span class="token-variable">$RegistryPaths</span>) {
+        <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$Path</span>) {
+            <span class="token-keyword">try</span> {
+                <span class="token-variable">$Items</span> = <span class="token-cmdlet">Get-ItemProperty</span> <span class="token-variable">$Path</span> -ErrorAction SilentlyContinue
+                <span class="token-variable">$Properties</span> = <span class="token-variable">$Items</span>.PSObject.Properties | 
+                    <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Name <span class="token-operator">-notmatch</span> <span class="token-string">'^PS'</span> }
+                
+                <span class="token-keyword">foreach</span> (<span class="token-variable">$Prop</span> <span class="token-keyword">in</span> <span class="token-variable">$Properties</span>) {
+                    <span class="token-variable">$Findings</span> += [PSCustomObject]@{
+                        Location = <span class="token-variable">$Path</span>
+                        Name = <span class="token-variable">$Prop</span>.Name
+                        Value = <span class="token-variable">$Prop</span>.Value
+                        Suspicious = <span class="token-variable">$Prop</span>.Value <span class="token-operator">-match</span> <span class="token-string">'powershell|cmd|wscript|cscript|mshta|rundll32'</span>
+                    }
+                }
+            }
+            <span class="token-keyword">catch</span> { }
+        }
+    }
+    
+    <span class="token-comment"># Highlight suspicious entries</span>
+    <span class="token-variable">$SuspiciousFindings</span> = <span class="token-variable">$Findings</span> | <span class="token-cmdlet">Where-Object</span> Suspicious
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$SuspiciousFindings</span>) {
+        Write-Host <span class="token-string">"[!] Found $($SuspiciousFindings.Count) suspicious registry entries!"</span> -ForegroundColor Red
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Findings</span>
+}
+
+<span class="token-comment"># Run hunt</span>
+<span class="token-variable">$RegPersistence</span> = Find-RegistryPersistence
+<span class="token-variable">$RegPersistence</span> | <span class="token-cmdlet">Where-Object</span> Suspicious | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Scheduled Task Hunting</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Hunt Scheduled Tasks
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Find-SuspiciousScheduledTasks</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Hunts for suspicious scheduled tasks.
+    #&gt;</span>
+    
+    <span class="token-comment"># Suspicious patterns</span>
+    <span class="token-variable">$SuspiciousPatterns</span> = @(
+        <span class="token-string">'powershell'</span>,
+        <span class="token-string">'cmd\.exe.*/c'</span>,
+        <span class="token-string">'wscript'</span>,
+        <span class="token-string">'cscript'</span>,
+        <span class="token-string">'mshta'</span>,
+        <span class="token-string">'rundll32'</span>,
+        <span class="token-string">'regsvr32'</span>,
+        <span class="token-string">'certutil'</span>,
+        <span class="token-string">'bitsadmin'</span>,
+        <span class="token-string">'-enc'</span>,
+        <span class="token-string">'-encodedcommand'</span>,
+        <span class="token-string">'downloadstring'</span>,
+        <span class="token-string">'invoke-expression'</span>,
+        <span class="token-string">'iex'</span>,
+        <span class="token-string">'http://'</span>,
+        <span class="token-string">'https://'</span>
+    )
+    
+    <span class="token-variable">$Tasks</span> = <span class="token-cmdlet">Get-ScheduledTask</span> | <span class="token-cmdlet">Where-Object</span> State <span class="token-operator">-ne</span> <span class="token-string">'Disabled'</span>
+    
+    <span class="token-variable">$SuspiciousTasks</span> = <span class="token-keyword">foreach</span> (<span class="token-variable">$Task</span> <span class="token-keyword">in</span> <span class="token-variable">$Tasks</span>) {
+        <span class="token-variable">$Action</span> = <span class="token-variable">$Task</span>.Actions | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">1</span>
+        <span class="token-variable">$Execute</span> = <span class="token-variable">$Action</span>.Execute
+        <span class="token-variable">$Arguments</span> = <span class="token-variable">$Action</span>.Arguments
+        <span class="token-variable">$FullCommand</span> = <span class="token-string">"$Execute $Arguments"</span>
+        
+        <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$false</span>
+        <span class="token-variable">$MatchedPattern</span> = <span class="token-string">""</span>
+        
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$Pattern</span> <span class="token-keyword">in</span> <span class="token-variable">$SuspiciousPatterns</span>) {
+            <span class="token-keyword">if</span> (<span class="token-variable">$FullCommand</span> <span class="token-operator">-match</span> <span class="token-variable">$Pattern</span>) {
+                <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$true</span>
+                <span class="token-variable">$MatchedPattern</span> = <span class="token-variable">$Pattern</span>
+                <span class="token-keyword">break</span>
+            }
+        }
+        
+        <span class="token-comment"># Also flag tasks in unusual locations</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Task</span>.TaskPath <span class="token-operator">-notmatch</span> <span class="token-string">'^\\Microsoft\\'</span>) {
+            <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$true</span>
+            <span class="token-variable">$MatchedPattern</span> = <span class="token-string">"Non-Microsoft path"</span>
+        }
+        
+        [PSCustomObject]@{
+            TaskName = <span class="token-variable">$Task</span>.TaskName
+            TaskPath = <span class="token-variable">$Task</span>.TaskPath
+            State = <span class="token-variable">$Task</span>.State
+            Execute = <span class="token-variable">$Execute</span>
+            Arguments = <span class="token-variable">$Arguments</span>
+            Author = <span class="token-variable">$Task</span>.Author
+            IsSuspicious = <span class="token-variable">$IsSuspicious</span>
+            MatchedPattern = <span class="token-variable">$MatchedPattern</span>
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$SuspiciousTasks</span> | <span class="token-cmdlet">Where-Object</span> IsSuspicious
+}
+
+<span class="token-comment"># Hunt for suspicious tasks</span>
+<span class="token-variable">$Tasks</span> = Find-SuspiciousScheduledTasks
+<span class="token-variable">$Tasks</span> | <span class="token-cmdlet">Format-Table</span> TaskName, Execute, Arguments, MatchedPattern <span class="token-parameter">-AutoSize</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Process Hunting -->
+                <h2>Hunting for Suspicious Processes</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Process Hunting
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Find-SuspiciousProcesses</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Hunts for processes with suspicious characteristics.
+    #&gt;</span>
+    
+    <span class="token-comment"># LOLBins - Living off the Land Binaries</span>
+    <span class="token-variable">$LOLBins</span> = @(
+        <span class="token-string">'powershell.exe'</span>, <span class="token-string">'pwsh.exe'</span>, <span class="token-string">'cmd.exe'</span>,
+        <span class="token-string">'wscript.exe'</span>, <span class="token-string">'cscript.exe'</span>, <span class="token-string">'mshta.exe'</span>,
+        <span class="token-string">'rundll32.exe'</span>, <span class="token-string">'regsvr32.exe'</span>, <span class="token-string">'certutil.exe'</span>,
+        <span class="token-string">'bitsadmin.exe'</span>, <span class="token-string">'msiexec.exe'</span>, <span class="token-string">'wmic.exe'</span>,
+        <span class="token-string">'installutil.exe'</span>, <span class="token-string">'regasm.exe'</span>, <span class="token-string">'msbuild.exe'</span>
+    )
+    
+    <span class="token-comment"># Get processes with command line</span>
+    <span class="token-variable">$Processes</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_Process | 
+        <span class="token-cmdlet">Select-Object</span> ProcessId, Name, CommandLine, ParentProcessId,
+            @{N=<span class="token-string">'ParentName'</span>;E={(Get-Process -Id <span class="token-variable">$_</span>.ParentProcessId -EA 0).Name}},
+            @{N=<span class="token-string">'Path'</span>;E={<span class="token-variable">$_</span>.ExecutablePath}},
+            @{N=<span class="token-string">'Owner'</span>;E={(<span class="token-cmdlet">Invoke-CimMethod</span> <span class="token-parameter">-InputObject</span> <span class="token-variable">$_</span> <span class="token-parameter">-MethodName</span> GetOwner).User}}
+    
+    <span class="token-variable">$Findings</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Proc</span> <span class="token-keyword">in</span> <span class="token-variable">$Processes</span>) {
+        <span class="token-variable">$Reasons</span> = @()
+        
+        <span class="token-comment"># Check 1: LOLBin with suspicious arguments</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.Name <span class="token-operator">-in</span> <span class="token-variable">$LOLBins</span>) {
+            <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.CommandLine <span class="token-operator">-match</span> <span class="token-string">'-enc|-encodedcommand|downloadstring|iex|invoke-expression|http'</span>) {
+                <span class="token-variable">$Reasons</span> += <span class="token-string">"LOLBin with suspicious args"</span>
+            }
+        }
+        
+        <span class="token-comment"># Check 2: Unusual parent-child relationships</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.Name <span class="token-operator">-eq</span> <span class="token-string">'cmd.exe'</span> <span class="token-operator">-and</span> <span class="token-variable">$Proc</span>.ParentName <span class="token-operator">-in</span> @(<span class="token-string">'excel.exe'</span>,<span class="token-string">'winword.exe'</span>,<span class="token-string">'outlook.exe'</span>)) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Office spawning cmd"</span>
+        }
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.Name <span class="token-operator">-eq</span> <span class="token-string">'powershell.exe'</span> <span class="token-operator">-and</span> <span class="token-variable">$Proc</span>.ParentName <span class="token-operator">-in</span> @(<span class="token-string">'excel.exe'</span>,<span class="token-string">'winword.exe'</span>,<span class="token-string">'outlook.exe'</span>)) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Office spawning PowerShell"</span>
+        }
+        
+        <span class="token-comment"># Check 3: Process running from unusual locations</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.Path <span class="token-operator">-and</span> <span class="token-variable">$Proc</span>.Path <span class="token-operator">-match</span> <span class="token-string">'\\Temp\\|\\AppData\\Local\\Temp\\|\\Downloads\\'</span>) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Running from Temp/Downloads"</span>
+        }
+        
+        <span class="token-comment"># Check 4: Process masquerading (name vs path mismatch)</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.Name <span class="token-operator">-eq</span> <span class="token-string">'svchost.exe'</span> <span class="token-operator">-and</span> <span class="token-variable">$Proc</span>.Path <span class="token-operator">-notmatch</span> <span class="token-string">'System32'</span>) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"svchost outside System32"</span>
+        }
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Reasons</span>.Count <span class="token-operator">-gt</span> <span class="token-number">0</span>) {
+            <span class="token-variable">$Findings</span> += [PSCustomObject]@{
+                ProcessId = <span class="token-variable">$Proc</span>.ProcessId
+                Name = <span class="token-variable">$Proc</span>.Name
+                Parent = <span class="token-variable">$Proc</span>.ParentName
+                Path = <span class="token-variable">$Proc</span>.Path
+                CommandLine = <span class="token-variable">$Proc</span>.CommandLine
+                Reasons = <span class="token-variable">$Reasons</span> -join <span class="token-string">"; "</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Findings</span>
+}
+
+<span class="token-comment"># Run process hunt</span>
+<span class="token-variable">$SuspiciousProcs</span> = Find-SuspiciousProcesses
+<span class="token-variable">$SuspiciousProcs</span> | <span class="token-cmdlet">Format-List</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Network Hunting -->
+                <h2>Network Connection Hunting</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Network Hunting
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Find-SuspiciousConnections</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Hunts for suspicious network connections.
+    #&gt;</span>
+    
+    <span class="token-comment"># Get established connections</span>
+    <span class="token-variable">$Connections</span> = <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established -ErrorAction SilentlyContinue
+    
+    <span class="token-variable">$Findings</span> = <span class="token-keyword">foreach</span> (<span class="token-variable">$Conn</span> <span class="token-keyword">in</span> <span class="token-variable">$Connections</span>) {
+        <span class="token-variable">$Process</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$Conn</span>.OwningProcess -ErrorAction SilentlyContinue
+        <span class="token-variable">$Reasons</span> = @()
+        
+        <span class="token-comment"># Check 1: Non-standard ports for suspicious processes</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Process</span>.Name <span class="token-operator">-match</span> <span class="token-string">'powershell|cmd|wscript'</span> <span class="token-operator">-and</span> <span class="token-variable">$Conn</span>.RemotePort <span class="token-operator">-notin</span> @(80,443)) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Script engine on non-HTTP port"</span>
+        }
+        
+        <span class="token-comment"># Check 2: Connections on known C2 ports</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Conn</span>.RemotePort <span class="token-operator">-in</span> @(4444, 5555, 6666, 1234, 31337, 8080, 8888)) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Common C2 port"</span>
+        }
+        
+        <span class="token-comment"># Check 3: Process connecting outbound unexpectedly</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Process</span>.Name <span class="token-operator">-in</span> @(<span class="token-string">'notepad'</span>, <span class="token-string">'calc'</span>, <span class="token-string">'mspaint'</span>)) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Unexpected process with network"</span>
+        }
+        
+        <span class="token-comment"># Check 4: System processes connecting to non-Microsoft IPs</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Process</span>.Name <span class="token-operator">-eq</span> <span class="token-string">'svchost'</span>) {
+            <span class="token-comment"># Would need IP reputation check here</span>
+        }
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Reasons</span>.Count <span class="token-operator">-gt</span> <span class="token-number">0</span>) {
+            [PSCustomObject]@{
+                ProcessName = <span class="token-variable">$Process</span>.Name
+                ProcessId = <span class="token-variable">$Conn</span>.OwningProcess
+                LocalAddress = <span class="token-variable">$Conn</span>.LocalAddress
+                LocalPort = <span class="token-variable">$Conn</span>.LocalPort
+                RemoteAddress = <span class="token-variable">$Conn</span>.RemoteAddress
+                RemotePort = <span class="token-variable">$Conn</span>.RemotePort
+                Reasons = <span class="token-variable">$Reasons</span> -join <span class="token-string">"; "</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Findings</span>
+}
+
+<span class="token-comment"># Also check DNS cache for suspicious domains</span>
+<span class="token-keyword">function</span> <span class="token-function">Find-SuspiciousDNS</span> {
+    <span class="token-variable">$DNS</span> = <span class="token-cmdlet">Get-DnsClientCache</span>
+    
+    <span class="token-comment"># Look for suspicious patterns</span>
+    <span class="token-variable">$Suspicious</span> = <span class="token-variable">$DNS</span> | <span class="token-cmdlet">Where-Object</span> {
+        <span class="token-variable">$_</span>.Entry <span class="token-operator">-match</span> <span class="token-string">'\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}'</span> <span class="token-operator">-or</span>  <span class="token-comment"># IP in hostname</span>
+        <span class="token-variable">$_</span>.Entry <span class="token-operator">-match</span> <span class="token-string">'[a-z0-9]{20,}\.'</span> <span class="token-operator">-or</span>               <span class="token-comment"># Long random subdomain</span>
+        <span class="token-variable">$_</span>.Entry <span class="token-operator">-match</span> <span class="token-string">'\.tk$|\.ml$|\.ga$|\.cf$'</span>          <span class="token-comment"># Suspicious TLDs</span>
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Suspicious</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Service Hunting -->
+                <h2>Service Hunting</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Service Hunting
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Find-SuspiciousServices</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Hunts for suspicious Windows services.
+    #&gt;</span>
+    
+    <span class="token-variable">$Services</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_Service | 
+        <span class="token-cmdlet">Select-Object</span> Name, DisplayName, State, StartMode, PathName, StartName
+    
+    <span class="token-variable">$Findings</span> = <span class="token-keyword">foreach</span> (<span class="token-variable">$Svc</span> <span class="token-keyword">in</span> <span class="token-variable">$Services</span>) {
+        <span class="token-variable">$Reasons</span> = @()
+        
+        <span class="token-comment"># Check 1: Service binary in unusual location</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Svc</span>.PathName <span class="token-operator">-match</span> <span class="token-string">'\\Temp\\|\\AppData\\|\\Users\\[^\\]+\\Desktop'</span>) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Binary in suspicious location"</span>
+        }
+        
+        <span class="token-comment"># Check 2: Unquoted service path (potential hijack)</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Svc</span>.PathName <span class="token-operator">-match</span> <span class="token-string">'^[^"].*\s.*\.exe'</span> <span class="token-operator">-and</span> <span class="token-variable">$Svc</span>.PathName <span class="token-operator">-notmatch</span> <span class="token-string">'^"'</span>) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Unquoted service path"</span>
+        }
+        
+        <span class="token-comment"># Check 3: Service running as LocalSystem but not in System32</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Svc</span>.StartName <span class="token-operator">-eq</span> <span class="token-string">'LocalSystem'</span> <span class="token-operator">-and</span> <span class="token-variable">$Svc</span>.PathName <span class="token-operator">-notmatch</span> <span class="token-string">'System32|SysWOW64'</span>) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"LocalSystem service outside System32"</span>
+        }
+        
+        <span class="token-comment"># Check 4: Suspicious executable names</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Svc</span>.PathName <span class="token-operator">-match</span> <span class="token-string">'cmd\.exe|powershell\.exe|mshta\.exe'</span>) {
+            <span class="token-variable">$Reasons</span> += <span class="token-string">"Service uses suspicious executable"</span>
+        }
+        
+        <span class="token-comment"># Check 5: Recently created services (requires file timestamp)</span>
+        <span class="token-variable">$BinaryPath</span> = (<span class="token-variable">$Svc</span>.PathName -split <span class="token-string">'"'</span>)[1]
+        <span class="token-keyword">if</span> (<span class="token-variable">$BinaryPath</span> <span class="token-operator">-and</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$BinaryPath</span>)) {
+            <span class="token-variable">$FileInfo</span> = <span class="token-cmdlet">Get-Item</span> <span class="token-variable">$BinaryPath</span>
+            <span class="token-keyword">if</span> (<span class="token-variable">$FileInfo</span>.CreationTime <span class="token-operator">-gt</span> (Get-Date).AddDays(-7)) {
+                <span class="token-variable">$Reasons</span> += <span class="token-string">"Recently created binary"</span>
+            }
+        }
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Reasons</span>.Count <span class="token-operator">-gt</span> <span class="token-number">0</span>) {
+            [PSCustomObject]@{
+                Name = <span class="token-variable">$Svc</span>.Name
+                DisplayName = <span class="token-variable">$Svc</span>.DisplayName
+                State = <span class="token-variable">$Svc</span>.State
+                StartMode = <span class="token-variable">$Svc</span>.StartMode
+                PathName = <span class="token-variable">$Svc</span>.PathName
+                StartName = <span class="token-variable">$Svc</span>.StartName
+                Reasons = <span class="token-variable">$Reasons</span> -join <span class="token-string">"; "</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Findings</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Hunt -->
+                <h2>Comprehensive Threat Hunt</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Master Hunt Script
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-ThreatHunt</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Comprehensive threat hunting sweep.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\ThreatHunt_$(Get-Date -f yyyyMMdd_HHmmss)"</span>
+    )
+    
+    <span class="token-cmdlet">New-Item</span> <span class="token-parameter">-ItemType</span> Directory <span class="token-parameter">-Path</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-Force</span> | <span class="token-cmdlet">Out-Null</span>
+    
+    Write-Host <span class="token-string">"╔════════════════════════════════════════╗"</span> -ForegroundColor Cyan
+    Write-Host <span class="token-string">"║       THREAT HUNTING SWEEP             ║"</span> -ForegroundColor Cyan
+    Write-Host <span class="token-string">"╚════════════════════════════════════════╝"</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Results</span> = @{}
+    
+    <span class="token-comment"># Hunt 1: Registry Persistence</span>
+    Write-Host <span class="token-string">"`n[1/6] Hunting registry persistence..."</span> -ForegroundColor Yellow
+    <span class="token-variable">$Results</span>.Registry = Find-RegistryPersistence
+    <span class="token-variable">$RegSuspicious</span> = (<span class="token-variable">$Results</span>.Registry | <span class="token-cmdlet">Where-Object</span> Suspicious).Count
+    Write-Host <span class="token-string">"      Found: $RegSuspicious suspicious entries"</span>
+    
+    <span class="token-comment"># Hunt 2: Scheduled Tasks</span>
+    Write-Host <span class="token-string">"[2/6] Hunting scheduled tasks..."</span> -ForegroundColor Yellow
+    <span class="token-variable">$Results</span>.Tasks = Find-SuspiciousScheduledTasks
+    Write-Host <span class="token-string">"      Found: $($Results.Tasks.Count) suspicious tasks"</span>
+    
+    <span class="token-comment"># Hunt 3: Processes</span>
+    Write-Host <span class="token-string">"[3/6] Hunting suspicious processes..."</span> -ForegroundColor Yellow
+    <span class="token-variable">$Results</span>.Processes = Find-SuspiciousProcesses
+    Write-Host <span class="token-string">"      Found: $($Results.Processes.Count) suspicious processes"</span>
+    
+    <span class="token-comment"># Hunt 4: Services</span>
+    Write-Host <span class="token-string">"[4/6] Hunting suspicious services..."</span> -ForegroundColor Yellow
+    <span class="token-variable">$Results</span>.Services = Find-SuspiciousServices
+    Write-Host <span class="token-string">"      Found: $($Results.Services.Count) suspicious services"</span>
+    
+    <span class="token-comment"># Hunt 5: Network Connections</span>
+    Write-Host <span class="token-string">"[5/6] Hunting network connections..."</span> -ForegroundColor Yellow
+    <span class="token-variable">$Results</span>.Network = Find-SuspiciousConnections
+    Write-Host <span class="token-string">"      Found: $($Results.Network.Count) suspicious connections"</span>
+    
+    <span class="token-comment"># Hunt 6: DNS Cache</span>
+    Write-Host <span class="token-string">"[6/6] Hunting DNS cache..."</span> -ForegroundColor Yellow
+    <span class="token-variable">$Results</span>.DNS = Find-SuspiciousDNS
+    Write-Host <span class="token-string">"      Found: $($Results.DNS.Count) suspicious DNS entries"</span>
+    
+    <span class="token-comment"># Export results</span>
+    Write-Host <span class="token-string">"`n[*] Exporting results to $OutputPath"</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Results</span>.Registry | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\Registry.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    <span class="token-variable">$Results</span>.Tasks | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\ScheduledTasks.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    <span class="token-variable">$Results</span>.Processes | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\Processes.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    <span class="token-variable">$Results</span>.Services | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\Services.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    <span class="token-variable">$Results</span>.Network | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$OutputPath\Network.csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+    
+    <span class="token-comment"># Summary</span>
+    <span class="token-variable">$TotalFindings</span> = <span class="token-variable">$RegSuspicious</span> + <span class="token-variable">$Results</span>.Tasks.Count + <span class="token-variable">$Results</span>.Processes.Count + 
+                      <span class="token-variable">$Results</span>.Services.Count + <span class="token-variable">$Results</span>.Network.Count
+    
+    Write-Host <span class="token-string">"`n╔════════════════════════════════════════╗"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"║       HUNT COMPLETE                    ║"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"╚════════════════════════════════════════╝"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"Total findings: $TotalFindings"</span>
+    Write-Host <span class="token-string">"Results saved to: $OutputPath"</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}
+
+<span class="token-comment"># Run comprehensive hunt</span>
+Invoke-ThreatHunt</code></pre>
+                    </div>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you hunt for persistence mechanisms?"</li>
+                        <li><strong>Strong Answer:</strong> Check registry run keys (HKLM/HKCU Run, RunOnce), scheduled tasks, services, WMI subscriptions, and startup folders. For each, look for unusual paths (Temp, Downloads), suspicious executables (PowerShell, cmd, mshta), and recently modified entries. Cross-reference findings with threat intel.</li>
+                        <li><strong>Framework reference:</strong> Align your answer with MITRE ATT&CK persistence techniques (T1547, T1053, T1543)</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Threat hunting is proactive—searching for threats that evaded detection</li>
+                    <li>Focus on persistence, lateral movement, and command-and-control indicators</li>
+                    <li>Use MITRE ATT&CK framework to organize hunting hypotheses</li>
+                    <li>Automate repetitive hunts but analyze results manually</li>
+                    <li>Document findings and update detection rules based on discoveries</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="5-6-incident-response-scripts.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 5.6 Incident Response</span>
+                    </a>
+                    <a href="5-8-vulnerability-scripts.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">5.8 Vulnerability Scripts →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

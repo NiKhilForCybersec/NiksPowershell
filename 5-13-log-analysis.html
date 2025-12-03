@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.13 Log Analysis - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-12-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.12</span> Compliance Automation</a>
+                        <a href="5-13-log-analysis.html" class="nav-link active"><span class="nav-link-number">5.13</span> Log Analysis</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#security">Security Automation</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Log Analysis</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>5.13 Log Analysis</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Parse Windows Security and System logs</li>
+                        <li>Identify suspicious authentication patterns</li>
+                        <li>Analyze PowerShell and process execution logs</li>
+                        <li>Generate security reports from log data</li>
+                    </ul>
+                </div>
+
+                <!-- Critical Events -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Critical Windows Security Events</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    HIGH-VALUE SECURITY EVENT IDS                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+AUTHENTICATION                    PRIVILEGE USE                 PROCESS
+┌────────────────────┐           ┌────────────────────┐        ┌────────────────────┐
+│ 4624 - Logon       │           │ 4672 - Special     │        │ 4688 - Process     │
+│ 4625 - Failed      │           │        privileges  │        │        created     │
+│ 4634 - Logoff      │           │ 4673 - Privilege   │        │ 4689 - Process     │
+│ 4648 - Explicit    │           │        use         │        │        exit        │
+│        credentials │           │ 4674 - Operation   │        │ 1102 - Log cleared │
+│ 4768 - Kerberos TGT│           │        on object   │        │                    │
+│ 4769 - Kerberos TGS│           └────────────────────┘        └────────────────────┘
+│ 4771 - Kerberos    │
+│        pre-auth    │           ACCOUNT MANAGEMENT            LATERAL MOVEMENT
+└────────────────────┘           ┌────────────────────┐        ┌────────────────────┐
+                                 │ 4720 - User created│        │ 4624 Type 3 - Net  │
+POWERSHELL                       │ 4722 - User enabled│        │ 4624 Type 10 - RDP │
+┌────────────────────┐           │ 4724 - Password    │        │ 4648 - Explicit    │
+│ 4103 - Module log  │           │        reset       │        │        creds       │
+│ 4104 - Script block│           │ 4728 - Member added│        │ 5140 - Share access│
+│ 4105 - Script start│           │        to group    │        │ 5145 - Share check │
+│ 4106 - Script stop │           └────────────────────┘        └────────────────────┘
+└────────────────────┘
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Logon Types</div>
+                    </div>
+                    <ul>
+                        <li><strong>Type 2</strong> → Interactive (local keyboard/console)</li>
+                        <li><strong>Type 3</strong> → Network (SMB, mapped drives)</li>
+                        <li><strong>Type 4</strong> → Batch (scheduled tasks)</li>
+                        <li><strong>Type 5</strong> → Service (service startup)</li>
+                        <li><strong>Type 7</strong> → Unlock (workstation unlock)</li>
+                        <li><strong>Type 8</strong> → NetworkCleartext (IIS basic auth)</li>
+                        <li><strong>Type 10</strong> → RemoteInteractive (RDP)</li>
+                        <li><strong>Type 11</strong> → CachedInteractive (cached credentials)</li>
+                    </ul>
+                </div>
+
+                <!-- Authentication Analysis -->
+                <h2>Authentication Log Analysis</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Authentication Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-FailedLogons</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Analyzes failed logon attempts from Security log.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>,
+        [int]<span class="token-variable">$Threshold</span> = <span class="token-number">5</span>
+    )
+    
+    <span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    
+    Write-Host <span class="token-string">"[*] Analyzing failed logons from last $Hours hours..."</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4625</span>
+        StartTime = <span class="token-variable">$StartTime</span>
+    } -ErrorAction SilentlyContinue
+    
+    <span class="token-keyword">if</span> (-not <span class="token-variable">$Events</span>) {
+        Write-Host <span class="token-string">"[+] No failed logons found."</span> -ForegroundColor Green
+        <span class="token-keyword">return</span>
+    }
+    
+    <span class="token-variable">$Parsed</span> = <span class="token-variable">$Events</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$xml</span> = [xml]<span class="token-variable">$_</span>.ToXml()
+        <span class="token-variable">$data</span> = <span class="token-variable">$xml</span>.Event.EventData.Data
+        
+        [PSCustomObject]@{
+            TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+            TargetUser = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'TargetUserName'</span>).<span class="token-string">'#text'</span>
+            TargetDomain = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'TargetDomainName'</span>).<span class="token-string">'#text'</span>
+            SourceIP = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'IpAddress'</span>).<span class="token-string">'#text'</span>
+            SourceWorkstation = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'WorkstationName'</span>).<span class="token-string">'#text'</span>
+            LogonType = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'LogonType'</span>).<span class="token-string">'#text'</span>
+            FailureReason = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'FailureReason'</span>).<span class="token-string">'#text'</span>
+            Status = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'Status'</span>).<span class="token-string">'#text'</span>
+        }
+    }
+    
+    <span class="token-comment"># Group by source IP</span>
+    Write-Host <span class="token-string">"`n=== Failed Logons by Source IP ==="</span> -ForegroundColor Yellow
+    <span class="token-variable">$Parsed</span> | <span class="token-cmdlet">Group-Object</span> SourceIP | 
+        <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span> | 
+        <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'SourceIP'</span>;E={<span class="token-variable">$_</span>.Name}}, Count |
+        <span class="token-cmdlet">Format-Table</span>
+    
+    <span class="token-comment"># Alert on brute force</span>
+    <span class="token-variable">$BruteForce</span> = <span class="token-variable">$Parsed</span> | <span class="token-cmdlet">Group-Object</span> SourceIP | 
+        <span class="token-cmdlet">Where-Object</span> Count <span class="token-operator">-ge</span> <span class="token-variable">$Threshold</span>
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$BruteForce</span>) {
+        Write-Host <span class="token-string">"[!] ALERT: Potential brute force detected!"</span> -ForegroundColor Red
+        <span class="token-variable">$BruteForce</span> | <span class="token-cmdlet">ForEach-Object</span> {
+            Write-Host <span class="token-string">"    Source: $($_.Name) - $($_.Count) attempts"</span> -ForegroundColor Red
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Parsed</span>
+}
+
+<span class="token-comment"># Successful logons analysis</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-SuccessfulLogons</span> {
+    <span class="token-keyword">param</span>([int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>)
+    
+    <span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    
+    <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4624</span>
+        StartTime = <span class="token-variable">$StartTime</span>
+    } -ErrorAction SilentlyContinue | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$xml</span> = [xml]<span class="token-variable">$_</span>.ToXml()
+        <span class="token-variable">$data</span> = <span class="token-variable">$xml</span>.Event.EventData.Data
+        
+        [PSCustomObject]@{
+            TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+            TargetUser = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'TargetUserName'</span>).<span class="token-string">'#text'</span>
+            LogonType = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'LogonType'</span>).<span class="token-string">'#text'</span>
+            SourceIP = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'IpAddress'</span>).<span class="token-string">'#text'</span>
+            LogonProcess = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'LogonProcessName'</span>).<span class="token-string">'#text'</span>
+        }
+    } | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.TargetUser <span class="token-operator">-notmatch</span> <span class="token-string">'^(SYSTEM|DWM-|UMFD-|\$)'</span> }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- PowerShell Log Analysis -->
+                <h2>PowerShell Script Block Logging</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Script Block Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-SuspiciousPowerShell</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Analyzes PowerShell script block logs for suspicious activity.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>
+    )
+    
+    <span class="token-variable">$SuspiciousPatterns</span> = @(
+        <span class="token-string">'Invoke-Mimikatz'</span>,
+        <span class="token-string">'Invoke-Expression'</span>,
+        <span class="token-string">'IEX'</span>,
+        <span class="token-string">'DownloadString'</span>,
+        <span class="token-string">'DownloadFile'</span>,
+        <span class="token-string">'Net.WebClient'</span>,
+        <span class="token-string">'FromBase64String'</span>,
+        <span class="token-string">'-enc'</span>,
+        <span class="token-string">'-EncodedCommand'</span>,
+        <span class="token-string">'Bypass'</span>,
+        <span class="token-string">'Hidden'</span>,
+        <span class="token-string">'Invoke-WMIMethod'</span>,
+        <span class="token-string">'Start-Process.*-WindowStyle'</span>,
+        <span class="token-string">'Add-MpPreference.*ExclusionPath'</span>,
+        <span class="token-string">'Set-MpPreference.*DisableRealtimeMonitoring'</span>
+    )
+    
+    <span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    
+    Write-Host <span class="token-string">"[*] Analyzing PowerShell logs..."</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Microsoft-Windows-PowerShell/Operational'</span>
+        Id = <span class="token-number">4104</span>
+        StartTime = <span class="token-variable">$StartTime</span>
+    } -ErrorAction SilentlyContinue
+    
+    <span class="token-variable">$Findings</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Event</span> <span class="token-keyword">in</span> <span class="token-variable">$Events</span>) {
+        <span class="token-variable">$ScriptBlock</span> = <span class="token-variable">$Event</span>.Properties[<span class="token-number">2</span>].Value
+        
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$Pattern</span> <span class="token-keyword">in</span> <span class="token-variable">$SuspiciousPatterns</span>) {
+            <span class="token-keyword">if</span> (<span class="token-variable">$ScriptBlock</span> <span class="token-operator">-match</span> <span class="token-variable">$Pattern</span>) {
+                <span class="token-variable">$Findings</span> += [PSCustomObject]@{
+                    TimeCreated = <span class="token-variable">$Event</span>.TimeCreated
+                    PatternMatched = <span class="token-variable">$Pattern</span>
+                    ScriptBlockId = <span class="token-variable">$Event</span>.Properties[<span class="token-number">3</span>].Value
+                    ScriptPreview = <span class="token-variable">$ScriptBlock</span>.Substring(<span class="token-number">0</span>, [Math]::Min(<span class="token-number">200</span>, <span class="token-variable">$ScriptBlock</span>.Length))
+                    FullScript = <span class="token-variable">$ScriptBlock</span>
+                }
+                <span class="token-keyword">break</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Findings</span>) {
+        Write-Host <span class="token-string">"[!] Found $($Findings.Count) suspicious PowerShell executions!"</span> -ForegroundColor Red
+        <span class="token-variable">$Findings</span> | <span class="token-cmdlet">Group-Object</span> PatternMatched | 
+            <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'Pattern'</span>;E={<span class="token-variable">$_</span>.Name}}, Count | 
+            <span class="token-cmdlet">Format-Table</span>
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"[+] No suspicious patterns detected."</span> -ForegroundColor Green
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Findings</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Process Creation Analysis -->
+                <h2>Process Creation Analysis</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Process Execution Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-SuspiciousProcessCreation</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Analyzes process creation events (Event ID 4688).
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>
+    )
+    
+    <span class="token-comment"># Suspicious process names and patterns</span>
+    <span class="token-variable">$SuspiciousProcesses</span> = @(
+        <span class="token-string">'mimikatz'</span>, <span class="token-string">'procdump'</span>, <span class="token-string">'psexec'</span>, <span class="token-string">'wmic'</span>,
+        <span class="token-string">'certutil'</span>, <span class="token-string">'bitsadmin'</span>, <span class="token-string">'mshta'</span>, <span class="token-string">'regsvr32'</span>,
+        <span class="token-string">'rundll32'</span>, <span class="token-string">'cscript'</span>, <span class="token-string">'wscript'</span>, <span class="token-string">'msiexec'</span>
+    )
+    
+    <span class="token-variable">$SuspiciousCommandPatterns</span> = @(
+        <span class="token-string">'.*-nop.*-w hidden'</span>,
+        <span class="token-string">'.*bypass.*'</span>,
+        <span class="token-string">'.*downloadstring.*'</span>,
+        <span class="token-string">'.*invoke-webrequest.*'</span>,
+        <span class="token-string">'.*certutil.*-decode'</span>,
+        <span class="token-string">'.*certutil.*-urlcache'</span>
+    )
+    
+    <span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    
+    <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4688</span>
+        StartTime = <span class="token-variable">$StartTime</span>
+    } -ErrorAction SilentlyContinue
+    
+    <span class="token-variable">$Findings</span> = <span class="token-variable">$Events</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$xml</span> = [xml]<span class="token-variable">$_</span>.ToXml()
+        <span class="token-variable">$data</span> = <span class="token-variable">$xml</span>.Event.EventData.Data
+        
+        <span class="token-variable">$ProcessName</span> = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'NewProcessName'</span>).<span class="token-string">'#text'</span>
+        <span class="token-variable">$CommandLine</span> = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'CommandLine'</span>).<span class="token-string">'#text'</span>
+        <span class="token-variable">$ParentProcess</span> = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'ParentProcessName'</span>).<span class="token-string">'#text'</span>
+        
+        <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$false</span>
+        <span class="token-variable">$Reason</span> = <span class="token-string">''</span>
+        
+        <span class="token-comment"># Check process name</span>
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$SuspProc</span> <span class="token-keyword">in</span> <span class="token-variable">$SuspiciousProcesses</span>) {
+            <span class="token-keyword">if</span> (<span class="token-variable">$ProcessName</span> <span class="token-operator">-like</span> <span class="token-string">"*$SuspProc*"</span>) {
+                <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$true</span>
+                <span class="token-variable">$Reason</span> = <span class="token-string">"Suspicious process: $SuspProc"</span>
+                <span class="token-keyword">break</span>
+            }
+        }
+        
+        <span class="token-comment"># Check command line</span>
+        <span class="token-keyword">if</span> (-not <span class="token-variable">$IsSuspicious</span> <span class="token-operator">-and</span> <span class="token-variable">$CommandLine</span>) {
+            <span class="token-keyword">foreach</span> (<span class="token-variable">$Pattern</span> <span class="token-keyword">in</span> <span class="token-variable">$SuspiciousCommandPatterns</span>) {
+                <span class="token-keyword">if</span> (<span class="token-variable">$CommandLine</span> <span class="token-operator">-match</span> <span class="token-variable">$Pattern</span>) {
+                    <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$true</span>
+                    <span class="token-variable">$Reason</span> = <span class="token-string">"Suspicious command pattern"</span>
+                    <span class="token-keyword">break</span>
+                }
+            }
+        }
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$IsSuspicious</span>) {
+            [PSCustomObject]@{
+                TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+                ProcessName = <span class="token-variable">$ProcessName</span>
+                CommandLine = <span class="token-variable">$CommandLine</span>
+                ParentProcess = <span class="token-variable">$ParentProcess</span>
+                User = (<span class="token-variable">$data</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'SubjectUserName'</span>).<span class="token-string">'#text'</span>
+                Reason = <span class="token-variable">$Reason</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Findings</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Daily Security Report -->
+                <h2>Generate Daily Security Report</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Daily Security Report
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">New-DailySecurityReport</span> {
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\SecurityReport_$(Get-Date -Format 'yyyyMMdd').html"</span>
+    )
+    
+    Write-Host <span class="token-string">"[*] Generating Daily Security Report..."</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Report</span> = @{}
+    
+    <span class="token-comment"># Failed logons summary</span>
+    <span class="token-variable">$FailedLogons</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName=<span class="token-string">'Security'</span>; Id=<span class="token-number">4625</span>; StartTime=(Get-Date).AddHours(-24)
+    } -ErrorAction SilentlyContinue
+    <span class="token-variable">$Report</span>[<span class="token-string">'FailedLogons'</span>] = <span class="token-keyword">if</span> (<span class="token-variable">$FailedLogons</span>) { <span class="token-variable">$FailedLogons</span>.Count } <span class="token-keyword">else</span> { <span class="token-number">0</span> }
+    
+    <span class="token-comment"># Successful logons</span>
+    <span class="token-variable">$SuccessLogons</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName=<span class="token-string">'Security'</span>; Id=<span class="token-number">4624</span>; StartTime=(Get-Date).AddHours(-24)
+    } -ErrorAction SilentlyContinue
+    <span class="token-variable">$Report</span>[<span class="token-string">'SuccessLogons'</span>] = <span class="token-keyword">if</span> (<span class="token-variable">$SuccessLogons</span>) { <span class="token-variable">$SuccessLogons</span>.Count } <span class="token-keyword">else</span> { <span class="token-number">0</span> }
+    
+    <span class="token-comment"># Account changes</span>
+    <span class="token-variable">$AccountChanges</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName=<span class="token-string">'Security'</span>; Id=<span class="token-number">4720</span>,<span class="token-number">4722</span>,<span class="token-number">4724</span>,<span class="token-number">4728</span>; StartTime=(Get-Date).AddHours(-24)
+    } -ErrorAction SilentlyContinue
+    <span class="token-variable">$Report</span>[<span class="token-string">'AccountChanges'</span>] = <span class="token-keyword">if</span> (<span class="token-variable">$AccountChanges</span>) { <span class="token-variable">$AccountChanges</span>.Count } <span class="token-keyword">else</span> { <span class="token-number">0</span> }
+    
+    <span class="token-comment"># Security log cleared</span>
+    <span class="token-variable">$LogCleared</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName=<span class="token-string">'Security'</span>; Id=<span class="token-number">1102</span>; StartTime=(Get-Date).AddHours(-24)
+    } -ErrorAction SilentlyContinue
+    <span class="token-variable">$Report</span>[<span class="token-string">'LogsCleared'</span>] = <span class="token-keyword">if</span> (<span class="token-variable">$LogCleared</span>) { <span class="token-variable">$LogCleared</span>.Count } <span class="token-keyword">else</span> { <span class="token-number">0</span> }
+    
+    <span class="token-comment"># Generate HTML</span>
+    <span class="token-variable">$HTML</span> = @<span class="token-string">"
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Security Report - $(Get-Date -Format 'yyyy-MM-dd')&lt;/title&gt;
+&lt;style&gt;
+    body { font-family: Arial; background: #1a1a2e; color: #eee; padding: 20px; }
+    h1 { color: #00d4ff; }
+    .metric { display: inline-block; background: #16213e; padding: 20px; margin: 10px; border-radius: 8px; }
+    .value { font-size: 36px; font-weight: bold; }
+    .alert { color: #ef4444; }
+    .ok { color: #10b981; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Daily Security Report&lt;/h1&gt;
+&lt;p&gt;Generated: $(Get-Date) | Computer: $env:COMPUTERNAME&lt;/p&gt;
+&lt;div class="metric"&gt;
+    &lt;div class="value $(if($Report['FailedLogons'] -gt 100){'alert'}else{'ok'})"&gt;$($Report['FailedLogons'])&lt;/div&gt;
+    &lt;div&gt;Failed Logons&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="metric"&gt;
+    &lt;div class="value ok"&gt;$($Report['SuccessLogons'])&lt;/div&gt;
+    &lt;div&gt;Successful Logons&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="metric"&gt;
+    &lt;div class="value $(if($Report['AccountChanges'] -gt 0){'alert'}else{'ok'})"&gt;$($Report['AccountChanges'])&lt;/div&gt;
+    &lt;div&gt;Account Changes&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="metric"&gt;
+    &lt;div class="value $(if($Report['LogsCleared'] -gt 0){'alert'}else{'ok'})"&gt;$($Report['LogsCleared'])&lt;/div&gt;
+    &lt;div&gt;Logs Cleared&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"@</span>
+    
+    <span class="token-variable">$HTML</span> | <span class="token-cmdlet">Out-File</span> <span class="token-variable">$OutputPath</span> <span class="token-parameter">-Encoding</span> UTF8
+    Write-Host <span class="token-string">"[+] Report saved to: $OutputPath"</span> -ForegroundColor Green
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Log Analysis</div>
+                    </div>
+                    <ul>
+                        <li><strong>Enable command-line logging:</strong> GPO → Audit Process Creation</li>
+                        <li><strong>Enable PowerShell logging:</strong> Script Block, Module, Transcription</li>
+                        <li><strong>Centralize logs:</strong> Forward to SIEM for correlation</li>
+                        <li><strong>Baseline normal:</strong> Know what's typical before hunting</li>
+                        <li><strong>Automate alerts:</strong> Script checks for critical events</li>
+                        <li><strong>Protect logs:</strong> Forward before attackers can clear them</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What events would you look for during a security investigation?"</li>
+                        <li><strong>Strong Answer:</strong> Start with authentication events (4624/4625 for logon success/failure, 4648 for explicit credentials). Check 4688 for process creation with command lines. Look for 4672 (special privileges) and account changes (4720/4728). Examine PowerShell logs (4104) for script blocks. Flag 1102 as potential evidence tampering.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Key events: 4624/4625 (logon), 4688 (process), 4104 (PowerShell)</li>
+                    <li>Parse event XML to extract detailed data fields</li>
+                    <li>Group and count events to identify patterns</li>
+                    <li>Flag events exceeding thresholds as potential attacks</li>
+                    <li>Automate daily reports for security monitoring</li>
+                    <li>Enable command-line and PowerShell logging for visibility</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="5-12-compliance-automation.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 5.12 Compliance Automation</span>
+                    </a>
+                    <a href="5-14-threat-intel.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">5.14 Threat Intelligence →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

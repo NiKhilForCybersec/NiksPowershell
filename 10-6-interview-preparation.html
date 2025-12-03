@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.6 Interview Preparation - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="offensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">⚔️</span>
+                        Offensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-offensive-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Offensive Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="defensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Defensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-defensive-overview.html" class="nav-link"><span class="nav-link-number">7.1</span> Defensive Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🏗️</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-project-soc-toolkit.html" class="nav-link"><span class="nav-link-number">8.1</span> SOC Toolkit Project</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="crossplatform">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-cross-platform-overview.html" class="nav-link"><span class="nav-link-number">9.1</span> Cross-Platform Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-coding-standards.html" class="nav-link"><span class="nav-link-number">10.1</span> Coding Standards</a>
+                        <a href="10-2-security-considerations.html" class="nav-link"><span class="nav-link-number">10.2</span> Security Considerations</a>
+                        <a href="10-3-performance-optimization.html" class="nav-link"><span class="nav-link-number">10.3</span> Performance Optimization</a>
+                        <a href="10-4-testing-validation.html" class="nav-link"><span class="nav-link-number">10.4</span> Testing & Validation</a>
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link active"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#reference">Best Practices & Reference</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Interview Preparation</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>10.6 Interview Preparation</h1>
+
+                <!-- Overview -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Common scripting interview questions and strong answers</li>
+                        <li>Live coding challenge strategies and patterns</li>
+                        <li>How to discuss your scripting projects effectively</li>
+                        <li>Security-specific scripting scenarios for SOC/Security Engineer roles</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Format -->
+                <h2>Interview Format Overview</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Typical Technical Interview Flow</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    SCRIPTING INTERVIEW STRUCTURE                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  CONCEPTS   │───►│    LIVE     │───►│  SCENARIO   │───►│   PROJECT   │
+│  (15 min)   │    │   CODING    │    │   BASED     │    │ DISCUSSION  │
+│             │    │  (20 min)   │    │  (15 min)   │    │  (10 min)   │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+      │                  │                  │                  │
+      ▼                  ▼                  ▼                  ▼
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│ • Pipeline  │    │ • Write a   │    │ • "How would│    │ • Walk me   │
+│ • Objects   │    │   function  │    │   you..."   │    │   through   │
+│ • Cmdlets   │    │ • Parse logs│    │ • Incident  │    │   this      │
+│ • Error     │    │ • API calls │    │   response  │    │   script    │
+│   handling  │    │ • Fix bugs  │    │ • Automation│    │ • Decisions │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+
+TIP: Verbalize your thought process! Interviewers want to see HOW you think.
+</pre>
+                </div>
+
+                <!-- PowerShell Questions -->
+                <h2>🔷 PowerShell Interview Questions</h2>
+
+                <h3>Foundational Questions</h3>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: What makes PowerShell different from other shells?</div>
+                    </div>
+                    <p><strong>Strong Answer:</strong></p>
+                    <p>
+                        PowerShell is object-oriented—it passes .NET objects through the pipeline, not text. 
+                        This means I can filter on actual property values like <code>Where-Object CPU -gt 100</code> 
+                        instead of parsing text with regex. It's built on .NET, giving access to the full 
+                        .NET class library. It also has consistent Verb-Noun cmdlet naming and comprehensive 
+                        built-in help with Get-Help.
+                    </p>
+                    <p><strong>Bonus Points:</strong> Mention that PowerShell 7 is cross-platform and open-source.</p>
+                </div>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: Explain the PowerShell pipeline.</div>
+                    </div>
+                    <p><strong>Strong Answer:</strong></p>
+                    <p>
+                        The pipeline connects cmdlets using the <code>|</code> operator. Objects flow from 
+                        left to right, with each cmdlet processing and potentially transforming them. 
+                        Key pipeline cmdlets are Where-Object (filter), Select-Object (choose properties), 
+                        ForEach-Object (process each), and Sort-Object (order results).
+                    </p>
+                    <p>
+                        Pipeline binding works two ways: ByValue (object type matches parameter type) and 
+                        ByPropertyName (object property names match parameter names). I always "filter left, 
+                        format right" for performance.
+                    </p>
+                </div>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: How do you handle errors in PowerShell?</div>
+                    </div>
+                    <p><strong>Strong Answer:</strong></p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language powershell">
+                                <span class="code-language-icon">🔷</span>
+                                PowerShell - Error Handling Pattern
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-comment"># Two error types: Terminating and Non-Terminating</span>
+
+<span class="token-comment"># Try/Catch for terminating errors</span>
+<span class="token-keyword">try</span> {
+    <span class="token-cmdlet">Get-Content</span> <span class="token-string">"nonexistent.txt"</span> <span class="token-parameter">-ErrorAction</span> Stop
+}
+<span class="token-keyword">catch</span> {
+    Write-Error <span class="token-string">"Failed: $($_.Exception.Message)"</span>
+}
+<span class="token-keyword">finally</span> {
+    <span class="token-comment"># Cleanup code runs regardless</span>
+}
+
+<span class="token-comment"># -ErrorAction controls behavior per-cmdlet</span>
+<span class="token-comment"># Stop, Continue, SilentlyContinue, Ignore</span>
+
+<span class="token-comment"># $ErrorActionPreference sets default for session</span>
+<span class="token-variable">$ErrorActionPreference</span> = <span class="token-string">'Stop'</span></code></pre>
+                        </div>
+                    </div>
+                    <p><strong>Key Point:</strong> Mention the difference between terminating (stop execution) and non-terminating (continue) errors, and when to use <code>-ErrorAction Stop</code>.</p>
+                </div>
+
+                <h3>Security-Specific PowerShell Questions</h3>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: How would you find all failed login attempts in the last 24 hours?</div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language powershell">
+                                <span class="code-language-icon">🔷</span>
+                                PowerShell - Failed Login Analysis
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-comment"># Method 1: Get-WinEvent with FilterHashtable (fastest)</span>
+<span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-24)
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    Id = <span class="token-number">4625</span>
+    StartTime = <span class="token-variable">$StartTime</span>
+} | <span class="token-cmdlet">ForEach-Object</span> {
+    [PSCustomObject]@{
+        Time = <span class="token-variable">$_</span>.TimeCreated
+        User = <span class="token-variable">$_</span>.Properties[5].Value
+        SourceIP = <span class="token-variable">$_</span>.Properties[19].Value
+        Reason = <span class="token-variable">$_</span>.Properties[8].Value
+    }
+} | <span class="token-cmdlet">Group-Object</span> SourceIP | <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Why 4625? It's the Windows Security event for failed logon</span>
+<span class="token-comment"># Properties array contains event-specific data</span></code></pre>
+                        </div>
+                    </div>
+                    <p><strong>Bonus:</strong> Mention Event ID 4625 specifically, explain why FilterHashtable is faster than Where-Object, and note that Properties[19] contains the source IP for network logons.</p>
+                </div>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: Write a script to find processes with network connections.</div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language powershell">
+                                <span class="code-language-icon">🔷</span>
+                                PowerShell - Process Network Connections
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-ProcessConnections</span> {
+    <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established | 
+        <span class="token-cmdlet">ForEach-Object</span> {
+            <span class="token-variable">$Process</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess -ErrorAction SilentlyContinue
+            [PSCustomObject]@{
+                ProcessName = <span class="token-variable">$Process</span>.Name
+                PID = <span class="token-variable">$_</span>.OwningProcess
+                LocalPort = <span class="token-variable">$_</span>.LocalPort
+                RemoteAddress = <span class="token-variable">$_</span>.RemoteAddress
+                RemotePort = <span class="token-variable">$_</span>.RemotePort
+                Path = <span class="token-variable">$Process</span>.Path
+            }
+        } | <span class="token-cmdlet">Sort-Object</span> ProcessName
+}
+
+Get-ProcessConnections | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bash Questions -->
+                <h2>🐧 Bash Interview Questions</h2>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: What's the difference between single and double quotes in Bash?</div>
+                    </div>
+                    <p><strong>Strong Answer:</strong></p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language bash">
+                                <span class="code-language-icon">🐧</span>
+                                Bash - Quote Differences
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-variable">NAME</span>=<span class="token-string">"World"</span>
+
+<span class="token-comment"># Double quotes - variables ARE expanded</span>
+<span class="token-function">echo</span> <span class="token-string">"Hello $NAME"</span>    <span class="token-comment"># Output: Hello World</span>
+
+<span class="token-comment"># Single quotes - literal string, NO expansion</span>
+<span class="token-function">echo</span> <span class="token-string">'Hello $NAME'</span>    <span class="token-comment"># Output: Hello $NAME</span>
+
+<span class="token-comment"># Use single quotes for regex patterns to prevent shell interpretation</span>
+<span class="token-function">grep</span> <span class="token-string">'[0-9]+\.[0-9]+'</span> file.txt</code></pre>
+                        </div>
+                    </div>
+                    <p><strong>Key Point:</strong> Double quotes allow variable expansion and command substitution; single quotes preserve literal text. Use single quotes for regex to prevent shell interpretation.</p>
+                </div>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: How do you find the top 10 IPs in an Apache access log?</div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language bash">
+                                <span class="code-language-icon">🐧</span>
+                                Bash - Log Analysis
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-comment"># Apache log format: IP - - [date] "request" status size</span>
+<span class="token-function">awk</span> <span class="token-string">'{print $1}'</span> access.log | <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | <span class="token-function">sort</span> -rn | <span class="token-function">head</span> -10
+
+<span class="token-comment"># Breakdown:</span>
+<span class="token-comment"># awk '{print $1}'  - Extract first field (IP)</span>
+<span class="token-comment"># sort              - Sort alphabetically (required for uniq)</span>
+<span class="token-comment"># uniq -c           - Count consecutive duplicates</span>
+<span class="token-comment"># sort -rn          - Sort numerically, descending</span>
+<span class="token-comment"># head -10          - Top 10 results</span></code></pre>
+                        </div>
+                    </div>
+                    <p><strong>Key Point:</strong> Explain each command in the pipeline. Mention that <code>sort</code> before <code>uniq</code> is required because uniq only compares adjacent lines.</p>
+                </div>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: Explain the difference between $* and $@ in Bash.</div>
+                    </div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language bash">
+                                <span class="code-language-icon">🐧</span>
+                                Bash - Special Parameters
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+<span class="token-comment"># Called with: ./script.sh "arg one" "arg two"</span>
+
+<span class="token-comment"># $* - All args as single string</span>
+<span class="token-keyword">for</span> arg <span class="token-keyword">in</span> <span class="token-string">"$*"</span>; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$arg"</span>
+<span class="token-keyword">done</span>
+<span class="token-comment"># Output: arg one arg two (one iteration)</span>
+
+<span class="token-comment"># $@ - All args as separate strings (PREFERRED)</span>
+<span class="token-keyword">for</span> arg <span class="token-keyword">in</span> <span class="token-string">"$@"</span>; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$arg"</span>
+<span class="token-keyword">done</span>
+<span class="token-comment"># Output: arg one (first iteration)</span>
+<span class="token-comment">#         arg two (second iteration)</span>
+
+<span class="token-comment"># Always use "$@" to preserve argument boundaries</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario-Based Questions -->
+                <h2>🔒 Security Scenario Questions</h2>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: Walk me through how you'd respond to a malware alert using scripts.</div>
+                    </div>
+                    <p><strong>Strong Answer Structure (use STAR method):</strong></p>
+                    <ol>
+                        <li><strong>Collect Volatile Data First</strong> - Processes, network connections, logged-on users, memory (order of volatility: R.A.N.P.D.)</li>
+                        <li><strong>Isolate if Needed</strong> - Use EDR API to network-isolate the host while preserving data</li>
+                        <li><strong>Collect Persistent Artifacts</strong> - Event logs, registry run keys, scheduled tasks, prefetch files</li>
+                        <li><strong>Hash Everything</strong> - SHA256 all collected files for chain of custody</li>
+                        <li><strong>Package and Document</strong> - Create manifest, timestamp, compress with case number</li>
+                    </ol>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language powershell">
+                                <span class="code-language-icon">🔷</span>
+                                PowerShell - Quick IR Collection
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-comment"># Quick volatile data collection</span>
+<span class="token-variable">$IRData</span> = @{
+    Processes = <span class="token-cmdlet">Get-CimInstance</span> Win32_Process | <span class="token-cmdlet">Select</span> Name, ProcessId, CommandLine
+    Connections = <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established
+    Users = quser 2>$null
+    Timestamp = Get-Date
+}
+<span class="token-variable">$IRData</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">5</span> | <span class="token-cmdlet">Out-File</span> <span class="token-string">"IR_$(Get-Date -f yyyyMMdd_HHmmss).json"</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Q: How would you automate user offboarding from a security perspective?</div>
+                    </div>
+                    <p><strong>Strong Answer:</strong></p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="code-language powershell">
+                                <span class="code-language-icon">🔷</span>
+                                PowerShell - Secure Offboarding
+                            </span>
+                            <button class="code-copy-btn"><span>📋</span> Copy</button>
+                        </div>
+                        <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-SecureOffboarding</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Username</span>)
+    
+    <span class="token-comment"># 1. Disable account immediately (don't delete - preserve for forensics)</span>
+    <span class="token-cmdlet">Disable-ADAccount</span> <span class="token-parameter">-Identity</span> <span class="token-variable">$Username</span>
+    
+    <span class="token-comment"># 2. Reset password to random value</span>
+    <span class="token-variable">$RandomPwd</span> = [System.Web.Security.Membership]::GeneratePassword(32,8)
+    <span class="token-cmdlet">Set-ADAccountPassword</span> <span class="token-parameter">-Identity</span> <span class="token-variable">$Username</span> <span class="token-parameter">-Reset</span> <span class="token-parameter">-NewPassword</span> (ConvertTo-SecureString <span class="token-variable">$RandomPwd</span> -AsPlainText -Force)
+    
+    <span class="token-comment"># 3. Remove from all groups (except Domain Users)</span>
+    <span class="token-cmdlet">Get-ADUser</span> <span class="token-variable">$Username</span> <span class="token-parameter">-Properties</span> MemberOf | 
+        <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-ExpandProperty</span> MemberOf |
+        <span class="token-cmdlet">ForEach-Object</span> { <span class="token-cmdlet">Remove-ADGroupMember</span> <span class="token-variable">$_</span> <span class="token-variable">$Username</span> <span class="token-parameter">-Confirm</span>:<span class="token-variable">$false</span> }
+    
+    <span class="token-comment"># 4. Revoke Azure/M365 sessions</span>
+    <span class="token-cmdlet">Revoke-AzureADUserAllRefreshToken</span> <span class="token-parameter">-ObjectId</span> <span class="token-variable">$Username</span>
+    
+    <span class="token-comment"># 5. Move to Disabled Users OU</span>
+    <span class="token-cmdlet">Move-ADObject</span> <span class="token-parameter">-Identity</span> (Get-ADUser <span class="token-variable">$Username</span>).DistinguishedName <span class="token-parameter">-TargetPath</span> <span class="token-string">"OU=Disabled Users,DC=corp,DC=local"</span>
+    
+    <span class="token-comment"># 6. Log the action</span>
+    Write-EventLog <span class="token-parameter">-LogName</span> Application <span class="token-parameter">-Source</span> <span class="token-string">"IT-Automation"</span> <span class="token-parameter">-EventId</span> <span class="token-number">1001</span> <span class="token-parameter">-Message</span> <span class="token-string">"User $Username offboarded by $env:USERNAME"</span>
+}</code></pre>
+                        </div>
+                    </div>
+                    <p><strong>Key Points:</strong> Disable don't delete (audit trail), reset password, revoke sessions, remove group memberships, move to Disabled OU, and log everything.</p>
+                </div>
+
+                <!-- Live Coding Tips -->
+                <h2>Live Coding Challenge Tips</h2>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: Live Coding Strategy</div>
+                    </div>
+                    <ol>
+                        <li><strong>Clarify Requirements</strong> - Ask about input/output format, edge cases, error handling expectations</li>
+                        <li><strong>Think Aloud</strong> - Verbalize your approach before coding: "I'll start by..."</li>
+                        <li><strong>Start Simple</strong> - Get a working solution first, then optimize</li>
+                        <li><strong>Use Comments</strong> - Write pseudocode comments, then fill in code</li>
+                        <li><strong>Test Incrementally</strong> - Run small pieces as you go</li>
+                        <li><strong>Handle Errors</strong> - Add basic error handling even if not asked</li>
+                    </ol>
+                </div>
+
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Common Live Coding Mistakes</div>
+                    </div>
+                    <ul>
+                        <li><strong>Going silent</strong> - Keep talking! Silence is uncomfortable for interviewers</li>
+                        <li><strong>Jumping to code</strong> - Take 30 seconds to plan your approach</li>
+                        <li><strong>Ignoring edge cases</strong> - What if the file is empty? What if input is null?</li>
+                        <li><strong>Over-engineering</strong> - Don't build a framework when a function will do</li>
+                        <li><strong>Not testing</strong> - Run your code with sample input before saying "done"</li>
+                    </ul>
+                </div>
+
+                <!-- Project Discussion -->
+                <h2>Discussing Your Projects</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 STAR Method for Project Discussion</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         STAR METHOD TEMPLATE                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  SITUATION  │───►│    TASK     │───►│   ACTION    │───►│   RESULT    │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+      │                  │                  │                  │
+      ▼                  ▼                  ▼                  ▼
+"We had 500      "I needed to      "I wrote a        "Reduced from
+failed logins     automate the      PowerShell        4 hours to
+per day and no    detection and     script that       5 minutes,
+way to detect     alerting of       parsed Security   caught 3
+brute force       brute force       logs, grouped     attacks in
+attacks quickly"  attempts"         by IP, and        first month"
+                                    sent Slack
+                                    alerts for
+                                    IPs with 10+
+                                    failures"
+
+QUANTIFY RESULTS: Time saved, incidents detected, accuracy improved
+</pre>
+                </div>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Project Discussion Points</div>
+                    </div>
+                    <ul>
+                        <li><strong>Problem</strong> - What pain point did it solve?</li>
+                        <li><strong>Approach</strong> - Why did you choose this language/method?</li>
+                        <li><strong>Challenges</strong> - What was hard? How did you solve it?</li>
+                        <li><strong>Results</strong> - Quantify: time saved, accuracy, coverage</li>
+                        <li><strong>Learnings</strong> - What would you do differently?</li>
+                    </ul>
+                </div>
+
+                <!-- Quick Reference Table -->
+                <h2>Quick Reference: Key Interview Topics</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Topic</th>
+                                <th>Key Points to Remember</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>PowerShell Pipeline</strong></td>
+                                <td>Objects not text, Where/Select/ForEach/Sort, ByValue vs ByPropertyName binding</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Error Handling</strong></td>
+                                <td>Try/Catch/Finally, -ErrorAction, Terminating vs Non-Terminating</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Event Logs</strong></td>
+                                <td>Get-WinEvent, FilterHashtable, Event IDs: 4624/4625/4688/4720</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Active Directory</strong></td>
+                                <td>Get-ADUser, Get-ADGroupMember, -Filter vs Where-Object performance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bash Text Processing</strong></td>
+                                <td>grep, awk, sed, sort | uniq -c pattern</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bash Variables</strong></td>
+                                <td>No spaces around =, quote variables, $@ vs $*, $? exit status</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IR Scripting</strong></td>
+                                <td>Volatility order (RANPD), hash everything, timestamp, chain of custody</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EDR Automation</strong></td>
+                                <td>API authentication, isolation, indicator blocking, logging</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Final Tips -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Final Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Prepare your environment</strong> - Have PowerShell/Bash ready if it's a screen share</li>
+                        <li><strong>Know your resume</strong> - Be ready to deep-dive on any script you mentioned</li>
+                        <li><strong>Ask questions</strong> - "What does your team's automation stack look like?"</li>
+                        <li><strong>Be honest</strong> - "I haven't used that, but here's how I'd approach learning it"</li>
+                        <li><strong>Show curiosity</strong> - Reference recent features like PowerShell 7's ForEach-Object -Parallel</li>
+                    </ul>
+                </div>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="10-5-cheat-sheets.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 10.5 Cheat Sheets</span>
+                    </a>
+                    <a href="index.html" class="nav-button next">
+                        <span class="nav-button-label">Back to</span>
+                        <span class="nav-button-title">Home →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.7 Functions - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link active"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-modules.html" class="nav-link"><span class="nav-link-number">2.8</span> Modules & Profiles</a>
+                        <a href="2-20-error-handling.html" class="nav-link"><span class="nav-link-number">2.20</span> Error Handling</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Functions</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.7 Functions</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Create reusable functions with parameters</li>
+                        <li>Use advanced function features (CmdletBinding)</li>
+                        <li>Implement parameter validation</li>
+                        <li>Write pipeline-compatible functions</li>
+                    </ul>
+                </div>
+
+                <!-- Function Anatomy -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Advanced Function Anatomy</div>
+<pre>
+function Verb-Noun {
+    [CmdletBinding()]                    ← Enables advanced features
+    param(
+        [Parameter(Mandatory)]           ← Parameter attributes
+        [ValidateNotNullOrEmpty()]       ← Validation
+        [string]$Name,
+        
+        [Parameter(ValueFromPipeline)]   ← Accept pipeline input
+        [string[]]$ComputerName
+    )
+    
+    begin {                              ← Runs once at start
+        # Initialize
+    }
+    
+    process {                            ← Runs for each pipeline item
+        # Main logic (use $_ or parameter)
+    }
+    
+    end {                                ← Runs once at end
+        # Cleanup
+    }
+}
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Approved Verbs</div>
+                    </div>
+                    <ul>
+                        <li><strong>Get-</strong> → Retrieve data (Get-Process, Get-Service)</li>
+                        <li><strong>Set-</strong> → Modify existing (Set-Content, Set-Location)</li>
+                        <li><strong>New-</strong> → Create new (New-Item, New-Object)</li>
+                        <li><strong>Remove-</strong> → Delete (Remove-Item, Remove-Variable)</li>
+                        <li><strong>Start-/Stop-</strong> → Begin/End (Start-Service, Stop-Process)</li>
+                        <li><strong>Invoke-</strong> → Execute action (Invoke-Command, Invoke-WebRequest)</li>
+                        <li><strong>Test-</strong> → Check/Verify (Test-Path, Test-Connection)</li>
+                    </ul>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Run <code>Get-Verb</code> to see all approved verbs.</p>
+                </div>
+
+                <!-- Basic Functions -->
+                <h2>Basic Functions</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Basic Function Syntax
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple function</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-Greeting</span> {
+    <span class="token-string">"Hello, World!"</span>
+}
+
+Get-Greeting  <span class="token-comment"># Output: Hello, World!</span>
+
+<span class="token-comment"># Function with parameters</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-Greeting</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Name</span> = <span class="token-string">"World"</span>
+    )
+    <span class="token-string">"Hello, $Name!"</span>
+}
+
+Get-Greeting                    <span class="token-comment"># Hello, World!</span>
+Get-Greeting -Name <span class="token-string">"Alice"</span>      <span class="token-comment"># Hello, Alice!</span>
+Get-Greeting <span class="token-string">"Bob"</span>              <span class="token-comment"># Hello, Bob! (positional)</span>
+
+<span class="token-comment"># Multiple parameters</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-ServerInfo</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$ComputerName</span>,
+        [int]<span class="token-variable">$Port</span> = <span class="token-number">80</span>,
+        [switch]<span class="token-variable">$Detailed</span>
+    )
+    
+    Write-Host <span class="token-string">"Checking $ComputerName on port $Port"</span>
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Detailed</span>) {
+        Write-Host <span class="token-string">"Running detailed scan..."</span>
+    }
+}
+
+Get-ServerInfo -ComputerName <span class="token-string">"Server01"</span> -Detailed
+
+<span class="token-comment"># Return values (implicit)</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-Square</span> {
+    <span class="token-keyword">param</span>([int]<span class="token-variable">$Number</span>)
+    <span class="token-variable">$Number</span> * <span class="token-variable">$Number</span>  <span class="token-comment"># Output is returned</span>
+}
+
+<span class="token-variable">$Result</span> = Get-Square -Number <span class="token-number">5</span>  <span class="token-comment"># $Result = 25</span>
+
+<span class="token-comment"># Explicit return</span>
+<span class="token-keyword">function</span> <span class="token-function">Test-EvenNumber</span> {
+    <span class="token-keyword">param</span>([int]<span class="token-variable">$Number</span>)
+    <span class="token-keyword">return</span> (<span class="token-variable">$Number</span> % <span class="token-number">2</span> <span class="token-operator">-eq</span> <span class="token-number">0</span>)
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Advanced Functions -->
+                <h2>Advanced Functions (CmdletBinding)</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Advanced Functions
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-SystemHealth</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Checks system health status.
+    .DESCRIPTION
+        Retrieves CPU, memory, and disk information for specified computers.
+    .PARAMETER ComputerName
+        The target computer(s) to check.
+    .PARAMETER Credential
+        Credentials for remote access.
+    .EXAMPLE
+        Get-SystemHealth -ComputerName "Server01"
+    .EXAMPLE
+        "Server01", "Server02" | Get-SystemHealth
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(
+            Mandatory = <span class="token-variable">$true</span>,
+            ValueFromPipeline = <span class="token-variable">$true</span>,
+            ValueFromPipelineByPropertyName = <span class="token-variable">$true</span>,
+            Position = <span class="token-number">0</span>,
+            HelpMessage = <span class="token-string">"Enter computer name(s)"</span>
+        )]
+        [Alias(<span class="token-string">'CN'</span>, <span class="token-string">'Server'</span>)]
+        [string[]]<span class="token-variable">$ComputerName</span>,
+        
+        [Parameter()]
+        [PSCredential]<span class="token-variable">$Credential</span>
+    )
+    
+    <span class="token-keyword">begin</span> {
+        Write-Verbose <span class="token-string">"Starting health check..."</span>
+        <span class="token-variable">$Results</span> = @()
+    }
+    
+    <span class="token-keyword">process</span> {
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$Computer</span> <span class="token-keyword">in</span> <span class="token-variable">$ComputerName</span>) {
+            Write-Verbose <span class="token-string">"Checking $Computer"</span>
+            
+            <span class="token-keyword">try</span> {
+                <span class="token-variable">$OS</span> = <span class="token-cmdlet">Get-CimInstance</span> Win32_OperatingSystem <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Computer</span> -ErrorAction Stop
+                
+                <span class="token-variable">$Results</span> += [PSCustomObject]@{
+                    ComputerName = <span class="token-variable">$Computer</span>
+                    Status = <span class="token-string">'Online'</span>
+                    FreeMemoryGB = [math]::Round(<span class="token-variable">$OS</span>.FreePhysicalMemory / <span class="token-number">1MB</span>, <span class="token-number">2</span>)
+                    LastBoot = <span class="token-variable">$OS</span>.LastBootUpTime
+                }
+            }
+            <span class="token-keyword">catch</span> {
+                Write-Warning <span class="token-string">"Failed to connect to $Computer"</span>
+                <span class="token-variable">$Results</span> += [PSCustomObject]@{
+                    ComputerName = <span class="token-variable">$Computer</span>
+                    Status = <span class="token-string">'Offline'</span>
+                    FreeMemoryGB = <span class="token-variable">$null</span>
+                    LastBoot = <span class="token-variable">$null</span>
+                }
+            }
+        }
+    }
+    
+    <span class="token-keyword">end</span> {
+        Write-Verbose <span class="token-string">"Completed. Checked $($Results.Count) computers."</span>
+        <span class="token-variable">$Results</span>
+    }
+}
+
+<span class="token-comment"># Usage examples</span>
+Get-SystemHealth -ComputerName <span class="token-string">"Server01"</span> -Verbose
+<span class="token-string">"Server01"</span>, <span class="token-string">"Server02"</span> | Get-SystemHealth
+Get-SystemHealth -CN <span class="token-string">"Server01"</span>  <span class="token-comment"># Using alias</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Parameter Validation -->
+                <h2>Parameter Validation</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Validation Attributes
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">New-SecurityReport</span> {
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        <span class="token-comment"># Must not be null or empty</span>
+        [ValidateNotNullOrEmpty()]
+        [string]<span class="token-variable">$ReportName</span>,
+        
+        <span class="token-comment"># Must be one of these values</span>
+        [ValidateSet(<span class="token-string">'Critical'</span>, <span class="token-string">'High'</span>, <span class="token-string">'Medium'</span>, <span class="token-string">'Low'</span>)]
+        [string]<span class="token-variable">$Severity</span> = <span class="token-string">'Medium'</span>,
+        
+        <span class="token-comment"># Must be in range</span>
+        [ValidateRange(<span class="token-number">1</span>, <span class="token-number">100</span>)]
+        [int]<span class="token-variable">$MaxResults</span> = <span class="token-number">50</span>,
+        
+        <span class="token-comment"># Must match pattern (regex)</span>
+        [ValidatePattern(<span class="token-string">'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$'</span>)]
+        [string]<span class="token-variable">$IPAddress</span>,
+        
+        <span class="token-comment"># String length must be in range</span>
+        [ValidateLength(<span class="token-number">1</span>, <span class="token-number">50</span>)]
+        [string]<span class="token-variable">$Description</span>,
+        
+        <span class="token-comment"># Array must have 1-10 elements</span>
+        [ValidateCount(<span class="token-number">1</span>, <span class="token-number">10</span>)]
+        [string[]]<span class="token-variable">$Targets</span>,
+        
+        <span class="token-comment"># Custom validation script</span>
+        [ValidateScript({
+            <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$_</span>) { <span class="token-variable">$true</span> }
+            <span class="token-keyword">else</span> { <span class="token-keyword">throw</span> <span class="token-string">"Path '$_' does not exist"</span> }
+        })]
+        [string]<span class="token-variable">$OutputPath</span>,
+        
+        <span class="token-comment"># Path must exist</span>
+        [ValidatePath(Exists = <span class="token-variable">$true</span>)]  <span class="token-comment"># PS 7+ only</span>
+        [string]<span class="token-variable">$ConfigFile</span>
+    )
+    
+    <span class="token-comment"># Function logic here</span>
+    Write-Host <span class="token-string">"Generating $Severity report: $ReportName"</span>
+}
+
+<span class="token-comment"># Parameter sets - mutually exclusive parameters</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-LogData</span> {
+    [CmdletBinding(DefaultParameterSetName = <span class="token-string">'ByName'</span>)]
+    <span class="token-keyword">param</span>(
+        [Parameter(ParameterSetName = <span class="token-string">'ByName'</span>, Mandatory)]
+        [string]<span class="token-variable">$LogName</span>,
+        
+        [Parameter(ParameterSetName = <span class="token-string">'ByPath'</span>, Mandatory)]
+        [string]<span class="token-variable">$Path</span>,
+        
+        [Parameter()]  <span class="token-comment"># Available in all parameter sets</span>
+        [int]<span class="token-variable">$Count</span> = <span class="token-number">100</span>
+    )
+    
+    <span class="token-keyword">switch</span> (<span class="token-variable">$PSCmdlet</span>.ParameterSetName) {
+        <span class="token-string">'ByName'</span> { <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> <span class="token-variable">$LogName</span> <span class="token-parameter">-MaxEvents</span> <span class="token-variable">$Count</span> }
+        <span class="token-string">'ByPath'</span> { <span class="token-cmdlet">Get-Content</span> <span class="token-variable">$Path</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-variable">$Count</span> }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Pipeline Functions -->
+                <h2>Pipeline-Compatible Functions</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Pipeline Processing
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Process pipeline input</span>
+<span class="token-keyword">function</span> <span class="token-function">Test-PortOpen</span> {
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [string]<span class="token-variable">$ComputerName</span>,
+        
+        [Parameter()]
+        [int]<span class="token-variable">$Port</span> = <span class="token-number">443</span>,
+        
+        [Parameter()]
+        [int]<span class="token-variable">$Timeout</span> = <span class="token-number">1000</span>
+    )
+    
+    <span class="token-keyword">process</span> {
+        <span class="token-variable">$TcpClient</span> = <span class="token-cmdlet">New-Object</span> System.Net.Sockets.TcpClient
+        
+        <span class="token-keyword">try</span> {
+            <span class="token-variable">$Connection</span> = <span class="token-variable">$TcpClient</span>.BeginConnect(<span class="token-variable">$ComputerName</span>, <span class="token-variable">$Port</span>, <span class="token-variable">$null</span>, <span class="token-variable">$null</span>)
+            <span class="token-variable">$Wait</span> = <span class="token-variable">$Connection</span>.AsyncWaitHandle.WaitOne(<span class="token-variable">$Timeout</span>, <span class="token-variable">$false</span>)
+            
+            [PSCustomObject]@{
+                ComputerName = <span class="token-variable">$ComputerName</span>
+                Port = <span class="token-variable">$Port</span>
+                Open = <span class="token-variable">$Wait</span>
+            }
+        }
+        <span class="token-keyword">finally</span> {
+            <span class="token-variable">$TcpClient</span>.Close()
+        }
+    }
+}
+
+<span class="token-comment"># Usage</span>
+<span class="token-string">"google.com"</span>, <span class="token-string">"github.com"</span> | Test-PortOpen -Port <span class="token-number">443</span>
+
+<span class="token-comment"># ValueFromPipelineByPropertyName</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-ServiceStatus</span> {
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [Alias(<span class="token-string">'Name'</span>)]
+        [string]<span class="token-variable">$ServiceName</span>
+    )
+    
+    <span class="token-keyword">process</span> {
+        <span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-variable">$ServiceName</span> -ErrorAction SilentlyContinue
+        <span class="token-keyword">if</span> (<span class="token-variable">$Service</span>) {
+            [PSCustomObject]@{
+                Name = <span class="token-variable">$Service</span>.Name
+                Status = <span class="token-variable">$Service</span>.Status
+                StartType = <span class="token-variable">$Service</span>.StartType
+            }
+        }
+    }
+}
+
+<span class="token-comment"># Works with objects that have a 'Name' property</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">5</span> | Get-ServiceStatus
+
+<span class="token-comment"># ShouldProcess for destructive operations</span>
+<span class="token-keyword">function</span> <span class="token-function">Remove-OldLogs</span> {
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = <span class="token-string">'High'</span>)]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Path</span>,
+        [int]<span class="token-variable">$DaysOld</span> = <span class="token-number">30</span>
+    )
+    
+    <span class="token-variable">$Cutoff</span> = (Get-Date).AddDays(-<span class="token-variable">$DaysOld</span>)
+    <span class="token-variable">$Files</span> = <span class="token-cmdlet">Get-ChildItem</span> <span class="token-variable">$Path</span> <span class="token-parameter">-Filter</span> <span class="token-string">"*.log"</span> | <span class="token-cmdlet">Where-Object</span> LastWriteTime <span class="token-operator">-lt</span> <span class="token-variable">$Cutoff</span>
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$File</span> <span class="token-keyword">in</span> <span class="token-variable">$Files</span>) {
+        <span class="token-keyword">if</span> (<span class="token-variable">$PSCmdlet</span>.ShouldProcess(<span class="token-variable">$File</span>.FullName, <span class="token-string">"Delete"</span>)) {
+            <span class="token-cmdlet">Remove-Item</span> <span class="token-variable">$File</span>.FullName -Force
+        }
+    }
+}
+
+<span class="token-comment"># Usage with -WhatIf and -Confirm</span>
+Remove-OldLogs -Path <span class="token-string">"C:\Logs"</span> -WhatIf      <span class="token-comment"># Shows what would happen</span>
+Remove-OldLogs -Path <span class="token-string">"C:\Logs"</span> -Confirm    <span class="token-comment"># Prompts for each file</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Function Example -->
+                <h2>Security Function Example</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Function
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-SuspiciousProcess</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Identifies potentially suspicious processes.
+    .DESCRIPTION
+        Checks for processes with suspicious characteristics:
+        - Running from temp directories
+        - No company information
+        - Script engines with network connections
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(ValueFromPipeline)]
+        [string]<span class="token-variable">$ComputerName</span> = <span class="token-variable">$env:COMPUTERNAME</span>,
+        
+        [ValidateSet(<span class="token-string">'TempPath'</span>, <span class="token-string">'NoCompany'</span>, <span class="token-string">'NetworkScripts'</span>, <span class="token-string">'All'</span>)]
+        [string[]]<span class="token-variable">$CheckType</span> = <span class="token-string">'All'</span>
+    )
+    
+    <span class="token-keyword">begin</span> {
+        <span class="token-variable">$SuspiciousPaths</span> = @(
+            <span class="token-string">'*\Temp\*'</span>,
+            <span class="token-string">'*\AppData\Local\Temp\*'</span>,
+            <span class="token-string">'*\Downloads\*'</span>,
+            <span class="token-string">'*\Public\*'</span>
+        )
+        
+        <span class="token-variable">$ScriptEngines</span> = @(<span class="token-string">'powershell'</span>, <span class="token-string">'pwsh'</span>, <span class="token-string">'cmd'</span>, <span class="token-string">'wscript'</span>, <span class="token-string">'cscript'</span>, <span class="token-string">'mshta'</span>)
+    }
+    
+    <span class="token-keyword">process</span> {
+        <span class="token-variable">$Findings</span> = @()
+        <span class="token-variable">$Processes</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-IncludeUserName</span> -ErrorAction SilentlyContinue
+        
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$Proc</span> <span class="token-keyword">in</span> <span class="token-variable">$Processes</span>) {
+            <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$false</span>
+            <span class="token-variable">$Reasons</span> = @()
+            
+            <span class="token-comment"># Check: Running from temp directory</span>
+            <span class="token-keyword">if</span> (<span class="token-variable">$CheckType</span> <span class="token-operator">-contains</span> <span class="token-string">'TempPath'</span> <span class="token-operator">-or</span> <span class="token-variable">$CheckType</span> <span class="token-operator">-contains</span> <span class="token-string">'All'</span>) {
+                <span class="token-keyword">foreach</span> (<span class="token-variable">$Path</span> <span class="token-keyword">in</span> <span class="token-variable">$SuspiciousPaths</span>) {
+                    <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.Path <span class="token-operator">-like</span> <span class="token-variable">$Path</span>) {
+                        <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$true</span>
+                        <span class="token-variable">$Reasons</span> += <span class="token-string">"Running from suspicious path"</span>
+                        <span class="token-keyword">break</span>
+                    }
+                }
+            }
+            
+            <span class="token-comment"># Check: No company info</span>
+            <span class="token-keyword">if</span> (<span class="token-variable">$CheckType</span> <span class="token-operator">-contains</span> <span class="token-string">'NoCompany'</span> <span class="token-operator">-or</span> <span class="token-variable">$CheckType</span> <span class="token-operator">-contains</span> <span class="token-string">'All'</span>) {
+                <span class="token-keyword">if</span> (<span class="token-variable">$Proc</span>.Path <span class="token-operator">-and</span> [string]::IsNullOrEmpty(<span class="token-variable">$Proc</span>.Company)) {
+                    <span class="token-variable">$IsSuspicious</span> = <span class="token-variable">$true</span>
+                    <span class="token-variable">$Reasons</span> += <span class="token-string">"No company information"</span>
+                }
+            }
+            
+            <span class="token-keyword">if</span> (<span class="token-variable">$IsSuspicious</span>) {
+                <span class="token-variable">$Findings</span> += [PSCustomObject]@{
+                    ProcessName = <span class="token-variable">$Proc</span>.Name
+                    PID = <span class="token-variable">$Proc</span>.Id
+                    Path = <span class="token-variable">$Proc</span>.Path
+                    User = <span class="token-variable">$Proc</span>.UserName
+                    Reasons = <span class="token-variable">$Reasons</span> -join <span class="token-string">'; '</span>
+                    ComputerName = <span class="token-variable">$ComputerName</span>
+                }
+            }
+        }
+        
+        <span class="token-variable">$Findings</span>
+    }
+}
+
+<span class="token-comment"># Usage</span>
+Get-SuspiciousProcess -CheckType All
+Get-SuspiciousProcess -CheckType TempPath, NoCompany</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Functions</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use approved verbs:</strong> Get-, Set-, New-, Remove-, Test-, Invoke-</li>
+                        <li><strong>Add CmdletBinding:</strong> Enables -Verbose, -Debug, -ErrorAction</li>
+                        <li><strong>Validate parameters:</strong> Catch errors early with validation attributes</li>
+                        <li><strong>Support pipeline:</strong> Use ValueFromPipeline for flexibility</li>
+                        <li><strong>Document with help:</strong> Include .SYNOPSIS, .DESCRIPTION, .EXAMPLE</li>
+                        <li><strong>Use ShouldProcess:</strong> For destructive operations (-WhatIf, -Confirm)</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What does CmdletBinding do?"</li>
+                        <li><strong>Strong Answer:</strong> <code>[CmdletBinding()]</code> transforms a function into an "advanced function" with cmdlet-like features: common parameters (-Verbose, -Debug, -ErrorAction), pipeline support, parameter validation, and ShouldProcess support for -WhatIf/-Confirm. It makes functions behave like native PowerShell cmdlets.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>Verb-Noun</code> naming convention (check <code>Get-Verb</code>)</li>
+                    <li><code>[CmdletBinding()]</code> enables advanced features</li>
+                    <li>Validate parameters with <code>[ValidateSet()]</code>, <code>[ValidateRange()]</code>, etc.</li>
+                    <li>Use <code>begin/process/end</code> blocks for pipeline processing</li>
+                    <li>Document functions with comment-based help</li>
+                    <li>Use <code>SupportsShouldProcess</code> for destructive operations</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-6-control-structures.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.6 Control Structures</span>
+                    </a>
+                    <a href="2-8-modules.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.8 Modules & Profiles →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

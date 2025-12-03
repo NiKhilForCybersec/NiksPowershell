@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3 Setting Up Your Environment - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link active"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#fundamentals">Scripting Fundamentals</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Setting Up Your Environment</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>1.3 Setting Up Your Environment</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Install and configure PowerShell 7 on Windows, Linux, and macOS</li>
+                        <li>Set up VS Code as your primary scripting IDE</li>
+                        <li>Configure Windows Subsystem for Linux (WSL) for Bash</li>
+                        <li>Install essential security modules and tools</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>The Security Professional's Development Environment</h2>
+                <p>
+                    A well-configured development environment is essential for efficient scripting. 
+                    This guide covers setting up a cross-platform environment optimized for security 
+                    automation work.
+                </p>
+
+                <!-- Environment Overview -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Recommended Setup</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    SECURITY SCRIPTING ENVIRONMENT                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           VS CODE (IDE)                                      │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
+│  │  PowerShell  │  │    Bash      │  │   Python     │  │    Git       │    │
+│  │  Extension   │  │  Extension   │  │  Extension   │  │  Extension   │    │
+│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘    │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+          ┌─────────────────────────┼─────────────────────────┐
+          │                         │                         │
+          ▼                         ▼                         ▼
+┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐
+│   PowerShell 7   │    │       WSL        │    │   Windows CMD    │
+│                  │    │   (Ubuntu/Kali)  │    │                  │
+│ • Cross-platform │    │ • Native Linux   │    │ • Legacy scripts │
+│ • Az module      │    │ • Bash/Zsh       │    │ • Batch files    │
+│ • AD module      │    │ • Security tools │    │                  │
+└──────────────────┘    └──────────────────┘    └──────────────────┘
+</pre>
+                </div>
+
+                <!-- PowerShell 7 Installation -->
+                <h2>Installing PowerShell 7</h2>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: PowerShell Versions</div>
+                    </div>
+                    <ul>
+                        <li><strong>Windows PowerShell 5.1</strong> → Built into Windows, .NET Framework</li>
+                        <li><strong>PowerShell 7+</strong> → Cross-platform, .NET Core, new features</li>
+                        <li><strong>Both can coexist!</strong> → Different executables (powershell.exe vs pwsh.exe)</li>
+                    </ul>
+                </div>
+
+                <h3>Windows Installation</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Install PowerShell 7
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Option 1: Using winget (Windows 10/11)</span>
+winget install Microsoft.PowerShell
+
+<span class="token-comment"># Option 2: Using MSI from GitHub (manual)</span>
+<span class="token-comment"># Download from: https://github.com/PowerShell/PowerShell/releases</span>
+
+<span class="token-comment"># Option 3: Using Windows PowerShell</span>
+iex <span class="token-string">"& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI"</span>
+
+<span class="token-comment"># Verify installation</span>
+pwsh --version   <span class="token-comment"># Should show PowerShell 7.x</span>
+
+<span class="token-comment"># Check both versions</span>
+powershell -Command <span class="token-string">'$PSVersionTable.PSVersion'</span>  <span class="token-comment"># 5.1</span>
+pwsh -Command <span class="token-string">'$PSVersionTable.PSVersion'</span>        <span class="token-comment"># 7.x</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Linux Installation</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Install PowerShell on Linux
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Ubuntu 22.04 / Debian</span>
+<span class="token-function">sudo</span> apt-get update
+<span class="token-function">sudo</span> apt-get install -y wget apt-transport-https software-properties-common
+
+<span class="token-comment"># Add Microsoft repository</span>
+<span class="token-function">wget</span> -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
+<span class="token-function">sudo</span> dpkg -i packages-microsoft-prod.deb
+<span class="token-function">rm</span> packages-microsoft-prod.deb
+
+<span class="token-comment"># Install PowerShell</span>
+<span class="token-function">sudo</span> apt-get update
+<span class="token-function">sudo</span> apt-get install -y powershell
+
+<span class="token-comment"># Verify</span>
+pwsh --version
+
+<span class="token-comment"># RHEL / CentOS / Fedora</span>
+<span class="token-function">sudo</span> dnf install powershell
+
+<span class="token-comment"># Kali Linux (comes with PowerShell in repos)</span>
+<span class="token-function">sudo</span> apt-get install powershell</code></pre>
+                    </div>
+                </div>
+
+                <h3>macOS Installation</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🍎</span>
+                            Bash - Install PowerShell on macOS
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Using Homebrew (recommended)</span>
+brew install --cask powershell
+
+<span class="token-comment"># Verify</span>
+pwsh --version
+
+<span class="token-comment"># Update</span>
+brew update
+brew upgrade --cask powershell</code></pre>
+                    </div>
+                </div>
+
+                <!-- WSL Setup -->
+                <h2>Windows Subsystem for Linux (WSL)</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - WSL Installation (Admin)
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install WSL with Ubuntu (requires admin and restart)</span>
+wsl --install
+
+<span class="token-comment"># List available distributions</span>
+wsl --list --online
+
+<span class="token-comment"># Install specific distribution</span>
+wsl --install -d Ubuntu-22.04
+wsl --install -d kali-linux   <span class="token-comment"># For security tools</span>
+
+<span class="token-comment"># Set default distribution</span>
+wsl --set-default Ubuntu-22.04
+
+<span class="token-comment"># Update WSL kernel</span>
+wsl --update
+
+<span class="token-comment"># Check version (should be WSL 2)</span>
+wsl --status
+
+<span class="token-comment"># Run Linux command from PowerShell</span>
+wsl grep <span class="token-string">"error"</span> /var/log/syslog
+
+<span class="token-comment"># Access Windows files from WSL: /mnt/c/Users/...</span>
+<span class="token-comment"># Access WSL files from Windows: \\wsl$\Ubuntu\home\...</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- VS Code Setup -->
+                <h2>VS Code Configuration</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - VS Code Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install VS Code using winget</span>
+winget install Microsoft.VisualStudioCode
+
+<span class="token-comment"># Install essential extensions via command line</span>
+code --install-extension ms-vscode.powershell
+code --install-extension ms-vscode-remote.remote-wsl
+code --install-extension ms-python.python
+code --install-extension eamodio.gitlens
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension redhat.vscode-yaml
+
+<span class="token-comment"># Security-specific extensions</span>
+code --install-extension tintoy.msbuild-project-tools
+code --install-extension ms-vscode.azure-account</code></pre>
+                    </div>
+                </div>
+
+                <h3>VS Code Settings for PowerShell</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language">
+                            <span class="code-language-icon">⚙️</span>
+                            JSON - VS Code settings.json
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code>{
+    <span class="token-comment">// PowerShell settings</span>
+    "powershell.powerShellDefaultVersion": "PowerShell (x64)",
+    "powershell.integratedConsole.showOnStartup": true,
+    "powershell.scriptAnalysis.enable": true,
+    "powershell.codeFormatting.preset": "OTBS",
+    "powershell.codeFormatting.openBraceOnSameLine": true,
+    
+    <span class="token-comment">// Editor settings</span>
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.renderWhitespace": "boundary",
+    
+    <span class="token-comment">// Terminal settings</span>
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Windows PowerShell": {
+            "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+        },
+        "Ubuntu (WSL)": {
+            "path": "C:\\Windows\\System32\\wsl.exe",
+            "args": ["-d", "Ubuntu"]
+        }
+    },
+    
+    <span class="token-comment">// File associations</span>
+    "files.associations": {
+        "*.ps1": "powershell",
+        "*.psm1": "powershell",
+        "*.psd1": "powershell"
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Essential Modules -->
+                <h2>Essential PowerShell Modules</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Install Security Modules
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Azure/Microsoft 365 Security</span>
+<span class="token-cmdlet">Install-Module</span> Az <span class="token-parameter">-Scope</span> CurrentUser <span class="token-parameter">-Force</span>
+<span class="token-cmdlet">Install-Module</span> Microsoft.Graph <span class="token-parameter">-Scope</span> CurrentUser
+<span class="token-cmdlet">Install-Module</span> ExchangeOnlineManagement <span class="token-parameter">-Scope</span> CurrentUser
+<span class="token-cmdlet">Install-Module</span> AzureAD <span class="token-parameter">-Scope</span> CurrentUser
+
+<span class="token-comment"># Active Directory (Windows only, from RSAT)</span>
+Add-WindowsCapability <span class="token-parameter">-Online</span> <span class="token-parameter">-Name</span> Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0
+
+<span class="token-comment"># Security tools</span>
+<span class="token-cmdlet">Install-Module</span> PSScriptAnalyzer <span class="token-parameter">-Scope</span> CurrentUser   <span class="token-comment"># Code analysis</span>
+<span class="token-cmdlet">Install-Module</span> Pester <span class="token-parameter">-Scope</span> CurrentUser              <span class="token-comment"># Testing framework</span>
+<span class="token-cmdlet">Install-Module</span> ImportExcel <span class="token-parameter">-Scope</span> CurrentUser         <span class="token-comment"># Excel without Office</span>
+
+<span class="token-comment"># Utility modules</span>
+<span class="token-cmdlet">Install-Module</span> PSReadLine <span class="token-parameter">-Scope</span> CurrentUser          <span class="token-comment"># Better console</span>
+<span class="token-cmdlet">Install-Module</span> Terminal-Icons <span class="token-parameter">-Scope</span> CurrentUser     <span class="token-comment"># File icons</span>
+
+<span class="token-comment"># Verify installed modules</span>
+<span class="token-cmdlet">Get-InstalledModule</span> | <span class="token-cmdlet">Select-Object</span> Name, Version</code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Tools -->
+                <h2>Essential Bash/Linux Tools</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Install Security Tools
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Update system</span>
+<span class="token-function">sudo</span> apt update && <span class="token-function">sudo</span> apt upgrade -y
+
+<span class="token-comment"># Essential utilities</span>
+<span class="token-function">sudo</span> apt install -y \
+    curl \
+    wget \
+    git \
+    jq \              <span class="token-comment"># JSON processor</span>
+    vim \
+    tmux \            <span class="token-comment"># Terminal multiplexer</span>
+    htop \            <span class="token-comment"># Process viewer</span>
+    tree \            <span class="token-comment"># Directory viewer</span>
+    net-tools \       <span class="token-comment"># ifconfig, netstat</span>
+    dnsutils \        <span class="token-comment"># dig, nslookup</span>
+    whois
+
+<span class="token-comment"># Security tools</span>
+<span class="token-function">sudo</span> apt install -y \
+    nmap \            <span class="token-comment"># Network scanner</span>
+    nikto \           <span class="token-comment"># Web vulnerability scanner</span>
+    tcpdump \         <span class="token-comment"># Packet capture</span>
+    wireshark-cli \   <span class="token-comment"># tshark</span>
+    netcat-openbsd \  <span class="token-comment"># Network utility</span>
+    sqlmap            <span class="token-comment"># SQL injection testing</span>
+
+<span class="token-comment"># Python tools</span>
+<span class="token-function">sudo</span> apt install -y python3 python3-pip python3-venv
+
+<span class="token-comment"># Oh My Zsh (optional but recommended)</span>
+<span class="token-function">sudo</span> apt install -y zsh
+sh -c <span class="token-string">"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- PowerShell Profile -->
+                <h2>PowerShell Profile Configuration</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Profile Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check profile location</span>
+<span class="token-variable">$PROFILE</span>
+
+<span class="token-comment"># Create profile if doesn't exist</span>
+<span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$PROFILE</span>)) {
+    <span class="token-cmdlet">New-Item</span> <span class="token-parameter">-Path</span> <span class="token-variable">$PROFILE</span> <span class="token-parameter">-ItemType</span> File <span class="token-parameter">-Force</span>
+}
+
+<span class="token-comment"># Open profile for editing</span>
+code <span class="token-variable">$PROFILE</span>
+
+<span class="token-comment"># Example profile content:</span>
+@<span class="token-string">'
+# PowerShell Profile for Security Work
+
+# Import modules
+Import-Module Terminal-Icons -ErrorAction SilentlyContinue
+Import-Module PSReadLine
+
+# PSReadLine configuration
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+
+# Custom aliases
+Set-Alias -Name grep -Value Select-String
+Set-Alias -Name which -Value Get-Command
+Set-Alias -Name ll -Value Get-ChildItem
+
+# Security functions
+function Get-OpenPorts {
+    Get-NetTCPConnection -State Listen | 
+        Select-Object LocalPort, @{N='Process';E={(Get-Process -Id $_.OwningProcess).Name}} |
+        Sort-Object LocalPort
+}
+
+function Get-EstablishedConnections {
+    Get-NetTCPConnection -State Established |
+        Select-Object RemoteAddress, RemotePort, @{N='Process';E={(Get-Process -Id $_.OwningProcess).Name}}
+}
+
+# Quick hash function
+function Get-QuickHash {
+    param([string]$Path)
+    Get-FileHash $Path -Algorithm SHA256 | Select-Object Hash
+}
+
+# Prompt customization
+function prompt {
+    $location = Get-Location
+    $host.UI.RawUI.WindowTitle = "PS: $location"
+    "PS $location> "
+}
+
+Write-Host "Security Profile Loaded" -ForegroundColor Cyan
+'@ | <span class="token-cmdlet">Out-File</span> <span class="token-variable">$PROFILE</span>
+
+<span class="token-comment"># Reload profile</span>
+. <span class="token-variable">$PROFILE</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Git Configuration -->
+                <h2>Git Configuration</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">📦</span>
+                            Bash/PowerShell - Git Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install Git (Windows)</span>
+winget install Git.Git
+
+<span class="token-comment"># Configure Git</span>
+git config --global user.name <span class="token-string">"Your Name"</span>
+git config --global user.email <span class="token-string">"your.email@example.com"</span>
+
+<span class="token-comment"># Set default branch name</span>
+git config --global init.defaultBranch main
+
+<span class="token-comment"># Set VS Code as default editor</span>
+git config --global core.editor <span class="token-string">"code --wait"</span>
+
+<span class="token-comment"># Configure line endings</span>
+git config --global core.autocrlf true   <span class="token-comment"># Windows</span>
+git config --global core.autocrlf input  <span class="token-comment"># Linux/macOS</span>
+
+<span class="token-comment"># Useful aliases</span>
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.lg <span class="token-string">"log --oneline --graph --all"</span>
+
+<span class="token-comment"># View configuration</span>
+git config --list</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Environment Setup</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use PowerShell 7 for new scripts:</strong> Cross-platform, modern features</li>
+                        <li><strong>Keep Windows PowerShell 5.1 available:</strong> Some modules require it</li>
+                        <li><strong>Use WSL for Linux tools:</strong> Best of both worlds on Windows</li>
+                        <li><strong>Version control everything:</strong> Git for all scripts</li>
+                        <li><strong>Create a script repository:</strong> Organize by function/tool</li>
+                        <li><strong>Document your setup:</strong> README for your tools/config</li>
+                    </ul>
+                </div>
+
+                <!-- Verification Checklist -->
+                <h2>Environment Verification Checklist</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Verify Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Run this script to verify your environment</span>
+
+<span class="token-keyword">function</span> <span class="token-function">Test-SecurityEnvironment</span> {
+    Write-Host <span class="token-string">"=== Security Environment Check ==="</span> -ForegroundColor Cyan
+    
+    <span class="token-comment"># PowerShell version</span>
+    Write-Host <span class="token-string">"`nPowerShell: $($PSVersionTable.PSVersion)"</span>
+    
+    <span class="token-comment"># Check for pwsh (PS7)</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Get-Command</span> pwsh -ErrorAction SilentlyContinue) {
+        Write-Host <span class="token-string">"[✓] PowerShell 7 installed"</span> -ForegroundColor Green
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"[✗] PowerShell 7 not found"</span> -ForegroundColor Red
+    }
+    
+    <span class="token-comment"># WSL check</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Get-Command</span> wsl -ErrorAction SilentlyContinue) {
+        <span class="token-variable">$WslDistros</span> = wsl --list --quiet 2>$null
+        Write-Host <span class="token-string">"[✓] WSL installed: $($WslDistros -join ', ')"</span> -ForegroundColor Green
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"[✗] WSL not installed"</span> -ForegroundColor Yellow
+    }
+    
+    <span class="token-comment"># VS Code</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Get-Command</span> code -ErrorAction SilentlyContinue) {
+        Write-Host <span class="token-string">"[✓] VS Code installed"</span> -ForegroundColor Green
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"[✗] VS Code not found"</span> -ForegroundColor Red
+    }
+    
+    <span class="token-comment"># Git</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Get-Command</span> git -ErrorAction SilentlyContinue) {
+        Write-Host <span class="token-string">"[✓] Git installed: $(git --version)"</span> -ForegroundColor Green
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"[✗] Git not found"</span> -ForegroundColor Red
+    }
+    
+    <span class="token-comment"># Key modules</span>
+    <span class="token-variable">$RequiredModules</span> = @(<span class="token-string">'Az'</span>, <span class="token-string">'PSScriptAnalyzer'</span>, <span class="token-string">'ImportExcel'</span>)
+    Write-Host <span class="token-string">"`nModule Status:"</span>
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Module</span> <span class="token-keyword">in</span> <span class="token-variable">$RequiredModules</span>) {
+        <span class="token-keyword">if</span> (<span class="token-cmdlet">Get-Module</span> <span class="token-parameter">-ListAvailable</span> <span class="token-variable">$Module</span>) {
+            Write-Host <span class="token-string">"  [✓] $Module"</span> -ForegroundColor Green
+        } <span class="token-keyword">else</span> {
+            Write-Host <span class="token-string">"  [✗] $Module (install with: Install-Module $Module)"</span> -ForegroundColor Yellow
+        }
+    }
+}
+
+Test-SecurityEnvironment</code></pre>
+                    </div>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Install both PowerShell 7 (pwsh) and keep Windows PowerShell 5.1</li>
+                    <li>Use VS Code with PowerShell extension as your primary IDE</li>
+                    <li>Set up WSL for native Linux tools and Bash scripting</li>
+                    <li>Configure your PowerShell profile with useful aliases and functions</li>
+                    <li>Install essential security modules: Az, Microsoft.Graph, AD tools</li>
+                    <li>Use Git for version control of all your scripts</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="1-2-choosing-right-tool.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 1.2 Choosing the Right Tool</span>
+                    </a>
+                    <a href="2-1-powershell-intro.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.1 PowerShell Introduction →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

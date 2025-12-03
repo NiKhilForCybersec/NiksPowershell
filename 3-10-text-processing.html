@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.10 Text Processing - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-basics.html" class="nav-link"><span class="nav-link-number">3.2</span> Bash Basics</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Bash Variables</a>
+                        <a href="3-4-bash-strings.html" class="nav-link"><span class="nav-link-number">3.4</span> Bash Strings</a>
+                        <a href="3-5-bash-arrays.html" class="nav-link"><span class="nav-link-number">3.5</span> Bash Arrays</a>
+                        <a href="3-6-bash-conditionals.html" class="nav-link"><span class="nav-link-number">3.6</span> Bash Conditionals</a>
+                        <a href="3-7-bash-loops.html" class="nav-link"><span class="nav-link-number">3.7</span> Bash Loops</a>
+                        <a href="3-8-bash-functions.html" class="nav-link"><span class="nav-link-number">3.8</span> Bash Functions</a>
+                        <a href="3-9-bash-io-redirection.html" class="nav-link"><span class="nav-link-number">3.9</span> I/O Redirection</a>
+                        <a href="3-10-text-processing.html" class="nav-link active"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-11-bash-regex.html" class="nav-link"><span class="nav-link-number">3.11</span> Bash Regex</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                        <a href="3-13-bash-system-admin.html" class="nav-link"><span class="nav-link-number">3.13</span> System Administration</a>
+                        <a href="3-14-bash-security-tools.html" class="nav-link"><span class="nav-link-number">3.14</span> Security Tools Integration</a>
+                        <a href="3-15-bash-best-practices.html" class="nav-link"><span class="nav-link-number">3.15</span> Bash Best Practices</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#bash">Bash Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Text Processing</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>3.10 Text Processing</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Master grep for searching and filtering text</li>
+                        <li>Use sed for stream editing and text transformation</li>
+                        <li>Process columnar data with awk</li>
+                        <li>Combine tools for powerful log analysis pipelines</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>The Unix Text Processing Philosophy</h2>
+                <p>
+                    Text processing is where Bash truly shines. The Unix philosophy of small tools that 
+                    do one thing well, combined via pipes, creates incredibly powerful data processing 
+                    capabilities. For security work—especially log analysis—mastering grep, sed, and awk 
+                    is essential.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: The Big Three</div>
+                    </div>
+                    <ul>
+                        <li><strong>grep</strong> = "Get Regular Expression and Print" → <em>Find lines matching a pattern</em></li>
+                        <li><strong>sed</strong> = "Stream Editor" → <em>Transform text (find/replace)</em></li>
+                        <li><strong>awk</strong> = Named after creators (Aho, Weinberger, Kernighan) → <em>Process columns and records</em></li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>grep finds it, sed changes it, awk analyzes it!</em>
+                    </p>
+                </div>
+
+                <!-- Text Processing Pipeline -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Text Processing Pipeline</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    TYPICAL LOG ANALYSIS PIPELINE                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+                    ┌─────────┐      ┌─────────┐      ┌─────────┐
+  Raw Log ────────► │  grep   │─────►│   awk   │─────►│  sort   │───────►
+  File              │ (filter)│      │(extract)│      │         │
+                    └─────────┘      └─────────┘      └─────────┘
+                         │                │                │
+                         ▼                ▼                ▼
+                    Find lines       Extract         Order
+                    with "error"     IP column       results
+
+      ┌─────────┐      ┌─────────┐
+─────►│  uniq   │─────►│  head   │─────► Top 10 IPs with errors
+      │   -c    │      │   -10   │
+      └─────────┘      └─────────┘
+           │                │
+           ▼                ▼
+       Count each       Show first
+       unique value     10 results
+
+Example: grep "error" access.log | awk '{print $1}' | sort | uniq -c | sort -rn | head
+</pre>
+                </div>
+
+                <!-- GREP Section -->
+                <h2>grep: Pattern Searching</h2>
+
+                <p>
+                    <code>grep</code> searches files for lines matching a pattern. It's often the first 
+                    tool in any log analysis pipeline.
+                </p>
+
+                <h3>Basic grep Usage</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - grep Basics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic search</span>
+<span class="token-function">grep</span> <span class="token-string">"error"</span> /var/log/syslog
+
+<span class="token-comment"># Case-insensitive (-i)</span>
+<span class="token-function">grep</span> -i <span class="token-string">"error"</span> /var/log/syslog
+
+<span class="token-comment"># Recursive search (-r)</span>
+<span class="token-function">grep</span> -r <span class="token-string">"password"</span> /etc/
+
+<span class="token-comment"># Show line numbers (-n)</span>
+<span class="token-function">grep</span> -n <span class="token-string">"failed"</span> auth.log
+
+<span class="token-comment"># Count matches (-c)</span>
+<span class="token-function">grep</span> -c <span class="token-string">"404"</span> access.log
+
+<span class="token-comment"># Invert match - lines NOT containing pattern (-v)</span>
+<span class="token-function">grep</span> -v <span class="token-string">"debug"</span> app.log
+
+<span class="token-comment"># Show only matching part (-o)</span>
+<span class="token-function">grep</span> -o <span class="token-string">'[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+'</span> access.log
+
+<span class="token-comment"># Context: 3 lines before (-B) and after (-A)</span>
+<span class="token-function">grep</span> -B3 -A3 <span class="token-string">"critical"</span> /var/log/syslog
+
+<span class="token-comment"># Multiple patterns (-E for extended regex, or egrep)</span>
+<span class="token-function">grep</span> -E <span class="token-string">"error|warning|critical"</span> app.log</code></pre>
+                    </div>
+                </div>
+
+                <h3>grep with Regex</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - grep Regex Patterns
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Match IP addresses</span>
+<span class="token-function">grep</span> -oE <span class="token-string">'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'</span> access.log
+
+<span class="token-comment"># Match email addresses</span>
+<span class="token-function">grep</span> -oE <span class="token-string">'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'</span> file.txt
+
+<span class="token-comment"># Lines starting with a date (YYYY-MM-DD)</span>
+<span class="token-function">grep</span> -E <span class="token-string">'^[0-9]{4}-[0-9]{2}-[0-9]{2}'</span> log.txt
+
+<span class="token-comment"># Lines ending with a number</span>
+<span class="token-function">grep</span> -E <span class="token-string">'[0-9]+$'</span> file.txt
+
+<span class="token-comment"># Match MAC addresses</span>
+<span class="token-function">grep</span> -oiE <span class="token-string">'([0-9a-f]{2}:){5}[0-9a-f]{2}'</span> dhcp.log
+
+<span class="token-comment"># Match URLs</span>
+<span class="token-function">grep</span> -oE <span class="token-string">'https?://[^[:space:]]+'</span> file.txt</code></pre>
+                    </div>
+                </div>
+
+                <!-- Security grep examples -->
+                <h3>Security-Focused grep Examples</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Security grep Patterns
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Find failed SSH logins</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> /var/log/auth.log
+
+<span class="token-comment"># Find successful SSH logins</span>
+<span class="token-function">grep</span> <span class="token-string">"Accepted"</span> /var/log/auth.log
+
+<span class="token-comment"># Find sudo commands</span>
+<span class="token-function">grep</span> <span class="token-string">"sudo:"</span> /var/log/auth.log | <span class="token-function">grep</span> <span class="token-string">"COMMAND"</span>
+
+<span class="token-comment"># Find root login attempts</span>
+<span class="token-function">grep</span> -E <span class="token-string">"user root|user=root"</span> /var/log/auth.log
+
+<span class="token-comment"># Find all 4xx and 5xx HTTP errors</span>
+<span class="token-function">grep</span> -E <span class="token-string">" (4[0-9]{2}|5[0-9]{2}) "</span> /var/log/nginx/access.log
+
+<span class="token-comment"># Find SQL injection attempts</span>
+<span class="token-function">grep</span> -iE <span class="token-string">"(union|select|insert|drop|delete|update).*from"</span> access.log
+
+<span class="token-comment"># Find potential XSS attempts</span>
+<span class="token-function">grep</span> -iE <span class="token-string">"<script|javascript:|onerror=|onload="</span> access.log
+
+<span class="token-comment"># Find base64 encoded strings (potential obfuscation)</span>
+<span class="token-function">grep</span> -oE <span class="token-string">'[A-Za-z0-9+/]{40,}={0,2}'</span> suspicious.log</code></pre>
+                    </div>
+                </div>
+
+                <!-- SED Section -->
+                <h2>sed: Stream Editor</h2>
+
+                <p>
+                    <code>sed</code> performs text transformations on streams. It's most commonly used 
+                    for find-and-replace operations, but can do much more.
+                </p>
+
+                <h3>sed Substitution</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - sed Substitution
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic substitution (first occurrence per line)</span>
+<span class="token-function">sed</span> <span class="token-string">'s/old/new/'</span> file.txt
+
+<span class="token-comment"># Global substitution (all occurrences)</span>
+<span class="token-function">sed</span> <span class="token-string">'s/old/new/g'</span> file.txt
+
+<span class="token-comment"># Case-insensitive substitution</span>
+<span class="token-function">sed</span> <span class="token-string">'s/error/ERROR/gi'</span> file.txt
+
+<span class="token-comment"># Edit file in place (-i)</span>
+<span class="token-function">sed</span> -i <span class="token-string">'s/old/new/g'</span> file.txt
+
+<span class="token-comment"># Edit in place with backup</span>
+<span class="token-function">sed</span> -i.bak <span class="token-string">'s/old/new/g'</span> file.txt
+
+<span class="token-comment"># Delete lines containing pattern</span>
+<span class="token-function">sed</span> <span class="token-string">'/pattern/d'</span> file.txt
+
+<span class="token-comment"># Delete empty lines</span>
+<span class="token-function">sed</span> <span class="token-string">'/^$/d'</span> file.txt
+
+<span class="token-comment"># Delete lines 5-10</span>
+<span class="token-function">sed</span> <span class="token-string">'5,10d'</span> file.txt
+
+<span class="token-comment"># Print only lines 5-10</span>
+<span class="token-function">sed</span> -n <span class="token-string">'5,10p'</span> file.txt</code></pre>
+                    </div>
+                </div>
+
+                <h3>sed for Log Sanitization</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - sed Security Examples
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Anonymize IP addresses (replace last octet)</span>
+<span class="token-function">sed</span> -E <span class="token-string">'s/([0-9]+\.[0-9]+\.[0-9]+\.)[0-9]+/\1XXX/g'</span> access.log
+
+<span class="token-comment"># Mask email addresses</span>
+<span class="token-function">sed</span> -E <span class="token-string">'s/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+/[REDACTED]/g'</span> file.txt
+
+<span class="token-comment"># Remove timestamps for comparison</span>
+<span class="token-function">sed</span> -E <span class="token-string">'s/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}//'</span> log.txt
+
+<span class="token-comment"># Extract and clean URLs</span>
+<span class="token-function">sed</span> -n <span class="token-string">'s/.*\(https\?:\/\/[^"]*\).*/\1/p'</span> file.txt
+
+<span class="token-comment"># Convert Windows line endings to Unix</span>
+<span class="token-function">sed</span> -i <span class="token-string">'s/\r$//'</span> file.txt
+
+<span class="token-comment"># Add prefix to each line</span>
+<span class="token-function">sed</span> <span class="token-string">'s/^/[SERVER01] /'</span> log.txt
+
+<span class="token-comment"># Mask credit card numbers (keep last 4)</span>
+<span class="token-function">sed</span> -E <span class="token-string">'s/[0-9]{12}([0-9]{4})/************\1/g'</span> file.txt</code></pre>
+                    </div>
+                </div>
+
+                <!-- AWK Section -->
+                <h2>awk: Column Processing</h2>
+
+                <p>
+                    <code>awk</code> is a programming language designed for text processing. It excels 
+                    at working with columnar data like log files and CSV data.
+                </p>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: awk Variables</div>
+                    </div>
+                    <ul>
+                        <li><strong>$0</strong> = Entire line</li>
+                        <li><strong>$1, $2, $3...</strong> = Fields (columns)</li>
+                        <li><strong>NF</strong> = Number of Fields in current line</li>
+                        <li><strong>NR</strong> = Number of Records (line number)</li>
+                        <li><strong>FS</strong> = Field Separator (default: whitespace)</li>
+                        <li><strong>OFS</strong> = Output Field Separator</li>
+                    </ul>
+                </div>
+
+                <h3>Basic awk Usage</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - awk Basics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Print first column</span>
+<span class="token-function">awk</span> <span class="token-string">'{print $1}'</span> file.txt
+
+<span class="token-comment"># Print multiple columns</span>
+<span class="token-function">awk</span> <span class="token-string">'{print $1, $3, $5}'</span> file.txt
+
+<span class="token-comment"># Print last column</span>
+<span class="token-function">awk</span> <span class="token-string">'{print $NF}'</span> file.txt
+
+<span class="token-comment"># Print second-to-last column</span>
+<span class="token-function">awk</span> <span class="token-string">'{print $(NF-1)}'</span> file.txt
+
+<span class="token-comment"># Custom field separator (CSV)</span>
+<span class="token-function">awk</span> -F<span class="token-string">','</span> <span class="token-string">'{print $1, $3}'</span> data.csv
+
+<span class="token-comment"># Multiple separators</span>
+<span class="token-function">awk</span> -F<span class="token-string">'[:,]'</span> <span class="token-string">'{print $1}'</span> file.txt
+
+<span class="token-comment"># Print with custom output separator</span>
+<span class="token-function">awk</span> <span class="token-string">'BEGIN{OFS=","} {print $1, $2, $3}'</span> file.txt
+
+<span class="token-comment"># Print line number with content</span>
+<span class="token-function">awk</span> <span class="token-string">'{print NR": "$0}'</span> file.txt</code></pre>
+                    </div>
+                </div>
+
+                <h3>awk Filtering and Conditions</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - awk Filtering
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Print lines where column 3 > 100</span>
+<span class="token-function">awk</span> <span class="token-string">'$3 > 100'</span> file.txt
+
+<span class="token-comment"># Print lines matching pattern</span>
+<span class="token-function">awk</span> <span class="token-string">'/error/'</span> log.txt
+
+<span class="token-comment"># Print lines where field matches pattern</span>
+<span class="token-function">awk</span> <span class="token-string">'$1 ~ /^192\.168/'</span> access.log
+
+<span class="token-comment"># Combine conditions</span>
+<span class="token-function">awk</span> <span class="token-string">'$3 > 100 && $4 == "ERROR"'</span> log.txt
+
+<span class="token-comment"># Lines longer than 100 characters</span>
+<span class="token-function">awk</span> <span class="token-string">'length($0) > 100'</span> file.txt
+
+<span class="token-comment"># Skip first line (header)</span>
+<span class="token-function">awk</span> <span class="token-string">'NR > 1 {print $1}'</span> data.csv
+
+<span class="token-comment"># Print specific line range</span>
+<span class="token-function">awk</span> <span class="token-string">'NR >= 10 && NR <= 20'</span> file.txt</code></pre>
+                    </div>
+                </div>
+
+                <h3>awk Calculations and Aggregations</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - awk Calculations
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Sum a column</span>
+<span class="token-function">awk</span> <span class="token-string">'{sum += $3} END {print "Total:", sum}'</span> file.txt
+
+<span class="token-comment"># Average</span>
+<span class="token-function">awk</span> <span class="token-string">'{sum += $3; count++} END {print "Average:", sum/count}'</span> file.txt
+
+<span class="token-comment"># Min and Max</span>
+<span class="token-function">awk</span> <span class="token-string">'NR==1 {min=max=$3} $3>max {max=$3} $3<min {min=$3} END {print "Min:", min, "Max:", max}'</span> file.txt
+
+<span class="token-comment"># Count occurrences (like uniq -c but in one pass)</span>
+<span class="token-function">awk</span> <span class="token-string">'{count[$1]++} END {for (item in count) print count[item], item}'</span> file.txt
+
+<span class="token-comment"># Count by status code in web logs</span>
+<span class="token-function">awk</span> <span class="token-string">'{status[$9]++} END {for (s in status) print s, status[s]}'</span> access.log
+
+<span class="token-comment"># Calculate response time statistics</span>
+<span class="token-function">awk</span> <span class="token-string">'{sum+=$NF; count++; if($NF>max) max=$NF} END {print "Avg:", sum/count, "Max:", max}'</span> access.log
+
+<span class="token-comment"># Group and sum</span>
+<span class="token-function">awk</span> -F<span class="token-string">','</span> <span class="token-string">'{sum[$1] += $3} END {for (key in sum) print key, sum[key]}'</span> sales.csv</code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Log Analysis -->
+                <h2>Security Log Analysis Examples</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Security Log Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Top 10 IPs by request count (Apache/Nginx)</span>
+<span class="token-function">awk</span> <span class="token-string">'{print $1}'</span> access.log | <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | <span class="token-function">sort</span> -rn | <span class="token-function">head</span> -10
+
+<span class="token-comment"># Failed SSH login attempts by IP</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> /var/log/auth.log | \
+    <span class="token-function">grep</span> -oE <span class="token-string">'[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'</span> | \
+    <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | <span class="token-function">sort</span> -rn
+
+<span class="token-comment"># HTTP status code distribution</span>
+<span class="token-function">awk</span> <span class="token-string">'{print $9}'</span> access.log | <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | <span class="token-function">sort</span> -rn
+
+<span class="token-comment"># Requests per hour</span>
+<span class="token-function">awk</span> <span class="token-string">'{print substr($4, 2, 14)}'</span> access.log | <span class="token-function">uniq</span> -c
+
+<span class="token-comment"># Large responses (potential data exfil)</span>
+<span class="token-function">awk</span> <span class="token-string">'$10 > 1000000 {print $1, $7, $10}'</span> access.log
+
+<span class="token-comment"># POST requests to unusual paths</span>
+<span class="token-function">awk</span> <span class="token-string">'$6 == "\"POST" {print $1, $7}'</span> access.log | <span class="token-function">grep</span> -vE <span class="token-string">'(login|api|upload)'</span>
+
+<span class="token-comment"># Extract user agents making suspicious requests</span>
+<span class="token-function">awk</span> -F<span class="token-string">'"'</span> <span class="token-string">'/sqlmap|nikto|nmap/ {print $6}'</span> access.log | <span class="token-function">sort</span> -u
+
+<span class="token-comment"># Timeline of successful logins</span>
+<span class="token-function">grep</span> <span class="token-string">"Accepted"</span> /var/log/auth.log | \
+    <span class="token-function">awk</span> <span class="token-string">'{print $1, $2, $3, $9, $11}'</span>
+
+<span class="token-comment"># Count requests per IP per hour (detect scanners)</span>
+<span class="token-function">awk</span> <span class="token-string">'{ip=$1; hour=substr($4,2,14)} {count[ip":"hour]++} END {for (k in count) if (count[k] > 100) print count[k], k}'</span> access.log</code></pre>
+                    </div>
+                </div>
+
+                <!-- Additional Tools -->
+                <h2>Additional Text Tools</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Purpose</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>cut</code></td>
+                                <td>Extract columns by delimiter</td>
+                                <td><code>cut -d: -f1 /etc/passwd</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>sort</code></td>
+                                <td>Sort lines</td>
+                                <td><code>sort -t, -k3 -n data.csv</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>uniq</code></td>
+                                <td>Remove/count duplicates</td>
+                                <td><code>sort file | uniq -c</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>tr</code></td>
+                                <td>Translate characters</td>
+                                <td><code>tr '[:lower:]' '[:upper:]'</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>wc</code></td>
+                                <td>Count lines/words/chars</td>
+                                <td><code>wc -l file.txt</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>head/tail</code></td>
+                                <td>First/last N lines</td>
+                                <td><code>tail -f /var/log/syslog</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>tee</code></td>
+                                <td>Split output to file and stdout</td>
+                                <td><code>cmd | tee output.log</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>jq</code></td>
+                                <td>JSON processor</td>
+                                <td><code>cat data.json | jq '.items[]'</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you find the top 10 IPs in an access log?"</li>
+                        <li><strong>Strong Answer:</strong> <code>awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -10</code></li>
+                        <li><strong>Explain the pipeline:</strong> Extract IPs → sort (required for uniq) → count unique → sort by count descending → take top 10</li>
+                        <li><strong>Bonus:</strong> Mention you could use awk alone with associative arrays for a single-pass solution</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><strong>grep</strong> finds lines matching patterns—use -E for extended regex, -o for match-only</li>
+                    <li><strong>sed</strong> transforms text—<code>s/old/new/g</code> for substitution, <code>/pattern/d</code> to delete</li>
+                    <li><strong>awk</strong> processes columns—$1, $2 for fields, NR for line number, powerful END blocks</li>
+                    <li>Chain tools with pipes: <code>grep | awk | sort | uniq -c | sort -rn | head</code></li>
+                    <li>Master these tools for rapid log analysis and incident response</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="3-9-bash-io-redirection.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 3.9 I/O Redirection</span>
+                    </a>
+                    <a href="3-11-bash-regex.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.11 Bash Regex →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

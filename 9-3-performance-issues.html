@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.3 Performance Issues - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link active"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#troubleshooting">Troubleshooting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Performance Issues</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>9.3 Performance Issues</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Measure and benchmark script performance</li>
+                        <li>Optimize loops and data processing</li>
+                        <li>Use parallel execution effectively</li>
+                        <li>Avoid common performance pitfalls</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Performance Killers</div>
+                    </div>
+                    <ul>
+                        <li><strong>+=</strong> with arrays → Creates new array each time</li>
+                        <li><strong>ForEach-Object</strong> → Slower than foreach statement</li>
+                        <li><strong>Where-Object</strong> → Use -Filter parameter instead</li>
+                        <li><strong>Format-*</strong> cmdlets → Only for display, not processing</li>
+                        <li><strong>Write-Host</strong> → Console output is slow</li>
+                    </ul>
+                </div>
+
+                <!-- Measuring Performance -->
+                <h2>Measuring Performance</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Measure-Command
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic measurement</span>
+<span class="token-cmdlet">Measure-Command</span> {
+    <span class="token-cmdlet">Get-ChildItem</span> C:\Windows <span class="token-parameter">-Recurse</span> <span class="token-parameter">-ErrorAction</span> SilentlyContinue
+}
+
+<span class="token-comment"># Compare two approaches</span>
+<span class="token-variable">$Method1</span> = <span class="token-cmdlet">Measure-Command</span> {
+    <span class="token-number">1</span>..<span class="token-number">10000</span> | <span class="token-cmdlet">ForEach-Object</span> { <span class="token-variable">$_</span> * <span class="token-number">2</span> }
+}
+
+<span class="token-variable">$Method2</span> = <span class="token-cmdlet">Measure-Command</span> {
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$i</span> <span class="token-keyword">in</span> <span class="token-number">1</span>..<span class="token-number">10000</span>) { <span class="token-variable">$i</span> * <span class="token-number">2</span> }
+}
+
+Write-Host <span class="token-string">"ForEach-Object: $($Method1.TotalMilliseconds) ms"</span>
+Write-Host <span class="token-string">"foreach statement: $($Method2.TotalMilliseconds) ms"</span>
+
+<span class="token-comment"># Detailed timing with Stopwatch</span>
+<span class="token-variable">$Stopwatch</span> = [System.Diagnostics.Stopwatch]::StartNew()
+<span class="token-comment"># ... your code ...</span>
+<span class="token-variable">$Stopwatch</span>.Stop()
+Write-Host <span class="token-string">"Elapsed: $($Stopwatch.Elapsed.TotalSeconds) seconds"</span>
+
+<span class="token-comment"># Multiple runs for average</span>
+<span class="token-variable">$Times</span> = <span class="token-number">1</span>..<span class="token-number">10</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    (<span class="token-cmdlet">Measure-Command</span> { <span class="token-comment"># your code</span> }).TotalMilliseconds
+}
+Write-Host <span class="token-string">"Average: $([math]::Round(($Times | Measure-Object -Average).Average, 2)) ms"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Array Optimization -->
+                <h2>Array Optimization</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Array Performance
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># ❌ SLOW: += creates new array each time</span>
+<span class="token-variable">$Array</span> = @()
+<span class="token-keyword">foreach</span> (<span class="token-variable">$i</span> <span class="token-keyword">in</span> <span class="token-number">1</span>..<span class="token-number">10000</span>) {
+    <span class="token-variable">$Array</span> += <span class="token-variable">$i</span>  <span class="token-comment"># Creates new array, copies all, adds one</span>
+}
+
+<span class="token-comment"># ✅ FAST: Use ArrayList</span>
+<span class="token-variable">$ArrayList</span> = [System.Collections.ArrayList]::new()
+<span class="token-keyword">foreach</span> (<span class="token-variable">$i</span> <span class="token-keyword">in</span> <span class="token-number">1</span>..<span class="token-number">10000</span>) {
+    [void]<span class="token-variable">$ArrayList</span>.Add(<span class="token-variable">$i</span>)
+}
+
+<span class="token-comment"># ✅ FAST: Use Generic List</span>
+<span class="token-variable">$List</span> = [System.Collections.Generic.List[int]]::new()
+<span class="token-keyword">foreach</span> (<span class="token-variable">$i</span> <span class="token-keyword">in</span> <span class="token-number">1</span>..<span class="token-number">10000</span>) {
+    <span class="token-variable">$List</span>.Add(<span class="token-variable">$i</span>)
+}
+
+<span class="token-comment"># ✅ FASTEST: Assign from pipeline</span>
+<span class="token-variable">$Array</span> = <span class="token-number">1</span>..<span class="token-number">10000</span> | <span class="token-cmdlet">ForEach-Object</span> { <span class="token-variable">$_</span> }
+
+<span class="token-comment"># ✅ BEST: Let PowerShell handle it</span>
+<span class="token-variable">$Results</span> = <span class="token-keyword">foreach</span> (<span class="token-variable">$i</span> <span class="token-keyword">in</span> <span class="token-number">1</span>..<span class="token-number">10000</span>) {
+    <span class="token-variable">$i</span>  <span class="token-comment"># Output collected automatically</span>
+}
+
+<span class="token-comment"># Performance comparison</span>
+<span class="token-cmdlet">Measure-Command</span> {
+    <span class="token-variable">$a</span> = @(); <span class="token-number">1</span>..<span class="token-number">10000</span> | <span class="token-cmdlet">%</span> { <span class="token-variable">$a</span> += <span class="token-variable">$_</span> }
+}  <span class="token-comment"># ~2000ms</span>
+
+<span class="token-cmdlet">Measure-Command</span> {
+    <span class="token-variable">$a</span> = [System.Collections.Generic.List[int]]::new()
+    <span class="token-number">1</span>..<span class="token-number">10000</span> | <span class="token-cmdlet">%</span> { <span class="token-variable">$a</span>.Add(<span class="token-variable">$_</span>) }
+}  <span class="token-comment"># ~50ms (40x faster!)</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Filtering Optimization -->
+                <h2>Filtering Optimization</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Filter Performance
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># ❌ SLOW: Where-Object filters after retrieval</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> * | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Enabled <span class="token-operator">-eq</span> <span class="token-variable">$true</span> }
+
+<span class="token-comment"># ✅ FAST: Use -Filter parameter (server-side)</span>
+<span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> <span class="token-string">"Enabled -eq 'True'"</span>
+
+<span class="token-comment"># ❌ SLOW: Get all then filter</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> Security | <span class="token-cmdlet">Where-Object</span> Id <span class="token-operator">-eq</span> <span class="token-number">4625</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">100</span>
+
+<span class="token-comment"># ✅ FAST: Use FilterHashtable</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    Id = <span class="token-number">4625</span>
+} <span class="token-parameter">-MaxEvents</span> <span class="token-number">100</span>
+
+<span class="token-comment"># ❌ SLOW: Get-ChildItem with Where-Object</span>
+<span class="token-cmdlet">Get-ChildItem</span> C:\Logs | <span class="token-cmdlet">Where-Object</span> Extension <span class="token-operator">-eq</span> <span class="token-string">'.log'</span>
+
+<span class="token-comment"># ✅ FAST: Use -Filter parameter</span>
+<span class="token-cmdlet">Get-ChildItem</span> C:\Logs <span class="token-parameter">-Filter</span> <span class="token-string">"*.log"</span>
+
+<span class="token-comment"># ❌ SLOW: Multiple pipeline filters</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> CPU <span class="token-operator">-gt</span> <span class="token-number">100</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-ne</span> <span class="token-string">'Idle'</span>
+
+<span class="token-comment"># ✅ FAST: Single filter with -and</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.CPU <span class="token-operator">-gt</span> <span class="token-number">100</span> <span class="token-operator">-and</span> <span class="token-variable">$_</span>.Name <span class="token-operator">-ne</span> <span class="token-string">'Idle'</span> }</code></pre>
+                    </div>
+                </div>
+
+                <!-- Parallel Execution -->
+                <h2>Parallel Execution</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Parallel Processing
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># PowerShell 7: ForEach-Object -Parallel</span>
+<span class="token-variable">$Servers</span> = @(<span class="token-string">"Server1"</span>, <span class="token-string">"Server2"</span>, <span class="token-string">"Server3"</span>, <span class="token-string">"Server4"</span>)
+
+<span class="token-variable">$Results</span> = <span class="token-variable">$Servers</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Parallel</span> {
+    [PSCustomObject]@{
+        Server = <span class="token-variable">$_</span>
+        Online = <span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$_</span> -Count <span class="token-number">1</span> <span class="token-parameter">-Quiet</span>
+    }
+} <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">10</span>
+
+<span class="token-comment"># Using Jobs (Windows PowerShell 5.1)</span>
+<span class="token-variable">$Jobs</span> = <span class="token-variable">$Servers</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    Start-Job -ScriptBlock {
+        <span class="token-keyword">param</span>(<span class="token-variable">$Server</span>)
+        <span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$Server</span> -Count <span class="token-number">1</span> <span class="token-parameter">-Quiet</span>
+    } -ArgumentList <span class="token-variable">$_</span>
+}
+
+<span class="token-variable">$Results</span> = <span class="token-variable">$Jobs</span> | Wait-Job | Receive-Job
+<span class="token-variable">$Jobs</span> | Remove-Job
+
+<span class="token-comment"># Runspaces (fastest for many items)</span>
+<span class="token-variable">$RunspacePool</span> = [runspacefactory]::CreateRunspacePool(<span class="token-number">1</span>, <span class="token-number">10</span>)
+<span class="token-variable">$RunspacePool</span>.Open()
+
+<span class="token-variable">$Runspaces</span> = <span class="token-variable">$Servers</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$PowerShell</span> = [powershell]::Create()
+    <span class="token-variable">$PowerShell</span>.RunspacePool = <span class="token-variable">$RunspacePool</span>
+    [void]<span class="token-variable">$PowerShell</span>.AddScript({
+        <span class="token-keyword">param</span>(<span class="token-variable">$Server</span>)
+        <span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$Server</span> -Count <span class="token-number">1</span> <span class="token-parameter">-Quiet</span>
+    }).AddArgument(<span class="token-variable">$_</span>)
+    
+    @{
+        PowerShell = <span class="token-variable">$PowerShell</span>
+        Handle = <span class="token-variable">$PowerShell</span>.BeginInvoke()
+    }
+}
+
+<span class="token-variable">$Results</span> = <span class="token-variable">$Runspaces</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$_</span>.PowerShell.EndInvoke(<span class="token-variable">$_</span>.Handle)
+    <span class="token-variable">$_</span>.PowerShell.Dispose()
+}
+<span class="token-variable">$RunspacePool</span>.Close()</code></pre>
+                    </div>
+                </div>
+
+                <!-- Bash Performance -->
+                <h2>Bash Performance Tips</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Performance Optimization
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># ❌ SLOW: Command substitution in loop</span>
+<span class="token-keyword">for</span> file <span class="token-keyword">in</span> <span class="token-variable">$(</span><span class="token-function">ls</span> *.log<span class="token-variable">)</span>; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$file"</span>
+<span class="token-keyword">done</span>
+
+<span class="token-comment"># ✅ FAST: Use glob directly</span>
+<span class="token-keyword">for</span> file <span class="token-keyword">in</span> *.log; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$file"</span>
+<span class="token-keyword">done</span>
+
+<span class="token-comment"># ❌ SLOW: Cat with pipe</span>
+<span class="token-function">cat</span> file.txt | <span class="token-function">grep</span> <span class="token-string">"pattern"</span>
+
+<span class="token-comment"># ✅ FAST: Direct file argument</span>
+<span class="token-function">grep</span> <span class="token-string">"pattern"</span> file.txt
+
+<span class="token-comment"># ❌ SLOW: Multiple greps</span>
+<span class="token-function">grep</span> <span class="token-string">"error"</span> log.txt | <span class="token-function">grep</span> <span class="token-string">"critical"</span>
+
+<span class="token-comment"># ✅ FAST: Single grep with AND</span>
+<span class="token-function">grep</span> -E <span class="token-string">"error.*critical|critical.*error"</span> log.txt
+
+<span class="token-comment"># ✅ FAST: Use awk for complex parsing</span>
+<span class="token-function">awk</span> <span class="token-string">'/error/ && /critical/'</span> log.txt
+
+<span class="token-comment"># ❌ SLOW: Read line by line in shell</span>
+<span class="token-keyword">while</span> <span class="token-function">read</span> -r line; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$line"</span> | <span class="token-function">sed</span> <span class="token-string">'s/old/new/'</span>
+<span class="token-keyword">done</span> < file.txt
+
+<span class="token-comment"># ✅ FAST: Let sed process entire file</span>
+<span class="token-function">sed</span> <span class="token-string">'s/old/new/'</span> file.txt
+
+<span class="token-comment"># Parallel processing with xargs</span>
+<span class="token-function">find</span> /logs -name <span class="token-string">"*.log"</span> | <span class="token-function">xargs</span> -P <span class="token-number">4</span> -I {} <span class="token-function">gzip</span> {}
+
+<span class="token-comment"># GNU Parallel for complex tasks</span>
+<span class="token-function">cat</span> servers.txt | parallel -j <span class="token-number">10</span> <span class="token-string">'ssh {} "df -h"'</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Quick Reference -->
+                <h2>Performance Quick Reference</h2>
+
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Slow Pattern</th>
+                                <th>Fast Alternative</th>
+                                <th>Improvement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>$array += $item</code></td>
+                                <td><code>$list.Add($item)</code></td>
+                                <td>10-100x</td>
+                            </tr>
+                            <tr>
+                                <td><code>ForEach-Object</code></td>
+                                <td><code>foreach</code> statement</td>
+                                <td>3-5x</td>
+                            </tr>
+                            <tr>
+                                <td><code>| Where-Object</code></td>
+                                <td><code>-Filter</code> parameter</td>
+                                <td>10-50x</td>
+                            </tr>
+                            <tr>
+                                <td><code>Start-Job</code></td>
+                                <td>Runspaces</td>
+                                <td>5-10x</td>
+                            </tr>
+                            <tr>
+                                <td><code>Write-Host</code> in loop</td>
+                                <td>Build string, output once</td>
+                                <td>10-20x</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Performance</div>
+                    </div>
+                    <ul>
+                        <li><strong>Measure first:</strong> Don't optimize blindly</li>
+                        <li><strong>Filter early:</strong> Reduce data as soon as possible</li>
+                        <li><strong>Avoid pipeline for large loops:</strong> Use foreach statement</li>
+                        <li><strong>Use native filtering:</strong> -Filter, -FilterHashtable</li>
+                        <li><strong>Parallelize I/O-bound work:</strong> Network, disk operations</li>
+                        <li><strong>Profile regularly:</strong> Performance can degrade over time</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>Measure-Command</code> to benchmark code</li>
+                    <li>Avoid <code>+=</code> with arrays; use List or ArrayList</li>
+                    <li><code>foreach</code> statement is faster than <code>ForEach-Object</code></li>
+                    <li>Use <code>-Filter</code> parameters instead of <code>Where-Object</code></li>
+                    <li>Parallelize with runspaces or <code>ForEach-Object -Parallel</code></li>
+                    <li>In Bash, prefer built-in tools over shell loops</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="9-2-debugging-techniques.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 9.2 Debugging Techniques</span>
+                    </a>
+                    <a href="10-5-cheat-sheets.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">10.5 Cheat Sheets →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

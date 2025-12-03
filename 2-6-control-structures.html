@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.6 Control Structures - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link active"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-20-error-handling.html" class="nav-link"><span class="nav-link-number">2.20</span> Error Handling</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Control Structures</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.6 Control Structures</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Use if/elseif/else for conditional logic</li>
+                        <li>Apply switch statements for multiple conditions</li>
+                        <li>Implement loops: foreach, for, while, do</li>
+                        <li>Control loop flow with break and continue</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Comparison Operators</div>
+                    </div>
+                    <ul>
+                        <li><strong>-eq / -ne</strong> → Equal / Not equal</li>
+                        <li><strong>-lt / -gt</strong> → Less than / Greater than</li>
+                        <li><strong>-le / -ge</strong> → Less or equal / Greater or equal</li>
+                        <li><strong>-like / -notlike</strong> → Wildcard pattern match</li>
+                        <li><strong>-match / -notmatch</strong> → Regex pattern match</li>
+                        <li><strong>-contains / -notcontains</strong> → Array contains value</li>
+                        <li><strong>-in / -notin</strong> → Value in array</li>
+                    </ul>
+                </div>
+
+                <!-- If Statements -->
+                <h2>If/ElseIf/Else</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Conditional Statements
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic if statement</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$Service</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>) {
+    Write-Host <span class="token-string">"Service is running"</span>
+}
+
+<span class="token-comment"># If-else</span>
+<span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Path</span> <span class="token-string">"C:\Config.xml"</span>) {
+    <span class="token-variable">$Config</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-string">"C:\Config.xml"</span>
+} <span class="token-keyword">else</span> {
+    Write-Host <span class="token-string">"Config file not found"</span>
+}
+
+<span class="token-comment"># If-elseif-else</span>
+<span class="token-variable">$Score</span> = <span class="token-number">85</span>
+
+<span class="token-keyword">if</span> (<span class="token-variable">$Score</span> <span class="token-operator">-ge</span> <span class="token-number">90</span>) {
+    <span class="token-variable">$Grade</span> = <span class="token-string">'A'</span>
+} <span class="token-keyword">elseif</span> (<span class="token-variable">$Score</span> <span class="token-operator">-ge</span> <span class="token-number">80</span>) {
+    <span class="token-variable">$Grade</span> = <span class="token-string">'B'</span>
+} <span class="token-keyword">elseif</span> (<span class="token-variable">$Score</span> <span class="token-operator">-ge</span> <span class="token-number">70</span>) {
+    <span class="token-variable">$Grade</span> = <span class="token-string">'C'</span>
+} <span class="token-keyword">else</span> {
+    <span class="token-variable">$Grade</span> = <span class="token-string">'F'</span>
+}
+
+<span class="token-comment"># Multiple conditions with -and / -or</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$User</span>.Enabled <span class="token-operator">-and</span> <span class="token-variable">$User</span>.LastLogon <span class="token-operator">-gt</span> (Get-Date).AddDays(-30)) {
+    Write-Host <span class="token-string">"Active user: $($User.Name)"</span>
+}
+
+<span class="token-keyword">if</span> (<span class="token-variable">$Service</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Stopped'</span> <span class="token-operator">-or</span> <span class="token-variable">$Service</span>.StartType <span class="token-operator">-eq</span> <span class="token-string">'Disabled'</span>) {
+    Write-Host <span class="token-string">"Service is not running"</span>
+}
+
+<span class="token-comment"># Negation with -not or !</span>
+<span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$Path</span>)) {
+    <span class="token-cmdlet">New-Item</span> <span class="token-parameter">-Path</span> <span class="token-variable">$Path</span> <span class="token-parameter">-ItemType</span> Directory
+}
+
+<span class="token-keyword">if</span> (!<span class="token-variable">$User</span>.Enabled) {
+    Write-Host <span class="token-string">"User is disabled"</span>
+}
+
+<span class="token-comment"># Ternary-like expression (PS 7+)</span>
+<span class="token-variable">$Status</span> = <span class="token-variable">$Service</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span> ? <span class="token-string">'Online'</span> : <span class="token-string">'Offline'</span>
+
+<span class="token-comment"># Null-coalescing (PS 7+)</span>
+<span class="token-variable">$Name</span> = <span class="token-variable">$User</span>.DisplayName ?? <span class="token-variable">$User</span>.SamAccountName ?? <span class="token-string">'Unknown'</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Pattern Matching -->
+                <h2>Pattern Matching</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Pattern Matching
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Wildcard matching with -like</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$FileName</span> <span class="token-operator">-like</span> <span class="token-string">'*.log'</span>) {
+    Write-Host <span class="token-string">"Log file found"</span>
+}
+
+<span class="token-keyword">if</span> (<span class="token-variable">$User</span>.Email <span class="token-operator">-like</span> <span class="token-string">'*@company.com'</span>) {
+    Write-Host <span class="token-string">"Internal user"</span>
+}
+
+<span class="token-comment"># Regex matching with -match</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$IP</span> <span class="token-operator">-match</span> <span class="token-string">'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$'</span>) {
+    Write-Host <span class="token-string">"Valid IP format"</span>
+}
+
+<span class="token-comment"># Access match groups via $Matches</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$LogLine</span> <span class="token-operator">-match</span> <span class="token-string">'Error:\s+(.+)'</span>) {
+    Write-Host <span class="token-string">"Error message: $($Matches[1])"</span>
+}
+
+<span class="token-comment"># Named capture groups</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$LogLine</span> <span class="token-operator">-match</span> <span class="token-string">'(?&lt;Date&gt;\d{4}-\d{2}-\d{2})\s+(?&lt;Level&gt;\w+)'</span>) {
+    Write-Host <span class="token-string">"Date: $($Matches.Date), Level: $($Matches.Level)"</span>
+}
+
+<span class="token-comment"># Array containment with -contains / -in</span>
+<span class="token-variable">$Admins</span> = @(<span class="token-string">'alice'</span>, <span class="token-string">'bob'</span>, <span class="token-string">'charlie'</span>)
+
+<span class="token-keyword">if</span> (<span class="token-variable">$Admins</span> <span class="token-operator">-contains</span> <span class="token-variable">$CurrentUser</span>) {
+    Write-Host <span class="token-string">"User is an admin"</span>
+}
+
+<span class="token-comment"># -in is the reverse</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$CurrentUser</span> <span class="token-operator">-in</span> <span class="token-variable">$Admins</span>) {
+    Write-Host <span class="token-string">"User is an admin"</span>
+}
+
+<span class="token-comment"># Case-sensitive variants: -ceq, -clike, -cmatch</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$Password</span> <span class="token-operator">-cmatch</span> <span class="token-string">'[A-Z]'</span>) {
+    Write-Host <span class="token-string">"Contains uppercase"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Switch Statement -->
+                <h2>Switch Statement</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Switch Statement
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic switch</span>
+<span class="token-variable">$Day</span> = (Get-Date).DayOfWeek
+
+<span class="token-keyword">switch</span> (<span class="token-variable">$Day</span>) {
+    <span class="token-string">'Monday'</span>    { Write-Host <span class="token-string">"Start of week"</span> }
+    <span class="token-string">'Friday'</span>    { Write-Host <span class="token-string">"Almost weekend!"</span> }
+    <span class="token-string">'Saturday'</span>  { Write-Host <span class="token-string">"Weekend!"</span> }
+    <span class="token-string">'Sunday'</span>    { Write-Host <span class="token-string">"Weekend!"</span> }
+    default     { Write-Host <span class="token-string">"Regular day"</span> }
+}
+
+<span class="token-comment"># Switch with wildcard</span>
+<span class="token-variable">$FileName</span> = <span class="token-string">"report.pdf"</span>
+
+<span class="token-keyword">switch</span> <span class="token-parameter">-Wildcard</span> (<span class="token-variable">$FileName</span>) {
+    <span class="token-string">'*.txt'</span>  { Write-Host <span class="token-string">"Text file"</span> }
+    <span class="token-string">'*.pdf'</span>  { Write-Host <span class="token-string">"PDF document"</span> }
+    <span class="token-string">'*.doc*'</span> { Write-Host <span class="token-string">"Word document"</span> }
+    <span class="token-string">'*.xls*'</span> { Write-Host <span class="token-string">"Excel spreadsheet"</span> }
+    default  { Write-Host <span class="token-string">"Unknown type"</span> }
+}
+
+<span class="token-comment"># Switch with regex</span>
+<span class="token-variable">$Input</span> = <span class="token-string">"192.168.1.1"</span>
+
+<span class="token-keyword">switch</span> <span class="token-parameter">-Regex</span> (<span class="token-variable">$Input</span>) {
+    <span class="token-string">'^10\.'</span>       { Write-Host <span class="token-string">"Class A private"</span> }
+    <span class="token-string">'^172\.1[6-9]'</span> { Write-Host <span class="token-string">"Class B private"</span> }
+    <span class="token-string">'^172\.2[0-9]'</span> { Write-Host <span class="token-string">"Class B private"</span> }
+    <span class="token-string">'^172\.3[0-1]'</span> { Write-Host <span class="token-string">"Class B private"</span> }
+    <span class="token-string">'^192\.168\.'</span>  { Write-Host <span class="token-string">"Class C private"</span> }
+    default        { Write-Host <span class="token-string">"Public IP"</span> }
+}
+
+<span class="token-comment"># Switch on array - processes each element</span>
+<span class="token-variable">$Events</span> = @(<span class="token-number">4624</span>, <span class="token-number">4625</span>, <span class="token-number">4648</span>, <span class="token-number">4672</span>)
+
+<span class="token-keyword">switch</span> (<span class="token-variable">$Events</span>) {
+    <span class="token-number">4624</span> { Write-Host <span class="token-string">"Successful logon"</span> }
+    <span class="token-number">4625</span> { Write-Host <span class="token-string">"Failed logon"</span> }
+    <span class="token-number">4648</span> { Write-Host <span class="token-string">"Explicit credential logon"</span> }
+    <span class="token-number">4672</span> { Write-Host <span class="token-string">"Special privileges assigned"</span> }
+}
+
+<span class="token-comment"># Switch with script block conditions</span>
+<span class="token-variable">$Number</span> = <span class="token-number">42</span>
+
+<span class="token-keyword">switch</span> (<span class="token-variable">$Number</span>) {
+    { <span class="token-variable">$_</span> <span class="token-operator">-lt</span> <span class="token-number">0</span> }   { Write-Host <span class="token-string">"Negative"</span> }
+    { <span class="token-variable">$_</span> <span class="token-operator">-eq</span> <span class="token-number">0</span> }   { Write-Host <span class="token-string">"Zero"</span> }
+    { <span class="token-variable">$_</span> <span class="token-operator">-gt</span> <span class="token-number">100</span> } { Write-Host <span class="token-string">"Large"</span> }
+    { <span class="token-variable">$_</span> % <span class="token-number">2</span> <span class="token-operator">-eq</span> <span class="token-number">0</span> } { Write-Host <span class="token-string">"Even"</span> }
+    default       { Write-Host <span class="token-string">"Odd positive"</span> }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- ForEach Loop -->
+                <h2>ForEach Loop</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - ForEach Loops
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># ForEach statement (faster for collections)</span>
+<span class="token-variable">$Servers</span> = @(<span class="token-string">'Server01'</span>, <span class="token-string">'Server02'</span>, <span class="token-string">'Server03'</span>)
+
+<span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Servers</span>) {
+    Write-Host <span class="token-string">"Processing: $Server"</span>
+}
+
+<span class="token-comment"># ForEach-Object cmdlet (works in pipeline)</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    Write-Host <span class="token-string">"$($_.Name): $($_.Status)"</span>
+}
+
+<span class="token-comment"># ForEach-Object with -Begin, -Process, -End</span>
+<span class="token-number">1</span>..<span class="token-number">5</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Begin</span> {
+    <span class="token-variable">$Sum</span> = <span class="token-number">0</span>
+    Write-Host <span class="token-string">"Starting..."</span>
+} <span class="token-parameter">-Process</span> {
+    <span class="token-variable">$Sum</span> += <span class="token-variable">$_</span>
+} <span class="token-parameter">-End</span> {
+    Write-Host <span class="token-string">"Total: $Sum"</span>
+}
+
+<span class="token-comment"># Parallel processing (PS 7+)</span>
+<span class="token-variable">$Servers</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Parallel</span> {
+    <span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$_</span> <span class="token-parameter">-Count</span> <span class="token-number">1</span> <span class="token-parameter">-Quiet</span>
+} <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">5</span>
+
+<span class="token-comment"># ForEach method on arrays (fastest)</span>
+<span class="token-variable">$Servers</span>.ForEach({ Write-Host <span class="token-string">"Server: $_"</span> })
+
+<span class="token-comment"># Loop with index</span>
+<span class="token-keyword">for</span> (<span class="token-variable">$i</span> = <span class="token-number">0</span>; <span class="token-variable">$i</span> <span class="token-operator">-lt</span> <span class="token-variable">$Servers</span>.Count; <span class="token-variable">$i</span>++) {
+    Write-Host <span class="token-string">"$i : $($Servers[$i])"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Other Loops -->
+                <h2>For, While, and Do Loops</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Other Loop Types
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># For loop</span>
+<span class="token-keyword">for</span> (<span class="token-variable">$i</span> = <span class="token-number">1</span>; <span class="token-variable">$i</span> <span class="token-operator">-le</span> <span class="token-number">10</span>; <span class="token-variable">$i</span>++) {
+    Write-Host <span class="token-string">"Iteration: $i"</span>
+}
+
+<span class="token-comment"># For loop with step</span>
+<span class="token-keyword">for</span> (<span class="token-variable">$i</span> = <span class="token-number">0</span>; <span class="token-variable">$i</span> <span class="token-operator">-le</span> <span class="token-number">100</span>; <span class="token-variable">$i</span> += <span class="token-number">10</span>) {
+    Write-Host <span class="token-string">"$i%"</span>
+}
+
+<span class="token-comment"># While loop</span>
+<span class="token-variable">$Count</span> = <span class="token-number">0</span>
+<span class="token-keyword">while</span> (<span class="token-variable">$Count</span> <span class="token-operator">-lt</span> <span class="token-number">5</span>) {
+    Write-Host <span class="token-string">"Count: $Count"</span>
+    <span class="token-variable">$Count</span>++
+}
+
+<span class="token-comment"># While with condition check</span>
+<span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-string">'Spooler'</span>
+<span class="token-keyword">while</span> (<span class="token-variable">$Service</span>.Status <span class="token-operator">-ne</span> <span class="token-string">'Running'</span>) {
+    Write-Host <span class="token-string">"Waiting for service..."</span>
+    Start-Sleep -Seconds <span class="token-number">2</span>
+    <span class="token-variable">$Service</span>.Refresh()
+}
+
+<span class="token-comment"># Do-While (executes at least once, checks at end)</span>
+<span class="token-variable">$Attempt</span> = <span class="token-number">0</span>
+<span class="token-keyword">do</span> {
+    <span class="token-variable">$Attempt</span>++
+    Write-Host <span class="token-string">"Attempt $Attempt"</span>
+    <span class="token-variable">$Success</span> = <span class="token-cmdlet">Test-Connection</span> <span class="token-string">'google.com'</span> <span class="token-parameter">-Count</span> <span class="token-number">1</span> <span class="token-parameter">-Quiet</span>
+} <span class="token-keyword">while</span> (-not <span class="token-variable">$Success</span> <span class="token-operator">-and</span> <span class="token-variable">$Attempt</span> <span class="token-operator">-lt</span> <span class="token-number">3</span>)
+
+<span class="token-comment"># Do-Until (executes until condition is true)</span>
+<span class="token-variable">$Input</span> = <span class="token-string">''</span>
+<span class="token-keyword">do</span> {
+    <span class="token-variable">$Input</span> = <span class="token-cmdlet">Read-Host</span> <span class="token-string">"Enter 'yes' to continue"</span>
+} <span class="token-keyword">until</span> (<span class="token-variable">$Input</span> <span class="token-operator">-eq</span> <span class="token-string">'yes'</span>)
+
+<span class="token-comment"># Infinite loop with break</span>
+<span class="token-keyword">while</span> (<span class="token-variable">$true</span>) {
+    <span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-string">'W32Time'</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$Service</span>.Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>) {
+        <span class="token-keyword">break</span>
+    }
+    Start-Sleep -Seconds <span class="token-number">1</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Loop Control -->
+                <h2>Break and Continue</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Loop Control
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Break - exit loop entirely</span>
+<span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Servers</span>) {
+    <span class="token-keyword">if</span> (<span class="token-variable">$Server</span> <span class="token-operator">-eq</span> <span class="token-string">'Server03'</span>) {
+        Write-Host <span class="token-string">"Found target, stopping"</span>
+        <span class="token-keyword">break</span>
+    }
+    Write-Host <span class="token-string">"Checking: $Server"</span>
+}
+
+<span class="token-comment"># Continue - skip to next iteration</span>
+<span class="token-keyword">foreach</span> (<span class="token-variable">$File</span> <span class="token-keyword">in</span> <span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"C:\Logs"</span>) {
+    <span class="token-keyword">if</span> (<span class="token-variable">$File</span>.Length <span class="token-operator">-eq</span> <span class="token-number">0</span>) {
+        <span class="token-keyword">continue</span>  <span class="token-comment"># Skip empty files</span>
+    }
+    Write-Host <span class="token-string">"Processing: $($File.Name)"</span>
+}
+
+<span class="token-comment"># Labeled loops for nested break/continue</span>
+:outer <span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Servers</span>) {
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Port</span> <span class="token-keyword">in</span> @(<span class="token-number">22</span>, <span class="token-number">80</span>, <span class="token-number">443</span>)) {
+        <span class="token-keyword">if</span> (<span class="token-variable">$Port</span> <span class="token-operator">-eq</span> <span class="token-number">80</span> <span class="token-operator">-and</span> <span class="token-variable">$Server</span> <span class="token-operator">-eq</span> <span class="token-string">'Server02'</span>) {
+            <span class="token-keyword">break</span> outer  <span class="token-comment"># Breaks out of both loops</span>
+        }
+        Write-Host <span class="token-string">"$Server : $Port"</span>
+    }
+}
+
+<span class="token-comment"># Return from function (also exits loops)</span>
+<span class="token-keyword">function</span> <span class="token-function">Find-Server</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Target</span>)
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Servers</span>) {
+        <span class="token-keyword">if</span> (<span class="token-variable">$Server</span> <span class="token-operator">-eq</span> <span class="token-variable">$Target</span>) {
+            <span class="token-keyword">return</span> <span class="token-variable">$Server</span>  <span class="token-comment"># Exits function immediately</span>
+        }
+    }
+    <span class="token-keyword">return</span> <span class="token-variable">$null</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Control Structures</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use foreach statement for collections:</strong> Faster than ForEach-Object</li>
+                        <li><strong>Use ForEach-Object in pipelines:</strong> Memory efficient for large data</li>
+                        <li><strong>Prefer switch over long if/elseif chains:</strong> More readable</li>
+                        <li><strong>Use -Parallel for independent operations:</strong> PS 7+ only</li>
+                        <li><strong>Avoid modifying collections during iteration:</strong> Create new array</li>
+                        <li><strong>Use appropriate comparison operators:</strong> -eq not == in conditions</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between foreach and ForEach-Object?"</li>
+                        <li><strong>Strong Answer:</strong> <code>foreach</code> statement loads entire collection into memory first—faster but uses more RAM. <code>ForEach-Object</code> cmdlet processes one item at a time in the pipeline—slower but memory-efficient for large datasets. Use <code>foreach</code> when you have the full collection, <code>ForEach-Object</code> for streaming/pipeline scenarios.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>-eq</code>, <code>-lt</code>, <code>-gt</code> etc. for comparisons (not ==)</li>
+                    <li><code>-like</code> for wildcards, <code>-match</code> for regex</li>
+                    <li><code>switch</code> supports wildcards, regex, and script blocks</li>
+                    <li><code>foreach</code> statement is faster, <code>ForEach-Object</code> is pipeline-friendly</li>
+                    <li>Use <code>break</code> to exit loops, <code>continue</code> to skip iterations</li>
+                    <li>PS 7+ adds <code>-Parallel</code> for concurrent processing</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-5-working-with-objects.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.5 Working with Objects</span>
+                    </a>
+                    <a href="2-7-functions.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.7 Functions →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.3 Pipeline Mastery - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-terminal-basics.html" class="nav-link"><span class="nav-link-number">1.3</span> Terminal Basics</a>
+                        <a href="1-4-shell-comparison.html" class="nav-link"><span class="nav-link-number">1.4</span> Shell Comparison</a>
+                        <a href="1-5-script-execution.html" class="nav-link"><span class="nav-link-number">1.5</span> Script Execution</a>
+                        <a href="1-6-variables-datatypes.html" class="nav-link"><span class="nav-link-number">1.6</span> Variables & Data Types</a>
+                        <a href="1-7-operators.html" class="nav-link"><span class="nav-link-number">1.7</span> Operators</a>
+                        <a href="1-8-control-flow.html" class="nav-link"><span class="nav-link-number">1.8</span> Control Flow</a>
+                        <a href="1-9-functions-modules.html" class="nav-link"><span class="nav-link-number">1.9</span> Functions & Modules</a>
+                        <a href="1-10-error-handling.html" class="nav-link"><span class="nav-link-number">1.10</span> Error Handling</a>
+                        <a href="1-11-input-output.html" class="nav-link"><span class="nav-link-number">1.11</span> Input/Output</a>
+                        <a href="1-12-debugging.html" class="nav-link"><span class="nav-link-number">1.12</span> Debugging</a>
+                    </div>
+                </div>
+
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link active"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-objects-properties.html" class="nav-link"><span class="nav-link-number">2.4</span> Objects & Properties</a>
+                        <a href="2-5-providers-drives.html" class="nav-link"><span class="nav-link-number">2.5</span> Providers & Drives</a>
+                        <a href="2-6-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.6</span> WMI & CIM</a>
+                        <a href="2-7-remoting.html" class="nav-link"><span class="nav-link-number">2.7</span> Remoting</a>
+                        <a href="2-8-modules-management.html" class="nav-link"><span class="nav-link-number">2.8</span> Modules Management</a>
+                        <a href="2-9-profile-customization.html" class="nav-link"><span class="nav-link-number">2.9</span> Profile Customization</a>
+                        <a href="2-10-regex-powershell.html" class="nav-link"><span class="nav-link-number">2.10</span> Regex in PowerShell</a>
+                        <a href="2-11-file-operations.html" class="nav-link"><span class="nav-link-number">2.11</span> File Operations</a>
+                        <a href="2-12-registry-operations.html" class="nav-link"><span class="nav-link-number">2.12</span> Registry Operations</a>
+                        <a href="2-13-services-processes.html" class="nav-link"><span class="nav-link-number">2.13</span> Services & Processes</a>
+                        <a href="2-14-scheduled-tasks.html" class="nav-link"><span class="nav-link-number">2.14</span> Scheduled Tasks</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests</a>
+                        <a href="2-19-background-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Background Jobs</a>
+                        <a href="2-20-dsc-basics.html" class="nav-link"><span class="nav-link-number">2.20</span> DSC Basics</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-basics.html" class="nav-link"><span class="nav-link-number">3.2</span> Bash Basics</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Bash Variables</a>
+                        <a href="3-4-bash-strings.html" class="nav-link"><span class="nav-link-number">3.4</span> Bash Strings</a>
+                        <a href="3-5-bash-arrays.html" class="nav-link"><span class="nav-link-number">3.5</span> Bash Arrays</a>
+                        <a href="3-6-bash-conditionals.html" class="nav-link"><span class="nav-link-number">3.6</span> Bash Conditionals</a>
+                        <a href="3-7-bash-loops.html" class="nav-link"><span class="nav-link-number">3.7</span> Bash Loops</a>
+                        <a href="3-8-bash-functions.html" class="nav-link"><span class="nav-link-number">3.8</span> Bash Functions</a>
+                        <a href="3-9-bash-io-redirection.html" class="nav-link"><span class="nav-link-number">3.9</span> I/O Redirection</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-11-bash-regex.html" class="nav-link"><span class="nav-link-number">3.11</span> Bash Regex</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                        <a href="3-13-bash-system-admin.html" class="nav-link"><span class="nav-link-number">3.13</span> System Administration</a>
+                        <a href="3-14-bash-security-tools.html" class="nav-link"><span class="nav-link-number">3.14</span> Security Tools Integration</a>
+                        <a href="3-15-bash-best-practices.html" class="nav-link"><span class="nav-link-number">3.15</span> Bash Best Practices</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-basics.html" class="nav-link"><span class="nav-link-number">4.2</span> Batch Basics</a>
+                        <a href="4-3-batch-commands.html" class="nav-link"><span class="nav-link-number">4.3</span> Batch Commands</a>
+                        <a href="4-4-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.4</span> Batch Control Flow</a>
+                        <a href="4-5-batch-arguments.html" class="nav-link"><span class="nav-link-number">4.5</span> Batch Arguments</a>
+                        <a href="4-6-batch-errorhandling.html" class="nav-link"><span class="nav-link-number">4.6</span> Batch Error Handling</a>
+                        <a href="4-7-batch-security-tasks.html" class="nav-link"><span class="nav-link-number">4.7</span> Batch Security Tasks</a>
+                        <a href="4-8-batch-to-powershell.html" class="nav-link"><span class="nav-link-number">4.8</span> Batch to PowerShell</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔒</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-security-scripting-overview.html" class="nav-link"><span class="nav-link-number">5.1</span> Security Scripting Overview</a>
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response Scripts</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="offensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">⚔️</span>
+                        Offensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-offensive-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Offensive Introduction</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="defensive">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Defensive Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-defensive-overview.html" class="nav-link"><span class="nav-link-number">7.1</span> Defensive Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🏗️</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-project-soc-toolkit.html" class="nav-link"><span class="nav-link-number">8.1</span> SOC Toolkit Project</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="crossplatform">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-cross-platform-overview.html" class="nav-link"><span class="nav-link-number">9.1</span> Cross-Platform Overview</a>
+                    </div>
+                </div>
+
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-coding-standards.html" class="nav-link"><span class="nav-link-number">10.1</span> Coding Standards</a>
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Pipeline Mastery</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.3 Pipeline Mastery</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>How the PowerShell pipeline passes objects (not text)</li>
+                        <li>Essential pipeline cmdlets: Where-Object, Select-Object, ForEach-Object, Sort-Object</li>
+                        <li>Pipeline parameter binding: ByValue vs ByPropertyName</li>
+                        <li>Performance optimization and common pipeline patterns</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>The Power of the Pipeline</h2>
+                <p>
+                    The pipeline is PowerShell's most distinctive feature. While other shells pass text 
+                    between commands, PowerShell passes <strong>objects</strong>—structured data with 
+                    properties and methods. This fundamental difference enables powerful data manipulation 
+                    without complex text parsing.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Pipeline as Assembly Line</div>
+                    </div>
+                    <ul>
+                        <li><strong>Objects</strong> = Products moving down the line</li>
+                        <li><strong>Pipeline |</strong> = Conveyor belt between stations</li>
+                        <li><strong>Cmdlets</strong> = Workers/stations that process each product</li>
+                        <li><strong>$_</strong> = "The current item I'm working on"</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Each "station" receives objects, processes them, and passes them to the next station. 
+                        Unlike text-based shells, you don't need to reassemble the product at each step!</em>
+                    </p>
+                </div>
+
+                <!-- Pipeline Flow Diagram -->
+                <h2>How Objects Flow Through the Pipeline</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 PowerShell Pipeline Object Flow</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      POWERSHELL PIPELINE OBJECT FLOW                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Get-Process | Where-Object {$_.CPU -gt 100} | Select-Object Name, CPU | Sort-Object CPU
+
+┌──────────────┐     ┌──────────────────┐     ┌────────────────┐     ┌────────────┐
+│ Get-Process  │     │  Where-Object    │     │ Select-Object  │     │ Sort-Object│
+│              │     │                  │     │                │     │            │
+│  Produces    │────►│    Filters       │────►│   Reshapes     │────►│   Orders   │
+│   Objects    │     │    Objects       │     │    Objects     │     │   Objects  │
+│              │     │                  │     │                │     │            │
+│ ┌──────────┐ │     │ ┌──────────┐     │     │ ┌──────────┐   │     │ ┌────────┐ │
+│ │ Process  │ │     │ │ Process  │     │     │ │ Custom   │   │     │ │Ordered │ │
+│ │ Object   │ │     │ │ (if CPU  │     │     │ │ Object   │   │     │ │ Output │ │
+│ │ .Name    │ │     │ │  > 100)  │     │     │ │ .Name    │   │     │ │        │ │
+│ │ .CPU     │ │     │ └──────────┘     │     │ │ .CPU     │   │     │ └────────┘ │
+│ │ .Memory  │ │     │                  │     │ └──────────┘   │     │            │
+│ │ .Id      │ │     │ Objects that     │     │                │     │ Sorted by  │
+│ │ ...50+   │ │     │ don't match      │     │ Only selected  │     │ CPU prop   │
+│ └──────────┘ │     │ are DROPPED      │     │ properties     │     │            │
+└──────────────┘     └──────────────────┘     └────────────────┘     └────────────┘
+       │                      │                       │                     │
+       │                      │                       │                     │
+       ▼                      ▼                       ▼                     ▼
+   100 Process           Maybe 5 Process         5 Custom Objects    5 Sorted Objects
+   Objects               Objects remain          (2 properties)      (lowest → highest)
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ KEY INSIGHT: Objects maintain their structure through the pipeline.          │
+│ No parsing needed! Access properties directly: $_.PropertyName               │
+└─────────────────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Pipeline vs Text -->
+                <h2>Objects vs Text: The Critical Difference</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Bash (Text)</th>
+                                <th>PowerShell (Objects)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Data Type</strong></td>
+                                <td>Strings (text streams)</td>
+                                <td>.NET Objects</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accessing Data</strong></td>
+                                <td>Parse with grep, awk, sed, cut</td>
+                                <td>Direct property access: $_.Name</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Filtering</strong></td>
+                                <td>Pattern matching on text</td>
+                                <td>Property-based conditions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Data Integrity</strong></td>
+                                <td>Format changes break parsing</td>
+                                <td>Properties are consistent</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Numeric Comparison</strong></td>
+                                <td>Strings: "9" > "10" is true!</td>
+                                <td>Native: 9 < 10 works correctly</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Learning Curve</strong></td>
+                                <td>Many tools to learn</td>
+                                <td>Consistent cmdlet patterns</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Text Parsing Required
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Bash: Find processes using more than 100MB memory</span>
+<span class="token-comment"># Need to parse text output, skip headers, extract columns</span>
+ps aux | awk 'NR>1 && $6 > 102400 {print $11, $6/1024 "MB"}'
+
+<span class="token-comment"># Fragile! Different ps versions have different output formats</span></code></pre>
+                    </div>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Direct Object Access
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># PowerShell: Same task, but with objects</span>
+<span class="token-cmdlet">Get-Process</span> | 
+    <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.WorkingSet64 <span class="token-operator">-gt</span> 100MB } |
+    <span class="token-cmdlet">Select-Object</span> Name, @{N=<span class="token-string">'MemoryMB'</span>;E={[math]::Round(<span class="token-variable">$_</span>.WorkingSet64/1MB,2)}}
+
+<span class="token-comment"># Robust! Property names are consistent regardless of display format</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Essential Pipeline Cmdlets -->
+                <h2>Essential Pipeline Cmdlets</h2>
+
+                <h3>Where-Object: Filtering</h3>
+                <p>Filters objects based on property values. Objects that match the condition pass through; 
+                others are dropped.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Where-Object Examples
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Full syntax with script block</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.CPU <span class="token-operator">-gt</span> <span class="token-number">100</span> }
+
+<span class="token-comment"># Simplified syntax (PS 3.0+)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> CPU <span class="token-operator">-gt</span> <span class="token-number">100</span>
+
+<span class="token-comment"># Alias: ? or where</span>
+<span class="token-cmdlet">Get-Service</span> | ? Status <span class="token-operator">-eq</span> <span class="token-string">'Running'</span>
+
+<span class="token-comment"># Multiple conditions</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> { 
+    <span class="token-variable">$_</span>.CPU <span class="token-operator">-gt</span> <span class="token-number">50</span> <span class="token-operator">-and</span> 
+    <span class="token-variable">$_</span>.WorkingSet64 <span class="token-operator">-gt</span> 100MB 
+}
+
+<span class="token-comment"># Security example: Find processes running as SYSTEM</span>
+<span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-IncludeUserName</span> | 
+    <span class="token-cmdlet">Where-Object</span> UserName <span class="token-operator">-like</span> <span class="token-string">'*SYSTEM*'</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Select-Object: Shaping Output</h3>
+                <p>Choose which properties to include, create calculated properties, or limit results.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Select-Object Examples
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Select specific properties</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> Name, Id, CPU, WorkingSet64
+
+<span class="token-comment"># Alias: select</span>
+<span class="token-cmdlet">Get-Service</span> | select Name, Status, StartType
+
+<span class="token-comment"># First/Last N items</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> CPU <span class="token-parameter">-Descending</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">5</span>
+
+<span class="token-comment"># Calculated properties (custom columns)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> `
+    Name,
+    @{Name=<span class="token-string">'MemoryMB'</span>; Expression={[math]::Round(<span class="token-variable">$_</span>.WorkingSet64/1MB, 2)}},
+    @{N=<span class="token-string">'CPUSeconds'</span>; E={[math]::Round(<span class="token-variable">$_</span>.CPU, 1)}}
+
+<span class="token-comment"># Expand nested properties</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Select-Object</span> Name, <span class="token-parameter">-ExpandProperty</span> DependentServices
+
+<span class="token-comment"># Exclude properties</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> * <span class="token-parameter">-ExcludeProperty</span> *64, Handles</code></pre>
+                    </div>
+                </div>
+
+                <h3>ForEach-Object: Processing Each Item</h3>
+                <p>Execute code for each object in the pipeline. Use when you need more than simple filtering.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - ForEach-Object Examples
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic usage - $_ is the current object</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">ForEach-Object</span> { 
+    <span class="token-cmdlet">Write-Host</span> <span class="token-string">"$($_.Name) is using $([math]::Round($_.CPU, 2)) CPU seconds"</span>
+}
+
+<span class="token-comment"># Alias: % or foreach</span>
+<span class="token-number">1</span>..<span class="token-number">5</span> | % { <span class="token-variable">$_</span> * <span class="token-number">2</span> }  <span class="token-comment"># Output: 2, 4, 6, 8, 10</span>
+
+<span class="token-comment"># Call methods on objects</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Status <span class="token-operator">-eq</span> <span class="token-string">'Stopped'</span> | 
+    <span class="token-cmdlet">ForEach-Object</span> { <span class="token-variable">$_</span>.Start() }
+
+<span class="token-comment"># Begin/Process/End blocks (like awk)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">ForEach-Object</span> `
+    <span class="token-parameter">-Begin</span> { <span class="token-variable">$total</span> = <span class="token-number">0</span> } `
+    <span class="token-parameter">-Process</span> { <span class="token-variable">$total</span> += <span class="token-variable">$_</span>.WorkingSet64 } `
+    <span class="token-parameter">-End</span> { <span class="token-string">"Total Memory: $([math]::Round($total/1GB, 2)) GB"</span> }
+
+<span class="token-comment"># PowerShell 7+: Parallel processing</span>
+<span class="token-number">1</span>..<span class="token-number">10</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Parallel</span> { 
+    <span class="token-cmdlet">Start-Sleep</span> <span class="token-parameter">-Seconds</span> <span class="token-number">1</span>
+    <span class="token-string">"Processed $_"</span>
+} <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">5</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Sort-Object & Group-Object</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Sorting and Grouping
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Sort ascending (default)</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> Name
+
+<span class="token-comment"># Sort descending</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> CPU <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Sort by multiple properties</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> @{E=<span class="token-string">'CPU'</span>;Desc=<span class="token-variable">$true</span>}, @{E=<span class="token-string">'Name'</span>;Asc=<span class="token-variable">$true</span|}
+
+<span class="token-comment"># Unique values only</span>
+<span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> Name <span class="token-parameter">-Unique</span>
+
+<span class="token-comment"># Group objects by property</span>
+<span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Group-Object</span> Status
+
+<span class="token-comment"># Group and count - great for security analysis</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> Security <span class="token-parameter">-MaxEvents</span> <span class="token-number">1000</span> |
+    <span class="token-cmdlet">Group-Object</span> Id |
+    <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span> |
+    <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">10</span> Name, Count</code></pre>
+                    </div>
+                </div>
+
+                <!-- Parameter Binding -->
+                <h2>Pipeline Parameter Binding</h2>
+
+                <p>
+                    Understanding how cmdlets receive pipeline input is crucial for building efficient pipelines.
+                    PowerShell uses two binding methods: <strong>ByValue</strong> and <strong>ByPropertyName</strong>.
+                </p>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Pipeline Parameter Binding Methods</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     PIPELINE PARAMETER BINDING                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ BYVALUE (Preferred - PowerShell tries this first)                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│   Get-Process -Name "notepad" | Stop-Process                                │
+│                    │                    │                                    │
+│                    │                    └── Accepts [Process] objects        │
+│                    │                        via pipeline ByValue             │
+│                    │                                                         │
+│                    └── Outputs [Process] objects                            │
+│                                                                              │
+│   The WHOLE OBJECT is passed if the type matches                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ BYPROPERTYNAME (Fallback - if ByValue fails)                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│   Import-Csv users.csv | New-ADUser                                         │
+│        │                     │                                               │
+│        │                     └── Has parameters: -Name, -GivenName,         │
+│        │                         -Surname, -SamAccountName...               │
+│        │                                                                     │
+│        └── CSV has columns: Name, GivenName, Surname, SamAccountName        │
+│                                                                              │
+│   Property NAMES in the input match PARAMETER NAMES in the cmdlet           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+To check what a cmdlet accepts via pipeline:
+
+    Get-Help Stop-Process -Parameter * | Where-Object { $_.pipelineInput -ne 'false' }
+</pre>
+                </div>
+
+                <!-- Security Examples -->
+                <h2>Security-Focused Pipeline Examples</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Pipeline Patterns
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Find failed login attempts in the last hour</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    Id = <span class="token-number">4625</span>
+    StartTime = (Get-Date).AddHours(-1)
+} | <span class="token-cmdlet">Select-Object</span> TimeCreated,
+    @{N=<span class="token-string">'TargetUser'</span>;E={<span class="token-variable">$_</span>.Properties[5].Value}},
+    @{N=<span class="token-string">'SourceIP'</span>;E={<span class="token-variable">$_</span>.Properties[19].Value}} |
+    <span class="token-cmdlet">Group-Object</span> SourceIP |
+    <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span>
+
+<span class="token-comment"># Find unsigned running processes</span>
+<span class="token-cmdlet">Get-Process</span> | 
+    <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span>.Path } |
+    <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$sig</span> = <span class="token-cmdlet">Get-AuthenticodeSignature</span> <span class="token-variable">$_</span>.Path
+        [PSCustomObject]@{
+            Name = <span class="token-variable">$_</span>.Name
+            Path = <span class="token-variable">$_</span>.Path
+            SignatureStatus = <span class="token-variable">$sig</span>.Status
+            Signer = <span class="token-variable">$sig</span>.SignerCertificate.Subject
+        }
+    } |
+    <span class="token-cmdlet">Where-Object</span> SignatureStatus <span class="token-operator">-ne</span> <span class="token-string">'Valid'</span>
+
+<span class="token-comment"># Network connections to non-standard ports</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established |
+    <span class="token-cmdlet">Where-Object</span> { 
+        <span class="token-variable">$_</span>.RemotePort <span class="token-operator">-notin</span> @(80, 443, 22, 53, 25, 587) 
+    } |
+    <span class="token-cmdlet">Select-Object</span> LocalAddress, LocalPort, RemoteAddress, RemotePort,
+        @{N=<span class="token-string">'Process'</span>;E={(Get-Process <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess).Name}}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Performance Tips -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: Pipeline Performance</div>
+                    </div>
+                    <ul>
+                        <li><strong>Filter left:</strong> Use Where-Object as early as possible to reduce objects flowing through</li>
+                        <li><strong>Select early:</strong> Use Select-Object to drop unneeded properties before complex processing</li>
+                        <li><strong>Avoid += in loops:</strong> For large datasets, use ArrayList or List[T] instead</li>
+                        <li><strong>Use -Filter parameters:</strong> <code>Get-Process -Name "chrome"</code> is faster than <code>Get-Process | Where Name -eq "chrome"</code></li>
+                        <li><strong>Measure:</strong> Use <code>Measure-Command { ... }</code> to benchmark pipeline performance</li>
+                    </ul>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Filter Left Pattern
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># ❌ SLOW: Filtering happens late, all data flows through</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> Security | 
+    <span class="token-cmdlet">Where-Object</span> Id <span class="token-operator">-eq</span> <span class="token-number">4625</span> | 
+    <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">10</span>
+
+<span class="token-comment"># ✅ FAST: Filter at the source with -FilterHashtable</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{LogName=<span class="token-string">'Security'</span>; Id=<span class="token-number">4625</span>} <span class="token-parameter">-MaxEvents</span> <span class="token-number">10</span>
+
+<span class="token-comment"># Benchmark the difference</span>
+<span class="token-cmdlet">Measure-Command</span> { <span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> Name <span class="token-operator">-eq</span> <span class="token-string">'chrome'</span> }
+<span class="token-cmdlet">Measure-Command</span> { <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Name</span> <span class="token-string">'chrome'</span> <span class="token-parameter">-ErrorAction</span> SilentlyContinue }</code></pre>
+                    </div>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "Explain what $_ means in PowerShell."</li>
+                        <li><strong>Strong Answer:</strong> "$_ represents the current object in the pipeline. It's an automatic variable that refers to whatever object is being processed at that moment. You can access its properties with $_.PropertyName"</li>
+                        <li><strong>Follow-up:</strong> "What's the difference between ForEach-Object and foreach?" → ForEach-Object is a cmdlet that processes pipeline input; foreach is a statement that requires all items in memory first</li>
+                        <li><strong>Bonus:</strong> Mention pipeline parameter binding and the "filter left" optimization pattern</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>PowerShell pipeline passes objects, not text—access properties directly without parsing</li>
+                    <li><code>$_</code> represents the current object being processed in the pipeline</li>
+                    <li>Where-Object filters, Select-Object shapes, ForEach-Object processes each item</li>
+                    <li>Pipeline binding works ByValue (whole object) or ByPropertyName (matching properties)</li>
+                    <li>Filter left and select early for better performance</li>
+                    <li>PowerShell 7 adds <code>ForEach-Object -Parallel</code> for concurrent processing</li>
+                </ul>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="2-2-cmdlet-anatomy.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.2 Cmdlet Anatomy</span>
+                    </a>
+                    <a href="2-4-objects-properties.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.4 Objects & Properties →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>
