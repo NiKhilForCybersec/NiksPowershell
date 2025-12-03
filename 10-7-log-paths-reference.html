@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.7 Log Paths & Locations Reference | PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section collapsed" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section collapsed" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests & APIs</a>
+                        <a href="2-19-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Remoting & Jobs</a>
+                        <a href="2-20-error-handling.html" class="nav-link"><span class="nav-link-number">2.20</span> Error Handling</a>
+                        <a href="2-21-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.21</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section collapsed" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Variables & Data Types</a>
+                        <a href="3-4-control-structures.html" class="nav-link"><span class="nav-link-number">3.4</span> Control Structures</a>
+                        <a href="3-5-bash-functions.html" class="nav-link"><span class="nav-link-number">3.5</span> Functions & Scripts</a>
+                        <a href="3-6-file-io.html" class="nav-link"><span class="nav-link-number">3.6</span> File I/O</a>
+                        <a href="3-7-process-management.html" class="nav-link"><span class="nav-link-number">3.7</span> Process Management</a>
+                        <a href="3-8-system-admin.html" class="nav-link"><span class="nav-link-number">3.8</span> System Administration</a>
+                        <a href="3-9-regex.html" class="nav-link"><span class="nav-link-number">3.9</span> Regular Expressions</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section collapsed" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting</a>
+                        <a href="5-8-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scanning</a>
+                        <a href="5-9-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.9</span> Digital Forensics</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.12</span> Compliance Automation</a>
+                        <a href="5-13-log-analysis.html" class="nav-link"><span class="nav-link-number">5.13</span> Log Analysis</a>
+                        <a href="5-14-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.14</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Cross-Platform Integration -->
+                <div class="nav-section collapsed" data-section="integration">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔗</span>
+                        Cross-Platform Integration
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-integration.html" class="nav-link"><span class="nav-link-number">6.1</span> Python Integration</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud & DevOps -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud & DevOps
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices & Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                        <a href="10-7-log-paths-reference.html" class="nav-link active"><span class="nav-link-number">10.7</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="separator">›</span>
+                    <a href="10-5-cheat-sheets.html">Reference</a>
+                    <span class="separator">›</span>
+                    <span class="current">Log Paths Reference</span>
+                </nav>
+
+                <h1>10.7 Log Paths & Locations Reference</h1>
+
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📋</div>
+                        <div class="info-box-title">Quick Reference Overview</div>
+                    </div>
+                    <p>
+                        A comprehensive reference for security professionals covering log file locations, 
+                        how to access them, and key events to monitor. Essential for incident response, 
+                        threat hunting, and forensic analysis.
+                    </p>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="info-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📑</div>
+                        <div class="info-box-title">Contents</div>
+                    </div>
+                    <ul>
+                        <li><a href="#windows-event-logs">Windows Event Logs</a></li>
+                        <li><a href="#windows-file-logs">Windows File-Based Logs</a></li>
+                        <li><a href="#linux-logs">Linux Log Files</a></li>
+                        <li><a href="#web-server-logs">Web Server Logs</a></li>
+                        <li><a href="#database-logs">Database Logs</a></li>
+                        <li><a href="#security-tool-logs">Security Tool Logs</a></li>
+                        <li><a href="#cloud-logs">Cloud Platform Logs</a></li>
+                        <li><a href="#container-logs">Container & Kubernetes Logs</a></li>
+                        <li><a href="#quick-commands">Quick Commands Reference</a></li>
+                    </ul>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- WINDOWS EVENT LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="windows-event-logs">Windows Event Logs</h2>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Core Windows Logs</div>
+                    </div>
+                    <p><strong>S-A-S-P</strong> = Security, Application, System, PowerShell</p>
+                    <p>These four logs cover 90% of security investigations on Windows.</p>
+                </div>
+
+                <h3>Core Windows Event Logs</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log Name</th>
+                                <th>Location</th>
+                                <th>Key Event IDs</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Security</strong></td>
+                                <td>%SystemRoot%\System32\winevt\Logs\Security.evtx</td>
+                                <td>4624, 4625, 4648, 4672, 4688, 4720, 4732</td>
+                                <td>Authentication, authorization, audit</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System</strong></td>
+                                <td>%SystemRoot%\System32\winevt\Logs\System.evtx</td>
+                                <td>7045, 7036, 6005, 6006, 1074</td>
+                                <td>Service changes, startup/shutdown</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Application</strong></td>
+                                <td>%SystemRoot%\System32\winevt\Logs\Application.evtx</td>
+                                <td>1000, 1001, 1002 (app crashes)</td>
+                                <td>Application errors, warnings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PowerShell Operational</strong></td>
+                                <td>Microsoft-Windows-PowerShell/Operational</td>
+                                <td>4103, 4104, 4105, 4106</td>
+                                <td>Script block logging, command execution</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sysmon</strong></td>
+                                <td>Microsoft-Windows-Sysmon/Operational</td>
+                                <td>1, 3, 7, 8, 10, 11, 13, 22</td>
+                                <td>Process creation, network, file changes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Windows Defender</strong></td>
+                                <td>Microsoft-Windows-Windows Defender/Operational</td>
+                                <td>1116, 1117, 5001, 5007</td>
+                                <td>Malware detection, protection events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Task Scheduler</strong></td>
+                                <td>Microsoft-Windows-TaskScheduler/Operational</td>
+                                <td>106, 140, 141, 200, 201</td>
+                                <td>Scheduled task creation/execution</td>
+                            </tr>
+                            <tr>
+                                <td><strong>WMI Activity</strong></td>
+                                <td>Microsoft-Windows-WMI-Activity/Operational</td>
+                                <td>5857, 5858, 5859, 5860, 5861</td>
+                                <td>WMI persistence, lateral movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Terminal Services</strong></td>
+                                <td>Microsoft-Windows-TerminalServices-LocalSessionManager/Operational</td>
+                                <td>21, 22, 23, 24, 25</td>
+                                <td>RDP sessions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Firewall</strong></td>
+                                <td>Microsoft-Windows-Windows Firewall With Advanced Security/Firewall</td>
+                                <td>2003, 2004, 2005, 2006</td>
+                                <td>Firewall rule changes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Critical Security Event IDs</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event ID</th>
+                                <th>Log</th>
+                                <th>Description</th>
+                                <th>Why It Matters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>4624</strong></td>
+                                <td>Security</td>
+                                <td>Successful logon</td>
+                                <td>Track user access, lateral movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4625</strong></td>
+                                <td>Security</td>
+                                <td>Failed logon</td>
+                                <td>Brute force detection, password spray</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4648</strong></td>
+                                <td>Security</td>
+                                <td>Logon with explicit credentials</td>
+                                <td>Credential theft, runas usage</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4672</strong></td>
+                                <td>Security</td>
+                                <td>Special privileges assigned</td>
+                                <td>Admin logon, privilege escalation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4688</strong></td>
+                                <td>Security</td>
+                                <td>Process creation</td>
+                                <td>Command execution tracking</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4720</strong></td>
+                                <td>Security</td>
+                                <td>User account created</td>
+                                <td>Persistence, backdoor accounts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4732</strong></td>
+                                <td>Security</td>
+                                <td>Member added to security group</td>
+                                <td>Privilege escalation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>7045</strong></td>
+                                <td>System</td>
+                                <td>Service installed</td>
+                                <td>Persistence mechanism</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4104</strong></td>
+                                <td>PowerShell</td>
+                                <td>Script block logging</td>
+                                <td>PowerShell attack detection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>1 (Sysmon)</strong></td>
+                                <td>Sysmon</td>
+                                <td>Process creation with hash</td>
+                                <td>Detailed process tracking</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3 (Sysmon)</strong></td>
+                                <td>Sysmon</td>
+                                <td>Network connection</td>
+                                <td>C2 detection, data exfil</td>
+                            </tr>
+                            <tr>
+                                <td><strong>11 (Sysmon)</strong></td>
+                                <td>Sysmon</td>
+                                <td>File created</td>
+                                <td>Malware drops, staging</td>
+                            </tr>
+                            <tr>
+                                <td><strong>13 (Sysmon)</strong></td>
+                                <td>Sysmon</td>
+                                <td>Registry value set</td>
+                                <td>Persistence detection</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>PowerShell: Query Windows Event Logs</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">PowerShell</span>
+                        <button class="copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <pre><code># ═══════════════════════════════════════════════════════════════════════════
+# WINDOWS EVENT LOG QUERIES - SECURITY FOCUSED
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LIST AVAILABLE EVENT LOGS
+# ─────────────────────────────────────────────────────────────────────────────
+# All logs
+Get-WinEvent -ListLog * | Select-Object LogName, RecordCount, FileSize | Sort-Object RecordCount -Descending
+
+# Security-relevant logs
+Get-WinEvent -ListLog *Security*, *PowerShell*, *Sysmon*, *Defender* | 
+    Select-Object LogName, RecordCount
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AUTHENTICATION EVENTS
+# ─────────────────────────────────────────────────────────────────────────────
+# Failed logins (last 24 hours)
+$StartTime = (Get-Date).AddHours(-24)
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Security'
+    ID = 4625
+    StartTime = $StartTime
+} | Select-Object TimeCreated, 
+    @{N='TargetUser';E={$_.Properties[5].Value}},
+    @{N='SourceIP';E={$_.Properties[19].Value}},
+    @{N='FailureReason';E={$_.Properties[8].Value}}
+
+# Successful logins
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Security'
+    ID = 4624
+    StartTime = $StartTime
+} | Select-Object TimeCreated,
+    @{N='TargetUser';E={$_.Properties[5].Value}},
+    @{N='LogonType';E={$_.Properties[8].Value}},
+    @{N='SourceIP';E={$_.Properties[18].Value}}
+
+# Logon Type Reference:
+# 2 = Interactive (console)
+# 3 = Network (SMB, shares)
+# 4 = Batch (scheduled task)
+# 5 = Service
+# 7 = Unlock
+# 8 = NetworkCleartext
+# 9 = NewCredentials (runas)
+# 10 = RemoteInteractive (RDP)
+# 11 = CachedInteractive
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PROCESS CREATION (4688)
+# ─────────────────────────────────────────────────────────────────────────────
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Security'
+    ID = 4688
+    StartTime = $StartTime
+} | ForEach-Object {
+    [PSCustomObject]@{
+        TimeCreated = $_.TimeCreated
+        User = $_.Properties[1].Value
+        Process = $_.Properties[5].Value
+        CommandLine = $_.Properties[8].Value
+        ParentProcess = $_.Properties[13].Value
+    }
+} | Where-Object { $_.CommandLine -match 'powershell|cmd|wscript|cscript|mshta|certutil' }
+
+# ─────────────────────────────────────────────────────────────────────────────
+# POWERSHELL SCRIPT BLOCK LOGGING (4104)
+# ─────────────────────────────────────────────────────────────────────────────
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Microsoft-Windows-PowerShell/Operational'
+    ID = 4104
+    StartTime = $StartTime
+} | ForEach-Object {
+    [PSCustomObject]@{
+        TimeCreated = $_.TimeCreated
+        ScriptBlock = $_.Properties[2].Value
+    }
+} | Where-Object { 
+    $_.ScriptBlock -match 'Invoke-|Download|WebClient|Net.Sockets|bypass|hidden|-enc|-e ' 
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SYSMON EVENTS
+# ─────────────────────────────────────────────────────────────────────────────
+# Process Creation (Event 1)
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Microsoft-Windows-Sysmon/Operational'
+    ID = 1
+    StartTime = $StartTime
+} -MaxEvents 100 | ForEach-Object {
+    $xml = [xml]$_.ToXml()
+    [PSCustomObject]@{
+        TimeCreated = $_.TimeCreated
+        Image = $xml.Event.EventData.Data | Where-Object Name -eq 'Image' | Select-Object -ExpandProperty '#text'
+        CommandLine = $xml.Event.EventData.Data | Where-Object Name -eq 'CommandLine' | Select-Object -ExpandProperty '#text'
+        ParentImage = $xml.Event.EventData.Data | Where-Object Name -eq 'ParentImage' | Select-Object -ExpandProperty '#text'
+        User = $xml.Event.EventData.Data | Where-Object Name -eq 'User' | Select-Object -ExpandProperty '#text'
+        Hashes = $xml.Event.EventData.Data | Where-Object Name -eq 'Hashes' | Select-Object -ExpandProperty '#text'
+    }
+}
+
+# Network Connections (Event 3)
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Microsoft-Windows-Sysmon/Operational'
+    ID = 3
+    StartTime = $StartTime
+} -MaxEvents 100 | ForEach-Object {
+    $xml = [xml]$_.ToXml()
+    [PSCustomObject]@{
+        TimeCreated = $_.TimeCreated
+        Image = $xml.Event.EventData.Data | Where-Object Name -eq 'Image' | Select-Object -ExpandProperty '#text'
+        DestinationIP = $xml.Event.EventData.Data | Where-Object Name -eq 'DestinationIp' | Select-Object -ExpandProperty '#text'
+        DestinationPort = $xml.Event.EventData.Data | Where-Object Name -eq 'DestinationPort' | Select-Object -ExpandProperty '#text'
+        User = $xml.Event.EventData.Data | Where-Object Name -eq 'User' | Select-Object -ExpandProperty '#text'
+    }
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SERVICE INSTALLATION (7045)
+# ─────────────────────────────────────────────────────────────────────────────
+Get-WinEvent -FilterHashtable @{
+    LogName = 'System'
+    ID = 7045
+} | Select-Object TimeCreated,
+    @{N='ServiceName';E={$_.Properties[0].Value}},
+    @{N='ImagePath';E={$_.Properties[1].Value}},
+    @{N='ServiceType';E={$_.Properties[2].Value}},
+    @{N='StartType';E={$_.Properties[3].Value}},
+    @{N='AccountName';E={$_.Properties[4].Value}}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SCHEDULED TASKS
+# ─────────────────────────────────────────────────────────────────────────────
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Microsoft-Windows-TaskScheduler/Operational'
+    ID = 106  # Task registered
+} | Select-Object TimeCreated,
+    @{N='TaskName';E={$_.Properties[0].Value}},
+    @{N='User';E={$_.Properties[1].Value}}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# EXPORT LOGS FOR ANALYSIS
+# ─────────────────────────────────────────────────────────────────────────────
+# Export Security log to EVTX
+wevtutil epl Security "C:\Logs\Security_$(Get-Date -Format 'yyyyMMdd').evtx"
+
+# Export to CSV for SIEM ingestion
+Get-WinEvent -FilterHashtable @{LogName='Security'; StartTime=$StartTime} |
+    Select-Object TimeCreated, Id, LevelDisplayName, Message |
+    Export-Csv "C:\Logs\Security_Events.csv" -NoTypeInformation</code></pre>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- WINDOWS FILE-BASED LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="windows-file-logs">Windows File-Based Logs</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log Type</th>
+                                <th>Location</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>IIS Logs</strong></td>
+                                <td>%SystemDrive%\inetpub\logs\LogFiles\</td>
+                                <td>Web server access logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IIS Failed Request</strong></td>
+                                <td>%SystemDrive%\inetpub\logs\FailedReqLogFiles\</td>
+                                <td>Failed HTTP requests</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DHCP Server</strong></td>
+                                <td>%SystemRoot%\System32\dhcp\</td>
+                                <td>DHCP lease assignments</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DNS Server</strong></td>
+                                <td>%SystemRoot%\System32\dns\</td>
+                                <td>DNS query logs (if enabled)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Windows Firewall</strong></td>
+                                <td>%SystemRoot%\System32\LogFiles\Firewall\pfirewall.log</td>
+                                <td>Firewall allow/drop logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NTFS USN Journal</strong></td>
+                                <td>fsutil usn readjournal C:</td>
+                                <td>File system changes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Prefetch</strong></td>
+                                <td>%SystemRoot%\Prefetch\</td>
+                                <td>Program execution artifacts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Amcache</strong></td>
+                                <td>%SystemRoot%\AppCompat\Programs\Amcache.hve</td>
+                                <td>Program execution history</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SRUM</strong></td>
+                                <td>%SystemRoot%\System32\sru\SRUDB.dat</td>
+                                <td>System Resource Usage Monitor</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Setupapi</strong></td>
+                                <td>%SystemRoot%\INF\setupapi.dev.log</td>
+                                <td>Device/driver installation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CBS Log</strong></td>
+                                <td>%SystemRoot%\Logs\CBS\CBS.log</td>
+                                <td>Windows Update/servicing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>PowerShell: Access File-Based Logs</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">PowerShell</span>
+                        <button class="copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <pre><code># ─────────────────────────────────────────────────────────────────────────────
+# IIS LOG ANALYSIS
+# ─────────────────────────────────────────────────────────────────────────────
+$IISLogPath = "C:\inetpub\logs\LogFiles\W3SVC1"
+
+# Parse IIS logs (W3C format)
+Get-ChildItem "$IISLogPath\*.log" | ForEach-Object {
+    Get-Content $_.FullName | Where-Object { $_ -notmatch '^#' } | ForEach-Object {
+        $fields = $_ -split ' '
+        [PSCustomObject]@{
+            Date = $fields[0]
+            Time = $fields[1]
+            ClientIP = $fields[2]
+            Method = $fields[3]
+            URI = $fields[4]
+            Status = $fields[5]
+            UserAgent = $fields[9]
+        }
+    }
+} | Where-Object { $_.Status -match '4\d\d|5\d\d' }  # Errors only
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PREFETCH ANALYSIS
+# ─────────────────────────────────────────────────────────────────────────────
+$PrefetchPath = "$env:SystemRoot\Prefetch"
+
+Get-ChildItem "$PrefetchPath\*.pf" | ForEach-Object {
+    [PSCustomObject]@{
+        FileName = $_.Name -replace '-.*\.pf$', '.exe'
+        LastRun = $_.LastWriteTime
+        Created = $_.CreationTime
+        Size = $_.Length
+    }
+} | Sort-Object LastRun -Descending | Select-Object -First 50
+
+# ─────────────────────────────────────────────────────────────────────────────
+# WINDOWS FIREWALL LOG
+# ─────────────────────────────────────────────────────────────────────────────
+$FWLog = "$env:SystemRoot\System32\LogFiles\Firewall\pfirewall.log"
+
+if (Test-Path $FWLog) {
+    Get-Content $FWLog -Tail 100 | Where-Object { $_ -notmatch '^#' } | ForEach-Object {
+        $fields = $_ -split ' '
+        [PSCustomObject]@{
+            Date = $fields[0]
+            Time = $fields[1]
+            Action = $fields[2]
+            Protocol = $fields[3]
+            SrcIP = $fields[4]
+            DstIP = $fields[5]
+            SrcPort = $fields[6]
+            DstPort = $fields[7]
+        }
+    }
+}</code></pre>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- LINUX LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="linux-logs">Linux Log Files</h2>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Key Linux Log Files</div>
+                    </div>
+                    <p><strong>/var/log/</strong> is home base. Key files:</p>
+                    <ul>
+                        <li><strong>auth.log</strong> (Debian/Ubuntu) or <strong>secure</strong> (RHEL/CentOS) = Authentication</li>
+                        <li><strong>syslog</strong> or <strong>messages</strong> = General system events</li>
+                        <li><strong>kern.log</strong> = Kernel messages</li>
+                        <li><strong>audit/audit.log</strong> = SELinux/auditd events</li>
+                    </ul>
+                </div>
+
+                <h3>Core Linux Log Files</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log File</th>
+                                <th>Debian/Ubuntu</th>
+                                <th>RHEL/CentOS</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Authentication</strong></td>
+                                <td>/var/log/auth.log</td>
+                                <td>/var/log/secure</td>
+                                <td>SSH, sudo, PAM, user logins</td>
+                            </tr>
+                            <tr>
+                                <td><strong>System Messages</strong></td>
+                                <td>/var/log/syslog</td>
+                                <td>/var/log/messages</td>
+                                <td>General system events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kernel</strong></td>
+                                <td>/var/log/kern.log</td>
+                                <td>/var/log/messages</td>
+                                <td>Kernel messages, driver issues</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Audit</strong></td>
+                                <td colspan="2">/var/log/audit/audit.log</td>
+                                <td>SELinux, auditd events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Boot</strong></td>
+                                <td colspan="2">/var/log/boot.log</td>
+                                <td>Boot process messages</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cron</strong></td>
+                                <td>/var/log/syslog</td>
+                                <td>/var/log/cron</td>
+                                <td>Scheduled job execution</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mail</strong></td>
+                                <td colspan="2">/var/log/mail.log</td>
+                                <td>Email server logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Package Manager</strong></td>
+                                <td>/var/log/apt/</td>
+                                <td>/var/log/yum.log or /var/log/dnf.log</td>
+                                <td>Package installations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Firewall</strong></td>
+                                <td colspan="2">/var/log/ufw.log or iptables in syslog</td>
+                                <td>Firewall events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Login History</strong></td>
+                                <td colspan="2">/var/log/wtmp (binary), /var/log/btmp (failed)</td>
+                                <td>Login records (use last/lastb)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Last Login</strong></td>
+                                <td colspan="2">/var/log/lastlog (binary)</td>
+                                <td>Last login per user (use lastlog)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Failed Logins</strong></td>
+                                <td colspan="2">/var/log/faillog (binary)</td>
+                                <td>Failed login attempts (use faillog)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Application-Specific Linux Logs</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Application</th>
+                                <th>Log Location</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Apache</strong></td>
+                                <td>/var/log/apache2/ (Debian)<br>/var/log/httpd/ (RHEL)</td>
+                                <td>access.log, error.log</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nginx</strong></td>
+                                <td>/var/log/nginx/</td>
+                                <td>access.log, error.log</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MySQL/MariaDB</strong></td>
+                                <td>/var/log/mysql/ or /var/log/mariadb/</td>
+                                <td>error.log, slow-query.log</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PostgreSQL</strong></td>
+                                <td>/var/log/postgresql/</td>
+                                <td>Query logs, error logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SSH</strong></td>
+                                <td>auth.log or secure</td>
+                                <td>SSH connection attempts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Docker</strong></td>
+                                <td>/var/lib/docker/containers/[id]/[id]-json.log</td>
+                                <td>Container stdout/stderr</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fail2ban</strong></td>
+                                <td>/var/log/fail2ban.log</td>
+                                <td>Banned IPs, jail actions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>OSSEC/Wazuh</strong></td>
+                                <td>/var/ossec/logs/</td>
+                                <td>alerts.log, ossec.log</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Bash: Query Linux Logs</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">Bash</span>
+                        <button class="copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <pre><code>#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# LINUX LOG ANALYSIS COMMANDS
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AUTHENTICATION LOGS
+# ─────────────────────────────────────────────────────────────────────────────
+# Debian/Ubuntu
+AUTH_LOG="/var/log/auth.log"
+# RHEL/CentOS
+# AUTH_LOG="/var/log/secure"
+
+# Failed SSH logins
+grep "Failed password" $AUTH_LOG | tail -50
+
+# Successful SSH logins
+grep "Accepted" $AUTH_LOG | tail -50
+
+# Failed logins by IP (top 10)
+grep "Failed password" $AUTH_LOG | \
+    grep -oP 'from \K[0-9.]+' | \
+    sort | uniq -c | sort -rn | head -10
+
+# Failed logins by username
+grep "Failed password" $AUTH_LOG | \
+    grep -oP 'for (invalid user )?\K\w+' | \
+    sort | uniq -c | sort -rn | head -10
+
+# Sudo commands executed
+grep "sudo:" $AUTH_LOG | grep "COMMAND" | tail -20
+
+# User additions/modifications
+grep -E "useradd|usermod|userdel|groupadd" $AUTH_LOG
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SYSTEM LOGS
+# ─────────────────────────────────────────────────────────────────────────────
+# Recent errors in syslog
+grep -i "error\|fail\|critical" /var/log/syslog | tail -50
+
+# Kernel messages
+dmesg | tail -50
+# Or
+cat /var/log/kern.log | tail -50
+
+# Boot messages
+journalctl -b  # Current boot
+journalctl -b -1  # Previous boot
+
+# ─────────────────────────────────────────────────────────────────────────────
+# JOURNALCTL (systemd)
+# ─────────────────────────────────────────────────────────────────────────────
+# All logs since yesterday
+journalctl --since yesterday
+
+# Logs for specific service
+journalctl -u sshd --since "1 hour ago"
+journalctl -u nginx --since "2024-01-01" --until "2024-01-02"
+
+# Follow logs in real-time
+journalctl -f
+
+# Priority filtering (0=emerg to 7=debug)
+journalctl -p err  # Error and above
+
+# Kernel messages only
+journalctl -k
+
+# Output as JSON
+journalctl -o json-pretty | head -100
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LOGIN HISTORY
+# ─────────────────────────────────────────────────────────────────────────────
+# Recent logins
+last -20
+
+# Failed login attempts
+sudo lastb -20
+
+# Last login for each user
+lastlog
+
+# Currently logged in users
+who
+w
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AUDIT LOGS (auditd)
+# ─────────────────────────────────────────────────────────────────────────────
+# If auditd is installed
+AUDIT_LOG="/var/log/audit/audit.log"
+
+# Search for specific event types
+ausearch -m USER_LOGIN --start today
+ausearch -m EXECVE --start today  # Command execution
+ausearch -m USER_AUTH -sv no  # Failed auth
+
+# File access audit
+ausearch -f /etc/passwd --start today
+
+# User activity
+ausearch -ua username --start today
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CRON LOGS
+# ─────────────────────────────────────────────────────────────────────────────
+# Debian/Ubuntu (in syslog)
+grep CRON /var/log/syslog | tail -20
+
+# RHEL/CentOS
+cat /var/log/cron | tail -20
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PACKAGE CHANGES
+# ─────────────────────────────────────────────────────────────────────────────
+# Debian/Ubuntu - Recent installations
+grep " install " /var/log/dpkg.log | tail -20
+cat /var/log/apt/history.log | tail -50
+
+# RHEL/CentOS
+cat /var/log/yum.log | tail -20
+# Or
+dnf history
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUICK SECURITY AUDIT SCRIPT
+# ─────────────────────────────────────────────────────────────────────────────
+echo "=== SECURITY LOG SUMMARY ==="
+echo ""
+echo "--- Failed SSH Attempts (Last 24h) ---"
+grep "Failed password" $AUTH_LOG 2>/dev/null | wc -l
+
+echo ""
+echo "--- Top 5 Attacking IPs ---"
+grep "Failed password" $AUTH_LOG 2>/dev/null | \
+    grep -oP 'from \K[0-9.]+' | \
+    sort | uniq -c | sort -rn | head -5
+
+echo ""
+echo "--- Recent Sudo Usage ---"
+grep "sudo:" $AUTH_LOG 2>/dev/null | grep "COMMAND" | tail -5
+
+echo ""
+echo "--- Recent User Changes ---"
+grep -E "useradd|usermod|passwd" $AUTH_LOG 2>/dev/null | tail -5
+
+echo ""
+echo "--- System Errors (Last Hour) ---"
+journalctl --since "1 hour ago" -p err --no-pager | head -10</code></pre>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- WEB SERVER LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="web-server-logs">Web Server Logs</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Server</th>
+                                <th>Log Type</th>
+                                <th>Default Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2"><strong>Apache</strong></td>
+                                <td>Access Log</td>
+                                <td>/var/log/apache2/access.log (Debian)<br>/var/log/httpd/access_log (RHEL)</td>
+                            </tr>
+                            <tr>
+                                <td>Error Log</td>
+                                <td>/var/log/apache2/error.log (Debian)<br>/var/log/httpd/error_log (RHEL)</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>Nginx</strong></td>
+                                <td>Access Log</td>
+                                <td>/var/log/nginx/access.log</td>
+                            </tr>
+                            <tr>
+                                <td>Error Log</td>
+                                <td>/var/log/nginx/error.log</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>IIS</strong></td>
+                                <td>Access Log</td>
+                                <td>%SystemDrive%\inetpub\logs\LogFiles\W3SVC[n]\</td>
+                            </tr>
+                            <tr>
+                                <td>Failed Requests</td>
+                                <td>%SystemDrive%\inetpub\logs\FailedReqLogFiles\</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tomcat</strong></td>
+                                <td>Access/Catalina</td>
+                                <td>/var/log/tomcat[n]/ or $CATALINA_HOME/logs/</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Bash: Web Log Analysis</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">Bash</span>
+                        <button class="copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <pre><code>#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════════
+# WEB SERVER LOG ANALYSIS
+# ═══════════════════════════════════════════════════════════════════════════
+
+ACCESS_LOG="/var/log/nginx/access.log"
+# ACCESS_LOG="/var/log/apache2/access.log"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TOP VISITORS
+# ─────────────────────────────────────────────────────────────────────────────
+# Top 10 IPs by request count
+awk '{print $1}' $ACCESS_LOG | sort | uniq -c | sort -rn | head -10
+
+# Top 10 requested URLs
+awk '{print $7}' $ACCESS_LOG | sort | uniq -c | sort -rn | head -10
+
+# Top User Agents
+awk -F'"' '{print $6}' $ACCESS_LOG | sort | uniq -c | sort -rn | head -10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ERROR ANALYSIS
+# ─────────────────────────────────────────────────────────────────────────────
+# 4xx Client Errors
+awk '$9 ~ /^4/ {print $9, $7}' $ACCESS_LOG | sort | uniq -c | sort -rn | head -10
+
+# 5xx Server Errors
+awk '$9 ~ /^5/ {print $9, $7}' $ACCESS_LOG | sort | uniq -c | sort -rn | head -10
+
+# 404 Not Found
+grep '" 404 ' $ACCESS_LOG | awk '{print $7}' | sort | uniq -c | sort -rn | head -10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SECURITY INDICATORS
+# ─────────────────────────────────────────────────────────────────────────────
+# SQL Injection attempts
+grep -iE "union.*select|select.*from|insert.*into|drop.*table|or.*1.*=.*1" $ACCESS_LOG
+
+# XSS attempts
+grep -iE "<script|javascript:|onerror=|onload=" $ACCESS_LOG
+
+# Path traversal
+grep -E "\.\./|\.\.%2f|%2e%2e" $ACCESS_LOG
+
+# Shell command injection
+grep -iE ";\s*(ls|cat|wget|curl|bash|sh|nc|netcat)" $ACCESS_LOG
+
+# Scanner/Bot detection
+grep -iE "nikto|sqlmap|nmap|masscan|dirbuster|gobuster|wpscan" $ACCESS_LOG
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TRAFFIC PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+# Requests per hour
+awk '{print $4}' $ACCESS_LOG | cut -d: -f2 | sort | uniq -c
+
+# Requests per day
+awk '{print $4}' $ACCESS_LOG | cut -d: -f1 | tr -d '[' | sort | uniq -c
+
+# Bandwidth by IP (bytes transferred)
+awk '{sum[$1]+=$10} END {for (ip in sum) print sum[ip], ip}' $ACCESS_LOG | sort -rn | head -10</code></pre>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- DATABASE LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="database-logs">Database Logs</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Database</th>
+                                <th>Log Type</th>
+                                <th>Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3"><strong>MySQL/MariaDB</strong></td>
+                                <td>Error Log</td>
+                                <td>/var/log/mysql/error.log</td>
+                            </tr>
+                            <tr>
+                                <td>Slow Query</td>
+                                <td>/var/log/mysql/mysql-slow.log</td>
+                            </tr>
+                            <tr>
+                                <td>General Log</td>
+                                <td>/var/log/mysql/mysql.log (if enabled)</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>PostgreSQL</strong></td>
+                                <td>Server Log</td>
+                                <td>/var/log/postgresql/postgresql-[version]-main.log</td>
+                            </tr>
+                            <tr>
+                                <td>Query Log</td>
+                                <td>Configured in postgresql.conf</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2"><strong>SQL Server</strong></td>
+                                <td>Error Log</td>
+                                <td>C:\Program Files\Microsoft SQL Server\MSSQL[n]\MSSQL\Log\ERRORLOG</td>
+                            </tr>
+                            <tr>
+                                <td>Audit Log</td>
+                                <td>Configured location (SQL Audit)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MongoDB</strong></td>
+                                <td>Log</td>
+                                <td>/var/log/mongodb/mongod.log</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Redis</strong></td>
+                                <td>Log</td>
+                                <td>/var/log/redis/redis-server.log</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- SECURITY TOOL LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="security-tool-logs">Security Tool Logs</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Log Location</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CrowdStrike Falcon</strong></td>
+                                <td>Windows: C:\Windows\System32\drivers\CrowdStrike\<br>Linux: /var/log/falcon/</td>
+                                <td>EDR sensor logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cortex XDR</strong></td>
+                                <td>Windows: C:\ProgramData\Cyvera\Logs\<br>Linux: /var/log/cortex/</td>
+                                <td>Agent logs, prevention events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Defender</strong></td>
+                                <td>C:\ProgramData\Microsoft\Windows Defender\Support\</td>
+                                <td>MPLog-*.log files</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Carbon Black</strong></td>
+                                <td>Windows: C:\Program Files\Confer\Logs\<br>Linux: /var/opt/carbonblack/</td>
+                                <td>Sensor and response logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>OSSEC/Wazuh</strong></td>
+                                <td>/var/ossec/logs/alerts/alerts.log<br>/var/ossec/logs/ossec.log</td>
+                                <td>HIDS alerts and agent logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fail2ban</strong></td>
+                                <td>/var/log/fail2ban.log</td>
+                                <td>Ban actions, jail status</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Snort/Suricata</strong></td>
+                                <td>/var/log/snort/ or /var/log/suricata/</td>
+                                <td>IDS/IPS alerts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ClamAV</strong></td>
+                                <td>/var/log/clamav/</td>
+                                <td>Scan results, detection logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Splunk Forwarder</strong></td>
+                                <td>$SPLUNK_HOME/var/log/splunk/</td>
+                                <td>Forwarder internal logs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- CLOUD LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="cloud-logs">Cloud Platform Logs</h2>
+
+                <h3>Azure Logs</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log Type</th>
+                                <th>Location/Service</th>
+                                <th>Query Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Azure AD Sign-ins</strong></td>
+                                <td>Azure AD → Sign-in logs</td>
+                                <td>SigninLogs table in Log Analytics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Azure AD Audit</strong></td>
+                                <td>Azure AD → Audit logs</td>
+                                <td>AuditLogs table</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Activity Log</strong></td>
+                                <td>Azure Monitor → Activity log</td>
+                                <td>AzureActivity table</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resource Logs</strong></td>
+                                <td>Diagnostic settings per resource</td>
+                                <td>Various tables (AzureDiagnostics)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NSG Flow Logs</strong></td>
+                                <td>Storage Account (configured)</td>
+                                <td>AzureNetworkAnalytics_CL</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Key Vault</strong></td>
+                                <td>Key Vault → Diagnostic settings</td>
+                                <td>AzureDiagnostics where ResourceType == "VAULTS"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>PowerShell: Query Azure Logs</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">PowerShell</span>
+                        <button class="copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <pre><code># Connect to Azure
+Connect-AzAccount
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AZURE AD SIGN-IN LOGS (requires AzureAD module)
+# ─────────────────────────────────────────────────────────────────────────────
+# Get recent sign-ins
+Get-AzureADAuditSignInLogs -Top 50 | 
+    Select-Object CreatedDateTime, UserPrincipalName, AppDisplayName, 
+                  IpAddress, Status, ConditionalAccessStatus
+
+# Failed sign-ins
+Get-AzureADAuditSignInLogs -Filter "status/errorCode ne 0" -Top 100
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LOG ANALYTICS QUERIES (KQL)
+# ─────────────────────────────────────────────────────────────────────────────
+$WorkspaceId = "your-workspace-id"
+
+# Sign-in failures
+$Query = @"
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where ResultType != 0
+| summarize FailureCount = count() by UserPrincipalName, IPAddress, ResultDescription
+| order by FailureCount desc
+| take 20
+"@
+
+Invoke-AzOperationalInsightsQuery -WorkspaceId $WorkspaceId -Query $Query |
+    Select-Object -ExpandProperty Results
+
+# Suspicious Azure Activity
+$Query = @"
+AzureActivity
+| where TimeGenerated > ago(7d)
+| where OperationNameValue contains "delete" or OperationNameValue contains "write"
+| where ActivityStatus == "Succeeded"
+| project TimeGenerated, Caller, OperationNameValue, ResourceGroup, Resource
+| order by TimeGenerated desc
+"@
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ACTIVITY LOG
+# ─────────────────────────────────────────────────────────────────────────────
+# Get recent activity
+Get-AzActivityLog -StartTime (Get-Date).AddDays(-7) |
+    Where-Object { $_.Status.Value -eq "Succeeded" } |
+    Select-Object EventTimestamp, Caller, OperationName, ResourceGroupName</code></pre>
+                </div>
+
+                <h3>AWS Logs</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log Type</th>
+                                <th>Service</th>
+                                <th>Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CloudTrail</strong></td>
+                                <td>AWS CloudTrail</td>
+                                <td>S3 bucket (configured) or CloudWatch Logs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>VPC Flow Logs</strong></td>
+                                <td>VPC</td>
+                                <td>CloudWatch Logs or S3</td>
+                            </tr>
+                            <tr>
+                                <td><strong>GuardDuty Findings</strong></td>
+                                <td>GuardDuty</td>
+                                <td>Console, EventBridge, S3</td>
+                            </tr>
+                            <tr>
+                                <td><strong>S3 Access Logs</strong></td>
+                                <td>S3</td>
+                                <td>Target S3 bucket</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CloudWatch Logs</strong></td>
+                                <td>CloudWatch</td>
+                                <td>Log Groups</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IAM Access Analyzer</strong></td>
+                                <td>IAM</td>
+                                <td>Console, API</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- CONTAINER LOGS -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="container-logs">Container & Kubernetes Logs</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Log Type</th>
+                                <th>Location/Command</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="3"><strong>Docker</strong></td>
+                                <td>Container Logs</td>
+                                <td>docker logs [container]<br>/var/lib/docker/containers/[id]/[id]-json.log</td>
+                            </tr>
+                            <tr>
+                                <td>Daemon Logs</td>
+                                <td>journalctl -u docker</td>
+                            </tr>
+                            <tr>
+                                <td>Events</td>
+                                <td>docker events</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3"><strong>Kubernetes</strong></td>
+                                <td>Pod Logs</td>
+                                <td>kubectl logs [pod] -n [namespace]</td>
+                            </tr>
+                            <tr>
+                                <td>Events</td>
+                                <td>kubectl get events -n [namespace]</td>
+                            </tr>
+                            <tr>
+                                <td>Audit Logs</td>
+                                <td>/var/log/kubernetes/audit/ (if enabled)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">Bash</span>
+                        <button class="copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <pre><code># ═══════════════════════════════════════════════════════════════════════════
+# DOCKER LOG COMMANDS
+# ═══════════════════════════════════════════════════════════════════════════
+
+# View container logs
+docker logs nginx-container
+docker logs --tail 100 nginx-container
+docker logs --since 1h nginx-container
+docker logs -f nginx-container  # Follow
+
+# All container logs location
+ls -la /var/lib/docker/containers/
+
+# Docker events (security monitoring)
+docker events --filter 'type=container' --since '1h'
+docker events --filter 'event=start' --filter 'event=stop'
+
+# ═══════════════════════════════════════════════════════════════════════════
+# KUBERNETES LOG COMMANDS
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Pod logs
+kubectl logs nginx-pod -n production
+kubectl logs nginx-pod -n production --previous  # Previous instance
+kubectl logs nginx-pod -n production -c nginx    # Specific container
+kubectl logs -f nginx-pod -n production          # Follow
+
+# All pods in namespace
+kubectl logs -l app=nginx -n production
+
+# Events (useful for troubleshooting)
+kubectl get events -n production --sort-by='.lastTimestamp'
+
+# Cluster-wide events
+kubectl get events -A --sort-by='.lastTimestamp' | tail -50</code></pre>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <!-- QUICK COMMANDS REFERENCE -->
+                <!-- ═══════════════════════════════════════════════════════════════ -->
+                <h2 id="quick-commands">Quick Commands Reference</h2>
+
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tip</div>
+                    </div>
+                    <p>
+                        When asked about log analysis during an incident, structure your answer:
+                        <strong>1) Which logs to check</strong> (based on incident type),
+                        <strong>2) What to look for</strong> (specific events/patterns),
+                        <strong>3) How to correlate</strong> (timeline, user, IP across sources).
+                    </p>
+                </div>
+
+                <h3>One-Liners for Quick Analysis</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-lang">Quick Reference</span>
+                        <button class="copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <pre><code># ═══════════════════════════════════════════════════════════════════════════
+# WINDOWS ONE-LINERS (PowerShell)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Failed logins (last 24h)
+Get-WinEvent -FilterHashtable @{LogName='Security';ID=4625;StartTime=(Get-Date).AddHours(-24)} | Measure-Object
+
+# Successful RDP logins (Type 10)
+Get-WinEvent -FilterHashtable @{LogName='Security';ID=4624} | Where-Object {$_.Properties[8].Value -eq 10}
+
+# New services installed
+Get-WinEvent -FilterHashtable @{LogName='System';ID=7045}
+
+# PowerShell execution
+Get-WinEvent -FilterHashtable @{LogName='Microsoft-Windows-PowerShell/Operational';ID=4104} -MaxEvents 50
+
+# Process creation with command line
+Get-WinEvent -FilterHashtable @{LogName='Security';ID=4688} -MaxEvents 100 | Select-Object TimeCreated, @{N='Cmd';E={$_.Properties[8].Value}}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# LINUX ONE-LINERS (Bash)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Failed SSH (count)
+grep -c "Failed password" /var/log/auth.log
+
+# Top attacking IPs
+grep "Failed password" /var/log/auth.log | grep -oP 'from \K[0-9.]+' | sort | uniq -c | sort -rn | head -5
+
+# Successful logins today
+grep "Accepted" /var/log/auth.log | grep "$(date +%b\ %d)"
+
+# Sudo commands
+grep "COMMAND=" /var/log/auth.log | tail -10
+
+# User changes
+grep -E "useradd|usermod|passwd" /var/log/auth.log
+
+# Last 10 logins
+last -10
+
+# Errors in last hour
+journalctl --since "1 hour ago" -p err --no-pager
+
+# Cron executions
+grep CRON /var/log/syslog | tail -10
+
+# Apache/Nginx errors
+tail -20 /var/log/nginx/error.log
+
+# 404 errors in web logs
+grep '" 404 ' /var/log/nginx/access.log | wc -l</code></pre>
+                </div>
+
+                <!-- Navigation -->
+                <div class="page-navigation">
+                    <a href="10-6-interview-preparation.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 10.6 Interview Preparation</span>
+                    </a>
+                    <a href="index.html" class="nav-button next">
+                        <span class="nav-button-label">Home</span>
+                        <span class="nav-button-title">Back to Index →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

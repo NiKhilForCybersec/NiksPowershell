@@ -41,6 +41,19 @@
                         <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI and CIM</a>
                     </div>
                 </div>
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📋</span>
+                        Best Practices &amp; Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                        <a href="10-7-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.7</span> Log Paths Reference</a>
+                    </div>
+                </div>
             </nav>
         </aside>
 
@@ -51,9 +64,7 @@
                 <nav class="breadcrumb">
                     <a href="index.html">Home</a>
                     <span class="breadcrumb-separator">›</span>
-                    <a href="index.html#powershell">PowerShell</a>
-                    <span class="breadcrumb-separator">›</span>
-                    <span>Regular Expressions</span>
+                    <span class="current">Current Page</span>
                 </nav>
 
                 <!-- Page Title -->
@@ -141,10 +152,10 @@
                     </div>
                     <div class="code-block">
 <pre><code><span class="token-comment"># $Matches automatic variable stores capture results</span>
-<span class="token-variable">$Text</span> = <span class="token-string">"User: john.doe@company.com"</span>
+<span class="token-variable">$Text</span> = <span class="token-string">"User: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c36333432723833391c3f33312c3d3225723f3331">[email&#160;protected]</a>"</span>
 <span class="token-keyword">if</span> (<span class="token-variable">$Text</span> <span class="token-operator">-match</span> <span class="token-string">'User: (\S+)'</span>) {
-    <span class="token-variable">$Matches</span>[<span class="token-number">0</span>]  <span class="token-comment"># Full match: User: john.doe@company.com</span>
-    <span class="token-variable">$Matches</span>[<span class="token-number">1</span>]  <span class="token-comment"># First capture: john.doe@company.com</span>
+    <span class="token-variable">$Matches</span>[<span class="token-number">0</span>]  <span class="token-comment"># Full match: User: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e18b8e898fcf858e84a1828e8c91808f98cf828e8c">[email&#160;protected]</a></span>
+    <span class="token-variable">$Matches</span>[<span class="token-number">1</span>]  <span class="token-comment"># First capture: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="563c393e38783239331635393b2637382f7835393b">[email&#160;protected]</a></span>
 }
 
 <span class="token-comment"># Named capture groups</span>
@@ -187,8 +198,8 @@
 
 <span class="token-comment"># Email pattern</span>
 <span class="token-variable">$EmailPattern</span> = <span class="token-string">'[\w.+-]+@[\w.-]+\.\w{2,}'</span>
-<span class="token-string">"Contact: admin@company.com"</span> <span class="token-operator">-match</span> <span class="token-variable">$EmailPattern</span>
-<span class="token-variable">$Matches</span>[<span class="token-number">0</span>]  <span class="token-comment"># admin@company.com</span>
+<span class="token-string">"Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="157471787c7b55767a7865747b6c3b767a78">[email&#160;protected]</a>"</span> <span class="token-operator">-match</span> <span class="token-variable">$EmailPattern</span>
+<span class="token-variable">$Matches</span>[<span class="token-number">0</span>]  <span class="token-comment"># <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a1b1e1713143a1915170a1b140354191517">[email&#160;protected]</a></span>
 
 <span class="token-comment"># URL pattern</span>
 <span class="token-variable">$URLPattern</span> = <span class="token-string">'https?://[\w.-]+(?:/[\w./-]*)?'</span>
@@ -390,24 +401,4 @@
                     </a>
                     <a href="2-9-wmi-cim.html" class="nav-button next">
                         <span class="nav-button-label">Next</span>
-                        <span class="nav-button-title">2.9 WMI and CIM →</span>
-                    </a>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Search Modal -->
-    <div class="search-modal" id="searchModal">
-        <div class="search-modal-content">
-            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
-            <div class="search-modal-results" id="searchResults"></div>
-        </div>
-    </div>
-
-    <!-- Mobile Toggle -->
-    <button class="mobile-toggle">☰</button>
-
-    <script src="main.js"></script>
-</body>
-</html>
+                        <span class="nav-button-t
