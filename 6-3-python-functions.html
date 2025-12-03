@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerShell & Scripting Ultimate Guide</title>
+    <title>6.3 Python Functions & Modules - PowerShell & Scripting Guide</title>
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
 </head>
 <body>
     <div class="layout-wrapper">
-        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
@@ -27,8 +26,7 @@
                     <span class="search-shortcut">Ctrl+K</span>
                 </div>
             </div>
-            
-                        <nav class="sidebar-nav">
+            <nav class="sidebar-nav">
                 <!-- Section 1: Scripting Fundamentals -->
                 <div class="nav-section" data-section="fundamentals">
                     <div class="nav-section-header">
@@ -199,243 +197,411 @@
         </aside>
 
 
-        <!-- Main Content Area -->
         <main class="main-content">
             <div class="content-wrapper">
-                <!-- Hero Section -->
-                <div class="hero">
-                    <h1>PowerShell & Scripting</h1>
-                    <p class="hero-subtitle">Ultimate Guide for Security Engineers</p>
-                    <p class="hero-description">
-                        Master PowerShell, Bash, and security automation with hands-on examples, 
-                        real-world projects, and interview preparation.
-                    </p>
-                </div>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#python">Python Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Functions & Modules</span>
+                </nav>
 
-                <!-- Stats -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">53</div>
-                        <div class="stat-label">Content Pages</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">10</div>
-                        <div class="stat-label">Sections</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Code Examples</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Real Projects</div>
-                    </div>
-                </div>
+                <h1>6.3 Python Functions & Modules</h1>
 
-                <!-- Section Cards -->
-                <h2>Sections Overview</h2>
-                
-                <div class="section-cards">
-                    <!-- Fundamentals -->
-                    <div class="section-card fundamentals">
-                        <div class="section-card-icon">📚</div>
-                        <h3 class="section-card-title">Scripting Fundamentals</h3>
-                        <p class="section-card-description">
-                            Core concepts, environment setup, and choosing the right tool.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="1-1-scripting-overview.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- PowerShell -->
-                    <div class="section-card powershell">
-                        <div class="section-card-icon">🔷</div>
-                        <h3 class="section-card-title">PowerShell Deep Dive</h3>
-                        <p class="section-card-description">
-                            Pipeline, objects, WMI/CIM, Active Directory, networking, and more.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">16 pages</span>
-                            <a href="2-1-powershell-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Bash -->
-                    <div class="section-card bash">
-                        <div class="section-card-icon">🐧</div>
-                        <h3 class="section-card-title">Bash Scripting</h3>
-                        <p class="section-card-description">
-                            Linux scripting, text processing, system administration, and networking.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">10 pages</span>
-                            <a href="3-1-bash-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Security -->
-                    <div class="section-card security">
-                        <div class="section-card-icon">🛡️</div>
-                        <h3 class="section-card-title">Security Automation</h3>
-                        <p class="section-card-description">
-                            Incident response, threat hunting, SIEM, EDR, forensics, and compliance.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">9 pages</span>
-                            <a href="5-6-incident-response-scripts.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    
-                    <!-- Python -->
-                    <div class="section-card python">
-                        <div class="section-card-icon">🐍</div>
-                        <h3 class="section-card-title">Python Scripting</h3>
-                        <p class="section-card-description">
-                            Security automation, networking, forensics, API integration, and data analysis.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">8 pages</span>
-                            <a href="6-1-python-security-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Cloud -->
-                    <div class="section-card cloud">
-                        <div class="section-card-icon">☁️</div>
-                        <h3 class="section-card-title">Cloud & Integration</h3>
-                        <p class="section-card-description">
-                            Azure automation, cloud security scripting, and DevOps integration.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">1 page</span>
-                            <a href="7-1-azure-automation.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Projects -->
-                    <div class="section-card projects">
-                        <div class="section-card-icon">🚀</div>
-                        <h3 class="section-card-title">Real-World Projects</h3>
-                        <p class="section-card-description">
-                            Build a security dashboard, log aggregator, and asset inventory system.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="8-1-security-dashboard.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Troubleshooting -->
-                    <div class="section-card troubleshooting">
-                        <div class="section-card-icon">🔧</div>
-                        <h3 class="section-card-title">Troubleshooting</h3>
-                        <p class="section-card-description">
-                            Common errors, debugging techniques, and performance optimization.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="9-1-common-errors.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Reference -->
-                    <div class="section-card reference">
-                        <div class="section-card-icon">📋</div>
-                        <h3 class="section-card-title">Best Practices & Reference</h3>
-                        <p class="section-card-description">
-                            Cheat sheets, quick reference cards, log paths, and interview preparation.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="10-5-cheat-sheets.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Start Guide -->
-                <h2 class="mt-4">Quick Start</h2>
-                
                 <div class="info-box overview-box">
                     <div class="info-box-header">
-                        <div class="info-box-icon">🚀</div>
-                        <div class="info-box-title">Getting Started</div>
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
                     </div>
                     <ul>
-                        <li><strong>New to scripting?</strong> Start with <a href="1-1-scripting-overview.html">Scripting Fundamentals</a></li>
-                        <li><strong>Windows admin?</strong> Jump to <a href="2-1-powershell-intro.html">PowerShell Deep Dive</a></li>
-                        <li><strong>Linux/security focused?</strong> Begin with <a href="3-1-bash-intro.html">Bash Scripting</a></li>
-                        <li><strong>Ready for security automation?</strong> Explore <a href="5-6-incident-response-scripts.html">Security Automation</a></li>
-                        <li><strong>Preparing for interviews?</strong> Check <a href="10-6-interview-preparation.html">Interview Preparation</a></li>
+                        <li>Creating reusable functions with proper documentation</li>
+                        <li>Function parameters: positional, keyword, *args, **kwargs</li>
+                        <li>Creating and organizing modules</li>
+                        <li>Building a security utilities package</li>
+                        <li>Decorators for logging and timing</li>
                     </ul>
                 </div>
 
-                <div class="info-box memory-box">
+                <h2>Defining Functions</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Basic Function Structure</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>def check_port(host: str, port: int, timeout: float = 2.0) -> dict:
+    """
+    Check if a port is open on a target host.
+    
+    Args:
+        host: Target hostname or IP address
+        port: Port number to check (1-65535)
+        timeout: Connection timeout in seconds (default: 2.0)
+    
+    Returns:
+        dict: Contains 'port', 'status', and optionally 'error'
+    
+    Example:
+        >>> result = check_port("192.168.1.1", 443)
+        >>> print(result['status'])
+        'open'
+    """
+    import socket
+    
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        result = sock.connect_ex((host, port))
+        status = "open" if result == 0 else "closed"
+        return {"port": port, "status": status}
+    except socket.timeout:
+        return {"port": port, "status": "timeout"}
+    except Exception as e:
+        return {"port": port, "status": "error", "error": str(e)}
+    finally:
+        sock.close()
+
+# Usage
+result = check_port("192.168.1.1", 443)
+result = check_port("192.168.1.1", 22, timeout=5.0)</code></pre>
+                </div>
+
+                <div class="info-box best-practice-box">
                     <div class="info-box-header">
-                        <div class="info-box-icon">🧠</div>
-                        <div class="info-box-title">Memory Aid: The Scripting Triad</div>
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: Type Hints</div>
                     </div>
-                    <ul>
-                        <li><strong>PowerShell</strong> = Swiss Army Knife (objects, .NET, Windows-focused)</li>
-                        <li><strong>Bash</strong> = Unix Philosophy (text streams, pipes, Linux/Mac)</li>
-                        <li><strong>Python</strong> = Integration King (APIs, analysis, cross-platform)</li>
-                    </ul>
-                    <p style="margin-top: 1rem; color: var(--text-muted);">
-                        🎯 <em>Choose based on: target OS, task complexity, and team expertise</em>
-                    </p>
+                    <p>Always use type hints in function signatures. They serve as documentation and enable IDE autocompletion and static analysis with tools like mypy.</p>
                 </div>
 
-                <!-- Technology Stack -->
-                <h2 class="mt-4">Technologies Covered</h2>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Technologies</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Languages</strong></td>
-                                <td>PowerShell 5.1/7.x, Bash, Batch/CMD, Python</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Platforms</strong></td>
-                                <td>Windows, Linux, macOS, WSL, Azure</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Security Tools</strong></td>
-                                <td>Microsoft Defender, Cortex XDR, Splunk, Sentinel</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Integration</strong></td>
-                                <td>REST APIs, Active Directory, WMI/CIM, SSH</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Focus Areas</strong></td>
-                                <td>SOC Operations, Incident Response, Threat Hunting, Forensics</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h2>Parameter Types</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Function Parameters</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Positional and keyword arguments
+def create_alert(source_ip, dest_ip, severity="medium", port=None):
+    alert = {
+        "source": source_ip,
+        "destination": dest_ip,
+        "severity": severity
+    }
+    if port:
+        alert["port"] = port
+    return alert
+
+# All valid calls:
+create_alert("10.0.0.1", "192.168.1.1")
+create_alert("10.0.0.1", "192.168.1.1", "high")
+create_alert("10.0.0.1", "192.168.1.1", severity="critical")
+create_alert("10.0.0.1", "192.168.1.1", port=443, severity="high")
+
+# *args - variable positional arguments
+def scan_ports(host, *ports):
+    """Scan multiple ports on a host"""
+    results = []
+    for port in ports:
+        results.append(check_port(host, port))
+    return results
+
+scan_ports("192.168.1.1", 22, 80, 443, 3389)
+
+# **kwargs - variable keyword arguments
+def log_event(message, **metadata):
+    """Log an event with arbitrary metadata"""
+    entry = {"message": message, "timestamp": datetime.now().isoformat()}
+    entry.update(metadata)
+    return entry
+
+log_event("Login failed", user="admin", source_ip="10.0.0.50", attempts=3)
+
+# Combined
+def security_scan(target, *ports, timeout=2.0, **options):
+    """Flexible security scanning function"""
+    print(f"Scanning {target}")
+    print(f"Ports: {ports}")
+    print(f"Timeout: {timeout}")
+    print(f"Options: {options}")
+
+security_scan("192.168.1.1", 22, 80, 443, timeout=5.0, verbose=True, output="json")</code></pre>
                 </div>
 
-                <!-- Navigation -->
+                <h2>Lambda Functions</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Lambda (Anonymous) Functions</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Lambda for simple operations
+get_severity_score = lambda level: {"low": 1, "medium": 2, "high": 3, "critical": 4}.get(level, 0)
+
+# Sorting with lambda
+alerts = [
+    {"ip": "10.0.0.1", "severity": "high"},
+    {"ip": "10.0.0.2", "severity": "low"},
+    {"ip": "10.0.0.3", "severity": "critical"}
+]
+
+# Sort by severity
+sorted_alerts = sorted(alerts, key=lambda x: get_severity_score(x["severity"]), reverse=True)
+
+# Filter with lambda
+high_priority = list(filter(lambda x: x["severity"] in ["high", "critical"], alerts))
+
+# Map with lambda
+ips_only = list(map(lambda x: x["ip"], alerts))</code></pre>
+                </div>
+
+                <h2>Decorators</h2>
+                <p>Decorators wrap functions to add functionality - perfect for logging, timing, and authentication.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Security Decorators</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import functools
+import time
+import logging
+
+# Timing decorator
+def timer(func):
+    """Measure function execution time"""
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - start
+        print(f"{func.__name__} completed in {elapsed:.4f} seconds")
+        return result
+    return wrapper
+
+# Logging decorator
+def log_call(func):
+    """Log function calls with arguments"""
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        logging.info(f"Calling {func.__name__} with args={args}, kwargs={kwargs}")
+        try:
+            result = func(*args, **kwargs)
+            logging.info(f"{func.__name__} returned successfully")
+            return result
+        except Exception as e:
+            logging.error(f"{func.__name__} raised {type(e).__name__}: {e}")
+            raise
+    return wrapper
+
+# Retry decorator
+def retry(max_attempts=3, delay=1):
+    """Retry function on failure"""
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(1, max_attempts + 1):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt == max_attempts:
+                        raise
+                    print(f"Attempt {attempt} failed, retrying in {delay}s...")
+                    time.sleep(delay)
+        return wrapper
+    return decorator
+
+# Using decorators
+@timer
+@log_call
+@retry(max_attempts=3, delay=2)
+def fetch_threat_intel(ioc):
+    """Fetch threat intelligence for an IOC"""
+    # API call here...
+    pass
+
+# Equivalent to:
+# fetch_threat_intel = timer(log_call(retry(max_attempts=3)(fetch_threat_intel)))</code></pre>
+                </div>
+
+                <h2>Creating Modules</h2>
+                <p>Organize your security tools into reusable modules.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>security_utils/__init__.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>"""
+Security Utilities Package
+A collection of security automation tools
+"""
+
+from .network import scan_port, scan_ports, get_local_ip
+from .hashing import hash_file, verify_hash
+from .parsing import parse_log_line, extract_ips
+from .validation import validate_ip, validate_domain
+
+__version__ = "1.0.0"
+__all__ = [
+    "scan_port", "scan_ports", "get_local_ip",
+    "hash_file", "verify_hash",
+    "parse_log_line", "extract_ips",
+    "validate_ip", "validate_domain"
+]</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>security_utils/network.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>"""Network scanning utilities"""
+
+import socket
+from typing import List, Dict, Optional
+from concurrent.futures import ThreadPoolExecutor
+
+def get_local_ip() -> str:
+    """Get the local IP address"""
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        s.connect(("8.8.8.8", 80))
+        return s.getsockname()[0]
+    finally:
+        s.close()
+
+def scan_port(host: str, port: int, timeout: float = 2.0) -> Dict:
+    """Scan a single port"""
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        result = sock.connect_ex((host, port))
+        return {"port": port, "status": "open" if result == 0 else "closed"}
+    except Exception as e:
+        return {"port": port, "status": "error", "error": str(e)}
+    finally:
+        sock.close()
+
+def scan_ports(host: str, ports: List[int], timeout: float = 2.0, 
+               threads: int = 10) -> List[Dict]:
+    """Scan multiple ports using thread pool"""
+    results = []
+    with ThreadPoolExecutor(max_workers=threads) as executor:
+        futures = {executor.submit(scan_port, host, p, timeout): p for p in ports}
+        for future in futures:
+            results.append(future.result())
+    return sorted(results, key=lambda x: x["port"])</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>security_utils/hashing.py</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>"""File hashing utilities"""
+
+import hashlib
+from pathlib import Path
+from typing import Dict
+
+def hash_file(filepath: str, algorithms: list = None) -> Dict[str, str]:
+    """
+    Calculate multiple hashes for a file.
+    
+    Args:
+        filepath: Path to file
+        algorithms: List of hash algorithms (default: md5, sha1, sha256)
+    
+    Returns:
+        Dictionary of algorithm: hash pairs
+    """
+    if algorithms is None:
+        algorithms = ["md5", "sha1", "sha256"]
+    
+    hashes = {alg: hashlib.new(alg) for alg in algorithms}
+    
+    with open(filepath, "rb") as f:
+        while chunk := f.read(8192):
+            for h in hashes.values():
+                h.update(chunk)
+    
+    return {alg: h.hexdigest() for alg, h in hashes.items()}
+
+def verify_hash(filepath: str, expected_hash: str, algorithm: str = "sha256") -> bool:
+    """Verify file hash matches expected value"""
+    actual = hash_file(filepath, [algorithm])
+    return actual[algorithm].lower() == expected_hash.lower()</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Using Your Module</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Import entire module
+import security_utils
+results = security_utils.scan_ports("192.168.1.1", [22, 80, 443])
+
+# Import specific functions
+from security_utils import scan_port, hash_file
+result = scan_port("192.168.1.1", 443)
+hashes = hash_file("/path/to/suspicious.exe")
+
+# Import with alias
+from security_utils import network as net
+ip = net.get_local_ip()</code></pre>
+                </div>
+
+                <h2>Project Structure</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Recommended Project Layout</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>security-toolkit/
+├── README.md
+├── requirements.txt
+├── setup.py
+├── security_utils/
+│   ├── __init__.py
+│   ├── network.py
+│   ├── hashing.py
+│   ├── parsing.py
+│   └── validation.py
+├── scripts/
+│   ├── port_scanner.py
+│   ├── hash_checker.py
+│   └── log_analyzer.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_network.py
+│   └── test_hashing.py
+└── config/
+    └── settings.yaml</code></pre>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use type hints and docstrings for maintainable code</li>
+                    <li>*args captures variable positional args, **kwargs captures keyword args</li>
+                    <li>Decorators add cross-cutting functionality (logging, timing, retry)</li>
+                    <li>Organize related functions into modules with __init__.py</li>
+                    <li>Follow consistent project structure for reusable tools</li>
+                </ul>
+
                 <div class="page-navigation">
-                    <div></div>
-                    <a href="1-1-scripting-overview.html" class="nav-button next">
+                    <a href="6-2-python-fundamentals.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 6.2 Python Fundamentals</span>
+                    </a>
+                    <a href="6-4-python-file-handling.html" class="nav-button next">
                         <span class="nav-button-label">Next</span>
-                        <span class="nav-button-title">1.1 Scripting Overview →</span>
+                        <span class="nav-button-title">6.4 File & Data Handling →</span>
                     </a>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
             <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
@@ -443,9 +609,7 @@
         </div>
     </div>
 
-    <!-- Mobile Toggle -->
     <button class="mobile-toggle">☰</button>
-
     <script src="main.js"></script>
 </body>
 </html>

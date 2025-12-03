@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerShell & Scripting Ultimate Guide</title>
+    <title>6.2 Python Fundamentals - PowerShell & Scripting Guide</title>
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
 </head>
 <body>
     <div class="layout-wrapper">
-        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
@@ -27,8 +26,7 @@
                     <span class="search-shortcut">Ctrl+K</span>
                 </div>
             </div>
-            
-                        <nav class="sidebar-nav">
+            <nav class="sidebar-nav">
                 <!-- Section 1: Scripting Fundamentals -->
                 <div class="nav-section" data-section="fundamentals">
                     <div class="nav-section-header">
@@ -199,243 +197,445 @@
         </aside>
 
 
-        <!-- Main Content Area -->
         <main class="main-content">
             <div class="content-wrapper">
-                <!-- Hero Section -->
-                <div class="hero">
-                    <h1>PowerShell & Scripting</h1>
-                    <p class="hero-subtitle">Ultimate Guide for Security Engineers</p>
-                    <p class="hero-description">
-                        Master PowerShell, Bash, and security automation with hands-on examples, 
-                        real-world projects, and interview preparation.
-                    </p>
-                </div>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#python">Python Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Python Fundamentals</span>
+                </nav>
 
-                <!-- Stats -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">53</div>
-                        <div class="stat-label">Content Pages</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">10</div>
-                        <div class="stat-label">Sections</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Code Examples</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Real Projects</div>
-                    </div>
-                </div>
+                <h1>6.2 Python Fundamentals</h1>
 
-                <!-- Section Cards -->
-                <h2>Sections Overview</h2>
-                
-                <div class="section-cards">
-                    <!-- Fundamentals -->
-                    <div class="section-card fundamentals">
-                        <div class="section-card-icon">📚</div>
-                        <h3 class="section-card-title">Scripting Fundamentals</h3>
-                        <p class="section-card-description">
-                            Core concepts, environment setup, and choosing the right tool.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="1-1-scripting-overview.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- PowerShell -->
-                    <div class="section-card powershell">
-                        <div class="section-card-icon">🔷</div>
-                        <h3 class="section-card-title">PowerShell Deep Dive</h3>
-                        <p class="section-card-description">
-                            Pipeline, objects, WMI/CIM, Active Directory, networking, and more.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">16 pages</span>
-                            <a href="2-1-powershell-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Bash -->
-                    <div class="section-card bash">
-                        <div class="section-card-icon">🐧</div>
-                        <h3 class="section-card-title">Bash Scripting</h3>
-                        <p class="section-card-description">
-                            Linux scripting, text processing, system administration, and networking.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">10 pages</span>
-                            <a href="3-1-bash-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Security -->
-                    <div class="section-card security">
-                        <div class="section-card-icon">🛡️</div>
-                        <h3 class="section-card-title">Security Automation</h3>
-                        <p class="section-card-description">
-                            Incident response, threat hunting, SIEM, EDR, forensics, and compliance.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">9 pages</span>
-                            <a href="5-6-incident-response-scripts.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    
-                    <!-- Python -->
-                    <div class="section-card python">
-                        <div class="section-card-icon">🐍</div>
-                        <h3 class="section-card-title">Python Scripting</h3>
-                        <p class="section-card-description">
-                            Security automation, networking, forensics, API integration, and data analysis.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">8 pages</span>
-                            <a href="6-1-python-security-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Cloud -->
-                    <div class="section-card cloud">
-                        <div class="section-card-icon">☁️</div>
-                        <h3 class="section-card-title">Cloud & Integration</h3>
-                        <p class="section-card-description">
-                            Azure automation, cloud security scripting, and DevOps integration.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">1 page</span>
-                            <a href="7-1-azure-automation.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Projects -->
-                    <div class="section-card projects">
-                        <div class="section-card-icon">🚀</div>
-                        <h3 class="section-card-title">Real-World Projects</h3>
-                        <p class="section-card-description">
-                            Build a security dashboard, log aggregator, and asset inventory system.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="8-1-security-dashboard.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Troubleshooting -->
-                    <div class="section-card troubleshooting">
-                        <div class="section-card-icon">🔧</div>
-                        <h3 class="section-card-title">Troubleshooting</h3>
-                        <p class="section-card-description">
-                            Common errors, debugging techniques, and performance optimization.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="9-1-common-errors.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Reference -->
-                    <div class="section-card reference">
-                        <div class="section-card-icon">📋</div>
-                        <h3 class="section-card-title">Best Practices & Reference</h3>
-                        <p class="section-card-description">
-                            Cheat sheets, quick reference cards, log paths, and interview preparation.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="10-5-cheat-sheets.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Start Guide -->
-                <h2 class="mt-4">Quick Start</h2>
-                
                 <div class="info-box overview-box">
                     <div class="info-box-header">
-                        <div class="info-box-icon">🚀</div>
-                        <div class="info-box-title">Getting Started</div>
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
                     </div>
                     <ul>
-                        <li><strong>New to scripting?</strong> Start with <a href="1-1-scripting-overview.html">Scripting Fundamentals</a></li>
-                        <li><strong>Windows admin?</strong> Jump to <a href="2-1-powershell-intro.html">PowerShell Deep Dive</a></li>
-                        <li><strong>Linux/security focused?</strong> Begin with <a href="3-1-bash-intro.html">Bash Scripting</a></li>
-                        <li><strong>Ready for security automation?</strong> Explore <a href="5-6-incident-response-scripts.html">Security Automation</a></li>
-                        <li><strong>Preparing for interviews?</strong> Check <a href="10-6-interview-preparation.html">Interview Preparation</a></li>
+                        <li>Python variables and data types</li>
+                        <li>Control flow: if/elif/else, loops</li>
+                        <li>Working with strings, lists, and dictionaries</li>
+                        <li>Exception handling for robust scripts</li>
+                        <li>List comprehensions and Pythonic patterns</li>
                     </ul>
+                </div>
+
+                <h2>Variables and Data Types</h2>
+                <p>Python is dynamically typed - you don't declare types explicitly. The interpreter infers types at runtime.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Basic Data Types</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Strings - text data
+hostname = "dc01.corp.local"
+ip_address = '192.168.1.100'
+multiline = """This is a
+multiline string"""
+
+# Numbers
+port = 443                    # int
+timeout = 30.5                # float
+count = 1_000_000             # int with separator for readability
+
+# Boolean
+is_admin = True
+is_locked = False
+
+# None - represents absence of value
+last_login = None
+
+# Type checking
+print(type(hostname))         # <class 'str'>
+print(type(port))             # <class 'int'>
+print(isinstance(port, int))  # True</code></pre>
                 </div>
 
                 <div class="info-box memory-box">
                     <div class="info-box-header">
                         <div class="info-box-icon">🧠</div>
-                        <div class="info-box-title">Memory Aid: The Scripting Triad</div>
+                        <div class="info-box-title">Memory Aid: Python Types</div>
                     </div>
-                    <ul>
-                        <li><strong>PowerShell</strong> = Swiss Army Knife (objects, .NET, Windows-focused)</li>
-                        <li><strong>Bash</strong> = Unix Philosophy (text streams, pipes, Linux/Mac)</li>
-                        <li><strong>Python</strong> = Integration King (APIs, analysis, cross-platform)</li>
-                    </ul>
-                    <p style="margin-top: 1rem; color: var(--text-muted);">
-                        🎯 <em>Choose based on: target OS, task complexity, and team expertise</em>
-                    </p>
+                    <p><strong>S-I-F-B-N</strong>: <strong>S</strong>tring, <strong>I</strong>nt, <strong>F</strong>loat, <strong>B</strong>ool, <strong>N</strong>one - the five basic types</p>
                 </div>
 
-                <!-- Technology Stack -->
-                <h2 class="mt-4">Technologies Covered</h2>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Technologies</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Languages</strong></td>
-                                <td>PowerShell 5.1/7.x, Bash, Batch/CMD, Python</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Platforms</strong></td>
-                                <td>Windows, Linux, macOS, WSL, Azure</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Security Tools</strong></td>
-                                <td>Microsoft Defender, Cortex XDR, Splunk, Sentinel</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Integration</strong></td>
-                                <td>REST APIs, Active Directory, WMI/CIM, SSH</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Focus Areas</strong></td>
-                                <td>SOC Operations, Incident Response, Threat Hunting, Forensics</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h2>Collections</h2>
+
+                <h3>Lists - Ordered, Mutable</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Lists for Security Data</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># List creation
+suspicious_ips = ["10.0.0.50", "192.168.1.200", "10.0.0.75"]
+ports_to_scan = [22, 80, 443, 3389, 445, 139]
+
+# Accessing elements
+first_ip = suspicious_ips[0]      # "10.0.0.50"
+last_ip = suspicious_ips[-1]      # "10.0.0.75"
+
+# Slicing
+first_two = suspicious_ips[0:2]   # ["10.0.0.50", "192.168.1.200"]
+last_two = suspicious_ips[-2:]    # ["192.168.1.200", "10.0.0.75"]
+
+# Modifying lists
+suspicious_ips.append("172.16.0.100")     # Add to end
+suspicious_ips.insert(0, "10.0.0.1")      # Insert at position
+suspicious_ips.remove("10.0.0.50")        # Remove by value
+removed = suspicious_ips.pop()             # Remove and return last
+
+# List operations
+all_ips = suspicious_ips + ["10.0.0.99"]  # Concatenate
+if "192.168.1.200" in suspicious_ips:     # Membership test
+    print("IP found in suspicious list!")
+
+# Sorting
+ports_to_scan.sort()                      # In-place sort
+sorted_ports = sorted(ports_to_scan)      # Return new sorted list</code></pre>
                 </div>
 
-                <!-- Navigation -->
+                <h3>Dictionaries - Key-Value Pairs</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Dictionaries for Security Data</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Dictionary creation
+alert = {
+    "severity": "high",
+    "source_ip": "10.0.0.50",
+    "dest_ip": "192.168.1.100",
+    "port": 445,
+    "timestamp": "2024-01-15T10:30:00Z",
+    "rule_name": "SMB Lateral Movement"
+}
+
+# Accessing values
+severity = alert["severity"]              # "high" - raises KeyError if missing
+port = alert.get("port", 0)               # 445 - returns default if missing
+protocol = alert.get("protocol", "unknown")  # "unknown"
+
+# Modifying dictionaries
+alert["status"] = "investigating"         # Add new key
+alert["severity"] = "critical"            # Update existing
+del alert["rule_name"]                    # Delete key
+
+# Iterating
+for key, value in alert.items():
+    print(f"{key}: {value}")
+
+for key in alert.keys():
+    print(key)
+
+for value in alert.values():
+    print(value)
+
+# Nested dictionaries (common in security data)
+incident = {
+    "id": "INC-2024-001",
+    "alerts": [alert],
+    "affected_hosts": {
+        "workstations": ["WS001", "WS002"],
+        "servers": ["SRV01"]
+    }
+}
+
+# Access nested data
+first_workstation = incident["affected_hosts"]["workstations"][0]</code></pre>
+                </div>
+
+                <h3>Sets - Unique Values</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Sets for Deduplication</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Sets contain unique values only
+all_ips = ["10.0.0.1", "10.0.0.2", "10.0.0.1", "10.0.0.3", "10.0.0.2"]
+unique_ips = set(all_ips)  # {"10.0.0.1", "10.0.0.2", "10.0.0.3"}
+
+# Set operations (great for comparing IOC lists)
+blocklist_a = {"10.0.0.1", "10.0.0.2", "10.0.0.3"}
+blocklist_b = {"10.0.0.2", "10.0.0.3", "10.0.0.4"}
+
+common = blocklist_a & blocklist_b         # Intersection: {"10.0.0.2", "10.0.0.3"}
+all_blocked = blocklist_a | blocklist_b    # Union: {"10.0.0.1", "10.0.0.2", "10.0.0.3", "10.0.0.4"}
+only_in_a = blocklist_a - blocklist_b      # Difference: {"10.0.0.1"}
+exclusive = blocklist_a ^ blocklist_b      # Symmetric diff: {"10.0.0.1", "10.0.0.4"}</code></pre>
+                </div>
+
+                <h2>Control Flow</h2>
+
+                <h3>If/Elif/Else</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Conditional Logic</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Basic if/elif/else
+severity_score = 85
+
+if severity_score >= 90:
+    priority = "critical"
+    notify_soc = True
+elif severity_score >= 70:
+    priority = "high"
+    notify_soc = True
+elif severity_score >= 40:
+    priority = "medium"
+    notify_soc = False
+else:
+    priority = "low"
+    notify_soc = False
+
+# Compound conditions
+if severity_score >= 70 and notify_soc:
+    print("Alert: High priority incident detected!")
+
+# Ternary operator (inline if)
+status = "blocked" if severity_score >= 80 else "monitored"
+
+# Match statement (Python 3.10+)
+event_type = "login_failure"
+
+match event_type:
+    case "login_failure":
+        action = "check_bruteforce"
+    case "file_download":
+        action = "scan_file"
+    case "process_execution":
+        action = "check_hash"
+    case _:
+        action = "log_event"</code></pre>
+                </div>
+
+                <h3>Loops</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Loops for Security Automation</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># For loop - iterate over collection
+suspicious_ips = ["10.0.0.50", "192.168.1.200", "10.0.0.75"]
+
+for ip in suspicious_ips:
+    print(f"Scanning {ip}...")
+
+# For loop with index
+for index, ip in enumerate(suspicious_ips):
+    print(f"{index + 1}. {ip}")
+
+# Range-based loop
+for port in range(1, 1025):  # Ports 1-1024
+    # scan port...
+    pass
+
+# While loop
+retry_count = 0
+max_retries = 3
+connected = False
+
+while not connected and retry_count < max_retries:
+    print(f"Connection attempt {retry_count + 1}...")
+    # try to connect...
+    retry_count += 1
+
+# Loop control
+for ip in suspicious_ips:
+    if ip.startswith("192.168"):
+        continue  # Skip internal IPs
+    if ip == "0.0.0.0":
+        break     # Stop processing
+    print(f"Processing external IP: {ip}")
+
+# Else clause (runs if loop completes without break)
+for ip in suspicious_ips:
+    if ip == "malware.bad.com":
+        print("Found malware C2!")
+        break
+else:
+    print("No known malware C2 found")</code></pre>
+                </div>
+
+                <h2>String Operations</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - String Operations for Log Parsing</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># String formatting (f-strings - preferred)
+ip = "10.0.0.50"
+port = 443
+print(f"Connecting to {ip}:{port}")
+
+# Multiline f-string
+report = f"""
+Security Alert Report
+=====================
+Source IP: {ip}
+Target Port: {port}
+Timestamp: {datetime.now()}
+"""
+
+# String methods for parsing
+log_line = "2024-01-15 10:30:00 ERROR Failed login from 10.0.0.50"
+
+# Split and extract
+parts = log_line.split()          # ['2024-01-15', '10:30:00', 'ERROR', ...]
+date = parts[0]                   # '2024-01-15'
+level = parts[2]                  # 'ERROR'
+
+# Check content
+if "ERROR" in log_line:
+    print("Error detected!")
+
+if log_line.startswith("2024"):
+    print("Current year log")
+
+if log_line.endswith(".50"):
+    print("From .50 host")
+
+# String manipulation
+hostname = "  DC01.CORP.LOCAL  "
+clean_hostname = hostname.strip().lower()  # "dc01.corp.local"
+
+# Replace
+sanitized = log_line.replace("ERROR", "***")
+
+# Join list into string
+ips = ["10.0.0.1", "10.0.0.2", "10.0.0.3"]
+ip_string = ", ".join(ips)  # "10.0.0.1, 10.0.0.2, 10.0.0.3"</code></pre>
+                </div>
+
+                <h2>List Comprehensions</h2>
+                <p>List comprehensions provide a concise way to create lists. Master these for efficient Python scripting.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - List Comprehensions</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Basic comprehension
+ports = [22, 80, 443, 8080, 8443]
+high_ports = [p for p in ports if p > 1024]  # [8080, 8443]
+
+# Transform values
+port_strings = [str(p) for p in ports]  # ['22', '80', '443', ...]
+
+# Multiple conditions
+log_lines = [
+    "ERROR Failed login",
+    "INFO User logged in",
+    "ERROR Connection timeout",
+    "WARNING Disk space low"
+]
+errors = [line for line in log_lines if "ERROR" in line]
+
+# Nested comprehension
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flattened = [num for row in matrix for num in row]  # [1,2,3,4,5,6,7,8,9]
+
+# Dictionary comprehension
+port_status = {port: "open" for port in ports if port < 1000}
+# {22: 'open', 80: 'open', 443: 'open'}
+
+# Set comprehension
+unique_levels = {line.split()[0] for line in log_lines}
+# {'ERROR', 'INFO', 'WARNING'}</code></pre>
+                </div>
+
+                <h2>Exception Handling</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Robust Error Handling</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import socket
+
+def scan_port(host, port):
+    """Scan a single port with proper error handling"""
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(2)
+        result = sock.connect_ex((host, port))
+        
+        if result == 0:
+            return {"port": port, "status": "open"}
+        else:
+            return {"port": port, "status": "closed"}
+            
+    except socket.timeout:
+        return {"port": port, "status": "timeout"}
+    except socket.gaierror as e:
+        return {"port": port, "status": "dns_error", "error": str(e)}
+    except PermissionError:
+        return {"port": port, "status": "permission_denied"}
+    except Exception as e:
+        return {"port": port, "status": "error", "error": str(e)}
+    finally:
+        sock.close()  # Always close socket
+
+# Multiple exception types
+try:
+    data = load_config("config.json")
+except FileNotFoundError:
+    print("Config file not found, using defaults")
+    data = default_config
+except json.JSONDecodeError as e:
+    print(f"Invalid JSON: {e}")
+    data = default_config
+except Exception as e:
+    print(f"Unexpected error: {e}")
+    raise  # Re-raise for debugging
+
+# Raising exceptions
+def validate_ip(ip):
+    """Validate IP address format"""
+    parts = ip.split(".")
+    if len(parts) != 4:
+        raise ValueError(f"Invalid IP format: {ip}")
+    for part in parts:
+        if not 0 <= int(part) <= 255:
+            raise ValueError(f"Invalid octet value: {part}")
+    return True</code></pre>
+                </div>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice</div>
+                    </div>
+                    <p>Catch specific exceptions, not just generic <code>Exception</code>. This helps identify the actual problem and handle each case appropriately.</p>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Python is dynamically typed: str, int, float, bool, None</li>
+                    <li>Lists are ordered and mutable; dicts are key-value pairs; sets are unique</li>
+                    <li>Use f-strings for formatting: <code>f"IP: {ip}"</code></li>
+                    <li>List comprehensions are concise and Pythonic: <code>[x for x in list if condition]</code></li>
+                    <li>Always handle exceptions properly for robust scripts</li>
+                </ul>
+
                 <div class="page-navigation">
-                    <div></div>
-                    <a href="1-1-scripting-overview.html" class="nav-button next">
+                    <a href="6-1-python-security-intro.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 6.1 Python for Security</span>
+                    </a>
+                    <a href="6-3-python-functions.html" class="nav-button next">
                         <span class="nav-button-label">Next</span>
-                        <span class="nav-button-title">1.1 Scripting Overview →</span>
+                        <span class="nav-button-title">6.3 Functions & Modules →</span>
                     </a>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
             <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
@@ -443,9 +643,7 @@
         </div>
     </div>
 
-    <!-- Mobile Toggle -->
     <button class="mobile-toggle">☰</button>
-
     <script src="main.js"></script>
 </body>
 </html>

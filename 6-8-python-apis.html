@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.8 Python & APIs - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests & APIs</a>
+                        <a href="2-19-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Remoting & Jobs</a>
+                        <a href="2-20-error-handling.html" class="nav-link"><span class="nav-link-number">2.20</span> Error Handling</a>
+                        <a href="2-21-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.21</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Variables & Data Types</a>
+                        <a href="3-4-control-structures.html" class="nav-link"><span class="nav-link-number">3.4</span> Control Structures</a>
+                        <a href="3-5-bash-functions.html" class="nav-link"><span class="nav-link-number">3.5</span> Functions & Scripts</a>
+                        <a href="3-6-file-io.html" class="nav-link"><span class="nav-link-number">3.6</span> File I/O</a>
+                        <a href="3-7-process-management.html" class="nav-link"><span class="nav-link-number">3.7</span> Process Management</a>
+                        <a href="3-8-system-admin.html" class="nav-link"><span class="nav-link-number">3.8</span> System Administration</a>
+                        <a href="3-9-regex.html" class="nav-link"><span class="nav-link-number">3.9</span> Regular Expressions</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting</a>
+                        <a href="5-8-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scanning</a>
+                        <a href="5-9-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.9</span> Forensics Scripts</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.12</span> Compliance Automation</a>
+                        <a href="5-13-log-analysis.html" class="nav-link"><span class="nav-link-number">5.13</span> Log Analysis</a>
+                        <a href="5-14-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.14</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                        <a href="10-7-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.7</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#python">Python Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Python & APIs</span>
+                </nav>
+
+                <h1>6.8 Python & APIs</h1>
+
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>REST API fundamentals and authentication</li>
+                        <li>Integrating with VirusTotal, Shodan, and threat intel</li>
+                        <li>SIEM API integration (Splunk, Sentinel)</li>
+                        <li>Building reusable API clients</li>
+                        <li>Rate limiting and error handling</li>
+                    </ul>
+                </div>
+
+                <h2>API Client Pattern</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Reusable API Client Base</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import requests
+import time
+from typing import Optional, Dict, Any
+from functools import wraps
+
+class APIClient:
+    """Base class for API integrations"""
+    
+    def __init__(self, base_url: str, api_key: str, rate_limit: int = 4):
+        self.base_url = base_url.rstrip('/')
+        self.api_key = api_key
+        self.rate_limit = rate_limit  # Requests per minute
+        self.last_request = 0
+        self.session = requests.Session()
+        self._setup_session()
+    
+    def _setup_session(self):
+        """Configure session with default headers"""
+        self.session.headers.update({
+            'Accept': 'application/json',
+            'User-Agent': 'SecurityToolkit/1.0'
+        })
+    
+    def _rate_limit(self):
+        """Enforce rate limiting"""
+        if self.rate_limit:
+            elapsed = time.time() - self.last_request
+            wait_time = (60 / self.rate_limit) - elapsed
+            if wait_time > 0:
+                time.sleep(wait_time)
+        self.last_request = time.time()
+    
+    def _request(self, method: str, endpoint: str, **kwargs) -> Dict:
+        """Make rate-limited request with error handling"""
+        self._rate_limit()
+        
+        url = f"{self.base_url}/{endpoint.lstrip('/')}"
+        
+        try:
+            response = self.session.request(method, url, **kwargs)
+            response.raise_for_status()
+            return response.json()
+        except requests.HTTPError as e:
+            if e.response.status_code == 429:
+                # Rate limited - wait and retry
+                time.sleep(60)
+                return self._request(method, endpoint, **kwargs)
+            raise
+        except requests.RequestException as e:
+            return {'error': str(e)}
+    
+    def get(self, endpoint: str, params: Dict = None) -> Dict:
+        return self._request('GET', endpoint, params=params)
+    
+    def post(self, endpoint: str, data: Dict = None, json: Dict = None) -> Dict:
+        return self._request('POST', endpoint, data=data, json=json)</code></pre>
+                </div>
+
+                <h2>VirusTotal Integration</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - VirusTotal API Client</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>class VirusTotalClient(APIClient):
+    """VirusTotal API v3 client"""
+    
+    def __init__(self, api_key: str):
+        super().__init__('https://www.virustotal.com/api/v3', api_key, rate_limit=4)
+        self.session.headers['x-apikey'] = api_key
+    
+    def check_hash(self, file_hash: str) -> Dict:
+        """Check file hash reputation"""
+        result = self.get(f'/files/{file_hash}')
+        
+        if 'error' in result:
+            return result
+        
+        data = result.get('data', {}).get('attributes', {})
+        stats = data.get('last_analysis_stats', {})
+        
+        return {
+            'hash': file_hash,
+            'malicious': stats.get('malicious', 0),
+            'suspicious': stats.get('suspicious', 0),
+            'undetected': stats.get('undetected', 0),
+            'harmless': stats.get('harmless', 0),
+            'type': data.get('type_description', 'Unknown'),
+            'names': data.get('names', [])[:5],
+            'tags': data.get('tags', []),
+            'reputation': data.get('reputation', 0)
+        }
+    
+    def check_url(self, url: str) -> Dict:
+        """Check URL reputation"""
+        import base64
+        url_id = base64.urlsafe_b64encode(url.encode()).decode().strip('=')
+        
+        result = self.get(f'/urls/{url_id}')
+        
+        if 'error' in result:
+            # URL not found - submit for scanning
+            return self.submit_url(url)
+        
+        data = result.get('data', {}).get('attributes', {})
+        stats = data.get('last_analysis_stats', {})
+        
+        return {
+            'url': url,
+            'malicious': stats.get('malicious', 0),
+            'suspicious': stats.get('suspicious', 0),
+            'categories': data.get('categories', {}),
+            'last_analysis': data.get('last_analysis_date', '')
+        }
+    
+    def submit_url(self, url: str) -> Dict:
+        """Submit URL for scanning"""
+        result = self.post('/urls', data={'url': url})
+        return {'status': 'submitted', 'id': result.get('data', {}).get('id')}
+    
+    def check_domain(self, domain: str) -> Dict:
+        """Check domain reputation"""
+        result = self.get(f'/domains/{domain}')
+        
+        if 'error' in result:
+            return result
+        
+        data = result.get('data', {}).get('attributes', {})
+        stats = data.get('last_analysis_stats', {})
+        
+        return {
+            'domain': domain,
+            'malicious': stats.get('malicious', 0),
+            'categories': data.get('categories', {}),
+            'registrar': data.get('registrar', ''),
+            'creation_date': data.get('creation_date', ''),
+            'whois': data.get('whois', '')[:500]
+        }
+    
+    def check_ip(self, ip: str) -> Dict:
+        """Check IP address reputation"""
+        result = self.get(f'/ip_addresses/{ip}')
+        
+        if 'error' in result:
+            return result
+        
+        data = result.get('data', {}).get('attributes', {})
+        stats = data.get('last_analysis_stats', {})
+        
+        return {
+            'ip': ip,
+            'malicious': stats.get('malicious', 0),
+            'country': data.get('country', ''),
+            'asn': data.get('asn', ''),
+            'as_owner': data.get('as_owner', '')
+        }
+
+# Usage
+vt = VirusTotalClient("YOUR_API_KEY")
+
+# Check suspicious hash
+result = vt.check_hash("5d41402abc4b2a76b9719d911017c592")
+if result.get('malicious', 0) > 0:
+    print(f"⚠️ MALICIOUS: {result['malicious']} detections")
+    print(f"Names: {result['names']}")</code></pre>
+                </div>
+
+                <h2>Shodan Integration</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Shodan API Client</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>class ShodanClient(APIClient):
+    """Shodan API client for internet intelligence"""
+    
+    def __init__(self, api_key: str):
+        super().__init__('https://api.shodan.io', api_key, rate_limit=1)
+        self.api_key = api_key
+    
+    def host_info(self, ip: str) -> Dict:
+        """Get information about a specific IP"""
+        result = self.get(f'/shodan/host/{ip}', params={'key': self.api_key})
+        
+        if 'error' in result:
+            return result
+        
+        return {
+            'ip': ip,
+            'hostnames': result.get('hostnames', []),
+            'country': result.get('country_name', ''),
+            'city': result.get('city', ''),
+            'org': result.get('org', ''),
+            'isp': result.get('isp', ''),
+            'ports': result.get('ports', []),
+            'vulns': result.get('vulns', []),
+            'last_update': result.get('last_update', ''),
+            'services': [{
+                'port': svc.get('port'),
+                'product': svc.get('product', ''),
+                'version': svc.get('version', ''),
+                'banner': svc.get('data', '')[:200]
+            } for svc in result.get('data', [])]
+        }
+    
+    def search(self, query: str, limit: int = 10) -> Dict:
+        """Search Shodan for hosts matching query"""
+        result = self.get('/shodan/host/search', 
+                         params={'key': self.api_key, 'query': query})
+        
+        if 'error' in result:
+            return result
+        
+        return {
+            'total': result.get('total', 0),
+            'matches': [{
+                'ip': match.get('ip_str'),
+                'port': match.get('port'),
+                'org': match.get('org', ''),
+                'product': match.get('product', ''),
+                'country': match.get('location', {}).get('country_name', '')
+            } for match in result.get('matches', [])[:limit]]
+        }
+    
+    def dns_lookup(self, domain: str) -> Dict:
+        """Get DNS information for domain"""
+        result = self.get(f'/dns/resolve', 
+                         params={'key': self.api_key, 'hostnames': domain})
+        return result
+
+# Usage
+shodan = ShodanClient("YOUR_SHODAN_KEY")
+
+# Check exposed host
+info = shodan.host_info("8.8.8.8")
+print(f"Organization: {info['org']}")
+print(f"Open ports: {info['ports']}")
+print(f"Vulnerabilities: {info['vulns']}")
+
+# Search for vulnerable systems
+results = shodan.search("apache 2.4.49", limit=5)
+print(f"Found {results['total']} vulnerable hosts")</code></pre>
+                </div>
+
+                <h2>Splunk Integration</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Splunk API Client</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import time
+
+class SplunkClient:
+    """Splunk REST API client"""
+    
+    def __init__(self, host: str, port: int, username: str, password: str):
+        self.base_url = f"https://{host}:{port}"
+        self.session = requests.Session()
+        self.session.auth = (username, password)
+        self.session.verify = False  # Disable SSL verification for self-signed certs
+    
+    def search(self, query: str, earliest: str = "-24h", latest: str = "now") -> list:
+        """Execute Splunk search and return results"""
+        
+        # Create search job
+        job_url = f"{self.base_url}/services/search/jobs"
+        data = {
+            'search': f'search {query}',
+            'earliest_time': earliest,
+            'latest_time': latest,
+            'output_mode': 'json'
+        }
+        
+        response = self.session.post(job_url, data=data)
+        job_id = response.json()['sid']
+        
+        # Wait for job completion
+        status_url = f"{self.base_url}/services/search/jobs/{job_id}"
+        while True:
+            status = self.session.get(status_url, params={'output_mode': 'json'})
+            state = status.json()['entry'][0]['content']['dispatchState']
+            if state == 'DONE':
+                break
+            elif state == 'FAILED':
+                return {'error': 'Search failed'}
+            time.sleep(1)
+        
+        # Get results
+        results_url = f"{self.base_url}/services/search/jobs/{job_id}/results"
+        results = self.session.get(results_url, params={'output_mode': 'json'})
+        
+        return results.json().get('results', [])
+    
+    def get_failed_logins(self, hours: int = 24) -> list:
+        """Get failed login attempts from Windows Security logs"""
+        query = '''
+            index=wineventlog sourcetype=WinEventLog:Security EventCode=4625
+            | stats count by src_ip, user, dest
+            | sort -count
+        '''
+        return self.search(query, earliest=f"-{hours}h")
+    
+    def get_alerts(self, severity: str = None) -> list:
+        """Get triggered alerts"""
+        query = 'index=_audit action=alert_fired'
+        if severity:
+            query += f' severity={severity}'
+        return self.search(query)
+
+# Usage
+splunk = SplunkClient("splunk.company.com", 8089, "admin", "password")
+
+# Search for failed logins
+failed = splunk.get_failed_logins(hours=24)
+for event in failed[:10]:
+    print(f"{event['src_ip']}: {event['count']} failed attempts")</code></pre>
+                </div>
+
+                <h2>Microsoft Sentinel Integration</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Azure Sentinel Client</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>from azure.identity import ClientSecretCredential
+from azure.monitor.query import LogsQueryClient
+from datetime import timedelta
+
+class SentinelClient:
+    """Microsoft Sentinel / Log Analytics client"""
+    
+    def __init__(self, tenant_id: str, client_id: str, client_secret: str, 
+                 workspace_id: str):
+        self.workspace_id = workspace_id
+        credential = ClientSecretCredential(tenant_id, client_id, client_secret)
+        self.client = LogsQueryClient(credential)
+    
+    def query(self, kql: str, timespan: timedelta = timedelta(days=1)) -> list:
+        """Execute KQL query"""
+        response = self.client.query_workspace(
+            workspace_id=self.workspace_id,
+            query=kql,
+            timespan=timespan
+        )
+        
+        results = []
+        for table in response.tables:
+            for row in table.rows:
+                results.append(dict(zip(table.columns, row)))
+        
+        return results
+    
+    def get_security_alerts(self, severity: str = None, days: int = 7) -> list:
+        """Get security alerts from Sentinel"""
+        kql = '''
+            SecurityAlert
+            | where TimeGenerated > ago({days}d)
+        '''
+        if severity:
+            kql += f"| where AlertSeverity == '{severity}'"
+        kql += '''
+            | project TimeGenerated, AlertName, AlertSeverity, Description, 
+                      Entities, Tactics, ProviderName
+            | order by TimeGenerated desc
+        '''
+        return self.query(kql.format(days=days), timedelta(days=days))
+    
+    def get_sign_in_failures(self, days: int = 1) -> list:
+        """Get failed sign-in attempts"""
+        kql = f'''
+            SigninLogs
+            | where TimeGenerated > ago({days}d)
+            | where ResultType != 0
+            | summarize FailureCount=count() by UserPrincipalName, IPAddress, 
+                        ResultDescription
+            | order by FailureCount desc
+        '''
+        return self.query(kql, timedelta(days=days))
+    
+    def hunt_suspicious_processes(self, process_name: str, days: int = 7) -> list:
+        """Hunt for suspicious process execution"""
+        kql = f'''
+            SecurityEvent
+            | where TimeGenerated > ago({days}d)
+            | where EventID == 4688
+            | where NewProcessName contains "{process_name}"
+            | project TimeGenerated, Computer, Account, NewProcessName, 
+                      CommandLine, ParentProcessName
+        '''
+        return self.query(kql, timedelta(days=days))
+
+# Usage
+sentinel = SentinelClient(
+    tenant_id="your-tenant-id",
+    client_id="your-client-id",
+    client_secret="your-secret",
+    workspace_id="your-workspace-id"
+)
+
+# Get high severity alerts
+alerts = sentinel.get_security_alerts(severity="High", days=7)
+for alert in alerts[:10]:
+    print(f"{alert['TimeGenerated']}: {alert['AlertName']}")</code></pre>
+                </div>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: API Keys</div>
+                    </div>
+                    <p>Never hardcode API keys. Use environment variables or a secrets manager like Azure Key Vault, AWS Secrets Manager, or HashiCorp Vault.</p>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Build reusable API client classes with rate limiting</li>
+                    <li>VirusTotal v3 API covers files, URLs, domains, and IPs</li>
+                    <li>Shodan reveals exposed services and vulnerabilities</li>
+                    <li>Splunk/Sentinel APIs enable automated threat hunting</li>
+                    <li>Always handle API errors and rate limits gracefully</li>
+                </ul>
+
+                <div class="page-navigation">
+                    <a href="6-7-python-forensics.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 6.7 Forensics & Log Analysis</span>
+                    </a>
+                    <a href="7-1-azure-automation.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">7.1 Azure Automation →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <button class="mobile-toggle">☰</button>
+    <script src="main.js"></script>
+</body>
+</html>

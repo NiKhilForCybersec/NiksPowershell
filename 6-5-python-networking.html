@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerShell & Scripting Ultimate Guide</title>
+    <title>6.5 Python Networking - PowerShell & Scripting Guide</title>
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
 </head>
 <body>
     <div class="layout-wrapper">
-        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
@@ -27,8 +26,7 @@
                     <span class="search-shortcut">Ctrl+K</span>
                 </div>
             </div>
-            
-                        <nav class="sidebar-nav">
+            <nav class="sidebar-nav">
                 <!-- Section 1: Scripting Fundamentals -->
                 <div class="nav-section" data-section="fundamentals">
                     <div class="nav-section-header">
@@ -199,243 +197,382 @@
         </aside>
 
 
-        <!-- Main Content Area -->
         <main class="main-content">
             <div class="content-wrapper">
-                <!-- Hero Section -->
-                <div class="hero">
-                    <h1>PowerShell & Scripting</h1>
-                    <p class="hero-subtitle">Ultimate Guide for Security Engineers</p>
-                    <p class="hero-description">
-                        Master PowerShell, Bash, and security automation with hands-on examples, 
-                        real-world projects, and interview preparation.
-                    </p>
-                </div>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#python">Python Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Python Networking</span>
+                </nav>
 
-                <!-- Stats -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">53</div>
-                        <div class="stat-label">Content Pages</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">10</div>
-                        <div class="stat-label">Sections</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Code Examples</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Real Projects</div>
-                    </div>
-                </div>
+                <h1>6.5 Python Networking</h1>
 
-                <!-- Section Cards -->
-                <h2>Sections Overview</h2>
-                
-                <div class="section-cards">
-                    <!-- Fundamentals -->
-                    <div class="section-card fundamentals">
-                        <div class="section-card-icon">📚</div>
-                        <h3 class="section-card-title">Scripting Fundamentals</h3>
-                        <p class="section-card-description">
-                            Core concepts, environment setup, and choosing the right tool.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="1-1-scripting-overview.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- PowerShell -->
-                    <div class="section-card powershell">
-                        <div class="section-card-icon">🔷</div>
-                        <h3 class="section-card-title">PowerShell Deep Dive</h3>
-                        <p class="section-card-description">
-                            Pipeline, objects, WMI/CIM, Active Directory, networking, and more.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">16 pages</span>
-                            <a href="2-1-powershell-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Bash -->
-                    <div class="section-card bash">
-                        <div class="section-card-icon">🐧</div>
-                        <h3 class="section-card-title">Bash Scripting</h3>
-                        <p class="section-card-description">
-                            Linux scripting, text processing, system administration, and networking.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">10 pages</span>
-                            <a href="3-1-bash-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Security -->
-                    <div class="section-card security">
-                        <div class="section-card-icon">🛡️</div>
-                        <h3 class="section-card-title">Security Automation</h3>
-                        <p class="section-card-description">
-                            Incident response, threat hunting, SIEM, EDR, forensics, and compliance.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">9 pages</span>
-                            <a href="5-6-incident-response-scripts.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    
-                    <!-- Python -->
-                    <div class="section-card python">
-                        <div class="section-card-icon">🐍</div>
-                        <h3 class="section-card-title">Python Scripting</h3>
-                        <p class="section-card-description">
-                            Security automation, networking, forensics, API integration, and data analysis.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">8 pages</span>
-                            <a href="6-1-python-security-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Cloud -->
-                    <div class="section-card cloud">
-                        <div class="section-card-icon">☁️</div>
-                        <h3 class="section-card-title">Cloud & Integration</h3>
-                        <p class="section-card-description">
-                            Azure automation, cloud security scripting, and DevOps integration.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">1 page</span>
-                            <a href="7-1-azure-automation.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Projects -->
-                    <div class="section-card projects">
-                        <div class="section-card-icon">🚀</div>
-                        <h3 class="section-card-title">Real-World Projects</h3>
-                        <p class="section-card-description">
-                            Build a security dashboard, log aggregator, and asset inventory system.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="8-1-security-dashboard.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Troubleshooting -->
-                    <div class="section-card troubleshooting">
-                        <div class="section-card-icon">🔧</div>
-                        <h3 class="section-card-title">Troubleshooting</h3>
-                        <p class="section-card-description">
-                            Common errors, debugging techniques, and performance optimization.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="9-1-common-errors.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Reference -->
-                    <div class="section-card reference">
-                        <div class="section-card-icon">📋</div>
-                        <h3 class="section-card-title">Best Practices & Reference</h3>
-                        <p class="section-card-description">
-                            Cheat sheets, quick reference cards, log paths, and interview preparation.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="10-5-cheat-sheets.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Start Guide -->
-                <h2 class="mt-4">Quick Start</h2>
-                
                 <div class="info-box overview-box">
                     <div class="info-box-header">
-                        <div class="info-box-icon">🚀</div>
-                        <div class="info-box-title">Getting Started</div>
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
                     </div>
                     <ul>
-                        <li><strong>New to scripting?</strong> Start with <a href="1-1-scripting-overview.html">Scripting Fundamentals</a></li>
-                        <li><strong>Windows admin?</strong> Jump to <a href="2-1-powershell-intro.html">PowerShell Deep Dive</a></li>
-                        <li><strong>Linux/security focused?</strong> Begin with <a href="3-1-bash-intro.html">Bash Scripting</a></li>
-                        <li><strong>Ready for security automation?</strong> Explore <a href="5-6-incident-response-scripts.html">Security Automation</a></li>
-                        <li><strong>Preparing for interviews?</strong> Check <a href="10-6-interview-preparation.html">Interview Preparation</a></li>
+                        <li>Socket programming for port scanning</li>
+                        <li>HTTP requests with the requests library</li>
+                        <li>SSH connections with Paramiko</li>
+                        <li>Packet manipulation with Scapy</li>
+                        <li>Network scanning automation</li>
                     </ul>
                 </div>
 
-                <div class="info-box memory-box">
+                <h2>Socket Programming</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Port Scanner with Sockets</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import socket
+from concurrent.futures import ThreadPoolExecutor
+from typing import List, Dict
+
+def scan_port(host: str, port: int, timeout: float = 1.0) -> Dict:
+    """Scan a single port"""
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        result = sock.connect_ex((host, port))
+        
+        if result == 0:
+            # Try to grab banner
+            try:
+                sock.send(b"HEAD / HTTP/1.0\r\n\r\n")
+                banner = sock.recv(1024).decode("utf-8", errors="ignore").strip()
+            except:
+                banner = ""
+            return {"port": port, "state": "open", "banner": banner[:100]}
+        return {"port": port, "state": "closed"}
+    except socket.timeout:
+        return {"port": port, "state": "filtered"}
+    except Exception as e:
+        return {"port": port, "state": "error", "error": str(e)}
+    finally:
+        sock.close()
+
+def scan_host(host: str, ports: List[int], threads: int = 50) -> List[Dict]:
+    """Scan multiple ports on a host using thread pool"""
+    results = []
+    with ThreadPoolExecutor(max_workers=threads) as executor:
+        futures = {executor.submit(scan_port, host, p): p for p in ports}
+        for future in futures:
+            results.append(future.result())
+    return sorted([r for r in results if r["state"] == "open"], key=lambda x: x["port"])
+
+# Usage
+common_ports = [21, 22, 23, 25, 53, 80, 110, 143, 443, 445, 993, 995, 3306, 3389, 5432, 8080, 8443]
+open_ports = scan_host("192.168.1.1", common_ports)
+for port in open_ports:
+    print(f"Port {port['port']}: {port['state']} - {port.get('banner', '')}")</code></pre>
+                </div>
+
+                <h2>HTTP Requests</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - HTTP with Requests Library</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import requests
+from requests.auth import HTTPBasicAuth
+
+# Basic GET request
+response = requests.get("https://api.example.com/status")
+print(response.status_code)  # 200
+print(response.json())       # Parse JSON response
+
+# GET with parameters
+params = {"ip": "10.0.0.50", "days": 7}
+response = requests.get("https://api.threatintel.com/lookup", params=params)
+
+# POST with JSON body
+alert = {
+    "source": "python-scanner",
+    "severity": "high",
+    "message": "Suspicious activity detected"
+}
+response = requests.post(
+    "https://api.siem.com/alerts",
+    json=alert,
+    headers={"Authorization": "Bearer YOUR_TOKEN"}
+)
+
+# Authentication
+response = requests.get(
+    "https://api.example.com/data",
+    auth=HTTPBasicAuth("username", "password")
+)
+
+# Session for multiple requests (maintains cookies)
+session = requests.Session()
+session.headers.update({"Authorization": "Bearer TOKEN"})
+
+response1 = session.get("https://api.example.com/user")
+response2 = session.get("https://api.example.com/alerts")
+
+# Timeout and error handling
+try:
+    response = requests.get("https://api.example.com", timeout=5)
+    response.raise_for_status()  # Raises exception for 4xx/5xx
+except requests.Timeout:
+    print("Request timed out")
+except requests.HTTPError as e:
+    print(f"HTTP error: {e}")
+except requests.RequestException as e:
+    print(f"Request failed: {e}")
+
+# Download file
+with requests.get("https://example.com/malware_sample.zip", stream=True) as r:
+    r.raise_for_status()
+    with open("sample.zip", "wb") as f:
+        for chunk in r.iter_content(chunk_size=8192):
+            f.write(chunk)</code></pre>
+                </div>
+
+                <h2>SSH with Paramiko</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - SSH Connections</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import paramiko
+from pathlib import Path
+
+def ssh_execute(host: str, username: str, command: str, 
+                key_path: str = None, password: str = None) -> dict:
+    """Execute command via SSH"""
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    
+    try:
+        # Connect with key or password
+        if key_path:
+            key = paramiko.RSAKey.from_private_key_file(key_path)
+            client.connect(host, username=username, pkey=key)
+        else:
+            client.connect(host, username=username, password=password)
+        
+        # Execute command
+        stdin, stdout, stderr = client.exec_command(command)
+        
+        return {
+            "host": host,
+            "command": command,
+            "stdout": stdout.read().decode(),
+            "stderr": stderr.read().decode(),
+            "exit_code": stdout.channel.recv_exit_status()
+        }
+    finally:
+        client.close()
+
+# Execute on multiple hosts
+def run_on_hosts(hosts: list, command: str, username: str, key_path: str):
+    """Run command on multiple hosts"""
+    results = []
+    for host in hosts:
+        try:
+            result = ssh_execute(host, username, command, key_path=key_path)
+            results.append(result)
+        except Exception as e:
+            results.append({"host": host, "error": str(e)})
+    return results
+
+# Collect security info from servers
+hosts = ["10.0.0.10", "10.0.0.11", "10.0.0.12"]
+results = run_on_hosts(hosts, "last -n 10", "admin", "~/.ssh/id_rsa")
+
+for r in results:
+    if "error" not in r:
+        print(f"=== {r['host']} ===")
+        print(r["stdout"])
+
+# SFTP file transfer
+def sftp_download(host, username, remote_path, local_path, key_path):
+    """Download file via SFTP"""
+    transport = paramiko.Transport((host, 22))
+    key = paramiko.RSAKey.from_private_key_file(key_path)
+    transport.connect(username=username, pkey=key)
+    
+    sftp = paramiko.SFTPClient.from_transport(transport)
+    sftp.get(remote_path, local_path)
+    sftp.close()
+    transport.close()</code></pre>
+                </div>
+
+                <h2>Scapy Packet Manipulation</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Network Scanning with Scapy</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>from scapy.all import *
+
+# ARP scan for host discovery
+def arp_scan(network: str) -> list:
+    """Discover hosts on network using ARP"""
+    arp = ARP(pdst=network)
+    ether = Ether(dst="ff:ff:ff:ff:ff:ff")
+    packet = ether/arp
+    
+    result = srp(packet, timeout=3, verbose=0)[0]
+    
+    hosts = []
+    for sent, received in result:
+        hosts.append({
+            "ip": received.psrc,
+            "mac": received.hwsrc
+        })
+    return hosts
+
+# TCP SYN scan
+def syn_scan(host: str, ports: list) -> list:
+    """TCP SYN scan (stealth scan)"""
+    open_ports = []
+    
+    for port in ports:
+        # Send SYN packet
+        syn = IP(dst=host)/TCP(dport=port, flags="S")
+        response = sr1(syn, timeout=1, verbose=0)
+        
+        if response and response.haslayer(TCP):
+            if response[TCP].flags == 0x12:  # SYN-ACK
+                open_ports.append(port)
+                # Send RST to close
+                rst = IP(dst=host)/TCP(dport=port, flags="R")
+                send(rst, verbose=0)
+    
+    return open_ports
+
+# ICMP ping sweep
+def ping_sweep(network: str) -> list:
+    """Ping sweep a network"""
+    answered, unanswered = sr(IP(dst=network)/ICMP(), timeout=2, verbose=0)
+    live_hosts = [rcv.src for snd, rcv in answered]
+    return live_hosts
+
+# DNS query
+def dns_lookup(domain: str, dns_server: str = "8.8.8.8") -> list:
+    """Perform DNS lookup"""
+    dns_query = IP(dst=dns_server)/UDP(dport=53)/DNS(rd=1, qd=DNSQR(qname=domain))
+    response = sr1(dns_query, timeout=2, verbose=0)
+    
+    if response and response.haslayer(DNS):
+        answers = []
+        for i in range(response[DNS].ancount):
+            answers.append(response[DNS].an[i].rdata)
+        return answers
+    return []
+
+# Packet sniffing
+def sniff_credentials(interface: str, count: int = 100):
+    """Sniff for potential credentials in traffic"""
+    def packet_callback(packet):
+        if packet.haslayer(TCP) and packet.haslayer(Raw):
+            payload = packet[Raw].load.decode("utf-8", errors="ignore")
+            keywords = ["password", "passwd", "user", "login", "auth"]
+            if any(kw in payload.lower() for kw in keywords):
+                print(f"[!] Potential credentials: {packet[IP].src} -> {packet[IP].dst}")
+                print(f"    Payload: {payload[:200]}")
+    
+    sniff(iface=interface, count=count, prn=packet_callback, 
+          filter="tcp port 80 or tcp port 21 or tcp port 23")</code></pre>
+                </div>
+
+                <div class="info-box warning-box">
                     <div class="info-box-header">
-                        <div class="info-box-icon">🧠</div>
-                        <div class="info-box-title">Memory Aid: The Scripting Triad</div>
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Warning</div>
                     </div>
-                    <ul>
-                        <li><strong>PowerShell</strong> = Swiss Army Knife (objects, .NET, Windows-focused)</li>
-                        <li><strong>Bash</strong> = Unix Philosophy (text streams, pipes, Linux/Mac)</li>
-                        <li><strong>Python</strong> = Integration King (APIs, analysis, cross-platform)</li>
-                    </ul>
-                    <p style="margin-top: 1rem; color: var(--text-muted);">
-                        🎯 <em>Choose based on: target OS, task complexity, and team expertise</em>
-                    </p>
+                    <p>Network scanning and packet manipulation require appropriate authorization. Only use these tools on networks you own or have explicit permission to test. Unauthorized scanning is illegal in most jurisdictions.</p>
                 </div>
 
-                <!-- Technology Stack -->
-                <h2 class="mt-4">Technologies Covered</h2>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Technologies</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Languages</strong></td>
-                                <td>PowerShell 5.1/7.x, Bash, Batch/CMD, Python</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Platforms</strong></td>
-                                <td>Windows, Linux, macOS, WSL, Azure</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Security Tools</strong></td>
-                                <td>Microsoft Defender, Cortex XDR, Splunk, Sentinel</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Integration</strong></td>
-                                <td>REST APIs, Active Directory, WMI/CIM, SSH</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Focus Areas</strong></td>
-                                <td>SOC Operations, Incident Response, Threat Hunting, Forensics</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h2>Python-Nmap Integration</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Nmap Wrapper</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import nmap
+
+def nmap_scan(target: str, ports: str = "1-1000") -> dict:
+    """Perform nmap scan with service detection"""
+    nm = nmap.PortScanner()
+    
+    # -sV: Service version detection
+    # -sC: Default scripts
+    # -O: OS detection (requires root)
+    nm.scan(target, ports, arguments="-sV -sC")
+    
+    results = {"hosts": []}
+    
+    for host in nm.all_hosts():
+        host_info = {
+            "ip": host,
+            "hostname": nm[host].hostname(),
+            "state": nm[host].state(),
+            "ports": []
+        }
+        
+        for proto in nm[host].all_protocols():
+            for port in nm[host][proto].keys():
+                port_info = nm[host][proto][port]
+                host_info["ports"].append({
+                    "port": port,
+                    "protocol": proto,
+                    "state": port_info["state"],
+                    "service": port_info["name"],
+                    "version": port_info.get("version", ""),
+                    "product": port_info.get("product", "")
+                })
+        
+        results["hosts"].append(host_info)
+    
+    return results
+
+# Vulnerability scan
+def vuln_scan(target: str) -> dict:
+    """Run nmap vulnerability scripts"""
+    nm = nmap.PortScanner()
+    nm.scan(target, arguments="--script vuln")
+    return nm[target]
+
+# Usage
+results = nmap_scan("192.168.1.0/24", "22,80,443,3389")
+for host in results["hosts"]:
+    print(f"\n{host['ip']} ({host['hostname']})")
+    for port in host["ports"]:
+        if port["state"] == "open":
+            print(f"  {port['port']}/{port['protocol']}: {port['service']} {port['version']}")</code></pre>
                 </div>
 
-                <!-- Navigation -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use sockets for basic port scanning, Scapy for advanced packet work</li>
+                    <li>requests library is essential for API integration</li>
+                    <li>Paramiko enables SSH automation across multiple hosts</li>
+                    <li>python-nmap wraps nmap for comprehensive scanning</li>
+                    <li>Always handle timeouts and errors in network code</li>
+                </ul>
+
                 <div class="page-navigation">
-                    <div></div>
-                    <a href="1-1-scripting-overview.html" class="nav-button next">
+                    <a href="6-4-python-file-handling.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 6.4 File & Data Handling</span>
+                    </a>
+                    <a href="6-6-python-security-automation.html" class="nav-button next">
                         <span class="nav-button-label">Next</span>
-                        <span class="nav-button-title">1.1 Scripting Overview →</span>
+                        <span class="nav-button-title">6.6 Security Automation →</span>
                     </a>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
             <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
@@ -443,9 +580,7 @@
         </div>
     </div>
 
-    <!-- Mobile Toggle -->
     <button class="mobile-toggle">☰</button>
-
     <script src="main.js"></script>
 </body>
 </html>

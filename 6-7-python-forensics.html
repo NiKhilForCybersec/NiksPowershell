@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.7 Python Forensics & Log Analysis - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests & APIs</a>
+                        <a href="2-19-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Remoting & Jobs</a>
+                        <a href="2-20-error-handling.html" class="nav-link"><span class="nav-link-number">2.20</span> Error Handling</a>
+                        <a href="2-21-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.21</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Variables & Data Types</a>
+                        <a href="3-4-control-structures.html" class="nav-link"><span class="nav-link-number">3.4</span> Control Structures</a>
+                        <a href="3-5-bash-functions.html" class="nav-link"><span class="nav-link-number">3.5</span> Functions & Scripts</a>
+                        <a href="3-6-file-io.html" class="nav-link"><span class="nav-link-number">3.6</span> File I/O</a>
+                        <a href="3-7-process-management.html" class="nav-link"><span class="nav-link-number">3.7</span> Process Management</a>
+                        <a href="3-8-system-admin.html" class="nav-link"><span class="nav-link-number">3.8</span> System Administration</a>
+                        <a href="3-9-regex.html" class="nav-link"><span class="nav-link-number">3.9</span> Regular Expressions</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting</a>
+                        <a href="5-8-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scanning</a>
+                        <a href="5-9-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.9</span> Forensics Scripts</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.12</span> Compliance Automation</a>
+                        <a href="5-13-log-analysis.html" class="nav-link"><span class="nav-link-number">5.13</span> Log Analysis</a>
+                        <a href="5-14-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.14</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                        <a href="10-7-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.7</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#python">Python Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Forensics & Log Analysis</span>
+                </nav>
+
+                <h1>6.7 Python Forensics & Log Analysis</h1>
+
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Windows Event Log analysis with Python</li>
+                        <li>Linux log parsing and correlation</li>
+                        <li>PE file analysis for malware triage</li>
+                        <li>Timeline generation from artifacts</li>
+                        <li>Memory forensics basics with Volatility</li>
+                    </ul>
+                </div>
+
+                <h2>Windows Event Log Analysis</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Parse EVTX Files</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>from evtx import PyEvtxParser
+from datetime import datetime
+import json
+
+class EventLogAnalyzer:
+    """Analyze Windows Event Logs"""
+    
+    # Key security event IDs
+    SECURITY_EVENTS = {
+        4624: "Successful Logon",
+        4625: "Failed Logon",
+        4634: "Logoff",
+        4648: "Explicit Credential Logon",
+        4672: "Special Privileges Assigned",
+        4688: "Process Creation",
+        4698: "Scheduled Task Created",
+        4720: "User Account Created",
+        4732: "Member Added to Security Group",
+        7045: "Service Installed"
+    }
+    
+    def parse_evtx(self, filepath: str, event_ids: list = None) -> list:
+        """Parse EVTX file and extract events"""
+        events = []
+        parser = PyEvtxParser(filepath)
+        
+        for record in parser.records_json():
+            event = json.loads(record['data'])
+            event_data = event.get('Event', {})
+            
+            system = event_data.get('System', {})
+            event_id = system.get('EventID', {})
+            if isinstance(event_id, dict):
+                event_id = event_id.get('#text', 0)
+            event_id = int(event_id)
+            
+            # Filter by event IDs if specified
+            if event_ids and event_id not in event_ids:
+                continue
+            
+            parsed = {
+                'timestamp': system.get('TimeCreated', {}).get('@SystemTime', ''),
+                'event_id': event_id,
+                'event_name': self.SECURITY_EVENTS.get(event_id, 'Unknown'),
+                'computer': system.get('Computer', ''),
+                'channel': system.get('Channel', ''),
+                'event_data': event_data.get('EventData', {})
+            }
+            events.append(parsed)
+        
+        return events
+    
+    def find_failed_logins(self, filepath: str) -> list:
+        """Find all failed login attempts"""
+        events = self.parse_evtx(filepath, event_ids=[4625])
+        
+        failed_logins = []
+        for event in events:
+            data = event.get('event_data', {})
+            if isinstance(data, dict):
+                failed_logins.append({
+                    'timestamp': event['timestamp'],
+                    'target_user': data.get('TargetUserName', ''),
+                    'source_ip': data.get('IpAddress', ''),
+                    'workstation': data.get('WorkstationName', ''),
+                    'failure_reason': data.get('FailureReason', ''),
+                    'logon_type': data.get('LogonType', '')
+                })
+        
+        return failed_logins
+    
+    def find_lateral_movement(self, filepath: str) -> list:
+        """Detect potential lateral movement (Type 3 logins)"""
+        events = self.parse_evtx(filepath, event_ids=[4624])
+        
+        lateral = []
+        for event in events:
+            data = event.get('event_data', {})
+            if isinstance(data, dict) and data.get('LogonType') == '3':
+                lateral.append({
+                    'timestamp': event['timestamp'],
+                    'target_user': data.get('TargetUserName', ''),
+                    'source_ip': data.get('IpAddress', ''),
+                    'source_host': data.get('WorkstationName', '')
+                })
+        
+        return lateral
+
+# Usage
+analyzer = EventLogAnalyzer()
+failed = analyzer.find_failed_logins("Security.evtx")
+
+print(f"Found {len(failed)} failed login attempts")
+for attempt in failed[:10]:
+    print(f"  {attempt['timestamp']}: {attempt['target_user']} from {attempt['source_ip']}")</code></pre>
+                </div>
+
+                <h2>Linux Log Analysis</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Linux Auth Log Parser</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import re
+from collections import defaultdict
+from datetime import datetime
+
+class LinuxLogAnalyzer:
+    """Analyze Linux authentication logs"""
+    
+    def parse_auth_log(self, filepath: str) -> dict:
+        """Parse /var/log/auth.log for security events"""
+        
+        patterns = {
+            'failed_ssh': r'(\w+\s+\d+\s+\d+:\d+:\d+).*sshd.*Failed password for (?:invalid user )?(\S+) from ([\d.]+)',
+            'successful_ssh': r'(\w+\s+\d+\s+\d+:\d+:\d+).*sshd.*Accepted (\w+) for (\S+) from ([\d.]+)',
+            'sudo_command': r'(\w+\s+\d+\s+\d+:\d+:\d+).*sudo:\s+(\S+).*COMMAND=(.*)',
+            'user_added': r'(\w+\s+\d+\s+\d+:\d+:\d+).*useradd.*new user: name=(\S+)',
+            'session_opened': r'(\w+\s+\d+\s+\d+:\d+:\d+).*session opened for user (\S+)'
+        }
+        
+        results = defaultdict(list)
+        
+        with open(filepath, 'r') as f:
+            for line in f:
+                for event_type, pattern in patterns.items():
+                    match = re.search(pattern, line)
+                    if match:
+                        results[event_type].append({
+                            'raw': line.strip(),
+                            'groups': match.groups()
+                        })
+        
+        return dict(results)
+    
+    def detect_brute_force(self, filepath: str, threshold: int = 10) -> dict:
+        """Detect brute force attempts"""
+        results = self.parse_auth_log(filepath)
+        failed = results.get('failed_ssh', [])
+        
+        # Count by IP
+        ip_counts = defaultdict(int)
+        for attempt in failed:
+            ip = attempt['groups'][2]  # Source IP
+            ip_counts[ip] += 1
+        
+        # Filter by threshold
+        attackers = {ip: count for ip, count in ip_counts.items() if count >= threshold}
+        
+        return {
+            'total_failed': len(failed),
+            'unique_ips': len(ip_counts),
+            'potential_attackers': attackers
+        }
+    
+    def get_sudo_commands(self, filepath: str) -> list:
+        """Extract all sudo commands executed"""
+        results = self.parse_auth_log(filepath)
+        sudo = results.get('sudo_command', [])
+        
+        commands = []
+        for entry in sudo:
+            timestamp, user, command = entry['groups']
+            commands.append({
+                'timestamp': timestamp,
+                'user': user,
+                'command': command
+            })
+        
+        return commands
+
+# Usage
+analyzer = LinuxLogAnalyzer()
+brute_force = analyzer.detect_brute_force('/var/log/auth.log')
+
+print(f"Total failed attempts: {brute_force['total_failed']}")
+print(f"Unique attacking IPs: {brute_force['unique_ips']}")
+print("\nTop attackers:")
+for ip, count in sorted(brute_force['potential_attackers'].items(), 
+                        key=lambda x: x[1], reverse=True)[:10]:
+    print(f"  {ip}: {count} attempts")</code></pre>
+                </div>
+
+                <h2>PE File Analysis</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Malware Triage with pefile</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import pefile
+import hashlib
+from datetime import datetime
+
+class PEAnalyzer:
+    """Analyze PE files for malware indicators"""
+    
+    SUSPICIOUS_IMPORTS = [
+        'VirtualAlloc', 'VirtualProtect', 'WriteProcessMemory',
+        'CreateRemoteThread', 'NtUnmapViewOfSection', 'RtlMoveMemory',
+        'IsDebuggerPresent', 'CheckRemoteDebuggerPresent',
+        'GetProcAddress', 'LoadLibraryA', 'LoadLibraryW',
+        'URLDownloadToFile', 'InternetOpen', 'HttpOpenRequest'
+    ]
+    
+    def analyze(self, filepath: str) -> dict:
+        """Comprehensive PE analysis"""
+        try:
+            pe = pefile.PE(filepath)
+        except Exception as e:
+            return {'error': str(e)}
+        
+        # Calculate hashes
+        with open(filepath, 'rb') as f:
+            data = f.read()
+        
+        analysis = {
+            'filename': filepath,
+            'hashes': {
+                'md5': hashlib.md5(data).hexdigest(),
+                'sha1': hashlib.sha1(data).hexdigest(),
+                'sha256': hashlib.sha256(data).hexdigest(),
+                'imphash': pe.get_imphash()
+            },
+            'compile_time': self._get_compile_time(pe),
+            'sections': self._analyze_sections(pe),
+            'imports': self._analyze_imports(pe),
+            'suspicious_indicators': []
+        }
+        
+        # Check for suspicious characteristics
+        analysis['suspicious_indicators'] = self._check_suspicious(pe, analysis)
+        
+        return analysis
+    
+    def _get_compile_time(self, pe) -> str:
+        timestamp = pe.FILE_HEADER.TimeDateStamp
+        return datetime.utcfromtimestamp(timestamp).isoformat()
+    
+    def _analyze_sections(self, pe) -> list:
+        sections = []
+        for section in pe.sections:
+            sections.append({
+                'name': section.Name.decode().rstrip('\x00'),
+                'virtual_size': section.Misc_VirtualSize,
+                'raw_size': section.SizeOfRawData,
+                'entropy': section.get_entropy(),
+                'characteristics': hex(section.Characteristics)
+            })
+        return sections
+    
+    def _analyze_imports(self, pe) -> dict:
+        imports = {}
+        suspicious_found = []
+        
+        if hasattr(pe, 'DIRECTORY_ENTRY_IMPORT'):
+            for entry in pe.DIRECTORY_ENTRY_IMPORT:
+                dll = entry.dll.decode()
+                funcs = []
+                for imp in entry.imports:
+                    if imp.name:
+                        func_name = imp.name.decode()
+                        funcs.append(func_name)
+                        if func_name in self.SUSPICIOUS_IMPORTS:
+                            suspicious_found.append(f"{dll}:{func_name}")
+                imports[dll] = funcs
+        
+        return {'dlls': imports, 'suspicious': suspicious_found}
+    
+    def _check_suspicious(self, pe, analysis) -> list:
+        indicators = []
+        
+        # High entropy sections (possibly packed)
+        for section in analysis['sections']:
+            if section['entropy'] > 7.5:
+                indicators.append(f"High entropy section: {section['name']} ({section['entropy']:.2f})")
+        
+        # Suspicious imports
+        if analysis['imports']['suspicious']:
+            indicators.append(f"Suspicious imports: {', '.join(analysis['imports']['suspicious'][:5])}")
+        
+        # Future compile time
+        compile_time = datetime.fromisoformat(analysis['compile_time'])
+        if compile_time > datetime.now():
+            indicators.append("Future compile timestamp (likely forged)")
+        
+        # Very old compile time
+        if compile_time.year < 2000:
+            indicators.append("Ancient compile timestamp (likely forged)")
+        
+        return indicators
+
+# Usage
+analyzer = PEAnalyzer()
+result = analyzer.analyze('suspicious.exe')
+
+print(f"SHA256: {result['hashes']['sha256']}")
+print(f"ImpHash: {result['hashes']['imphash']}")
+print(f"Compiled: {result['compile_time']}")
+
+print("\nSections:")
+for section in result['sections']:
+    print(f"  {section['name']}: entropy={section['entropy']:.2f}")
+
+print("\nSuspicious Indicators:")
+for indicator in result['suspicious_indicators']:
+    print(f"  ⚠️ {indicator}")</code></pre>
+                </div>
+
+                <h2>Timeline Generation</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Forensic Timeline</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>from datetime import datetime
+from pathlib import Path
+import os
+
+class TimelineGenerator:
+    """Generate forensic timeline from various sources"""
+    
+    def __init__(self):
+        self.events = []
+    
+    def add_event(self, timestamp: datetime, source: str, 
+                  event_type: str, description: str, details: dict = None):
+        """Add event to timeline"""
+        self.events.append({
+            'timestamp': timestamp,
+            'source': source,
+            'type': event_type,
+            'description': description,
+            'details': details or {}
+        })
+    
+    def add_file_events(self, directory: str, recursive: bool = True):
+        """Add file system events from directory"""
+        path = Path(directory)
+        pattern = '**/*' if recursive else '*'
+        
+        for file in path.glob(pattern):
+            if file.is_file():
+                stat = file.stat()
+                
+                # Creation time
+                self.add_event(
+                    datetime.fromtimestamp(stat.st_ctime),
+                    'filesystem',
+                    'file_created',
+                    f"File created: {file}",
+                    {'path': str(file), 'size': stat.st_size}
+                )
+                
+                # Modification time
+                self.add_event(
+                    datetime.fromtimestamp(stat.st_mtime),
+                    'filesystem',
+                    'file_modified',
+                    f"File modified: {file}",
+                    {'path': str(file)}
+                )
+    
+    def add_evtx_events(self, filepath: str, event_ids: list = None):
+        """Add events from Windows Event Log"""
+        # Use EventLogAnalyzer from previous example
+        analyzer = EventLogAnalyzer()
+        events = analyzer.parse_evtx(filepath, event_ids)
+        
+        for event in events:
+            self.add_event(
+                datetime.fromisoformat(event['timestamp'].replace('Z', '+00:00')),
+                'eventlog',
+                event['event_name'],
+                f"Event {event['event_id']}: {event['event_name']}",
+                event['event_data']
+            )
+    
+    def generate_timeline(self, output_format: str = 'csv') -> str:
+        """Generate sorted timeline"""
+        # Sort by timestamp
+        sorted_events = sorted(self.events, key=lambda x: x['timestamp'])
+        
+        if output_format == 'csv':
+            lines = ['Timestamp,Source,Type,Description']
+            for event in sorted_events:
+                lines.append(f"{event['timestamp'].isoformat()},{event['source']},"
+                           f"{event['type']},\"{event['description']}\"")
+            return '\n'.join(lines)
+        
+        elif output_format == 'json':
+            return json.dumps([{
+                **event,
+                'timestamp': event['timestamp'].isoformat()
+            } for event in sorted_events], indent=2)
+        
+        return sorted_events
+    
+    def filter_timerange(self, start: datetime, end: datetime) -> list:
+        """Filter events by time range"""
+        return [e for e in self.events if start <= e['timestamp'] <= end]
+
+# Usage
+timeline = TimelineGenerator()
+
+# Add filesystem events
+timeline.add_file_events('/path/to/evidence', recursive=True)
+
+# Add event log events
+timeline.add_evtx_events('Security.evtx', event_ids=[4624, 4625, 4688])
+
+# Generate timeline
+csv_output = timeline.generate_timeline('csv')
+with open('investigation_timeline.csv', 'w') as f:
+    f.write(csv_output)</code></pre>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>evtx library parses Windows Event Logs efficiently</li>
+                    <li>Key Windows events: 4624 (logon), 4625 (failed), 4688 (process)</li>
+                    <li>pefile extracts PE metadata: imports, sections, timestamps</li>
+                    <li>High entropy sections often indicate packing/encryption</li>
+                    <li>Timeline correlation reveals attack patterns</li>
+                </ul>
+
+                <div class="page-navigation">
+                    <a href="6-6-python-security-automation.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 6.6 Security Automation</span>
+                    </a>
+                    <a href="6-8-python-apis.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">6.8 Python & APIs →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <button class="mobile-toggle">☰</button>
+    <script src="main.js"></script>
+</body>
+</html>

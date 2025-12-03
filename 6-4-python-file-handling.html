@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerShell & Scripting Ultimate Guide</title>
+    <title>6.4 Python File & Data Handling - PowerShell & Scripting Guide</title>
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
 </head>
 <body>
     <div class="layout-wrapper">
-        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
@@ -27,8 +26,7 @@
                     <span class="search-shortcut">Ctrl+K</span>
                 </div>
             </div>
-            
-                        <nav class="sidebar-nav">
+            <nav class="sidebar-nav">
                 <!-- Section 1: Scripting Fundamentals -->
                 <div class="nav-section" data-section="fundamentals">
                     <div class="nav-section-header">
@@ -199,253 +197,439 @@
         </aside>
 
 
-        <!-- Main Content Area -->
         <main class="main-content">
             <div class="content-wrapper">
-                <!-- Hero Section -->
-                <div class="hero">
-                    <h1>PowerShell & Scripting</h1>
-                    <p class="hero-subtitle">Ultimate Guide for Security Engineers</p>
-                    <p class="hero-description">
-                        Master PowerShell, Bash, and security automation with hands-on examples, 
-                        real-world projects, and interview preparation.
-                    </p>
-                </div>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#python">Python Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>File & Data Handling</span>
+                </nav>
 
-                <!-- Stats -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">53</div>
-                        <div class="stat-label">Content Pages</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">10</div>
-                        <div class="stat-label">Sections</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-label">Code Examples</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Real Projects</div>
-                    </div>
-                </div>
+                <h1>6.4 Python File & Data Handling</h1>
 
-                <!-- Section Cards -->
-                <h2>Sections Overview</h2>
-                
-                <div class="section-cards">
-                    <!-- Fundamentals -->
-                    <div class="section-card fundamentals">
-                        <div class="section-card-icon">📚</div>
-                        <h3 class="section-card-title">Scripting Fundamentals</h3>
-                        <p class="section-card-description">
-                            Core concepts, environment setup, and choosing the right tool.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="1-1-scripting-overview.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- PowerShell -->
-                    <div class="section-card powershell">
-                        <div class="section-card-icon">🔷</div>
-                        <h3 class="section-card-title">PowerShell Deep Dive</h3>
-                        <p class="section-card-description">
-                            Pipeline, objects, WMI/CIM, Active Directory, networking, and more.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">16 pages</span>
-                            <a href="2-1-powershell-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Bash -->
-                    <div class="section-card bash">
-                        <div class="section-card-icon">🐧</div>
-                        <h3 class="section-card-title">Bash Scripting</h3>
-                        <p class="section-card-description">
-                            Linux scripting, text processing, system administration, and networking.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">10 pages</span>
-                            <a href="3-1-bash-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Security -->
-                    <div class="section-card security">
-                        <div class="section-card-icon">🛡️</div>
-                        <h3 class="section-card-title">Security Automation</h3>
-                        <p class="section-card-description">
-                            Incident response, threat hunting, SIEM, EDR, forensics, and compliance.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">9 pages</span>
-                            <a href="5-6-incident-response-scripts.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    
-                    <!-- Python -->
-                    <div class="section-card python">
-                        <div class="section-card-icon">🐍</div>
-                        <h3 class="section-card-title">Python Scripting</h3>
-                        <p class="section-card-description">
-                            Security automation, networking, forensics, API integration, and data analysis.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">8 pages</span>
-                            <a href="6-1-python-security-intro.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Cloud -->
-                    <div class="section-card cloud">
-                        <div class="section-card-icon">☁️</div>
-                        <h3 class="section-card-title">Cloud & Integration</h3>
-                        <p class="section-card-description">
-                            Azure automation, cloud security scripting, and DevOps integration.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">1 page</span>
-                            <a href="7-1-azure-automation.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Projects -->
-                    <div class="section-card projects">
-                        <div class="section-card-icon">🚀</div>
-                        <h3 class="section-card-title">Real-World Projects</h3>
-                        <p class="section-card-description">
-                            Build a security dashboard, log aggregator, and asset inventory system.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="8-1-security-dashboard.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Troubleshooting -->
-                    <div class="section-card troubleshooting">
-                        <div class="section-card-icon">🔧</div>
-                        <h3 class="section-card-title">Troubleshooting</h3>
-                        <p class="section-card-description">
-                            Common errors, debugging techniques, and performance optimization.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="9-1-common-errors.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-
-                    <!-- Reference -->
-                    <div class="section-card reference">
-                        <div class="section-card-icon">📋</div>
-                        <h3 class="section-card-title">Best Practices & Reference</h3>
-                        <p class="section-card-description">
-                            Cheat sheets, quick reference cards, log paths, and interview preparation.
-                        </p>
-                        <div class="section-card-meta">
-                            <span class="section-card-pages">3 pages</span>
-                            <a href="10-5-cheat-sheets.html" class="section-card-link">Start Learning →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Start Guide -->
-                <h2 class="mt-4">Quick Start</h2>
-                
                 <div class="info-box overview-box">
                     <div class="info-box-header">
-                        <div class="info-box-icon">🚀</div>
-                        <div class="info-box-title">Getting Started</div>
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
                     </div>
                     <ul>
-                        <li><strong>New to scripting?</strong> Start with <a href="1-1-scripting-overview.html">Scripting Fundamentals</a></li>
-                        <li><strong>Windows admin?</strong> Jump to <a href="2-1-powershell-intro.html">PowerShell Deep Dive</a></li>
-                        <li><strong>Linux/security focused?</strong> Begin with <a href="3-1-bash-intro.html">Bash Scripting</a></li>
-                        <li><strong>Ready for security automation?</strong> Explore <a href="5-6-incident-response-scripts.html">Security Automation</a></li>
-                        <li><strong>Preparing for interviews?</strong> Check <a href="10-6-interview-preparation.html">Interview Preparation</a></li>
+                        <li>Reading and writing text files</li>
+                        <li>Working with JSON, CSV, and XML data</li>
+                        <li>Parsing security logs efficiently</li>
+                        <li>Using pandas for large datasets</li>
+                        <li>YAML configuration files</li>
                     </ul>
+                </div>
+
+                <h2>Text File Operations</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Reading Files</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>from pathlib import Path
+
+# Reading entire file
+with open("security.log", "r") as f:
+    content = f.read()
+
+# Reading lines into list
+with open("security.log", "r") as f:
+    lines = f.readlines()  # Includes newlines
+
+# Reading lines (stripped) - preferred
+with open("security.log", "r") as f:
+    lines = [line.strip() for line in f]
+
+# Using Path (modern approach)
+log_path = Path("/var/log/auth.log")
+content = log_path.read_text()
+lines = content.splitlines()
+
+# Reading large files efficiently (line by line)
+def process_large_log(filepath):
+    """Process log file without loading into memory"""
+    error_count = 0
+    with open(filepath, "r") as f:
+        for line in f:  # Iterates without loading all
+            if "ERROR" in line or "FAILED" in line:
+                error_count += 1
+                yield line.strip()
+    print(f"Total errors: {error_count}")</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Writing Files</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code># Write text file
+with open("report.txt", "w") as f:
+    f.write("Security Scan Report\n")
+    f.write("=" * 40 + "\n")
+
+# Append to file
+with open("alerts.log", "a") as f:
+    f.write(f"{datetime.now().isoformat()} - New alert detected\n")
+
+# Write multiple lines
+findings = ["Finding 1: Open port 22", "Finding 2: Weak password", "Finding 3: Missing patches"]
+with open("findings.txt", "w") as f:
+    f.writelines(line + "\n" for line in findings)
+
+# Using Path
+report_path = Path("output/report.txt")
+report_path.parent.mkdir(parents=True, exist_ok=True)
+report_path.write_text("Report content here")</code></pre>
+                </div>
+
+                <h2>JSON Data</h2>
+                <p>JSON is the most common format for API responses and configuration files in security tools.</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - JSON Operations</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import json
+
+# Parse JSON string
+json_str = '{"ip": "10.0.0.50", "severity": "high", "port": 443}'
+data = json.loads(json_str)
+print(data["ip"])  # "10.0.0.50"
+
+# Read JSON file
+with open("config.json", "r") as f:
+    config = json.load(f)
+
+# Write JSON file (formatted)
+alert = {
+    "timestamp": "2024-01-15T10:30:00Z",
+    "source_ip": "10.0.0.50",
+    "dest_ip": "192.168.1.100",
+    "severity": "high",
+    "indicators": ["malware.exe", "c2.evil.com"],
+    "metadata": {
+        "analyst": "jdoe",
+        "status": "investigating"
+    }
+}
+
+with open("alert.json", "w") as f:
+    json.dump(alert, f, indent=2)
+
+# Convert to JSON string
+json_output = json.dumps(alert, indent=2, default=str)  # default=str handles datetime
+
+# Handle nested JSON (API responses)
+api_response = '''
+{
+    "status": "success",
+    "data": {
+        "alerts": [
+            {"id": 1, "severity": "high"},
+            {"id": 2, "severity": "medium"}
+        ]
+    }
+}
+'''
+response = json.loads(api_response)
+for alert in response["data"]["alerts"]:
+    print(f"Alert {alert['id']}: {alert['severity']}")</code></pre>
+                </div>
+
+                <h2>CSV Data</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - CSV Operations</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import csv
+
+# Read CSV file
+with open("ip_blocklist.csv", "r") as f:
+    reader = csv.reader(f)
+    header = next(reader)  # Skip header
+    for row in reader:
+        ip, reason, date = row
+        print(f"Blocked: {ip} - {reason}")
+
+# Read CSV as dictionaries (preferred)
+with open("ip_blocklist.csv", "r") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(f"IP: {row['ip']}, Reason: {row['reason']}")
+
+# Write CSV file
+scan_results = [
+    {"ip": "10.0.0.1", "port": 22, "status": "open"},
+    {"ip": "10.0.0.1", "port": 80, "status": "closed"},
+    {"ip": "10.0.0.1", "port": 443, "status": "open"}
+]
+
+with open("scan_results.csv", "w", newline="") as f:
+    fieldnames = ["ip", "port", "status"]
+    writer = csv.DictWriter(f, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerows(scan_results)
+
+# Quick CSV read to list of dicts
+def read_csv_quick(filepath):
+    with open(filepath, "r") as f:
+        return list(csv.DictReader(f))</code></pre>
+                </div>
+
+                <h2>Pandas for Large Datasets</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Pandas for Security Logs</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import pandas as pd
+
+# Read various formats
+df = pd.read_csv("firewall_logs.csv")
+df = pd.read_json("alerts.json")
+df = pd.read_excel("inventory.xlsx")
+
+# Quick exploration
+print(df.head())           # First 5 rows
+print(df.info())           # Column types, null counts
+print(df.describe())       # Statistics
+print(df.columns.tolist()) # Column names
+
+# Filter data
+high_severity = df[df["severity"] == "high"]
+recent = df[df["timestamp"] > "2024-01-01"]
+
+# Multiple conditions
+critical_external = df[(df["severity"] == "critical") & (df["source_type"] == "external")]
+
+# Group and aggregate
+by_severity = df.groupby("severity").size()
+by_ip = df.groupby("source_ip").agg({
+    "event_id": "count",
+    "severity": lambda x: (x == "high").sum()
+}).rename(columns={"event_id": "total_events", "severity": "high_events"})
+
+# Find top offenders
+top_ips = df["source_ip"].value_counts().head(10)
+
+# Time-based analysis
+df["timestamp"] = pd.to_datetime(df["timestamp"])
+df.set_index("timestamp", inplace=True)
+hourly_counts = df.resample("H").size()
+
+# Export results
+high_severity.to_csv("high_severity_alerts.csv", index=False)
+top_ips.to_json("top_ips.json")
+
+# Memory-efficient reading for large files
+df = pd.read_csv("huge_log.csv", 
+                 chunksize=100000,  # Process in chunks
+                 usecols=["timestamp", "source_ip", "severity"],  # Only needed columns
+                 dtype={"severity": "category"})  # Efficient storage</code></pre>
                 </div>
 
                 <div class="info-box memory-box">
                     <div class="info-box-header">
                         <div class="info-box-icon">🧠</div>
-                        <div class="info-box-title">Memory Aid: The Scripting Triad</div>
+                        <div class="info-box-title">Memory Aid: Pandas Operations</div>
                     </div>
-                    <ul>
-                        <li><strong>PowerShell</strong> = Swiss Army Knife (objects, .NET, Windows-focused)</li>
-                        <li><strong>Bash</strong> = Unix Philosophy (text streams, pipes, Linux/Mac)</li>
-                        <li><strong>Python</strong> = Integration King (APIs, analysis, cross-platform)</li>
-                    </ul>
-                    <p style="margin-top: 1rem; color: var(--text-muted);">
-                        🎯 <em>Choose based on: target OS, task complexity, and team expertise</em>
-                    </p>
+                    <p><strong>F-G-A-S</strong>: <strong>F</strong>ilter (df[condition]), <strong>G</strong>roup (groupby), <strong>A</strong>ggregate (sum/count/mean), <strong>S</strong>ort (sort_values)</p>
                 </div>
 
-                <!-- Technology Stack -->
-                <h2 class="mt-4">Technologies Covered</h2>
-                
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Technologies</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Languages</strong></td>
-                                <td>PowerShell 5.1/7.x, Bash, Batch/CMD, Python</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Platforms</strong></td>
-                                <td>Windows, Linux, macOS, WSL, Azure</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Security Tools</strong></td>
-                                <td>Microsoft Defender, Cortex XDR, Splunk, Sentinel</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Integration</strong></td>
-                                <td>REST APIs, Active Directory, WMI/CIM, SSH</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Focus Areas</strong></td>
-                                <td>SOC Operations, Incident Response, Threat Hunting, Forensics</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <h2>XML Parsing</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - XML for Security Configs</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import xml.etree.ElementTree as ET
+from lxml import etree  # More powerful, install with pip
+
+# Parse XML file
+tree = ET.parse("nmap_scan.xml")
+root = tree.getroot()
+
+# Parse XML string
+xml_str = """
+<scan>
+    <host ip="192.168.1.1">
+        <port number="22" state="open" service="ssh"/>
+        <port number="80" state="open" service="http"/>
+    </host>
+</scan>
+"""
+root = ET.fromstring(xml_str)
+
+# Navigate elements
+for host in root.findall("host"):
+    ip = host.get("ip")
+    for port in host.findall("port"):
+        print(f"{ip}:{port.get('number')} - {port.get('service')}")
+
+# XPath queries (with lxml)
+doc = etree.parse("nmap_scan.xml")
+open_ports = doc.xpath("//port[@state='open']")
+ssh_hosts = doc.xpath("//host[port[@service='ssh']]/@ip")
+
+# Create XML
+root = ET.Element("findings")
+for finding in [("XSS", "high"), ("SQLI", "critical")]:
+    item = ET.SubElement(root, "finding")
+    item.set("type", finding[0])
+    item.set("severity", finding[1])
+
+tree = ET.ElementTree(root)
+tree.write("findings.xml", encoding="utf-8", xml_declaration=True)</code></pre>
                 </div>
 
-                <!-- Navigation -->
+                <h2>YAML Configuration</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - YAML Config Files</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import yaml
+
+# Sample config.yaml
+yaml_content = """
+scanner:
+  timeout: 30
+  threads: 10
+  ports:
+    - 22
+    - 80
+    - 443
+    - 3389
+
+targets:
+  internal:
+    - 10.0.0.0/24
+    - 192.168.1.0/24
+  external:
+    - api.example.com
+
+alerts:
+  email:
+    enabled: true
+    recipients:
+      - <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84f7e1e7f1f6edf0fdc4e7ebe9f4e5eafdaae7ebe9">[email&#160;protected]</a>
+      - <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81f2eee2c1e2eeecf1e0eff8afe2eeec">[email&#160;protected]</a>
+  slack:
+    enabled: true
+    webhook: https://hooks.slack.com/xxx
+"""
+
+# Parse YAML
+config = yaml.safe_load(yaml_content)
+
+# Access values
+timeout = config["scanner"]["timeout"]
+ports = config["scanner"]["ports"]
+email_enabled = config["alerts"]["email"]["enabled"]
+
+# Load from file
+with open("config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+# Write YAML
+output_config = {
+    "scan_results": {
+        "timestamp": "2024-01-15T10:30:00Z",
+        "targets_scanned": 254,
+        "open_ports_found": 47
+    }
+}
+
+with open("results.yaml", "w") as f:
+    yaml.dump(output_config, f, default_flow_style=False)</code></pre>
+                </div>
+
+                <h2>Log Parsing Example</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Complete Log Parser</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import re
+from datetime import datetime
+from collections import Counter
+
+def parse_auth_log(filepath):
+    """Parse Linux auth.log for failed login attempts"""
+    
+    # Regex pattern for failed SSH logins
+    pattern = r'(\w+\s+\d+\s+\d+:\d+:\d+).*sshd.*Failed password for (?:invalid user )?(\w+) from ([\d.]+)'
+    
+    failed_logins = []
+    
+    with open(filepath, "r") as f:
+        for line in f:
+            match = re.search(pattern, line)
+            if match:
+                timestamp_str, username, ip = match.groups()
+                failed_logins.append({
+                    "timestamp": timestamp_str,
+                    "username": username,
+                    "source_ip": ip
+                })
+    
+    return failed_logins
+
+def analyze_failed_logins(logins):
+    """Analyze failed login attempts for patterns"""
+    
+    # Count by IP
+    ip_counts = Counter(login["source_ip"] for login in logins)
+    
+    # Count by username
+    user_counts = Counter(login["username"] for login in logins)
+    
+    # Identify potential brute force (>10 attempts)
+    brute_force_ips = {ip: count for ip, count in ip_counts.items() if count > 10}
+    
+    return {
+        "total_failures": len(logins),
+        "unique_ips": len(ip_counts),
+        "unique_users": len(user_counts),
+        "top_attacking_ips": ip_counts.most_common(10),
+        "top_targeted_users": user_counts.most_common(10),
+        "potential_brute_force": brute_force_ips
+    }
+
+# Usage
+logins = parse_auth_log("/var/log/auth.log")
+analysis = analyze_failed_logins(logins)
+print(json.dumps(analysis, indent=2))</code></pre>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Always use <code>with</code> statement for file operations (auto-closes)</li>
+                    <li>JSON: <code>json.load/dump</code> for files, <code>json.loads/dumps</code> for strings</li>
+                    <li>CSV: Use <code>DictReader/DictWriter</code> for easier column access</li>
+                    <li>Pandas is essential for large dataset analysis</li>
+                    <li>YAML is preferred for human-readable configs</li>
+                </ul>
+
                 <div class="page-navigation">
-                    <div></div>
-                    <a href="1-1-scripting-overview.html" class="nav-button next">
+                    <a href="6-3-python-functions.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 6.3 Functions & Modules</span>
+                    </a>
+                    <a href="6-5-python-networking.html" class="nav-button next">
                         <span class="nav-button-label">Next</span>
-                        <span class="nav-button-title">1.1 Scripting Overview →</span>
+                        <span class="nav-button-title">6.5 Python Networking →</span>
                     </a>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Search Modal -->
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">
-            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
-            <div class="search-modal-results" id="searchResults"></div>
-        </div>
-    </div>
-
-    <!-- Mobile Toggle -->
-    <button class="mobile-toggle">☰</button>
-
-    <script src="main.js"></script>
-</body>
-</html>
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Se

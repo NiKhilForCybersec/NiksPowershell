@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.6 Python Security Automation - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-15-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.15</span> Event Log Analysis</a>
+                        <a href="2-16-active-directory.html" class="nav-link"><span class="nav-link-number">2.16</span> Active Directory</a>
+                        <a href="2-17-networking-commands.html" class="nav-link"><span class="nav-link-number">2.17</span> Networking Commands</a>
+                        <a href="2-18-web-requests.html" class="nav-link"><span class="nav-link-number">2.18</span> Web Requests & APIs</a>
+                        <a href="2-19-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.19</span> Remoting & Jobs</a>
+                        <a href="2-20-error-handling.html" class="nav-link"><span class="nav-link-number">2.20</span> Error Handling</a>
+                        <a href="2-21-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.21</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-3-bash-variables.html" class="nav-link"><span class="nav-link-number">3.3</span> Variables & Data Types</a>
+                        <a href="3-4-control-structures.html" class="nav-link"><span class="nav-link-number">3.4</span> Control Structures</a>
+                        <a href="3-5-bash-functions.html" class="nav-link"><span class="nav-link-number">3.5</span> Functions & Scripts</a>
+                        <a href="3-6-file-io.html" class="nav-link"><span class="nav-link-number">3.6</span> File I/O</a>
+                        <a href="3-7-process-management.html" class="nav-link"><span class="nav-link-number">3.7</span> Process Management</a>
+                        <a href="3-8-system-admin.html" class="nav-link"><span class="nav-link-number">3.8</span> System Administration</a>
+                        <a href="3-9-regex.html" class="nav-link"><span class="nav-link-number">3.9</span> Regular Expressions</a>
+                        <a href="3-10-text-processing.html" class="nav-link"><span class="nav-link-number">3.10</span> Text Processing</a>
+                        <a href="3-12-bash-networking.html" class="nav-link"><span class="nav-link-number">3.12</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section collapsed" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-6-incident-response-scripts.html" class="nav-link"><span class="nav-link-number">5.6</span> Incident Response</a>
+                        <a href="5-7-threat-hunting-scripts.html" class="nav-link"><span class="nav-link-number">5.7</span> Threat Hunting</a>
+                        <a href="5-8-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.8</span> Vulnerability Scanning</a>
+                        <a href="5-9-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.9</span> Forensics Scripts</a>
+                        <a href="5-10-siem-integration.html" class="nav-link"><span class="nav-link-number">5.10</span> SIEM Integration</a>
+                        <a href="5-11-edr-automation.html" class="nav-link"><span class="nav-link-number">5.11</span> EDR Automation</a>
+                        <a href="5-12-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.12</span> Compliance Automation</a>
+                        <a href="5-13-log-analysis.html" class="nav-link"><span class="nav-link-number">5.13</span> Log Analysis</a>
+                        <a href="5-14-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.14</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-5-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.5</span> Cheat Sheets</a>
+                        <a href="10-6-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.6</span> Interview Preparation</a>
+                        <a href="10-7-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.7</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#python">Python Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Security Automation</span>
+                </nav>
+
+                <h1>6.6 Python Security Automation</h1>
+
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>IOC extraction and enrichment</li>
+                        <li>Automated vulnerability scanning</li>
+                        <li>Hash checking against threat intelligence</li>
+                        <li>Email header analysis</li>
+                        <li>URL and domain reputation checks</li>
+                    </ul>
+                </div>
+
+                <h2>IOC Extraction</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Extract IOCs from Text</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import re
+from typing import Dict, List, Set
+
+class IOCExtractor:
+    """Extract Indicators of Compromise from text"""
+    
+    # Regex patterns for common IOCs
+    PATTERNS = {
+        "ipv4": r'\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b',
+        "ipv6": r'\b(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\b',
+        "domain": r'\b(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}\b',
+        "url": r'https?://[^\s<>"{}|\\^`\[\]]+',
+        "email": r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
+        "md5": r'\b[a-fA-F0-9]{32}\b',
+        "sha1": r'\b[a-fA-F0-9]{40}\b',
+        "sha256": r'\b[a-fA-F0-9]{64}\b',
+        "cve": r'CVE-\d{4}-\d{4,7}',
+        "registry": r'(?:HKEY_[A-Z_]+|HKLM|HKCU|HKU|HKCR|HKCC)\\[^\s]+',
+        "file_path": r'(?:[a-zA-Z]:\\|/)[^\s<>:"|?*\n]+\.[a-zA-Z0-9]{1,6}'
+    }
+    
+    # Common false positives to filter
+    EXCLUDE_DOMAINS = {'example.com', 'example.org', 'localhost', 'test.com'}
+    EXCLUDE_IPS = {'127.0.0.1', '0.0.0.0', '255.255.255.255'}
+    
+    def extract(self, text: str) -> Dict[str, Set[str]]:
+        """Extract all IOC types from text"""
+        results = {}
+        for ioc_type, pattern in self.PATTERNS.items():
+            matches = set(re.findall(pattern, text, re.IGNORECASE))
+            # Filter false positives
+            if ioc_type == 'domain':
+                matches -= self.EXCLUDE_DOMAINS
+            elif ioc_type == 'ipv4':
+                matches -= self.EXCLUDE_IPS
+            if matches:
+                results[ioc_type] = matches
+        return results
+    
+    def defang(self, ioc: str) -> str:
+        """Defang an IOC for safe sharing"""
+        return ioc.replace('.', '[.]').replace('http', 'hxxp')
+    
+    def refang(self, ioc: str) -> str:
+        """Refang a defanged IOC"""
+        return ioc.replace('[.]', '.').replace('hxxp', 'http')
+
+# Usage
+extractor = IOCExtractor()
+threat_report = """
+The malware was downloaded from hxxp://evil[.]com/malware.exe
+C2 server: 192.168.100.50 on port 443
+Hash: 5d41402abc4b2a76b9719d911017c592
+Also seen: CVE-2024-1234, contacts <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc9e9d989d9f88938ebc998a9590d29f9391">[email&#160;protected]</a>
+"""
+
+iocs = extractor.extract(extractor.refang(threat_report))
+for ioc_type, values in iocs.items():
+    print(f"\n{ioc_type.upper()}:")
+    for v in values:
+        print(f"  - {extractor.defang(v)}")</code></pre>
+                </div>
+
+                <h2>Hash Checking</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - File Hash Analysis</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import hashlib
+import requests
+from pathlib import Path
+
+class HashChecker:
+    """Check file hashes against threat intelligence"""
+    
+    def __init__(self, vt_api_key: str = None):
+        self.vt_api_key = vt_api_key
+    
+    def hash_file(self, filepath: str) -> dict:
+        """Calculate multiple hashes for a file"""
+        algorithms = ['md5', 'sha1', 'sha256']
+        hashes = {alg: hashlib.new(alg) for alg in algorithms}
+        
+        with open(filepath, 'rb') as f:
+            while chunk := f.read(8192):
+                for h in hashes.values():
+                    h.update(chunk)
+        
+        return {
+            'filename': Path(filepath).name,
+            'size': Path(filepath).stat().st_size,
+            'hashes': {alg: h.hexdigest() for alg, h in hashes.items()}
+        }
+    
+    def check_virustotal(self, file_hash: str) -> dict:
+        """Check hash against VirusTotal"""
+        if not self.vt_api_key:
+            return {'error': 'No API key configured'}
+        
+        url = f'https://www.virustotal.com/api/v3/files/{file_hash}'
+        headers = {'x-apikey': self.vt_api_key}
+        
+        try:
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                data = response.json()['data']['attributes']
+                stats = data.get('last_analysis_stats', {})
+                return {
+                    'hash': file_hash,
+                    'malicious': stats.get('malicious', 0),
+                    'suspicious': stats.get('suspicious', 0),
+                    'undetected': stats.get('undetected', 0),
+                    'names': data.get('names', [])[:5],
+                    'type': data.get('type_description', 'Unknown')
+                }
+            elif response.status_code == 404:
+                return {'hash': file_hash, 'status': 'not_found'}
+            else:
+                return {'hash': file_hash, 'error': f'HTTP {response.status_code}'}
+        except Exception as e:
+            return {'hash': file_hash, 'error': str(e)}
+    
+    def scan_directory(self, directory: str, extensions: list = None) -> list:
+        """Scan all files in directory"""
+        results = []
+        path = Path(directory)
+        
+        for file in path.rglob('*'):
+            if file.is_file():
+                if extensions and file.suffix.lower() not in extensions:
+                    continue
+                try:
+                    file_info = self.hash_file(str(file))
+                    results.append(file_info)
+                except Exception as e:
+                    results.append({'file': str(file), 'error': str(e)})
+        
+        return results
+
+# Usage
+checker = HashChecker(vt_api_key="YOUR_API_KEY")
+file_info = checker.hash_file("/path/to/suspicious.exe")
+print(f"SHA256: {file_info['hashes']['sha256']}")
+
+# Check against VT
+vt_result = checker.check_virustotal(file_info['hashes']['sha256'])
+if vt_result.get('malicious', 0) > 0:
+    print(f"⚠️ MALICIOUS: {vt_result['malicious']} detections!")</code></pre>
+                </div>
+
+                <h2>Email Header Analysis</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - Phishing Email Analysis</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import email
+from email import policy
+from email.parser import BytesParser
+import re
+
+class EmailAnalyzer:
+    """Analyze email headers for phishing indicators"""
+    
+    def parse_email(self, raw_email: bytes) -> dict:
+        """Parse raw email and extract key headers"""
+        msg = BytesParser(policy=policy.default).parsebytes(raw_email)
+        
+        return {
+            'from': msg['From'],
+            'to': msg['To'],
+            'subject': msg['Subject'],
+            'date': msg['Date'],
+            'message_id': msg['Message-ID'],
+            'received': msg.get_all('Received', []),
+            'reply_to': msg['Reply-To'],
+            'return_path': msg['Return-Path'],
+            'x_originating_ip': msg['X-Originating-IP'],
+            'authentication_results': msg['Authentication-Results'],
+            'dkim_signature': msg['DKIM-Signature'],
+            'spf': self._extract_spf(msg.get_all('Received-SPF', [])),
+            'attachments': self._get_attachments(msg),
+            'urls': self._extract_urls(msg)
+        }
+    
+    def _extract_spf(self, spf_headers: list) -> str:
+        if spf_headers:
+            return spf_headers[0].split()[0] if spf_headers[0] else 'none'
+        return 'none'
+    
+    def _get_attachments(self, msg) -> list:
+        attachments = []
+        for part in msg.walk():
+            if part.get_content_disposition() == 'attachment':
+                attachments.append({
+                    'filename': part.get_filename(),
+                    'content_type': part.get_content_type(),
+                    'size': len(part.get_payload(decode=True) or b'')
+                })
+        return attachments
+    
+    def _extract_urls(self, msg) -> list:
+        body = ""
+        if msg.is_multipart():
+            for part in msg.walk():
+                if part.get_content_type() == 'text/html':
+                    body = part.get_payload(decode=True).decode('utf-8', errors='ignore')
+                    break
+        else:
+            body = msg.get_payload(decode=True).decode('utf-8', errors='ignore')
+        
+        url_pattern = r'https?://[^\s<>"\']+' 
+        return list(set(re.findall(url_pattern, body)))
+    
+    def analyze_for_phishing(self, parsed: dict) -> dict:
+        """Check for phishing indicators"""
+        indicators = []
+        risk_score = 0
+        
+        # Check SPF
+        if parsed['spf'] not in ['pass', 'Pass']:
+            indicators.append(f"SPF failed: {parsed['spf']}")
+            risk_score += 20
+        
+        # Check reply-to mismatch
+        if parsed['reply_to'] and parsed['from']:
+            from_domain = parsed['from'].split('@')[-1].rstrip('>')
+            reply_domain = parsed['reply_to'].split('@')[-1].rstrip('>')
+            if from_domain != reply_domain:
+                indicators.append(f"Reply-To mismatch: {reply_domain}")
+                risk_score += 30
+        
+        # Check for suspicious attachments
+        risky_extensions = ['.exe', '.js', '.vbs', '.ps1', '.bat', '.scr', '.dll']
+        for att in parsed['attachments']:
+            if any(att['filename'].lower().endswith(ext) for ext in risky_extensions):
+                indicators.append(f"Risky attachment: {att['filename']}")
+                risk_score += 40
+        
+        # Check URLs for suspicious patterns
+        for url in parsed['urls']:
+            if re.search(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', url):
+                indicators.append(f"IP-based URL: {url[:50]}")
+                risk_score += 25
+        
+        return {
+            'risk_score': min(risk_score, 100),
+            'risk_level': 'high' if risk_score >= 50 else 'medium' if risk_score >= 25 else 'low',
+            'indicators': indicators
+        }
+
+# Usage
+with open('suspicious_email.eml', 'rb') as f:
+    raw_email = f.read()
+
+analyzer = EmailAnalyzer()
+parsed = analyzer.parse_email(raw_email)
+analysis = analyzer.analyze_for_phishing(parsed)
+
+print(f"Risk Score: {analysis['risk_score']}/100")
+print(f"Risk Level: {analysis['risk_level']}")
+for indicator in analysis['indicators']:
+    print(f"  ⚠️ {indicator}")</code></pre>
+                </div>
+
+                <h2>URL/Domain Reputation</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Python - URL Reputation Checker</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>import requests
+import socket
+from urllib.parse import urlparse
+from datetime import datetime
+import whois
+
+class URLChecker:
+    """Check URL and domain reputation"""
+    
+    def __init__(self, vt_api_key: str = None):
+        self.vt_api_key = vt_api_key
+    
+    def analyze_url(self, url: str) -> dict:
+        """Comprehensive URL analysis"""
+        parsed = urlparse(url)
+        domain = parsed.netloc
+        
+        analysis = {
+            'url': url,
+            'domain': domain,
+            'scheme': parsed.scheme,
+            'path': parsed.path,
+            'checks': {}
+        }
+        
+        # DNS resolution
+        try:
+            ips = socket.gethostbyname_ex(domain)[2]
+            analysis['resolved_ips'] = ips
+        except socket.gaierror:
+            analysis['resolved_ips'] = []
+            analysis['checks']['dns'] = 'FAIL: Domain does not resolve'
+        
+        # WHOIS check
+        try:
+            w = whois.whois(domain)
+            creation_date = w.creation_date
+            if isinstance(creation_date, list):
+                creation_date = creation_date[0]
+            
+            days_old = (datetime.now() - creation_date).days if creation_date else 0
+            analysis['whois'] = {
+                'registrar': w.registrar,
+                'creation_date': str(creation_date),
+                'days_old': days_old
+            }
+            
+            if days_old < 30:
+                analysis['checks']['domain_age'] = f'WARNING: Domain only {days_old} days old'
+        except Exception as e:
+            analysis['whois'] = {'error': str(e)}
+        
+        # Check for suspicious patterns
+        suspicious_patterns = [
+            (r'\d{1,3}-\d{1,3}-\d{1,3}-\d{1,3}', 'IP in domain'),
+            (r'(login|secure|account|update|verify)', 'Phishing keywords'),
+            (r'[^a-zA-Z0-9.-]', 'Special characters'),
+        ]
+        
+        for pattern, description in suspicious_patterns:
+            if re.search(pattern, domain, re.IGNORECASE):
+                analysis['checks'][description] = f'WARNING: {description} detected'
+        
+        return analysis
+    
+    def check_virustotal_url(self, url: str) -> dict:
+        """Check URL against VirusTotal"""
+        if not self.vt_api_key:
+            return {'error': 'No API key'}
+        
+        import base64
+        url_id = base64.urlsafe_b64encode(url.encode()).decode().strip("=")
+        
+        headers = {'x-apikey': self.vt_api_key}
+        response = requests.get(
+            f'https://www.virustotal.com/api/v3/urls/{url_id}',
+            headers=headers
+        )
+        
+        if response.status_code == 200:
+            data = response.json()['data']['attributes']
+            stats = data.get('last_analysis_stats', {})
+            return {
+                'malicious': stats.get('malicious', 0),
+                'suspicious': stats.get('suspicious', 0),
+                'categories': data.get('categories', {}),
+                'reputation': data.get('reputation', 0)
+            }
+        return {'status': 'not_found'}
+
+# Usage
+checker = URLChecker(vt_api_key="YOUR_API_KEY")
+result = checker.analyze_url("https://suspicious-login-verify.com/account")
+
+print(f"Domain: {result['domain']}")
+print(f"Resolved IPs: {result.get('resolved_ips', [])}")
+for check, message in result['checks'].items():
+    print(f"  ⚠️ {message}")</code></pre>
+                </div>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Regex patterns extract IOCs: IPs, domains, hashes, CVEs</li>
+                    <li>Always defang IOCs before sharing in reports</li>
+                    <li>VirusTotal API is essential for hash/URL reputation</li>
+                    <li>Email headers reveal phishing attempts (SPF, Reply-To)</li>
+                    <li>Combine multiple checks for comprehensive analysis</li>
+                </ul>
+
+                <div class="page-navigation">
+                    <a href="6-5-python-networking.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 6.5 Python Networking</span>
+                    </a>
+                    <a href="6-7-python-forensics.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">6.7 Forensics & Log Analysis →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+      
