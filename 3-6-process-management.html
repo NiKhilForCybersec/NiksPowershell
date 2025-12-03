@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.6 Process Management - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#bash">Bash Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Process Management</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>3.6 Process Management</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>View and monitor running processes</li>
+                        <li>Control processes with signals</li>
+                        <li>Manage background jobs</li>
+                        <li>Monitor system resources</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Common Signals</div>
+                    </div>
+                    <ul>
+                        <li><strong>SIGTERM (15)</strong> → Graceful termination (default kill)</li>
+                        <li><strong>SIGKILL (9)</strong> → Force kill (cannot be caught)</li>
+                        <li><strong>SIGINT (2)</strong> → Interrupt (Ctrl+C)</li>
+                        <li><strong>SIGHUP (1)</strong> → Hangup (reload config)</li>
+                        <li><strong>SIGSTOP (19)</strong> → Pause process</li>
+                        <li><strong>SIGCONT (18)</strong> → Resume paused process</li>
+                    </ul>
+                </div>
+
+                <!-- Viewing Processes -->
+                <h2>Viewing Processes</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Process Listing
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Basic process listing</span>
+<span class="token-function">ps</span>                    <span class="token-comment"># Current shell processes</span>
+<span class="token-function">ps</span> aux                <span class="token-comment"># All processes (BSD style)</span>
+<span class="token-function">ps</span> -ef                <span class="token-comment"># All processes (POSIX style)</span>
+
+<span class="token-comment"># ps aux columns:</span>
+<span class="token-comment"># USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND</span>
+
+<span class="token-comment"># Filter by name</span>
+<span class="token-function">ps</span> aux | <span class="token-function">grep</span> nginx
+<span class="token-function">ps</span> aux | <span class="token-function">grep</span> -v grep | <span class="token-function">grep</span> nginx   <span class="token-comment"># Exclude grep itself</span>
+
+<span class="token-comment"># Find by name with pgrep</span>
+<span class="token-function">pgrep</span> nginx                 <span class="token-comment"># Return PIDs</span>
+<span class="token-function">pgrep</span> -l nginx              <span class="token-comment"># PIDs with names</span>
+<span class="token-function">pgrep</span> -a nginx              <span class="token-comment"># PIDs with full command</span>
+<span class="token-function">pgrep</span> -u root               <span class="token-comment"># Processes by user</span>
+<span class="token-function">pgrep</span> -f <span class="token-string">"python script"</span>   <span class="token-comment"># Match full command line</span>
+
+<span class="token-comment"># Process tree</span>
+<span class="token-function">pstree</span>                      <span class="token-comment"># Show process hierarchy</span>
+<span class="token-function">pstree</span> -p                   <span class="token-comment"># Include PIDs</span>
+<span class="token-function">pstree</span> -u                   <span class="token-comment"># Include user changes</span>
+<span class="token-function">ps</span> -ejH                     <span class="token-comment"># Process tree with ps</span>
+
+<span class="token-comment"># Specific process info</span>
+<span class="token-function">ps</span> -p <span class="token-number">1234</span>                  <span class="token-comment"># By PID</span>
+<span class="token-function">ps</span> -p <span class="token-number">1234</span> -o pid,ppid,cmd  <span class="token-comment"># Custom output format</span>
+<span class="token-function">ps</span> -o pid,ppid,user,%cpu,%mem,cmd -p <span class="token-number">1234</span>
+
+<span class="token-comment"># Top CPU consumers</span>
+<span class="token-function">ps</span> aux --sort=-%cpu | <span class="token-function">head</span> -10
+
+<span class="token-comment"># Top memory consumers</span>
+<span class="token-function">ps</span> aux --sort=-%mem | <span class="token-function">head</span> -10
+
+<span class="token-comment"># All processes for a user</span>
+<span class="token-function">ps</span> -u username
+<span class="token-function">ps</span> -U root -u root
+
+<span class="token-comment"># Show threads</span>
+<span class="token-function">ps</span> -eLf                     <span class="token-comment"># All threads</span>
+<span class="token-function">ps</span> -T -p <span class="token-number">1234</span>               <span class="token-comment"># Threads for PID</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Killing Processes -->
+                <h2>Controlling Processes</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Signals and Kill
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Graceful termination (SIGTERM - default)</span>
+<span class="token-function">kill</span> <span class="token-number">1234</span>
+<span class="token-function">kill</span> -15 <span class="token-number">1234</span>
+<span class="token-function">kill</span> -TERM <span class="token-number">1234</span>
+
+<span class="token-comment"># Force kill (SIGKILL - cannot be caught)</span>
+<span class="token-function">kill</span> -9 <span class="token-number">1234</span>
+<span class="token-function">kill</span> -KILL <span class="token-number">1234</span>
+
+<span class="token-comment"># Interrupt (like Ctrl+C)</span>
+<span class="token-function">kill</span> -2 <span class="token-number">1234</span>
+<span class="token-function">kill</span> -INT <span class="token-number">1234</span>
+
+<span class="token-comment"># Hangup (often triggers config reload)</span>
+<span class="token-function">kill</span> -HUP <span class="token-number">1234</span>
+
+<span class="token-comment"># Pause process</span>
+<span class="token-function">kill</span> -STOP <span class="token-number">1234</span>
+
+<span class="token-comment"># Resume paused process</span>
+<span class="token-function">kill</span> -CONT <span class="token-number">1234</span>
+
+<span class="token-comment"># Kill by name</span>
+<span class="token-function">pkill</span> nginx                 <span class="token-comment"># Kill all nginx processes</span>
+<span class="token-function">pkill</span> -9 nginx              <span class="token-comment"># Force kill all nginx</span>
+<span class="token-function">pkill</span> -u baduser            <span class="token-comment"># Kill all processes by user</span>
+<span class="token-function">pkill</span> -f <span class="token-string">"python script.py"</span> <span class="token-comment"># Match full command</span>
+
+<span class="token-comment"># Kill all instances of a command</span>
+<span class="token-function">killall</span> nginx
+<span class="token-function">killall</span> -9 nginx
+
+<span class="token-comment"># List available signals</span>
+<span class="token-function">kill</span> -l
+
+<span class="token-comment"># Interactive process killer</span>
+<span class="token-function">top</span>                         <span class="token-comment"># Press 'k' then enter PID</span>
+<span class="token-function">htop</span>                        <span class="token-comment"># F9 to kill</span>
+
+<span class="token-comment"># Safe kill pattern (try graceful first)</span>
+<span class="token-function">kill</span> <span class="token-variable">$PID</span> 2>/dev/null
+<span class="token-function">sleep</span> <span class="token-number">5</span>
+<span class="token-keyword">if</span> <span class="token-function">kill</span> -0 <span class="token-variable">$PID</span> 2>/dev/null; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Process still running, force killing..."</span>
+    <span class="token-function">kill</span> -9 <span class="token-variable">$PID</span>
+<span class="token-keyword">fi</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Background Jobs -->
+                <h2>Background Jobs</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Job Control
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Run command in background</span>
+<span class="token-function">sleep</span> <span class="token-number">100</span> &
+long_running_command &
+
+<span class="token-comment"># Get PID of last background process</span>
+<span class="token-function">echo</span> <span class="token-string">"Background PID: $!"</span>
+
+<span class="token-comment"># List background jobs</span>
+<span class="token-function">jobs</span>                        <span class="token-comment"># List jobs</span>
+<span class="token-function">jobs</span> -l                     <span class="token-comment"># Include PIDs</span>
+
+<span class="token-comment"># Bring to foreground</span>
+<span class="token-function">fg</span>                          <span class="token-comment"># Last job</span>
+<span class="token-function">fg</span> %1                       <span class="token-comment"># Job 1</span>
+<span class="token-function">fg</span> %+                       <span class="token-comment"># Current job</span>
+<span class="token-function">fg</span> %-                       <span class="token-comment"># Previous job</span>
+
+<span class="token-comment"># Send to background</span>
+<span class="token-comment"># Press Ctrl+Z to suspend, then:</span>
+<span class="token-function">bg</span>                          <span class="token-comment"># Resume in background</span>
+<span class="token-function">bg</span> %1                       <span class="token-comment"># Specific job</span>
+
+<span class="token-comment"># Disown job (survives terminal close)</span>
+<span class="token-function">disown</span>                      <span class="token-comment"># Last job</span>
+<span class="token-function">disown</span> %1                   <span class="token-comment"># Specific job</span>
+<span class="token-function">disown</span> -a                   <span class="token-comment"># All jobs</span>
+
+<span class="token-comment"># Run immune to hangups (survives logout)</span>
+<span class="token-function">nohup</span> long_command &
+<span class="token-function">nohup</span> ./script.sh > output.log 2>&1 &
+
+<span class="token-comment"># Wait for background processes</span>
+<span class="token-function">wait</span>                        <span class="token-comment"># Wait for all</span>
+<span class="token-function">wait</span> <span class="token-variable">$PID</span>                   <span class="token-comment"># Wait for specific PID</span>
+<span class="token-function">wait</span> %1                     <span class="token-comment"># Wait for job</span>
+
+<span class="token-comment"># Parallel execution example</span>
+<span class="token-keyword">for</span> server <span class="token-keyword">in</span> server1 server2 server3; <span class="token-keyword">do</span>
+    <span class="token-function">ssh</span> <span class="token-variable">$server</span> <span class="token-string">"uptime"</span> &
+<span class="token-keyword">done</span>
+<span class="token-function">wait</span>  <span class="token-comment"># Wait for all SSH commands</span>
+<span class="token-function">echo</span> <span class="token-string">"All servers checked"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- System Monitoring -->
+                <h2>System Monitoring</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Resource Monitoring
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Interactive process monitor</span>
+<span class="token-function">top</span>                         <span class="token-comment"># Classic</span>
+<span class="token-function">htop</span>                        <span class="token-comment"># Enhanced (if installed)</span>
+
+<span class="token-comment"># top shortcuts:</span>
+<span class="token-comment"># P = sort by CPU</span>
+<span class="token-comment"># M = sort by memory</span>
+<span class="token-comment"># k = kill process</span>
+<span class="token-comment"># q = quit</span>
+
+<span class="token-comment"># Memory usage</span>
+<span class="token-function">free</span> -h                     <span class="token-comment"># Human readable</span>
+<span class="token-function">free</span> -m                     <span class="token-comment"># In megabytes</span>
+<span class="token-function">cat</span> /proc/meminfo           <span class="token-comment"># Detailed memory info</span>
+
+<span class="token-comment"># CPU info</span>
+<span class="token-function">lscpu</span>                       <span class="token-comment"># CPU architecture info</span>
+<span class="token-function">cat</span> /proc/cpuinfo           <span class="token-comment"># Detailed CPU info</span>
+<span class="token-function">nproc</span>                       <span class="token-comment"># Number of processors</span>
+
+<span class="token-comment"># Disk usage</span>
+<span class="token-function">df</span> -h                       <span class="token-comment"># Filesystem usage</span>
+<span class="token-function">du</span> -sh /var/log             <span class="token-comment"># Directory size</span>
+<span class="token-function">du</span> -h --max-depth=1 /       <span class="token-comment"># Top-level sizes</span>
+
+<span class="token-comment"># I/O statistics</span>
+<span class="token-function">iostat</span>                      <span class="token-comment"># CPU and I/O stats</span>
+<span class="token-function">iostat</span> -x <span class="token-number">1</span>                 <span class="token-comment"># Extended, every 1 second</span>
+<span class="token-function">iotop</span>                       <span class="token-comment"># I/O by process (needs root)</span>
+
+<span class="token-comment"># Network connections</span>
+<span class="token-function">ss</span> -tuln                    <span class="token-comment"># Listening ports</span>
+<span class="token-function">ss</span> -tunap                   <span class="token-comment"># All connections with processes</span>
+<span class="token-function">netstat</span> -tuln               <span class="token-comment"># Legacy equivalent</span>
+
+<span class="token-comment"># System uptime and load</span>
+<span class="token-function">uptime</span>
+<span class="token-function">cat</span> /proc/loadavg
+
+<span class="token-comment"># Watch command (refresh output)</span>
+<span class="token-function">watch</span> -n <span class="token-number">2</span> <span class="token-string">'ps aux | head -10'</span>  <span class="token-comment"># Refresh every 2 seconds</span>
+<span class="token-function">watch</span> -d <span class="token-function">free</span> -h               <span class="token-comment"># Highlight changes</span>
+
+<span class="token-comment"># Real-time log monitoring</span>
+<span class="token-function">tail</span> -f /var/log/syslog
+<span class="token-function">journalctl</span> -f                <span class="token-comment"># systemd journal</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Script -->
+                <h2>Security: Process Monitoring Script</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Suspicious Process Monitor
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+<span class="token-comment"># Monitor for suspicious processes</span>
+
+<span class="token-keyword">set</span> -euo pipefail
+
+LOG_FILE=<span class="token-string">"/var/log/process_monitor.log"</span>
+
+<span class="token-comment"># Suspicious process patterns</span>
+SUSPICIOUS_PATTERNS=(
+    <span class="token-string">"nc -l"</span>           <span class="token-comment"># Netcat listener</span>
+    <span class="token-string">"ncat"</span>
+    <span class="token-string">"/dev/tcp"</span>        <span class="token-comment"># Bash reverse shell</span>
+    <span class="token-string">"base64 -d"</span>       <span class="token-comment"># Decoding payloads</span>
+    <span class="token-string">"curl.*|.*sh"</span>     <span class="token-comment"># Download and execute</span>
+    <span class="token-string">"wget.*|.*sh"</span>
+    <span class="token-string">"/tmp/.*\.sh"</span>     <span class="token-comment"># Scripts in temp</span>
+)
+
+log_alert() {
+    <span class="token-keyword">local</span> message=<span class="token-string">"$1"</span>
+    <span class="token-function">echo</span> <span class="token-string">"[$(date '+%Y-%m-%d %H:%M:%S')] ALERT: $message"</span> | <span class="token-function">tee</span> -a <span class="token-string">"$LOG_FILE"</span>
+}
+
+check_processes() {
+    <span class="token-keyword">local</span> ps_output
+    ps_output=<span class="token-variable">$(</span><span class="token-function">ps</span> aux<span class="token-variable">)</span>
+    
+    <span class="token-keyword">for</span> pattern <span class="token-keyword">in</span> <span class="token-string">"${SUSPICIOUS_PATTERNS[@]}"</span>; <span class="token-keyword">do</span>
+        <span class="token-keyword">if</span> <span class="token-function">echo</span> <span class="token-string">"$ps_output"</span> | <span class="token-function">grep</span> -qE <span class="token-string">"$pattern"</span>; <span class="token-keyword">then</span>
+            <span class="token-keyword">local</span> matches
+            matches=<span class="token-variable">$(</span><span class="token-function">echo</span> <span class="token-string">"$ps_output"</span> | <span class="token-function">grep</span> -E <span class="token-string">"$pattern"</span><span class="token-variable">)</span>
+            log_alert <span class="token-string">"Suspicious pattern '$pattern' found:"</span>
+            <span class="token-function">echo</span> <span class="token-string">"$matches"</span> | <span class="token-keyword">while</span> <span class="token-function">read</span> -r line; <span class="token-keyword">do</span>
+                log_alert <span class="token-string">"  $line"</span>
+            <span class="token-keyword">done</span>
+        <span class="token-keyword">fi</span>
+    <span class="token-keyword">done</span>
+}
+
+<span class="token-comment"># Check for processes running from /tmp</span>
+check_tmp_processes() {
+    <span class="token-keyword">local</span> tmp_procs
+    tmp_procs=<span class="token-variable">$(</span><span class="token-function">ls</span> -la /proc/*/exe 2>/dev/null | <span class="token-function">grep</span> -E <span class="token-string">'/tmp|/dev/shm'</span><span class="token-variable">)</span> || <span class="token-variable">true</span>
+    
+    <span class="token-keyword">if</span> [[ -n <span class="token-string">"$tmp_procs"</span> ]]; <span class="token-keyword">then</span>
+        log_alert <span class="token-string">"Processes running from temp directories:"</span>
+        <span class="token-function">echo</span> <span class="token-string">"$tmp_procs"</span> | <span class="token-keyword">while</span> <span class="token-function">read</span> -r line; <span class="token-keyword">do</span>
+            log_alert <span class="token-string">"  $line"</span>
+        <span class="token-keyword">done</span>
+    <span class="token-keyword">fi</span>
+}
+
+<span class="token-comment"># Check for hidden processes (process hiding attempt)</span>
+check_hidden_processes() {
+    <span class="token-keyword">local</span> ps_count proc_count
+    ps_count=<span class="token-variable">$(</span><span class="token-function">ps</span> aux | <span class="token-function">wc</span> -l<span class="token-variable">)</span>
+    proc_count=<span class="token-variable">$(</span><span class="token-function">ls</span> -d /proc/[<span class="token-number">0</span>-<span class="token-number">9</span>]* 2>/dev/null | <span class="token-function">wc</span> -l<span class="token-variable">)</span>
+    
+    <span class="token-keyword">if</span> (( proc_count - ps_count > <span class="token-number">10</span> )); <span class="token-keyword">then</span>
+        log_alert <span class="token-string">"Possible hidden processes! ps: $ps_count, /proc: $proc_count"</span>
+    <span class="token-keyword">fi</span>
+}
+
+<span class="token-comment"># Main monitoring loop</span>
+<span class="token-function">echo</span> <span class="token-string">"Starting process monitor..."</span>
+<span class="token-keyword">while</span> <span class="token-variable">true</span>; <span class="token-keyword">do</span>
+    check_processes
+    check_tmp_processes
+    check_hidden_processes
+    <span class="token-function">sleep</span> <span class="token-number">60</span>
+<span class="token-keyword">done</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Process Management</div>
+                    </div>
+                    <ul>
+                        <li><strong>Try SIGTERM first:</strong> Allow graceful shutdown before SIGKILL</li>
+                        <li><strong>Use pkill/pgrep:</strong> Safer than parsing ps output</li>
+                        <li><strong>Capture $! immediately:</strong> After backgrounding a process</li>
+                        <li><strong>Use nohup for long tasks:</strong> Survives terminal disconnection</li>
+                        <li><strong>Wait for child processes:</strong> Prevent zombie processes</li>
+                        <li><strong>Monitor resource usage:</strong> Regular checks for anomalies</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between kill -9 and kill -15?"</li>
+                        <li><strong>Strong Answer:</strong> <code>kill -15</code> (SIGTERM) is a graceful termination request that the process can catch and handle (cleanup, save state). <code>kill -9</code> (SIGKILL) forcefully terminates immediately and cannot be caught or ignored. Always try SIGTERM first to allow proper cleanup; use SIGKILL only if the process doesn't respond.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><code>ps aux</code> or <code>ps -ef</code> for process listing</li>
+                    <li><code>pgrep</code>/<code>pkill</code> for finding/killing by name</li>
+                    <li>Use <code>&</code> for background, <code>jobs</code> to list, <code>fg</code>/<code>bg</code> to control</li>
+                    <li>SIGTERM (15) graceful, SIGKILL (9) force</li>
+                    <li><code>nohup</code> and <code>disown</code> for persistent background tasks</li>
+                    <li><code>top</code>/<code>htop</code> for interactive monitoring</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="3-5-file-io.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 3.5 File I/O</span>
+                    </a>
+                    <a href="3-7-system-admin.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.7 System Administration →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

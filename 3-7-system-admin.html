@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.7 System Administration - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#bash">Bash Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>System Administration</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>3.7 System Administration</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Manage users and groups with scripts</li>
+                        <li>Monitor system resources and disk usage</li>
+                        <li>Automate service management</li>
+                        <li>Schedule tasks with cron</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Key Admin Directories</div>
+                    </div>
+                    <ul>
+                        <li><strong>/etc/passwd</strong> → User accounts</li>
+                        <li><strong>/etc/shadow</strong> → Password hashes</li>
+                        <li><strong>/etc/group</strong> → Group definitions</li>
+                        <li><strong>/var/log</strong> → System logs</li>
+                        <li><strong>/etc/cron.d</strong> → Cron jobs</li>
+                        <li><strong>/etc/systemd</strong> → Service definitions</li>
+                    </ul>
+                </div>
+
+                <!-- User Management -->
+                <h2>User and Group Management</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - User Management
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># List all users</span>
+<span class="token-function">cut</span> -d: -f1 /etc/passwd
+
+<span class="token-comment"># List users with login shells</span>
+<span class="token-function">grep</span> -v <span class="token-string">'/nologin\|/false'</span> /etc/passwd | <span class="token-function">cut</span> -d: -f1
+
+<span class="token-comment"># Get user info</span>
+<span class="token-function">id</span> username
+<span class="token-function">getent</span> passwd username
+
+<span class="token-comment"># Create user</span>
+<span class="token-function">sudo</span> useradd -m -s /bin/bash -c <span class="token-string">"John Doe"</span> johnd
+<span class="token-function">sudo</span> passwd johnd
+
+<span class="token-comment"># Create user with specific UID and groups</span>
+<span class="token-function">sudo</span> useradd -m -u <span class="token-number">1500</span> -g users -G sudo,docker newuser
+
+<span class="token-comment"># Modify user</span>
+<span class="token-function">sudo</span> usermod -aG docker johnd    <span class="token-comment"># Add to group</span>
+<span class="token-function">sudo</span> usermod -l newname oldname  <span class="token-comment"># Rename</span>
+<span class="token-function">sudo</span> usermod -L johnd            <span class="token-comment"># Lock account</span>
+<span class="token-function">sudo</span> usermod -U johnd            <span class="token-comment"># Unlock account</span>
+
+<span class="token-comment"># Delete user</span>
+<span class="token-function">sudo</span> userdel johnd               <span class="token-comment"># Keep home dir</span>
+<span class="token-function">sudo</span> userdel -r johnd            <span class="token-comment"># Remove home dir too</span>
+
+<span class="token-comment"># Group management</span>
+<span class="token-function">sudo</span> groupadd developers
+<span class="token-function">sudo</span> groupdel developers
+<span class="token-function">groups</span> username                  <span class="token-comment"># List user's groups</span>
+
+<span class="token-comment"># Check last login</span>
+<span class="token-function">lastlog</span>
+<span class="token-function">last</span> johnd                       <span class="token-comment"># Login history for user</span>
+
+<span class="token-comment"># Currently logged in users</span>
+<span class="token-function">who</span>
+<span class="token-function">w</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Disk Management -->
+                <h2>Disk and Storage Management</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Disk Management
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Disk usage overview</span>
+<span class="token-function">df</span> -h                            <span class="token-comment"># Human readable</span>
+<span class="token-function">df</span> -h /                          <span class="token-comment"># Specific mount</span>
+<span class="token-function">df</span> -i                            <span class="token-comment"># Inode usage</span>
+
+<span class="token-comment"># Directory sizes</span>
+<span class="token-function">du</span> -sh /var/log                  <span class="token-comment"># Single directory</span>
+<span class="token-function">du</span> -h --max-depth=<span class="token-number">1</span> /var        <span class="token-comment"># First level subdirs</span>
+<span class="token-function">du</span> -ah /var/log | <span class="token-function">sort</span> -rh | <span class="token-function">head</span> -<span class="token-number">10</span>  <span class="token-comment"># Largest files</span>
+
+<span class="token-comment"># Find large files</span>
+<span class="token-function">find</span> / -type f -size +100M -exec <span class="token-function">ls</span> -lh {} \; 2>/dev/null
+<span class="token-function">find</span> /var/log -name <span class="token-string">"*.log"</span> -size +50M
+
+<span class="token-comment"># Find old files</span>
+<span class="token-function">find</span> /tmp -type f -mtime +<span class="token-number">30</span>     <span class="token-comment"># Modified 30+ days ago</span>
+<span class="token-function">find</span> /var/log -name <span class="token-string">"*.log"</span> -mtime +<span class="token-number">7</span> -delete  <span class="token-comment"># Clean old logs</span>
+
+<span class="token-comment"># List block devices</span>
+<span class="token-function">lsblk</span>
+<span class="token-function">lsblk</span> -f                         <span class="token-comment"># With filesystem info</span>
+
+<span class="token-comment"># Mount information</span>
+<span class="token-function">mount</span> | <span class="token-function">column</span> -t
+<span class="token-function">cat</span> /etc/fstab
+
+<span class="token-comment"># Disk health (requires smartmontools)</span>
+<span class="token-function">sudo</span> smartctl -a /dev/sda
+
+<span class="token-comment"># Check filesystem</span>
+<span class="token-function">sudo</span> fsck -n /dev/sda1           <span class="token-comment"># Check only, don't fix</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Service Management -->
+                <h2>Service Management (systemd)</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Service Management
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># List all services</span>
+<span class="token-function">systemctl</span> list-units --type=service
+<span class="token-function">systemctl</span> list-units --type=service --state=running
+
+<span class="token-comment"># Service status</span>
+<span class="token-function">systemctl</span> status nginx
+<span class="token-function">systemctl</span> is-active nginx
+<span class="token-function">systemctl</span> is-enabled nginx
+
+<span class="token-comment"># Control services</span>
+<span class="token-function">sudo</span> systemctl start nginx
+<span class="token-function">sudo</span> systemctl stop nginx
+<span class="token-function">sudo</span> systemctl restart nginx
+<span class="token-function">sudo</span> systemctl reload nginx      <span class="token-comment"># Reload config without restart</span>
+
+<span class="token-comment"># Enable/disable at boot</span>
+<span class="token-function">sudo</span> systemctl enable nginx
+<span class="token-function">sudo</span> systemctl disable nginx
+<span class="token-function">sudo</span> systemctl enable --now nginx  <span class="token-comment"># Enable and start</span>
+
+<span class="token-comment"># View service logs</span>
+<span class="token-function">journalctl</span> -u nginx
+<span class="token-function">journalctl</span> -u nginx --since <span class="token-string">"1 hour ago"</span>
+<span class="token-function">journalctl</span> -u nginx -f            <span class="token-comment"># Follow logs</span>
+
+<span class="token-comment"># Failed services</span>
+<span class="token-function">systemctl</span> --failed
+
+<span class="token-comment"># Reload systemd after unit file changes</span>
+<span class="token-function">sudo</span> systemctl daemon-reload
+
+<span class="token-comment"># Mask service (prevent starting)</span>
+<span class="token-function">sudo</span> systemctl mask bluetooth
+<span class="token-function">sudo</span> systemctl unmask bluetooth</code></pre>
+                    </div>
+                </div>
+
+                <!-- Cron Jobs -->
+                <h2>Scheduling with Cron</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Cron Syntax</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            CRON EXPRESSION FORMAT                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌───────────── minute (0 - 59)
+    │ ┌───────────── hour (0 - 23)
+    │ │ ┌───────────── day of month (1 - 31)
+    │ │ │ ┌───────────── month (1 - 12)
+    │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday = 0)
+    │ │ │ │ │
+    * * * * *  command
+
+Examples:
+    0 2 * * *     → Every day at 2:00 AM
+    */15 * * * *  → Every 15 minutes
+    0 9-17 * * 1-5 → Hourly 9AM-5PM, Mon-Fri
+    0 0 1 * *     → First of every month at midnight
+</pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Cron Management
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Edit user's crontab</span>
+<span class="token-function">crontab</span> -e
+
+<span class="token-comment"># List current cron jobs</span>
+<span class="token-function">crontab</span> -l
+
+<span class="token-comment"># List cron jobs for another user (root)</span>
+<span class="token-function">sudo</span> crontab -l -u root
+
+<span class="token-comment"># Remove all cron jobs</span>
+<span class="token-function">crontab</span> -r
+
+<span class="token-comment"># Example cron entries:</span>
+
+<span class="token-comment"># Daily backup at 2 AM</span>
+<span class="token-number">0 2</span> * * * /home/user/scripts/backup.sh >> /var/log/backup.log <span class="token-number">2</span>>&<span class="token-number">1</span>
+
+<span class="token-comment"># Every 5 minutes</span>
+*/<span class="token-number">5</span> * * * * /usr/local/bin/health_check.sh
+
+<span class="token-comment"># Every Monday at 9 AM</span>
+<span class="token-number">0 9</span> * * <span class="token-number">1</span> /home/user/scripts/weekly_report.sh
+
+<span class="token-comment"># First day of month</span>
+<span class="token-number">0 0 1</span> * * /home/user/scripts/monthly_cleanup.sh
+
+<span class="token-comment"># System cron directories</span>
+<span class="token-function">ls</span> /etc/cron.d/          <span class="token-comment"># Custom cron files</span>
+<span class="token-function">ls</span> /etc/cron.daily/      <span class="token-comment"># Daily scripts</span>
+<span class="token-function">ls</span> /etc/cron.hourly/     <span class="token-comment"># Hourly scripts</span>
+
+<span class="token-comment"># Check cron log</span>
+<span class="token-function">grep</span> CRON /var/log/syslog</code></pre>
+                    </div>
+                </div>
+
+                <!-- System Health Script -->
+                <h2>System Health Check Script</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - System Health Script
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+<span class="token-comment"># system_health.sh - Daily health check script</span>
+
+<span class="token-keyword">set</span> -euo pipefail
+
+LOG_FILE=<span class="token-string">"/var/log/health_check.log"</span>
+ALERT_THRESHOLD_DISK=<span class="token-number">85</span>
+ALERT_THRESHOLD_MEM=<span class="token-number">90</span>
+
+log_message() {
+    <span class="token-function">echo</span> <span class="token-string">"[$(date '+%Y-%m-%d %H:%M:%S')] $1"</span> | <span class="token-function">tee</span> -a <span class="token-string">"$LOG_FILE"</span>
+}
+
+<span class="token-function">echo</span> <span class="token-string">"=========================================="</span>
+log_message <span class="token-string">"System Health Check Started"</span>
+<span class="token-function">echo</span> <span class="token-string">"=========================================="</span>
+
+<span class="token-comment"># Hostname and uptime</span>
+log_message <span class="token-string">"Hostname: $(hostname)"</span>
+log_message <span class="token-string">"Uptime: $(uptime -p)"</span>
+
+<span class="token-comment"># CPU Load</span>
+load=<span class="token-variable">$(</span><span class="token-function">cat</span> /proc/loadavg | <span class="token-function">awk</span> <span class="token-string">'{print $1}'</span><span class="token-variable">)</span>
+cores=<span class="token-variable">$(</span><span class="token-function">nproc</span><span class="token-variable">)</span>
+log_message <span class="token-string">"CPU Load: $load (${cores} cores)"</span>
+
+<span class="token-comment"># Memory Usage</span>
+mem_total=<span class="token-variable">$(</span><span class="token-function">free</span> -m | <span class="token-function">awk</span> <span class="token-string">'/Mem:/ {print $2}'</span><span class="token-variable">)</span>
+mem_used=<span class="token-variable">$(</span><span class="token-function">free</span> -m | <span class="token-function">awk</span> <span class="token-string">'/Mem:/ {print $3}'</span><span class="token-variable">)</span>
+mem_percent=<span class="token-variable">$(</span><span class="token-function">awk</span> <span class="token-string">"BEGIN {printf \"%.0f\", ($mem_used/$mem_total)*100}"</span><span class="token-variable">)</span>
+log_message <span class="token-string">"Memory: ${mem_used}MB / ${mem_total}MB (${mem_percent}%)"</span>
+
+<span class="token-keyword">if</span> [[ <span class="token-variable">$mem_percent</span> -gt <span class="token-variable">$ALERT_THRESHOLD_MEM</span> ]]; <span class="token-keyword">then</span>
+    log_message <span class="token-string">"[ALERT] Memory usage critical!"</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Disk Usage</span>
+log_message <span class="token-string">"Disk Usage:"</span>
+<span class="token-keyword">while</span> <span class="token-function">read</span> -r line; <span class="token-keyword">do</span>
+    usage=<span class="token-variable">$(</span><span class="token-function">echo</span> <span class="token-string">"$line"</span> | <span class="token-function">awk</span> <span class="token-string">'{print $5}'</span> | <span class="token-function">tr</span> -d <span class="token-string">'%'</span><span class="token-variable">)</span>
+    mount=<span class="token-variable">$(</span><span class="token-function">echo</span> <span class="token-string">"$line"</span> | <span class="token-function">awk</span> <span class="token-string">'{print $6}'</span><span class="token-variable">)</span>
+    log_message <span class="token-string">"  $mount: ${usage}%"</span>
+    <span class="token-keyword">if</span> [[ <span class="token-variable">$usage</span> -gt <span class="token-variable">$ALERT_THRESHOLD_DISK</span> ]]; <span class="token-keyword">then</span>
+        log_message <span class="token-string">"  [ALERT] $mount disk usage critical!"</span>
+    <span class="token-keyword">fi</span>
+<span class="token-keyword">done</span> < <(<span class="token-function">df</span> -h | <span class="token-function">grep</span> <span class="token-string">'^/dev'</span>)
+
+<span class="token-comment"># Failed Services</span>
+failed=<span class="token-variable">$(</span><span class="token-function">systemctl</span> --failed --no-legend | <span class="token-function">wc</span> -l<span class="token-variable">)</span>
+log_message <span class="token-string">"Failed services: $failed"</span>
+<span class="token-keyword">if</span> [[ <span class="token-variable">$failed</span> -gt <span class="token-number">0</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">systemctl</span> --failed --no-legend | <span class="token-keyword">while</span> <span class="token-function">read</span> -r svc rest; <span class="token-keyword">do</span>
+        log_message <span class="token-string">"  [FAILED] $svc"</span>
+    <span class="token-keyword">done</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Active connections</span>
+connections=<span class="token-variable">$(</span><span class="token-function">ss</span> -tun | <span class="token-function">grep</span> ESTAB | <span class="token-function">wc</span> -l<span class="token-variable">)</span>
+log_message <span class="token-string">"Active connections: $connections"</span>
+
+log_message <span class="token-string">"Health check completed"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: System Administration</div>
+                    </div>
+                    <ul>
+                        <li><strong>Test scripts first:</strong> Run in safe environment before production</li>
+                        <li><strong>Log everything:</strong> Cron jobs should log output</li>
+                        <li><strong>Use full paths:</strong> Cron has minimal PATH</li>
+                        <li><strong>Set alerts:</strong> Don't rely on manual checking</li>
+                        <li><strong>Document changes:</strong> Keep runbooks updated</li>
+                        <li><strong>Regular backups:</strong> Automate with cron</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you investigate a disk full alert?"</li>
+                        <li><strong>Strong Answer:</strong> First, identify which mount is full with <code>df -h</code>. Use <code>du -h --max-depth=1</code> to find large directories. Check <code>/var/log</code> for oversized logs. Find large files with <code>find / -size +100M</code>. Check for deleted files held open with <code>lsof | grep deleted</code>. Clean old logs, truncate if needed, and set up log rotation.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Manage users with <code>useradd</code>, <code>usermod</code>, <code>userdel</code></li>
+                    <li>Monitor disk with <code>df -h</code>, <code>du -sh</code>, and <code>find</code></li>
+                    <li>Control services with <code>systemctl</code> (start, stop, enable)</li>
+                    <li>Schedule tasks with cron using proper syntax</li>
+                    <li>Log cron output and use full paths in scripts</li>
+                    <li>Automate health checks and alerting</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="3-6-process-management.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 3.6 Process Management</span>
+                    </a>
+                    <a href="3-8-regex.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.8 Regular Expressions →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

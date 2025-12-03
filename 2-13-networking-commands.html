@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.13 Networking Commands - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Networking Commands</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.13 Networking Commands</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Query network configuration and TCP/UDP connections</li>
+                        <li>Perform DNS lookups and network diagnostics</li>
+                        <li>Monitor network activity for security analysis</li>
+                        <li>Build network reconnaissance and monitoring scripts</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Network Analysis with PowerShell</h2>
+                <p>
+                    PowerShell provides powerful cmdlets for network configuration, monitoring, and 
+                    troubleshooting. These capabilities are essential for security operations, from 
+                    incident response to threat hunting.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Network Cmdlet Families</div>
+                    </div>
+                    <ul>
+                        <li><strong>Get-Net*</strong> → Configuration (NetAdapter, NetIPAddress, NetRoute)</li>
+                        <li><strong>Get-NetTCP/UDP*</strong> → Active connections</li>
+                        <li><strong>Test-Net*</strong> → Diagnostics (Test-NetConnection, Test-Connection)</li>
+                        <li><strong>Resolve-Dns*</strong> → DNS queries</li>
+                        <li><strong>Get-Dns*</strong> → DNS configuration and cache</li>
+                    </ul>
+                </div>
+
+                <!-- Network Configuration -->
+                <h2>Network Configuration</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Network Configuration
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># List all network adapters</span>
+<span class="token-cmdlet">Get-NetAdapter</span> | <span class="token-cmdlet">Select-Object</span> Name, Status, MacAddress, LinkSpeed
+
+<span class="token-comment"># Get IP configuration (like ipconfig)</span>
+<span class="token-cmdlet">Get-NetIPConfiguration</span>
+
+<span class="token-comment"># Get all IP addresses</span>
+<span class="token-cmdlet">Get-NetIPAddress</span> | <span class="token-cmdlet">Where-Object</span> AddressFamily <span class="token-operator">-eq</span> <span class="token-string">'IPv4'</span> |
+    <span class="token-cmdlet">Select-Object</span> InterfaceAlias, IPAddress, PrefixLength
+
+<span class="token-comment"># Get routing table</span>
+<span class="token-cmdlet">Get-NetRoute</span> | <span class="token-cmdlet">Where-Object</span> DestinationPrefix <span class="token-operator">-ne</span> <span class="token-string">'::/0'</span> |
+    <span class="token-cmdlet">Select-Object</span> DestinationPrefix, NextHop, InterfaceAlias
+
+<span class="token-comment"># Get DNS servers</span>
+<span class="token-cmdlet">Get-DnsClientServerAddress</span> <span class="token-parameter">-AddressFamily</span> IPv4
+
+<span class="token-comment"># Get ARP cache (MAC to IP mappings)</span>
+<span class="token-cmdlet">Get-NetNeighbor</span> | <span class="token-cmdlet">Where-Object</span> State <span class="token-operator">-eq</span> <span class="token-string">'Reachable'</span>
+
+<span class="token-comment"># Get firewall status</span>
+<span class="token-cmdlet">Get-NetFirewallProfile</span> | <span class="token-cmdlet">Select-Object</span> Name, Enabled
+
+<span class="token-comment"># Get firewall rules</span>
+<span class="token-cmdlet">Get-NetFirewallRule</span> | <span class="token-cmdlet">Where-Object</span> Enabled <span class="token-operator">-eq</span> <span class="token-string">'True'</span> |
+    <span class="token-cmdlet">Select-Object</span> DisplayName, Direction, Action <span class="token-parameter">-First</span> <span class="token-number">20</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- TCP/UDP Connections -->
+                <h2>TCP/UDP Connections</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Connection Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Get all established TCP connections</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established |
+    <span class="token-cmdlet">Select-Object</span> LocalAddress, LocalPort, RemoteAddress, RemotePort, OwningProcess
+
+<span class="token-comment"># Get connections with process names</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$Process</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess -ErrorAction SilentlyContinue
+    [PSCustomObject]@{
+        LocalAddress = <span class="token-variable">$_</span>.LocalAddress
+        LocalPort = <span class="token-variable">$_</span>.LocalPort
+        RemoteAddress = <span class="token-variable">$_</span>.RemoteAddress
+        RemotePort = <span class="token-variable">$_</span>.RemotePort
+        ProcessName = <span class="token-variable">$Process</span>.Name
+        ProcessId = <span class="token-variable">$_</span>.OwningProcess
+    }
+}
+
+<span class="token-comment"># Get listening ports</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Listen | 
+    <span class="token-cmdlet">Select-Object</span> LocalAddress, LocalPort, 
+        @{N=<span class="token-string">'Process'</span>;E={(Get-Process -Id <span class="token-variable">$_</span>.OwningProcess).Name}}
+
+<span class="token-comment"># Get UDP endpoints</span>
+<span class="token-cmdlet">Get-NetUDPEndpoint</span> | <span class="token-cmdlet">Select-Object</span> LocalAddress, LocalPort, OwningProcess
+
+<span class="token-comment"># Filter by remote port (common services)</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-RemotePort</span> 443  <span class="token-comment"># HTTPS connections</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-RemotePort</span> 22   <span class="token-comment"># SSH connections</span>
+<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-RemotePort</span> 3389 <span class="token-comment"># RDP connections</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security-Focused Network Analysis -->
+                <h2>Security-Focused Network Analysis</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Network Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-NetworkSecuritySnapshot</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Captures network security-relevant information.
+    #&gt;</span>
+    
+    Write-Host <span class="token-string">"[*] Capturing network security snapshot..."</span> -ForegroundColor Cyan
+    
+    <span class="token-comment"># Get all established connections with process info</span>
+    <span class="token-variable">$Connections</span> = <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$Proc</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess -ErrorAction SilentlyContinue
+        [PSCustomObject]@{
+            LocalAddress = <span class="token-variable">$_</span>.LocalAddress
+            LocalPort = <span class="token-variable">$_</span>.LocalPort
+            RemoteAddress = <span class="token-variable">$_</span>.RemoteAddress
+            RemotePort = <span class="token-variable">$_</span>.RemotePort
+            ProcessName = <span class="token-variable">$Proc</span>.Name
+            ProcessPath = <span class="token-variable">$Proc</span>.Path
+            PID = <span class="token-variable">$_</span>.OwningProcess
+        }
+    }
+    
+    <span class="token-comment"># Identify suspicious connections</span>
+    Write-Host <span class="token-string">"`n=== Suspicious Connections ==="</span> -ForegroundColor Yellow
+    
+    <span class="token-comment"># Non-standard ports for common processes</span>
+    <span class="token-variable">$Suspicious</span> = <span class="token-variable">$Connections</span> | <span class="token-cmdlet">Where-Object</span> {
+        (<span class="token-variable">$_</span>.ProcessName <span class="token-operator">-match</span> <span class="token-string">'powershell|cmd|wscript|cscript'</span> <span class="token-operator">-and</span> <span class="token-variable">$_</span>.RemotePort <span class="token-operator">-notin</span> @(80,443)) <span class="token-operator">-or</span>
+        (<span class="token-variable">$_</span>.RemotePort <span class="token-operator">-in</span> @(4444, 5555, 6666, 1234, 31337, 8080, 8888, 9001)) <span class="token-operator">-or</span>
+        (<span class="token-variable">$_</span>.ProcessName <span class="token-operator">-in</span> @(<span class="token-string">'notepad'</span>, <span class="token-string">'calc'</span>, <span class="token-string">'mspaint'</span>))
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Suspicious</span>) {
+        <span class="token-variable">$Suspicious</span> | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"No suspicious connections found."</span> -ForegroundColor Green
+    }
+    
+    <span class="token-comment"># Connection summary by remote port</span>
+    Write-Host <span class="token-string">"`n=== Connections by Remote Port ==="</span> -ForegroundColor Yellow
+    <span class="token-variable">$Connections</span> | <span class="token-cmdlet">Group-Object</span> RemotePort | 
+        <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span> | 
+        <span class="token-cmdlet">Select-Object</span> Count, @{N=<span class="token-string">'Port'</span>;E={<span class="token-variable">$_</span>.Name}}, 
+            @{N=<span class="token-string">'Processes'</span>;E={(<span class="token-variable">$_</span>.Group.ProcessName | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-Unique</span>) -join <span class="token-string">', '</span>}} |
+        <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+    
+    <span class="token-comment"># Listening ports</span>
+    Write-Host <span class="token-string">"=== Listening Ports ==="</span> -ForegroundColor Yellow
+    <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Listen | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$Proc</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess -ErrorAction SilentlyContinue
+        [PSCustomObject]@{
+            Port = <span class="token-variable">$_</span>.LocalPort
+            Address = <span class="token-variable">$_</span>.LocalAddress
+            Process = <span class="token-variable">$Proc</span>.Name
+        }
+    } | <span class="token-cmdlet">Sort-Object</span> Port | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Connections</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- DNS Operations -->
+                <h2>DNS Operations</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - DNS Operations
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic DNS lookup</span>
+<span class="token-cmdlet">Resolve-DnsName</span> google.com
+
+<span class="token-comment"># Specific record types</span>
+<span class="token-cmdlet">Resolve-DnsName</span> google.com <span class="token-parameter">-Type</span> A      <span class="token-comment"># IPv4 address</span>
+<span class="token-cmdlet">Resolve-DnsName</span> google.com <span class="token-parameter">-Type</span> AAAA   <span class="token-comment"># IPv6 address</span>
+<span class="token-cmdlet">Resolve-DnsName</span> google.com <span class="token-parameter">-Type</span> MX     <span class="token-comment"># Mail servers</span>
+<span class="token-cmdlet">Resolve-DnsName</span> google.com <span class="token-parameter">-Type</span> TXT    <span class="token-comment"># Text records (SPF, DKIM)</span>
+<span class="token-cmdlet">Resolve-DnsName</span> google.com <span class="token-parameter">-Type</span> NS     <span class="token-comment"># Name servers</span>
+<span class="token-cmdlet">Resolve-DnsName</span> google.com <span class="token-parameter">-Type</span> SOA    <span class="token-comment"># Start of Authority</span>
+
+<span class="token-comment"># Reverse DNS lookup</span>
+<span class="token-cmdlet">Resolve-DnsName</span> <span class="token-parameter">-Name</span> <span class="token-string">"8.8.8.8"</span> <span class="token-parameter">-Type</span> PTR
+
+<span class="token-comment"># Use specific DNS server</span>
+<span class="token-cmdlet">Resolve-DnsName</span> example.com <span class="token-parameter">-Server</span> <span class="token-string">"8.8.8.8"</span>
+
+<span class="token-comment"># Get DNS cache</span>
+<span class="token-cmdlet">Get-DnsClientCache</span> | <span class="token-cmdlet">Select-Object</span> Entry, RecordType, TimeToLive, Data
+
+<span class="token-comment"># Clear DNS cache</span>
+<span class="token-cmdlet">Clear-DnsClientCache</span>
+
+<span class="token-comment"># Bulk DNS lookup</span>
+<span class="token-variable">$Domains</span> = @(<span class="token-string">'google.com'</span>, <span class="token-string">'microsoft.com'</span>, <span class="token-string">'amazon.com'</span>)
+<span class="token-variable">$Domains</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$Result</span> = <span class="token-cmdlet">Resolve-DnsName</span> <span class="token-variable">$_</span> <span class="token-parameter">-Type</span> A -ErrorAction SilentlyContinue
+    [PSCustomObject]@{
+        Domain = <span class="token-variable">$_</span>
+        IPAddresses = (<span class="token-variable">$Result</span>.IPAddress -join <span class="token-string">', '</span>)
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Network Diagnostics -->
+                <h2>Network Diagnostics</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Network Diagnostics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Test connectivity (ping)</span>
+<span class="token-cmdlet">Test-Connection</span> google.com <span class="token-parameter">-Count</span> <span class="token-number">4</span>
+
+<span class="token-comment"># Quick connectivity test (returns boolean)</span>
+<span class="token-cmdlet">Test-Connection</span> google.com <span class="token-parameter">-Quiet</span>
+
+<span class="token-comment"># Test-NetConnection - more detailed (like telnet/nc)</span>
+<span class="token-cmdlet">Test-NetConnection</span> google.com <span class="token-parameter">-Port</span> <span class="token-number">443</span>
+
+<span class="token-comment"># Check multiple ports</span>
+<span class="token-variable">$Target</span> = <span class="token-string">"192.168.1.1"</span>
+<span class="token-variable">$Ports</span> = @(22, 80, 443, 3389, 445, 135)
+<span class="token-variable">$Ports</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-variable">$Result</span> = <span class="token-cmdlet">Test-NetConnection</span> <span class="token-variable">$Target</span> <span class="token-parameter">-Port</span> <span class="token-variable">$_</span> <span class="token-parameter">-WarningAction</span> SilentlyContinue
+    [PSCustomObject]@{
+        Port = <span class="token-variable">$_</span>
+        Open = <span class="token-variable">$Result</span>.TcpTestSucceeded
+    }
+}
+
+<span class="token-comment"># Traceroute</span>
+<span class="token-cmdlet">Test-NetConnection</span> google.com <span class="token-parameter">-TraceRoute</span>
+
+<span class="token-comment"># Get trace route hops</span>
+(<span class="token-cmdlet">Test-NetConnection</span> google.com <span class="token-parameter">-TraceRoute</span>).TraceRoute
+
+<span class="token-comment"># Test multiple hosts</span>
+<span class="token-variable">$Hosts</span> = @(<span class="token-string">'8.8.8.8'</span>, <span class="token-string">'1.1.1.1'</span>, <span class="token-string">'google.com'</span>)
+<span class="token-variable">$Hosts</span> | <span class="token-cmdlet">ForEach-Object</span> -Parallel {
+    <span class="token-variable">$Result</span> = <span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$_</span> <span class="token-parameter">-Count</span> <span class="token-number">1</span> -ErrorAction SilentlyContinue
+    [PSCustomObject]@{
+        Host = <span class="token-variable">$_</span>
+        Status = <span class="token-keyword">if</span>(<span class="token-variable">$Result</span>) { <span class="token-string">'Reachable'</span> } <span class="token-keyword">else</span> { <span class="token-string">'Unreachable'</span> }
+        ResponseTime = <span class="token-variable">$Result</span>.Latency
+    }
+} <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">5</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Port Scanner -->
+                <h2>Simple Port Scanner</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Port Scanner
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-PortScan</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Simple TCP port scanner.
+    .PARAMETER Target
+        IP address or hostname to scan.
+    .PARAMETER Ports
+        Array of ports to scan.
+    .PARAMETER Timeout
+        Connection timeout in milliseconds.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Target</span>,
+        
+        [int[]]<span class="token-variable">$Ports</span> = @(21,22,23,25,53,80,110,135,139,143,443,445,993,995,1433,3306,3389,5432,5900,8080),
+        
+        [int]<span class="token-variable">$Timeout</span> = 1000
+    )
+    
+    Write-Host <span class="token-string">"[*] Scanning $Target..."</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Results</span> = <span class="token-variable">$Ports</span> | <span class="token-cmdlet">ForEach-Object</span> -Parallel {
+        <span class="token-variable">$Port</span> = <span class="token-variable">$_</span>
+        <span class="token-variable">$Target</span> = <span class="token-variable">$using:Target</span>
+        <span class="token-variable">$Timeout</span> = <span class="token-variable">$using:Timeout</span>
+        
+        <span class="token-keyword">try</span> {
+            <span class="token-variable">$TcpClient</span> = <span class="token-cmdlet">New-Object</span> System.Net.Sockets.TcpClient
+            <span class="token-variable">$AsyncResult</span> = <span class="token-variable">$TcpClient</span>.BeginConnect(<span class="token-variable">$Target</span>, <span class="token-variable">$Port</span>, <span class="token-variable">$null</span>, <span class="token-variable">$null</span>)
+            <span class="token-variable">$Wait</span> = <span class="token-variable">$AsyncResult</span>.AsyncWaitHandle.WaitOne(<span class="token-variable">$Timeout</span>, <span class="token-variable">$false</span>)
+            
+            <span class="token-keyword">if</span> (<span class="token-variable">$Wait</span> <span class="token-operator">-and</span> <span class="token-variable">$TcpClient</span>.Connected) {
+                <span class="token-variable">$TcpClient</span>.EndConnect(<span class="token-variable">$AsyncResult</span>)
+                [PSCustomObject]@{
+                    Port = <span class="token-variable">$Port</span>
+                    State = <span class="token-string">'Open'</span>
+                    Service = <span class="token-keyword">switch</span> (<span class="token-variable">$Port</span>) {
+                        21 { <span class="token-string">'FTP'</span> }
+                        22 { <span class="token-string">'SSH'</span> }
+                        23 { <span class="token-string">'Telnet'</span> }
+                        25 { <span class="token-string">'SMTP'</span> }
+                        53 { <span class="token-string">'DNS'</span> }
+                        80 { <span class="token-string">'HTTP'</span> }
+                        110 { <span class="token-string">'POP3'</span> }
+                        135 { <span class="token-string">'RPC'</span> }
+                        139 { <span class="token-string">'NetBIOS'</span> }
+                        143 { <span class="token-string">'IMAP'</span> }
+                        443 { <span class="token-string">'HTTPS'</span> }
+                        445 { <span class="token-string">'SMB'</span> }
+                        1433 { <span class="token-string">'MSSQL'</span> }
+                        3306 { <span class="token-string">'MySQL'</span> }
+                        3389 { <span class="token-string">'RDP'</span> }
+                        5432 { <span class="token-string">'PostgreSQL'</span> }
+                        8080 { <span class="token-string">'HTTP-Alt'</span> }
+                        default { <span class="token-string">'Unknown'</span> }
+                    }
+                }
+            }
+            <span class="token-variable">$TcpClient</span>.Close()
+        }
+        <span class="token-keyword">catch</span> { }
+    } <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">50</span>
+    
+    <span class="token-variable">$OpenPorts</span> = <span class="token-variable">$Results</span> | <span class="token-cmdlet">Where-Object</span> State <span class="token-operator">-eq</span> <span class="token-string">'Open'</span> | <span class="token-cmdlet">Sort-Object</span> Port
+    
+    Write-Host <span class="token-string">"[+] Found $($OpenPorts.Count) open ports"</span> -ForegroundColor Green
+    <span class="token-keyword">return</span> <span class="token-variable">$OpenPorts</span>
+}
+
+<span class="token-comment"># Usage</span>
+Invoke-PortScan <span class="token-parameter">-Target</span> <span class="token-string">"192.168.1.1"</span>
+
+<span class="token-comment"># Custom port range</span>
+Invoke-PortScan <span class="token-parameter">-Target</span> <span class="token-string">"192.168.1.1"</span> <span class="token-parameter">-Ports</span> (<span class="token-number">1</span>..<span class="token-number">1024</span>)</code></pre>
+                    </div>
+                </div>
+
+                <!-- Network Monitoring -->
+                <h2>Network Monitoring Script</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Connection Monitor
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Watch-NetworkConnections</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Monitors network connections and alerts on new connections.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$IntervalSeconds</span> = 5,
+        [int]<span class="token-variable">$DurationMinutes</span> = 5
+    )
+    
+    <span class="token-variable">$EndTime</span> = (Get-Date).AddMinutes(<span class="token-variable">$DurationMinutes</span>)
+    <span class="token-variable">$KnownConnections</span> = @{}
+    
+    Write-Host <span class="token-string">"[*] Monitoring connections for $DurationMinutes minutes..."</span> -ForegroundColor Cyan
+    Write-Host <span class="token-string">"[*] Press Ctrl+C to stop`n"</span>
+    
+    <span class="token-keyword">while</span> ((Get-Date) <span class="token-operator">-lt</span> <span class="token-variable">$EndTime</span>) {
+        <span class="token-variable">$CurrentConnections</span> = <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established | <span class="token-cmdlet">ForEach-Object</span> {
+            <span class="token-variable">$Key</span> = <span class="token-string">"$($_.LocalAddress):$($_.LocalPort)-$($_.RemoteAddress):$($_.RemotePort)"</span>
+            <span class="token-variable">$Proc</span> = <span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess -ErrorAction SilentlyContinue
+            
+            [PSCustomObject]@{
+                Key = <span class="token-variable">$Key</span>
+                RemoteAddress = <span class="token-variable">$_</span>.RemoteAddress
+                RemotePort = <span class="token-variable">$_</span>.RemotePort
+                ProcessName = <span class="token-variable">$Proc</span>.Name
+                PID = <span class="token-variable">$_</span>.OwningProcess
+            }
+        }
+        
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$Conn</span> <span class="token-keyword">in</span> <span class="token-variable">$CurrentConnections</span>) {
+            <span class="token-keyword">if</span> (-not <span class="token-variable">$KnownConnections</span>.ContainsKey(<span class="token-variable">$Conn</span>.Key)) {
+                <span class="token-variable">$Timestamp</span> = Get-Date -Format <span class="token-string">"HH:mm:ss"</span>
+                Write-Host <span class="token-string">"[$Timestamp] NEW: $($Conn.ProcessName) -> $($Conn.RemoteAddress):$($Conn.RemotePort)"</span> -ForegroundColor Yellow
+                <span class="token-variable">$KnownConnections</span>[<span class="token-variable">$Conn</span>.Key] = <span class="token-variable">$Conn</span>
+            }
+        }
+        
+        Start-Sleep -Seconds <span class="token-variable">$IntervalSeconds</span>
+    }
+    
+    Write-Host <span class="token-string">"`n[+] Monitoring complete. Tracked $($KnownConnections.Count) unique connections."</span> -ForegroundColor Green
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Common Ports Reference -->
+                <h2>Common Ports Reference</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Port</th>
+                                <th>Service</th>
+                                <th>Security Relevance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>21</strong></td>
+                                <td>FTP</td>
+                                <td>Often unencrypted, credential theft risk</td>
+                            </tr>
+                            <tr>
+                                <td><strong>22</strong></td>
+                                <td>SSH</td>
+                                <td>Brute force target, secure remote access</td>
+                            </tr>
+                            <tr>
+                                <td><strong>23</strong></td>
+                                <td>Telnet</td>
+                                <td>Unencrypted, should be disabled</td>
+                            </tr>
+                            <tr>
+                                <td><strong>25/587</strong></td>
+                                <td>SMTP</td>
+                                <td>Email relay, phishing vector</td>
+                            </tr>
+                            <tr>
+                                <td><strong>53</strong></td>
+                                <td>DNS</td>
+                                <td>DNS tunneling, exfiltration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>80/443</strong></td>
+                                <td>HTTP/HTTPS</td>
+                                <td>Web traffic, C2 communication</td>
+                            </tr>
+                            <tr>
+                                <td><strong>135/445</strong></td>
+                                <td>RPC/SMB</td>
+                                <td>Lateral movement, EternalBlue</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3389</strong></td>
+                                <td>RDP</td>
+                                <td>Remote access, BlueKeep vulnerability</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4444</strong></td>
+                                <td>Metasploit default</td>
+                                <td>Common C2 port</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5985/5986</strong></td>
+                                <td>WinRM</td>
+                                <td>PowerShell remoting</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you identify suspicious network connections?"</li>
+                        <li><strong>Strong Answer:</strong> Use <code>Get-NetTCPConnection</code> to list established connections, correlate with owning processes using <code>Get-Process</code>. Look for: script engines (PowerShell, cmd) with external connections, connections on common C2 ports (4444, 8080), processes that shouldn't have network activity (notepad, calc), and connections to unusual geographic locations.</li>
+                        <li><strong>Follow-up:</strong> Mention checking DNS cache with <code>Get-DnsClientCache</code> for suspicious domain lookups, and using threat intelligence to validate remote IPs.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><code>Get-NetTCPConnection</code> and <code>Get-NetUDPEndpoint</code> show active connections</li>
+                    <li><code>Test-NetConnection</code> replaces telnet for port testing</li>
+                    <li><code>Resolve-DnsName</code> supports all DNS record types</li>
+                    <li>Always correlate connections with owning processes for context</li>
+                    <li>Monitor for connections on known C2 ports and from unexpected processes</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="2-12-active-directory.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.12 Active Directory</span>
+                    </a>
+                    <a href="2-14-web-requests.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.14 Web Requests & APIs →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

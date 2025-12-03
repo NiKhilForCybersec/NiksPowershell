@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.14 Web Requests & APIs - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Web Requests & APIs</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.14 Web Requests & APIs</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Make HTTP requests with Invoke-WebRequest and Invoke-RestMethod</li>
+                        <li>Authenticate to REST APIs (Bearer tokens, API keys, OAuth)</li>
+                        <li>Parse JSON responses and handle pagination</li>
+                        <li>Integrate with security APIs (VirusTotal, AbuseIPDB, Shodan)</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Web Requests in PowerShell</h2>
+                <p>
+                    Modern security automation relies heavily on API integrations. PowerShell provides 
+                    two primary cmdlets for web requests: <code>Invoke-WebRequest</code> for general HTTP 
+                    operations, and <code>Invoke-RestMethod</code> for REST API calls with automatic 
+                    JSON parsing.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Which Cmdlet to Use?</div>
+                    </div>
+                    <ul>
+                        <li><strong>Invoke-WebRequest</strong> → Need full HTTP response (headers, status, cookies)</li>
+                        <li><strong>Invoke-RestMethod</strong> → Just need the data (auto-parses JSON/XML)</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>90% of API work = Invoke-RestMethod. It's simpler!</em>
+                    </p>
+                </div>
+
+                <!-- Basic Requests -->
+                <h2>Basic HTTP Requests</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Basic Requests
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple GET request - returns parsed JSON</span>
+<span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://api.ipify.org?format=json"</span>
+<span class="token-variable">$Response</span>.ip
+
+<span class="token-comment"># GET with full response details</span>
+<span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-WebRequest</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://httpbin.org/get"</span>
+<span class="token-variable">$Response</span>.StatusCode       <span class="token-comment"># 200</span>
+<span class="token-variable">$Response</span>.Headers          <span class="token-comment"># Response headers</span>
+<span class="token-variable">$Response</span>.Content          <span class="token-comment"># Raw content</span>
+<span class="token-variable">$Response</span>.Content | <span class="token-cmdlet">ConvertFrom-Json</span>  <span class="token-comment"># Parse JSON manually</span>
+
+<span class="token-comment"># POST request with JSON body</span>
+<span class="token-variable">$Body</span> = @{
+    name = <span class="token-string">"Test"</span>
+    value = <span class="token-number">123</span>
+} | <span class="token-cmdlet">ConvertTo-Json</span>
+
+<span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://httpbin.org/post"</span> `
+    <span class="token-parameter">-Method</span> POST `
+    <span class="token-parameter">-Body</span> <span class="token-variable">$Body</span> `
+    <span class="token-parameter">-ContentType</span> <span class="token-string">"application/json"</span>
+
+<span class="token-comment"># PUT, PATCH, DELETE work similarly</span>
+<span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://api.example.com/resource/1"</span> <span class="token-parameter">-Method</span> DELETE</code></pre>
+                    </div>
+                </div>
+
+                <!-- Headers and Authentication -->
+                <h2>Headers and Authentication</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Authentication Methods
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># API Key in header</span>
+<span class="token-variable">$Headers</span> = @{
+    <span class="token-string">'X-API-Key'</span> = <span class="token-string">'your-api-key-here'</span>
+}
+<span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://api.example.com/data"</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span>
+
+<span class="token-comment"># Bearer token (OAuth2, JWT)</span>
+<span class="token-variable">$Token</span> = <span class="token-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span>
+<span class="token-variable">$Headers</span> = @{
+    <span class="token-string">'Authorization'</span> = <span class="token-string">"Bearer $Token"</span>
+}
+<span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://api.example.com/protected"</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span>
+
+<span class="token-comment"># Basic authentication</span>
+<span class="token-variable">$Credential</span> = <span class="token-cmdlet">Get-Credential</span>
+<span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://api.example.com/auth"</span> <span class="token-parameter">-Credential</span> <span class="token-variable">$Credential</span>
+
+<span class="token-comment"># Basic auth with encoded header (when -Credential doesn't work)</span>
+<span class="token-variable">$User</span> = <span class="token-string">"username"</span>
+<span class="token-variable">$Pass</span> = <span class="token-string">"password"</span>
+<span class="token-variable">$Base64Auth</span> = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(<span class="token-string">"${User}:${Pass}"</span>))
+<span class="token-variable">$Headers</span> = @{
+    <span class="token-string">'Authorization'</span> = <span class="token-string">"Basic $Base64Auth"</span>
+}
+
+<span class="token-comment"># Multiple custom headers</span>
+<span class="token-variable">$Headers</span> = @{
+    <span class="token-string">'Authorization'</span> = <span class="token-string">"Bearer $Token"</span>
+    <span class="token-string">'Content-Type'</span> = <span class="token-string">'application/json'</span>
+    <span class="token-string">'Accept'</span> = <span class="token-string">'application/json'</span>
+    <span class="token-string">'User-Agent'</span> = <span class="token-string">'SecurityScript/1.0'</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Error Handling -->
+                <h2>Error Handling</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - API Error Handling
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-APIRequest</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Makes API requests with proper error handling.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Uri</span>,
+        
+        [string]<span class="token-variable">$Method</span> = <span class="token-string">'GET'</span>,
+        [hashtable]<span class="token-variable">$Headers</span> = @{},
+        [object]<span class="token-variable">$Body</span>,
+        [int]<span class="token-variable">$MaxRetries</span> = <span class="token-number">3</span>
+    )
+    
+    <span class="token-variable">$RetryCount</span> = <span class="token-number">0</span>
+    
+    <span class="token-keyword">while</span> (<span class="token-variable">$RetryCount</span> <span class="token-operator">-lt</span> <span class="token-variable">$MaxRetries</span>) {
+        <span class="token-keyword">try</span> {
+            <span class="token-variable">$Params</span> = @{
+                Uri = <span class="token-variable">$Uri</span>
+                Method = <span class="token-variable">$Method</span>
+                Headers = <span class="token-variable">$Headers</span>
+                ContentType = <span class="token-string">'application/json'</span>
+                ErrorAction = <span class="token-string">'Stop'</span>
+            }
+            
+            <span class="token-keyword">if</span> (<span class="token-variable">$Body</span>) {
+                <span class="token-variable">$Params</span>.Body = <span class="token-variable">$Body</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">10</span>
+            }
+            
+            <span class="token-keyword">return</span> <span class="token-cmdlet">Invoke-RestMethod</span> @Params
+        }
+        <span class="token-keyword">catch</span> {
+            <span class="token-variable">$StatusCode</span> = <span class="token-variable">$_</span>.Exception.Response.StatusCode.value__
+            
+            <span class="token-keyword">switch</span> (<span class="token-variable">$StatusCode</span>) {
+                401 { <span class="token-keyword">throw</span> <span class="token-string">"Authentication failed. Check your API key/token."</span> }
+                403 { <span class="token-keyword">throw</span> <span class="token-string">"Access forbidden. Check permissions."</span> }
+                404 { <span class="token-keyword">throw</span> <span class="token-string">"Resource not found: $Uri"</span> }
+                429 {
+                    <span class="token-comment"># Rate limited - wait and retry</span>
+                    <span class="token-variable">$RetryAfter</span> = <span class="token-variable">$_</span>.Exception.Response.Headers[<span class="token-string">'Retry-After'</span>]
+                    <span class="token-keyword">if</span> (-not <span class="token-variable">$RetryAfter</span>) { <span class="token-variable">$RetryAfter</span> = <span class="token-number">60</span> }
+                    Write-Warning <span class="token-string">"Rate limited. Waiting $RetryAfter seconds..."</span>
+                    Start-Sleep -Seconds <span class="token-variable">$RetryAfter</span>
+                    <span class="token-variable">$RetryCount</span>++
+                    <span class="token-keyword">continue</span>
+                }
+                {<span class="token-variable">$_</span> <span class="token-operator">-ge</span> <span class="token-number">500</span>} {
+                    <span class="token-comment"># Server error - retry with backoff</span>
+                    <span class="token-variable">$RetryCount</span>++
+                    <span class="token-variable">$WaitTime</span> = [Math]::Pow(2, <span class="token-variable">$RetryCount</span>) * <span class="token-number">5</span>
+                    Write-Warning <span class="token-string">"Server error ($StatusCode). Retry $RetryCount/$MaxRetries in $WaitTime seconds..."</span>
+                    Start-Sleep -Seconds <span class="token-variable">$WaitTime</span>
+                    <span class="token-keyword">continue</span>
+                }
+                default {
+                    <span class="token-keyword">throw</span> <span class="token-string">"API request failed: $($_.Exception.Message)"</span>
+                }
+            }
+        }
+    }
+    
+    <span class="token-keyword">throw</span> <span class="token-string">"Max retries ($MaxRetries) exceeded for $Uri"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Security API Examples -->
+                <h2>Security API Examples</h2>
+
+                <h3>VirusTotal API</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - VirusTotal Integration
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-VTFileReport</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Gets VirusTotal report for a file hash.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Hash</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$ApiKey</span>
+    )
+    
+    <span class="token-variable">$Headers</span> = @{
+        <span class="token-string">'x-apikey'</span> = <span class="token-variable">$ApiKey</span>
+    }
+    
+    <span class="token-variable">$Uri</span> = <span class="token-string">"https://www.virustotal.com/api/v3/files/$Hash"</span>
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$Uri</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span>
+        
+        [PSCustomObject]@{
+            Hash = <span class="token-variable">$Hash</span>
+            Malicious = <span class="token-variable">$Response</span>.data.attributes.last_analysis_stats.malicious
+            Suspicious = <span class="token-variable">$Response</span>.data.attributes.last_analysis_stats.suspicious
+            Harmless = <span class="token-variable">$Response</span>.data.attributes.last_analysis_stats.harmless
+            Undetected = <span class="token-variable">$Response</span>.data.attributes.last_analysis_stats.undetected
+            Names = <span class="token-variable">$Response</span>.data.attributes.names -join <span class="token-string">', '</span>
+            FirstSeen = <span class="token-variable">$Response</span>.data.attributes.first_submission_date
+        }
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"VT lookup failed for $Hash: $_"</span>
+    }
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Get-VTIPReport</span> {
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)][string]<span class="token-variable">$IP</span>,
+        [Parameter(Mandatory)][string]<span class="token-variable">$ApiKey</span>
+    )
+    
+    <span class="token-variable">$Headers</span> = @{ <span class="token-string">'x-apikey'</span> = <span class="token-variable">$ApiKey</span> }
+    <span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://www.virustotal.com/api/v3/ip_addresses/$IP"</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span>
+    
+    [PSCustomObject]@{
+        IP = <span class="token-variable">$IP</span>
+        Country = <span class="token-variable">$Response</span>.data.attributes.country
+        ASN = <span class="token-variable">$Response</span>.data.attributes.asn
+        Owner = <span class="token-variable">$Response</span>.data.attributes.as_owner
+        Malicious = <span class="token-variable">$Response</span>.data.attributes.last_analysis_stats.malicious
+        Reputation = <span class="token-variable">$Response</span>.data.attributes.reputation
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <h3>AbuseIPDB API</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - AbuseIPDB Integration
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-AbuseIPDBReport</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Checks IP reputation in AbuseIPDB.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$IP</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$ApiKey</span>,
+        
+        [int]<span class="token-variable">$MaxAgeInDays</span> = <span class="token-number">90</span>
+    )
+    
+    <span class="token-variable">$Headers</span> = @{
+        <span class="token-string">'Key'</span> = <span class="token-variable">$ApiKey</span>
+        <span class="token-string">'Accept'</span> = <span class="token-string">'application/json'</span>
+    }
+    
+    <span class="token-variable">$Uri</span> = <span class="token-string">"https://api.abuseipdb.com/api/v2/check?ipAddress=$IP&maxAgeInDays=$MaxAgeInDays&verbose"</span>
+    
+    <span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$Uri</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span>
+    
+    [PSCustomObject]@{
+        IP = <span class="token-variable">$Response</span>.data.ipAddress
+        IsPublic = <span class="token-variable">$Response</span>.data.isPublic
+        AbuseScore = <span class="token-variable">$Response</span>.data.abuseConfidenceScore
+        Country = <span class="token-variable">$Response</span>.data.countryCode
+        ISP = <span class="token-variable">$Response</span>.data.isp
+        Domain = <span class="token-variable">$Response</span>.data.domain
+        TotalReports = <span class="token-variable">$Response</span>.data.totalReports
+        LastReported = <span class="token-variable">$Response</span>.data.lastReportedAt
+        IsTor = <span class="token-variable">$Response</span>.data.isTor
+        Categories = <span class="token-variable">$Response</span>.data.reports.categories | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-Unique</span>
+    }
+}
+
+<span class="token-comment"># Bulk IP lookup</span>
+<span class="token-variable">$SuspiciousIPs</span> = @(<span class="token-string">'185.220.101.1'</span>, <span class="token-string">'45.33.32.156'</span>, <span class="token-string">'91.121.87.18'</span>)
+<span class="token-variable">$Results</span> = <span class="token-variable">$SuspiciousIPs</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    Get-AbuseIPDBReport <span class="token-parameter">-IP</span> <span class="token-variable">$_</span> <span class="token-parameter">-ApiKey</span> <span class="token-variable">$ApiKey</span>
+    Start-Sleep -Milliseconds <span class="token-number">500</span>  <span class="token-comment"># Rate limiting</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <h3>Microsoft Graph API</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Microsoft Graph API
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-GraphToken</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Gets OAuth2 token for Microsoft Graph API.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$TenantId</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$ClientId</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$ClientSecret</span>
+    )
+    
+    <span class="token-variable">$Body</span> = @{
+        grant_type = <span class="token-string">'client_credentials'</span>
+        client_id = <span class="token-variable">$ClientId</span>
+        client_secret = <span class="token-variable">$ClientSecret</span>
+        scope = <span class="token-string">'https://graph.microsoft.com/.default'</span>
+    }
+    
+    <span class="token-variable">$TokenUri</span> = <span class="token-string">"https://login.microsoftonline.com/$TenantId/oauth2/v2.0/token"</span>
+    <span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$TokenUri</span> <span class="token-parameter">-Method</span> POST <span class="token-parameter">-Body</span> <span class="token-variable">$Body</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Response</span>.access_token
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Get-GraphSecurityAlerts</span> {
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Token</span>,
+        
+        [string]<span class="token-variable">$Severity</span> = <span class="token-string">'high'</span>
+    )
+    
+    <span class="token-variable">$Headers</span> = @{
+        <span class="token-string">'Authorization'</span> = <span class="token-string">"Bearer $Token"</span>
+        <span class="token-string">'Content-Type'</span> = <span class="token-string">'application/json'</span>
+    }
+    
+    <span class="token-variable">$Uri</span> = <span class="token-string">"https://graph.microsoft.com/v1.0/security/alerts?`$filter=severity eq '$Severity'"</span>
+    <span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$Uri</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Response</span>.value
+}
+
+<span class="token-comment"># Usage</span>
+<span class="token-variable">$Token</span> = Get-GraphToken <span class="token-parameter">-TenantId</span> <span class="token-variable">$TenantId</span> <span class="token-parameter">-ClientId</span> <span class="token-variable">$ClientId</span> <span class="token-parameter">-ClientSecret</span> <span class="token-variable">$Secret</span>
+<span class="token-variable">$Alerts</span> = Get-GraphSecurityAlerts <span class="token-parameter">-Token</span> <span class="token-variable">$Token</span> <span class="token-parameter">-Severity</span> <span class="token-string">'high'</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <h2>Handling Pagination</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - API Pagination
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-AllPages</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Retrieves all pages from a paginated API.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Uri</span>,
+        
+        [hashtable]<span class="token-variable">$Headers</span> = @{},
+        
+        [string]<span class="token-variable">$NextLinkProperty</span> = <span class="token-string">'@odata.nextLink'</span>,
+        [string]<span class="token-variable">$ValueProperty</span> = <span class="token-string">'value'</span>,
+        [int]<span class="token-variable">$MaxPages</span> = <span class="token-number">100</span>
+    )
+    
+    <span class="token-variable">$AllResults</span> = @()
+    <span class="token-variable">$CurrentUri</span> = <span class="token-variable">$Uri</span>
+    <span class="token-variable">$PageCount</span> = <span class="token-number">0</span>
+    
+    <span class="token-keyword">do</span> {
+        <span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$CurrentUri</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span>
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Response</span>.<span class="token-variable">$ValueProperty</span>) {
+            <span class="token-variable">$AllResults</span> += <span class="token-variable">$Response</span>.<span class="token-variable">$ValueProperty</span>
+        } <span class="token-keyword">else</span> {
+            <span class="token-variable">$AllResults</span> += <span class="token-variable">$Response</span>
+        }
+        
+        <span class="token-variable">$CurrentUri</span> = <span class="token-variable">$Response</span>.<span class="token-variable">$NextLinkProperty</span>
+        <span class="token-variable">$PageCount</span>++
+        
+        Write-Verbose <span class="token-string">"Retrieved page $PageCount ($($AllResults.Count) total items)"</span>
+        
+    } <span class="token-keyword">while</span> (<span class="token-variable">$CurrentUri</span> <span class="token-operator">-and</span> <span class="token-variable">$PageCount</span> <span class="token-operator">-lt</span> <span class="token-variable">$MaxPages</span>)
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$AllResults</span>
+}
+
+<span class="token-comment"># Example: Get all Microsoft Graph users</span>
+<span class="token-variable">$AllUsers</span> = Get-AllPages <span class="token-parameter">-Uri</span> <span class="token-string">"https://graph.microsoft.com/v1.0/users"</span> <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span> <span class="token-parameter">-Verbose</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Downloading Files -->
+                <h2>Downloading Files</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - File Downloads
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple file download</span>
+<span class="token-cmdlet">Invoke-WebRequest</span> <span class="token-parameter">-Uri</span> <span class="token-string">"https://example.com/file.zip"</span> <span class="token-parameter">-OutFile</span> <span class="token-string">".\file.zip"</span>
+
+<span class="token-comment"># Download with progress</span>
+<span class="token-variable">$ProgressPreference</span> = <span class="token-string">'Continue'</span>
+<span class="token-cmdlet">Invoke-WebRequest</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$Url</span> <span class="token-parameter">-OutFile</span> <span class="token-variable">$OutFile</span>
+
+<span class="token-comment"># Resume download (if supported)</span>
+<span class="token-cmdlet">Invoke-WebRequest</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$Url</span> <span class="token-parameter">-OutFile</span> <span class="token-variable">$OutFile</span> <span class="token-parameter">-Resume</span>
+
+<span class="token-comment"># Download threat intel feed</span>
+<span class="token-keyword">function</span> <span class="token-function">Update-ThreatFeed</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$FeedUrl</span> = <span class="token-string">"https://rules.emergingthreats.net/blockrules/compromised-ips.txt"</span>,
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\threat-feed.txt"</span>
+    )
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-cmdlet">Invoke-WebRequest</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$FeedUrl</span> <span class="token-parameter">-OutFile</span> <span class="token-variable">$OutputPath</span>
+        <span class="token-variable">$IPs</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-variable">$OutputPath</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> <span class="token-operator">-notmatch</span> <span class="token-string">'^#'</span> <span class="token-operator">-and</span> <span class="token-variable">$_</span>.Trim() }
+        Write-Host <span class="token-string">"[+] Downloaded $($IPs.Count) threat indicators"</span> -ForegroundColor Green
+        <span class="token-keyword">return</span> <span class="token-variable">$IPs</span>
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Error <span class="token-string">"Failed to download threat feed: $_"</span>
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: API Integration</div>
+                    </div>
+                    <ul>
+                        <li><strong>Never hardcode API keys:</strong> Use environment variables or secure vaults</li>
+                        <li><strong>Implement rate limiting:</strong> Respect API limits, add delays between requests</li>
+                        <li><strong>Handle errors gracefully:</strong> Retry on transient failures, log errors</li>
+                        <li><strong>Cache responses:</strong> Avoid redundant API calls for the same data</li>
+                        <li><strong>Use TLS:</strong> Always verify certificates (<code>-SkipCertificateCheck</code> only for testing)</li>
+                        <li><strong>Log API calls:</strong> Track usage for debugging and auditing</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you integrate with a security API?"</li>
+                        <li><strong>Strong Answer:</strong> Use <code>Invoke-RestMethod</code> for REST APIs with JSON responses. Store API keys securely (environment variables or Azure Key Vault). Implement proper error handling for rate limits (429), auth failures (401), and server errors (5xx). Add retry logic with exponential backoff. For bulk lookups, batch requests and respect rate limits.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><code>Invoke-RestMethod</code> auto-parses JSON—use for most API work</li>
+                    <li><code>Invoke-WebRequest</code> when you need headers, status codes, or cookies</li>
+                    <li>Always implement error handling with specific status code handling</li>
+                    <li>Store credentials securely—never in scripts</li>
+                    <li>Handle pagination for APIs that return large datasets</li>
+                    <li>Respect rate limits to avoid getting blocked</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="2-13-networking-commands.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.13 Networking Commands</span>
+                    </a>
+                    <a href="2-15-remoting-jobs.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.15 Remoting & Jobs →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

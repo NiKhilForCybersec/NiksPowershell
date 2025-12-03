@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.5 SIEM Integration - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#security">Security Automation</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>SIEM Integration</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>5.5 SIEM Integration</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Integrate PowerShell with Splunk for automated searches and alerting</li>
+                        <li>Query Microsoft Sentinel using Log Analytics API</li>
+                        <li>Send custom events and enrichment data to SIEM platforms</li>
+                        <li>Build automated reporting and response workflows</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>SIEM Automation Overview</h2>
+                <p>
+                    Security Information and Event Management (SIEM) platforms are the nerve center of 
+                    security operations. Automating SIEM interactions enables real-time threat detection, 
+                    automated enrichment, and streamlined incident response.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: SIEM Integration Points</div>
+                    </div>
+                    <ul>
+                        <li><strong>Query</strong> → Search and retrieve security events</li>
+                        <li><strong>Ingest</strong> → Send custom events and logs</li>
+                        <li><strong>Enrich</strong> → Add context to alerts (threat intel, asset data)</li>
+                        <li><strong>Respond</strong> → Trigger automated actions from alerts</li>
+                        <li><strong>Report</strong> → Generate metrics and compliance reports</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Q.I.E.R.R. - The five pillars of SIEM automation!</em>
+                    </p>
+                </div>
+
+                <!-- SIEM Comparison -->
+                <h2>SIEM Platform Comparison</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>API Type</th>
+                                <th>Query Language</th>
+                                <th>PowerShell Support</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Splunk</strong></td>
+                                <td>REST API</td>
+                                <td>SPL (Search Processing Language)</td>
+                                <td>Excellent (REST + SDK)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Microsoft Sentinel</strong></td>
+                                <td>Log Analytics API / ARM</td>
+                                <td>KQL (Kusto Query Language)</td>
+                                <td>Excellent (Az module)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Elastic SIEM</strong></td>
+                                <td>REST API</td>
+                                <td>Lucene / KQL</td>
+                                <td>Good (Invoke-RestMethod)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IBM QRadar</strong></td>
+                                <td>REST API</td>
+                                <td>AQL (Ariel Query Language)</td>
+                                <td>Good</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Splunk Integration -->
+                <h2>Splunk Integration</h2>
+
+                <h3>Splunk REST API Authentication</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Splunk API Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">class</span> SplunkClient {
+    [string]<span class="token-variable">$BaseUrl</span>
+    [hashtable]<span class="token-variable">$Headers</span>
+    [string]<span class="token-variable">$SessionKey</span>
+    
+    SplunkClient([string]<span class="token-variable">$Server</span>, [int]<span class="token-variable">$Port</span> = 8089) {
+        <span class="token-variable">$this</span>.BaseUrl = <span class="token-string">"https://${Server}:${Port}"</span>
+    }
+    
+    [void] Authenticate([PSCredential]<span class="token-variable">$Credential</span>) {
+        <span class="token-variable">$AuthBody</span> = @{
+            username = <span class="token-variable">$Credential</span>.UserName
+            password = <span class="token-variable">$Credential</span>.GetNetworkCredential().Password
+        }
+        
+        <span class="token-variable">$Response</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"$($this.BaseUrl)/services/auth/login"</span> `
+            <span class="token-parameter">-Method</span> POST <span class="token-parameter">-Body</span> <span class="token-variable">$AuthBody</span> <span class="token-parameter">-SkipCertificateCheck</span>
+        
+        <span class="token-variable">$this</span>.SessionKey = <span class="token-variable">$Response</span>.response.sessionKey
+        <span class="token-variable">$this</span>.Headers = @{
+            <span class="token-string">'Authorization'</span> = <span class="token-string">"Splunk $($this.SessionKey)"</span>
+            <span class="token-string">'Content-Type'</span> = <span class="token-string">'application/json'</span>
+        }
+    }
+    
+    [void] AuthenticateWithToken([string]<span class="token-variable">$Token</span>) {
+        <span class="token-variable">$this</span>.Headers = @{
+            <span class="token-string">'Authorization'</span> = <span class="token-string">"Bearer $Token"</span>
+            <span class="token-string">'Content-Type'</span> = <span class="token-string">'application/json'</span>
+        }
+    }
+}
+
+<span class="token-comment"># Initialize client</span>
+<span class="token-variable">$Splunk</span> = [SplunkClient]::new(<span class="token-string">"splunk.company.com"</span>)
+<span class="token-variable">$Cred</span> = <span class="token-cmdlet">Get-Credential</span>
+<span class="token-variable">$Splunk</span>.Authenticate(<span class="token-variable">$Cred</span>)</code></pre>
+                    </div>
+                </div>
+
+                <h3>Running Splunk Searches</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Splunk Search Functions
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-SplunkSearch</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Executes a Splunk search and returns results.
+    .PARAMETER SearchQuery
+        SPL search query (without leading 'search' command).
+    .PARAMETER EarliestTime
+        Search start time (e.g., '-24h', '-7d').
+    .PARAMETER LatestTime
+        Search end time (default: 'now').
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$SearchQuery</span>,
+        
+        [string]<span class="token-variable">$EarliestTime</span> = <span class="token-string">"-24h"</span>,
+        [string]<span class="token-variable">$LatestTime</span> = <span class="token-string">"now"</span>,
+        
+        [Parameter(Mandatory)]
+        [SplunkClient]<span class="token-variable">$Client</span>,
+        
+        [int]<span class="token-variable">$MaxResults</span> = 1000
+    )
+    
+    <span class="token-comment"># Create search job</span>
+    <span class="token-variable">$SearchBody</span> = @{
+        search = <span class="token-string">"search $SearchQuery"</span>
+        earliest_time = <span class="token-variable">$EarliestTime</span>
+        latest_time = <span class="token-variable">$LatestTime</span>
+        output_mode = <span class="token-string">"json"</span>
+    }
+    
+    <span class="token-variable">$JobResponse</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"$($Client.BaseUrl)/services/search/jobs"</span> `
+        <span class="token-parameter">-Method</span> POST <span class="token-parameter">-Headers</span> <span class="token-variable">$Client</span>.Headers <span class="token-parameter">-Body</span> <span class="token-variable">$SearchBody</span> <span class="token-parameter">-SkipCertificateCheck</span>
+    
+    <span class="token-variable">$JobId</span> = <span class="token-variable">$JobResponse</span>.sid
+    Write-Host <span class="token-string">"[*] Search job created: $JobId"</span> -ForegroundColor Cyan
+    
+    <span class="token-comment"># Wait for job completion</span>
+    <span class="token-keyword">do</span> {
+        Start-Sleep -Seconds 2
+        <span class="token-variable">$Status</span> = <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-string">"$($Client.BaseUrl)/services/search/jobs/$JobId"</span> `
+            <span class="token-parameter">-Headers</span> <span class="token-variable">$Client</span>.Headers <span class="token-parameter">-SkipCertificateCheck</span>
+        <span class="token-variable">$IsDone</span> = <span class="token-variable">$Status</span>.entry.content.isDone
+    } <span class="token-keyword">while</span> (-not <span class="token-variable">$IsDone</span>)
+    
+    <span class="token-comment"># Get results</span>
+    <span class="token-variable">$Results</span> = <span class="token-cmdlet">Invoke-RestMethod</span> `
+        <span class="token-parameter">-Uri</span> <span class="token-string">"$($Client.BaseUrl)/services/search/jobs/$JobId/results?output_mode=json&count=$MaxResults"</span> `
+        <span class="token-parameter">-Headers</span> <span class="token-variable">$Client</span>.Headers <span class="token-parameter">-SkipCertificateCheck</span>
+    
+    Write-Host <span class="token-string">"[+] Retrieved $($Results.results.Count) results"</span> -ForegroundColor Green
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>.results
+}
+
+<span class="token-comment"># Example: Search for failed logins</span>
+<span class="token-variable">$Query</span> = <span class="token-string">'index=wineventlog EventCode=4625 | stats count by src_ip, user | sort -count'</span>
+<span class="token-variable">$FailedLogins</span> = Invoke-SplunkSearch <span class="token-parameter">-SearchQuery</span> <span class="token-variable">$Query</span> <span class="token-parameter">-EarliestTime</span> <span class="token-string">"-7d"</span> <span class="token-parameter">-Client</span> <span class="token-variable">$Splunk</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Sending Events to Splunk HEC</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Splunk HTTP Event Collector
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Send-SplunkEvent</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Sends custom events to Splunk via HTTP Event Collector.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$HECUrl</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Token</span>,
+        
+        [Parameter(Mandatory)]
+        [hashtable]<span class="token-variable">$Event</span>,
+        
+        [string]<span class="token-variable">$SourceType</span> = <span class="token-string">"custom:powershell"</span>,
+        [string]<span class="token-variable">$Index</span> = <span class="token-string">"main"</span>
+    )
+    
+    <span class="token-variable">$Headers</span> = @{
+        <span class="token-string">'Authorization'</span> = <span class="token-string">"Splunk $Token"</span>
+        <span class="token-string">'Content-Type'</span> = <span class="token-string">'application/json'</span>
+    }
+    
+    <span class="token-variable">$Body</span> = @{
+        event = <span class="token-variable">$Event</span>
+        sourcetype = <span class="token-variable">$SourceType</span>
+        index = <span class="token-variable">$Index</span>
+        time = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+    } | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">10</span>
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$HECUrl</span> <span class="token-parameter">-Method</span> POST <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span> <span class="token-parameter">-Body</span> <span class="token-variable">$Body</span> <span class="token-parameter">-SkipCertificateCheck</span>
+        Write-Host <span class="token-string">"[+] Event sent successfully"</span> -ForegroundColor Green
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Error <span class="token-string">"Failed to send event: $_"</span>
+    }
+}
+
+<span class="token-comment"># Send security event</span>
+<span class="token-variable">$SecurityEvent</span> = @{
+    event_type = <span class="token-string">"security_alert"</span>
+    severity = <span class="token-string">"high"</span>
+    source_ip = <span class="token-string">"192.168.1.100"</span>
+    description = <span class="token-string">"Suspicious PowerShell execution detected"</span>
+    hostname = <span class="token-variable">$env:COMPUTERNAME</span>
+    user = <span class="token-variable">$env:USERNAME</span>
+}
+
+Send-SplunkEvent <span class="token-parameter">-HECUrl</span> <span class="token-string">"https://splunk:8088/services/collector"</span> `
+    <span class="token-parameter">-Token</span> <span class="token-string">"your-hec-token"</span> <span class="token-parameter">-Event</span> <span class="token-variable">$SecurityEvent</span> <span class="token-parameter">-SourceType</span> <span class="token-string">"security:alerts"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Microsoft Sentinel -->
+                <h2>Microsoft Sentinel Integration</h2>
+
+                <h3>Log Analytics Query</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Sentinel / Log Analytics Query
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Install and import Az module</span>
+<span class="token-cmdlet">Install-Module</span> Az <span class="token-parameter">-Scope</span> CurrentUser
+<span class="token-cmdlet">Import-Module</span> Az.OperationalInsights
+
+<span class="token-comment"># Connect to Azure</span>
+<span class="token-cmdlet">Connect-AzAccount</span>
+
+<span class="token-keyword">function</span> <span class="token-function">Invoke-SentinelQuery</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Executes a KQL query against Microsoft Sentinel / Log Analytics.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$WorkspaceId</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Query</span>,
+        
+        [int]<span class="token-variable">$TimeSpanHours</span> = 24
+    )
+    
+    <span class="token-variable">$TimeSpan</span> = New-TimeSpan -Hours <span class="token-variable">$TimeSpanHours</span>
+    
+    <span class="token-variable">$Results</span> = <span class="token-cmdlet">Invoke-AzOperationalInsightsQuery</span> <span class="token-parameter">-WorkspaceId</span> <span class="token-variable">$WorkspaceId</span> `
+        <span class="token-parameter">-Query</span> <span class="token-variable">$Query</span> <span class="token-parameter">-Timespan</span> <span class="token-variable">$TimeSpan</span>
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>.Results
+}
+
+<span class="token-comment"># Example: Query failed logins from Sentinel</span>
+<span class="token-variable">$KQL</span> = @<span class="token-string">"
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts = count() by TargetAccount, IpAddress
+| where FailedAttempts > 10
+| order by FailedAttempts desc
+"@</span>
+
+<span class="token-variable">$WorkspaceId</span> = <span class="token-string">"your-workspace-id"</span>
+<span class="token-variable">$FailedLogins</span> = Invoke-SentinelQuery <span class="token-parameter">-WorkspaceId</span> <span class="token-variable">$WorkspaceId</span> <span class="token-parameter">-Query</span> <span class="token-variable">$KQL</span> <span class="token-parameter">-TimeSpanHours</span> <span class="token-number">48</span>
+<span class="token-variable">$FailedLogins</span> | <span class="token-cmdlet">Format-Table</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Sending Data to Log Analytics</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Send to Log Analytics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Send-LogAnalyticsData</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Sends custom data to Azure Log Analytics workspace.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$WorkspaceId</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$SharedKey</span>,
+        
+        [Parameter(Mandatory)]
+        [object[]]<span class="token-variable">$Data</span>,
+        
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$LogType</span>  <span class="token-comment"># Custom table name</span>
+    )
+    
+    <span class="token-variable">$JsonBody</span> = <span class="token-variable">$Data</span> | <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">10</span>
+    <span class="token-variable">$Body</span> = [System.Text.Encoding]::UTF8.GetBytes(<span class="token-variable">$JsonBody</span>)
+    
+    <span class="token-variable">$RFC1123Date</span> = [DateTime]::UtcNow.ToString(<span class="token-string">"r"</span>)
+    <span class="token-variable">$ContentLength</span> = <span class="token-variable">$Body</span>.Length
+    
+    <span class="token-comment"># Build authorization signature</span>
+    <span class="token-variable">$StringToSign</span> = <span class="token-string">"POST`n$ContentLength`napplication/json`nx-ms-date:$RFC1123Date`n/api/logs"</span>
+    <span class="token-variable">$BytesToHash</span> = [System.Text.Encoding]::UTF8.GetBytes(<span class="token-variable">$StringToSign</span>)
+    <span class="token-variable">$KeyBytes</span> = [Convert]::FromBase64String(<span class="token-variable">$SharedKey</span>)
+    
+    <span class="token-variable">$HMACSHA256</span> = <span class="token-cmdlet">New-Object</span> System.Security.Cryptography.HMACSHA256
+    <span class="token-variable">$HMACSHA256</span>.Key = <span class="token-variable">$KeyBytes</span>
+    <span class="token-variable">$Hash</span> = <span class="token-variable">$HMACSHA256</span>.ComputeHash(<span class="token-variable">$BytesToHash</span>)
+    <span class="token-variable">$Signature</span> = [Convert]::ToBase64String(<span class="token-variable">$Hash</span>)
+    <span class="token-variable">$Authorization</span> = <span class="token-string">"SharedKey ${WorkspaceId}:${Signature}"</span>
+    
+    <span class="token-variable">$Headers</span> = @{
+        <span class="token-string">"Authorization"</span> = <span class="token-variable">$Authorization</span>
+        <span class="token-string">"Log-Type"</span> = <span class="token-variable">$LogType</span>
+        <span class="token-string">"x-ms-date"</span> = <span class="token-variable">$RFC1123Date</span>
+        <span class="token-string">"Content-Type"</span> = <span class="token-string">"application/json"</span>
+    }
+    
+    <span class="token-variable">$Uri</span> = <span class="token-string">"https://$WorkspaceId.ods.opinsights.azure.com/api/logs?api-version=2016-04-01"</span>
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-parameter">-Uri</span> <span class="token-variable">$Uri</span> <span class="token-parameter">-Method</span> POST <span class="token-parameter">-Headers</span> <span class="token-variable">$Headers</span> <span class="token-parameter">-Body</span> <span class="token-variable">$Body</span>
+        Write-Host <span class="token-string">"[+] Data sent to Log Analytics: $LogType"</span> -ForegroundColor Green
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Error <span class="token-string">"Failed to send data: $_"</span>
+    }
+}
+
+<span class="token-comment"># Send custom security data</span>
+<span class="token-variable">$CustomEvents</span> = @(
+    @{
+        TimeGenerated = (Get-Date).ToUniversalTime().ToString(<span class="token-string">"o"</span>)
+        EventType = <span class="token-string">"SecurityAudit"</span>
+        Computer = <span class="token-variable">$env:COMPUTERNAME</span>
+        Message = <span class="token-string">"Script execution completed"</span>
+        Severity = <span class="token-string">"Informational"</span>
+    }
+)
+
+Send-LogAnalyticsData <span class="token-parameter">-WorkspaceId</span> <span class="token-string">"workspace-id"</span> <span class="token-parameter">-SharedKey</span> <span class="token-string">"shared-key"</span> `
+    <span class="token-parameter">-Data</span> <span class="token-variable">$CustomEvents</span> <span class="token-parameter">-LogType</span> <span class="token-string">"CustomSecurityEvents"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Automated Alerting Workflow -->
+                <h2>Automated Alerting Workflow</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 SIEM Alert Automation Flow</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    AUTOMATED SIEM ALERT WORKFLOW                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   DETECT    │───►│   ENRICH    │───►│   DECIDE    │───►│   RESPOND   │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+      │                  │                  │                  │
+      ▼                  ▼                  ▼                  ▼
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│ • Poll SIEM │    │ • Query AD  │    │ • Score     │    │ • Create    │
+│   for new   │    │   for user  │    │   based on  │    │   ticket    │
+│   alerts    │    │   context   │    │   enrichment│    │ • Isolate   │
+│ • Webhook   │    │ • Threat    │    │ • Auto vs   │    │   endpoint  │
+│   trigger   │    │   intel     │    │   manual    │    │ • Block IOC │
+│             │    │ • Asset     │    │   triage    │    │ • Notify    │
+│             │    │   criticality│    │             │    │   team      │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+
+                    ┌───────────────────────────────────┐
+                    │          FEEDBACK LOOP            │
+                    │  Results → SIEM → Update Rules    │
+                    └───────────────────────────────────┘
+</pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Alert Processing Workflow
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-AlertProcessingWorkflow</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Processes SIEM alerts with enrichment and automated response.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [object]<span class="token-variable">$Alert</span>
+    )
+    
+    <span class="token-keyword">process</span> {
+        Write-Host <span class="token-string">"[*] Processing alert: $($Alert.Name)"</span> -ForegroundColor Cyan
+        
+        <span class="token-comment"># Step 1: Enrich with context</span>
+        <span class="token-variable">$Enrichment</span> = @{}
+        
+        <span class="token-comment"># Get AD user context</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Alert</span>.UserPrincipalName) {
+            <span class="token-keyword">try</span> {
+                <span class="token-variable">$User</span> = <span class="token-cmdlet">Get-ADUser</span> <span class="token-parameter">-Filter</span> <span class="token-string">"UserPrincipalName -eq '$($Alert.UserPrincipalName)'"</span> `
+                    <span class="token-parameter">-Properties</span> Department, Title, Manager, MemberOf
+                <span class="token-variable">$Enrichment</span>.User = @{
+                    Department = <span class="token-variable">$User</span>.Department
+                    Title = <span class="token-variable">$User</span>.Title
+                    IsPrivileged = (<span class="token-variable">$User</span>.MemberOf <span class="token-operator">-match</span> <span class="token-string">'Admin'</span>).Count <span class="token-operator">-gt</span> <span class="token-number">0</span>
+                }
+            } <span class="token-keyword">catch</span> { }
+        }
+        
+        <span class="token-comment"># Check threat intel</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Alert</span>.IPAddress) {
+            <span class="token-variable">$Enrichment</span>.ThreatIntel = Get-ThreatIntelLookup <span class="token-parameter">-IP</span> <span class="token-variable">$Alert</span>.IPAddress
+        }
+        
+        <span class="token-comment"># Step 2: Calculate risk score</span>
+        <span class="token-variable">$RiskScore</span> = <span class="token-number">0</span>
+        <span class="token-keyword">if</span> (<span class="token-variable">$Alert</span>.Severity <span class="token-operator">-eq</span> <span class="token-string">'High'</span>) { <span class="token-variable">$RiskScore</span> += <span class="token-number">30</span> }
+        <span class="token-keyword">if</span> (<span class="token-variable">$Enrichment</span>.User.IsPrivileged) { <span class="token-variable">$RiskScore</span> += <span class="token-number">40</span> }
+        <span class="token-keyword">if</span> (<span class="token-variable">$Enrichment</span>.ThreatIntel.IsMalicious) { <span class="token-variable">$RiskScore</span> += <span class="token-number">50</span> }
+        
+        Write-Host <span class="token-string">"[*] Risk Score: $RiskScore"</span> -ForegroundColor Yellow
+        
+        <span class="token-comment"># Step 3: Determine response</span>
+        <span class="token-keyword">switch</span> (<span class="token-variable">$true</span>) {
+            {<span class="token-variable">$RiskScore</span> <span class="token-operator">-ge</span> <span class="token-number">80</span>} {
+                Write-Host <span class="token-string">"[!] CRITICAL - Automated response triggered"</span> -ForegroundColor Red
+                
+                <span class="token-comment"># Isolate endpoint via EDR</span>
+                <span class="token-keyword">if</span> (<span class="token-variable">$Alert</span>.DeviceId) {
+                    Invoke-MDEMachineIsolation <span class="token-parameter">-MachineId</span> <span class="token-variable">$Alert</span>.DeviceId
+                }
+                
+                <span class="token-comment"># Create high-priority ticket</span>
+                New-ServiceNowIncident <span class="token-parameter">-Priority</span> <span class="token-number">1</span> <span class="token-parameter">-Title</span> <span class="token-variable">$Alert</span>.Name
+                
+                <span class="token-comment"># Notify SOC team</span>
+                Send-TeamsAlert <span class="token-parameter">-Message</span> <span class="token-string">"CRITICAL: $($Alert.Name)"</span> <span class="token-parameter">-Channel</span> <span class="token-string">"SOC-Alerts"</span>
+            }
+            {<span class="token-variable">$RiskScore</span> <span class="token-operator">-ge</span> <span class="token-number">50</span>} {
+                Write-Host <span class="token-string">"[*] HIGH - Creating ticket for analyst review"</span> -ForegroundColor Yellow
+                New-ServiceNowIncident <span class="token-parameter">-Priority</span> <span class="token-number">2</span> <span class="token-parameter">-Title</span> <span class="token-variable">$Alert</span>.Name
+            }
+            default {
+                Write-Host <span class="token-string">"[*] LOW - Logging for review"</span> -ForegroundColor Green
+            }
+        }
+        
+        <span class="token-comment"># Return enriched alert</span>
+        [PSCustomObject]@{
+            OriginalAlert = <span class="token-variable">$Alert</span>
+            Enrichment = <span class="token-variable">$Enrichment</span>
+            RiskScore = <span class="token-variable">$RiskScore</span>
+            ProcessedAt = Get-Date
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: SIEM Integration</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use API tokens over passwords:</strong> Tokens can be scoped and rotated easily</li>
+                        <li><strong>Implement rate limiting:</strong> Avoid overwhelming SIEM with queries</li>
+                        <li><strong>Cache frequently used data:</strong> Asset info, user context, threat intel</li>
+                        <li><strong>Log all automated actions:</strong> For audit trail and troubleshooting</li>
+                        <li><strong>Start with read-only:</strong> Test thoroughly before enabling response actions</li>
+                        <li><strong>Use saved searches:</strong> More efficient than ad-hoc queries</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you integrate a script with your SIEM?"</li>
+                        <li><strong>Strong Answer:</strong> Use the SIEM's REST API for querying alerts and sending custom events. For Splunk, use the search/jobs endpoint for queries and HEC for ingestion. For Sentinel, use the Log Analytics API with KQL queries. Always authenticate with tokens, implement rate limiting, and log all actions.</li>
+                        <li><strong>Follow-up:</strong> "How do you handle alert fatigue?" → Implement enrichment to score alerts, create automated triage workflows, tune detection rules based on false positive feedback.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Splunk uses SPL queries via REST API; Sentinel uses KQL via Log Analytics API</li>
+                    <li>Use HEC (Splunk) or Data Collector API (Sentinel) to send custom events</li>
+                    <li>Build enrichment pipelines: AD context, threat intel, asset criticality</li>
+                    <li>Implement tiered response based on risk scoring</li>
+                    <li>Always authenticate with tokens, not hardcoded credentials</li>
+                    <li>Log all automated actions for audit and compliance</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="5-4-forensics-scripts.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 5.4 Forensics Scripts</span>
+                    </a>
+                    <a href="5-6-edr-automation.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">5.6 EDR Automation →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

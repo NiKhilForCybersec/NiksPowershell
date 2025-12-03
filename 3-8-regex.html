@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2.4 Variables & Data Types - PowerShell & Scripting Guide</title>
+    <title>3.8 Regular Expressions - PowerShell & Scripting Guide</title>
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -217,7 +217,7 @@
                 </nav>
 
                 <!-- Page Title -->
-                <h1>2.4 Variables & Data Types</h1>
+                <h1>3.8 Regular Expressions</h1>
 
                 <!-- What You'll Learn Box -->
                 <div class="info-box overview-box">
@@ -226,10 +226,10 @@
                         <div class="info-box-title">What You'll Learn</div>
                     </div>
                     <ul>
-                        <li>Create and use variables in PowerShell</li>
-                        <li>Understand common data types</li>
-                        <li>Work with arrays and hashtables</li>
-                        <li>Use automatic and preference variables</li>
+                        <li>Understand regex syntax and metacharacters</li>
+                        <li>Use grep with regular expressions</li>
+                        <li>Apply regex in sed and awk</li>
+                        <li>Match patterns for security log analysis</li>
                     </ul>
                 </div>
 
@@ -237,253 +237,238 @@
                 <div class="info-box memory-box">
                     <div class="info-box-header">
                         <div class="info-box-icon">🧠</div>
-                        <div class="info-box-title">Memory Aid: Variable Basics</div>
+                        <div class="info-box-title">Memory Aid: Regex Basics</div>
                     </div>
                     <ul>
-                        <li><strong>$</strong> → All variables start with dollar sign</li>
-                        <li><strong>[type]</strong> → Cast/constrain with brackets</li>
-                        <li><strong>@()</strong> → Array</li>
-                        <li><strong>@{}</strong> → Hashtable</li>
-                        <li><strong>$null</strong> → Empty/no value</li>
+                        <li><strong>.</strong> → Any single character</li>
+                        <li><strong>*</strong> → Zero or more of previous</li>
+                        <li><strong>+</strong> → One or more of previous (ERE)</li>
+                        <li><strong>?</strong> → Zero or one of previous (ERE)</li>
+                        <li><strong>^</strong> → Start of line</li>
+                        <li><strong>$</strong> → End of line</li>
+                        <li><strong>[abc]</strong> → Character class</li>
+                        <li><strong>\d</strong> → Digit (Perl-style)</li>
                     </ul>
                 </div>
 
-                <!-- Variable Basics -->
-                <h2>Variable Basics</h2>
+                <!-- Regex Syntax -->
+                <h2>Regular Expression Syntax</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Regex Quick Reference</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        REGULAR EXPRESSION SYNTAX                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ANCHORS           QUANTIFIERS        CHARACTER CLASSES
+  ─────────         ───────────        ─────────────────
+  ^   Start         *   0 or more      [abc]    a, b, or c
+  $   End           +   1 or more      [^abc]   Not a, b, c
+  \b  Word bound    ?   0 or 1         [a-z]    Range
+                    {n} Exactly n      [0-9]    Digits
+                    {n,m} n to m       .        Any char
+
+  ESCAPE SEQUENCES (grep -P / Perl)    GROUPS
+  ─────────────────────────────────    ──────
+  \d   Digit [0-9]                     (abc)    Capture group
+  \w   Word char [a-zA-Z0-9_]          (?:abc)  Non-capture
+  \s   Whitespace                      |        OR operator
+  \D   Non-digit
+  \W   Non-word
+</pre>
+                </div>
+
+                <!-- grep with Regex -->
+                <h2>Using grep with Regex</h2>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span class="code-language powershell">
-                            <span class="code-language-icon">🔷</span>
-                            PowerShell - Creating Variables
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - grep Regex
                         </span>
                         <button class="code-copy-btn"><span>📋</span> Copy</button>
                     </div>
                     <div class="code-block">
-<pre><code><span class="token-comment"># Simple assignment</span>
-<span class="token-variable">$Name</span> = <span class="token-string">"Server01"</span>
-<span class="token-variable">$Count</span> = <span class="token-number">42</span>
-<span class="token-variable">$IsEnabled</span> = <span class="token-variable">$true</span>
+<pre><code><span class="token-comment">#!/bin/bash</span>
 
-<span class="token-comment"># Check variable type</span>
-<span class="token-variable">$Name</span>.GetType().Name     <span class="token-comment"># String</span>
-<span class="token-variable">$Count</span>.GetType().Name    <span class="token-comment"># Int32</span>
+<span class="token-comment"># Basic regex (BRE)</span>
+<span class="token-function">grep</span> <span class="token-string">'error'</span> logfile.txt         <span class="token-comment"># Literal match</span>
+<span class="token-function">grep</span> <span class="token-string">'^error'</span> logfile.txt        <span class="token-comment"># Lines starting with 'error'</span>
+<span class="token-function">grep</span> <span class="token-string">'error$'</span> logfile.txt        <span class="token-comment"># Lines ending with 'error'</span>
+<span class="token-function">grep</span> <span class="token-string">'^$'</span> logfile.txt             <span class="token-comment"># Empty lines</span>
 
-<span class="token-comment"># Type-constrained variable</span>
-[string]<span class="token-variable">$Server</span> = <span class="token-string">"DC01"</span>
-[int]<span class="token-variable">$Port</span> = <span class="token-number">443</span>
-[datetime]<span class="token-variable">$StartDate</span> = <span class="token-string">"2024-01-15"</span>
+<span class="token-comment"># Extended regex (ERE) - use -E or egrep</span>
+<span class="token-function">grep</span> -E <span class="token-string">'error|warning'</span> logfile.txt    <span class="token-comment"># OR pattern</span>
+<span class="token-function">grep</span> -E <span class="token-string">'[0-9]+'</span> logfile.txt           <span class="token-comment"># One or more digits</span>
+<span class="token-function">grep</span> -E <span class="token-string">'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'</span> logfile.txt  <span class="token-comment"># IP pattern</span>
 
-<span class="token-comment"># Variable in strings (expansion)</span>
-<span class="token-variable">$Message</span> = <span class="token-string">"Connecting to $Server on port $Port"</span>
+<span class="token-comment"># Perl-compatible regex (PCRE) - use -P</span>
+<span class="token-function">grep</span> -P <span class="token-string">'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'</span> logfile.txt  <span class="token-comment"># IP with \d</span>
+<span class="token-function">grep</span> -P <span class="token-string">'\b\w+@\w+\.\w+\b'</span> logfile.txt    <span class="token-comment"># Simple email pattern</span>
 
-<span class="token-comment"># No expansion with single quotes</span>
-<span class="token-variable">$Literal</span> = <span class="token-string">'Variable is $Server'</span>  <span class="token-comment"># Outputs: Variable is $Server</span>
+<span class="token-comment"># Case insensitive</span>
+<span class="token-function">grep</span> -i <span class="token-string">'error'</span> logfile.txt
 
-<span class="token-comment"># Complex expressions in strings</span>
-<span class="token-variable">$Info</span> = <span class="token-string">"Total processes: $((Get-Process).Count)"</span>
+<span class="token-comment"># Invert match (lines NOT matching)</span>
+<span class="token-function">grep</span> -v <span class="token-string">'debug'</span> logfile.txt
 
-<span class="token-comment"># Clear/remove variable</span>
-<span class="token-cmdlet">Remove-Variable</span> <span class="token-parameter">-Name</span> Count
-<span class="token-variable">$Server</span> = <span class="token-variable">$null</span></code></pre>
+<span class="token-comment"># Show line numbers</span>
+<span class="token-function">grep</span> -n <span class="token-string">'error'</span> logfile.txt
+
+<span class="token-comment"># Count matches</span>
+<span class="token-function">grep</span> -c <span class="token-string">'error'</span> logfile.txt
+
+<span class="token-comment"># Only show matched portion</span>
+<span class="token-function">grep</span> -o -E <span class="token-string">'[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'</span> logfile.txt</code></pre>
                     </div>
                 </div>
 
-                <!-- Data Types -->
-                <h2>Common Data Types</h2>
+                <!-- sed with Regex -->
+                <h2>Using sed with Regex</h2>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span class="code-language powershell">
-                            <span class="code-language-icon">🔷</span>
-                            PowerShell - Data Types
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - sed Regex
                         </span>
                         <button class="code-copy-btn"><span>📋</span> Copy</button>
                     </div>
                     <div class="code-block">
-<pre><code><span class="token-comment"># String</span>
-[string]<span class="token-variable">$Text</span> = <span class="token-string">"Hello World"</span>
-<span class="token-variable">$Text</span>.Length                        <span class="token-comment"># 11</span>
-<span class="token-variable">$Text</span>.ToUpper()                     <span class="token-comment"># HELLO WORLD</span>
-<span class="token-variable">$Text</span>.Replace(<span class="token-string">"World"</span>, <span class="token-string">"PowerShell"</span>) <span class="token-comment"># Hello PowerShell</span>
+<pre><code><span class="token-comment">#!/bin/bash</span>
 
-<span class="token-comment"># Integer</span>
-[int]<span class="token-variable">$Number</span> = <span class="token-number">100</span>
-[int64]<span class="token-variable">$BigNumber</span> = <span class="token-number">9999999999</span>
+<span class="token-comment"># Basic substitution</span>
+<span class="token-function">sed</span> <span class="token-string">'s/error/ERROR/'</span> logfile.txt         <span class="token-comment"># First match per line</span>
+<span class="token-function">sed</span> <span class="token-string">'s/error/ERROR/g'</span> logfile.txt        <span class="token-comment"># Global (all matches)</span>
+<span class="token-function">sed</span> <span class="token-string">'s/error/ERROR/gi'</span> logfile.txt       <span class="token-comment"># Global, case-insensitive</span>
 
-<span class="token-comment"># Boolean</span>
-[bool]<span class="token-variable">$Flag</span> = <span class="token-variable">$true</span>
-<span class="token-variable">$Flag</span> = <span class="token-variable">$false</span>
+<span class="token-comment"># Using capture groups</span>
+<span class="token-function">echo</span> <span class="token-string">"user: admin"</span> | <span class="token-function">sed</span> <span class="token-string">'s/user: \(.*\)/User is \1/'</span>
+<span class="token-comment"># Output: User is admin</span>
 
-<span class="token-comment"># DateTime</span>
-[datetime]<span class="token-variable">$Now</span> = Get-Date
-[datetime]<span class="token-variable">$Custom</span> = <span class="token-string">"2024-06-15 14:30:00"</span>
-<span class="token-variable">$Now</span>.AddDays(<span class="token-number">7</span>)                      <span class="token-comment"># Add 7 days</span>
-<span class="token-variable">$Now</span>.ToString(<span class="token-string">"yyyy-MM-dd"</span>)          <span class="token-comment"># Format output</span>
+<span class="token-comment"># Extended regex with -E</span>
+<span class="token-function">echo</span> <span class="token-string">"IP: 192.168.1.100"</span> | <span class="token-function">sed</span> -E <span class="token-string">'s/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.\2.x.x/'</span>
+<span class="token-comment"># Output: IP: 192.168.x.x</span>
 
-<span class="token-comment"># Double (decimal)</span>
-[double]<span class="token-variable">$Price</span> = <span class="token-number">19.99</span>
+<span class="token-comment"># Delete lines matching pattern</span>
+<span class="token-function">sed</span> <span class="token-string">'/^#/d'</span> config.txt                   <span class="token-comment"># Delete comment lines</span>
+<span class="token-function">sed</span> <span class="token-string">'/^$/d'</span> config.txt                   <span class="token-comment"># Delete empty lines</span>
 
-<span class="token-comment"># Type casting</span>
-[int]<span class="token-string">"42"</span>                            <span class="token-comment"># String to int</span>
-[string]<span class="token-number">100</span>                          <span class="token-comment"># Int to string</span>
-[datetime]<span class="token-string">"2024-01-01"</span>              <span class="token-comment"># String to datetime</span></code></pre>
+<span class="token-comment"># Print only matching lines</span>
+<span class="token-function">sed</span> -n <span class="token-string">'/error/p'</span> logfile.txt             <span class="token-comment"># Like grep</span>
+
+<span class="token-comment"># Modify file in place</span>
+<span class="token-function">sed</span> -i <span class="token-string">'s/old/new/g'</span> file.txt             <span class="token-comment"># Edit in place</span>
+<span class="token-function">sed</span> -i.bak <span class="token-string">'s/old/new/g'</span> file.txt        <span class="token-comment"># Backup original</span>
+
+<span class="token-comment"># Multiple operations</span>
+<span class="token-function">sed</span> -e <span class="token-string">'s/foo/bar/'</span> -e <span class="token-string">'s/baz/qux/'</span> file.txt</code></pre>
                     </div>
                 </div>
 
-                <!-- Arrays -->
-                <h2>Arrays</h2>
+                <!-- Security Patterns -->
+                <h2>Security-Related Patterns</h2>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span class="code-language powershell">
-                            <span class="code-language-icon">🔷</span>
-                            PowerShell - Arrays
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Security Regex Patterns
                         </span>
                         <button class="code-copy-btn"><span>📋</span> Copy</button>
                     </div>
                     <div class="code-block">
-<pre><code><span class="token-comment"># Create array</span>
-<span class="token-variable">$Servers</span> = @(<span class="token-string">"DC01"</span>, <span class="token-string">"DC02"</span>, <span class="token-string">"WEB01"</span>, <span class="token-string">"SQL01"</span>)
+<pre><code><span class="token-comment">#!/bin/bash</span>
 
-<span class="token-comment"># Alternative syntax</span>
-<span class="token-variable">$Numbers</span> = <span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>, <span class="token-number">4</span>, <span class="token-number">5</span>
+<span class="token-comment"># IP Address validation</span>
+IP_REGEX=<span class="token-string">'^([0-9]{1,3}\.){3}[0-9]{1,3}$'</span>
+<span class="token-keyword">if</span> [[ <span class="token-string">"192.168.1.100"</span> =~ <span class="token-variable">$IP_REGEX</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Valid IP"</span>
+<span class="token-keyword">fi</span>
 
-<span class="token-comment"># Range operator</span>
-<span class="token-variable">$Range</span> = <span class="token-number">1</span>..<span class="token-number">10</span>
+<span class="token-comment"># Extract IPs from log</span>
+<span class="token-function">grep</span> -oP <span class="token-string">'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'</span> /var/log/auth.log | <span class="token-function">sort</span> -u
 
-<span class="token-comment"># Access elements (0-indexed)</span>
-<span class="token-variable">$Servers</span>[<span class="token-number">0</span>]                        <span class="token-comment"># DC01 (first)</span>
-<span class="token-variable">$Servers</span>[-<span class="token-number">1</span>]                       <span class="token-comment"># SQL01 (last)</span>
-<span class="token-variable">$Servers</span>[<span class="token-number">0</span>..<span class="token-number">1</span>]                     <span class="token-comment"># DC01, DC02 (slice)</span>
+<span class="token-comment"># Find failed SSH logins</span>
+<span class="token-function">grep</span> -E <span class="token-string">'Failed password for .* from [0-9.]+'</span> /var/log/auth.log
 
-<span class="token-comment"># Array properties</span>
-<span class="token-variable">$Servers</span>.Count                     <span class="token-comment"># 4</span>
-<span class="token-variable">$Servers</span>.Length                    <span class="token-comment"># 4</span>
+<span class="token-comment"># Extract usernames from failed logins</span>
+<span class="token-function">grep</span> <span class="token-string">'Failed password'</span> /var/log/auth.log | \
+    <span class="token-function">sed</span> -E <span class="token-string">'s/.*Failed password for (invalid user )?([^ ]+).*/\2/'</span> | \
+    <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | <span class="token-function">sort</span> -rn
 
-<span class="token-comment"># Add to array (creates new array!)</span>
-<span class="token-variable">$Servers</span> += <span class="token-string">"APP01"</span>
+<span class="token-comment"># Email pattern</span>
+EMAIL_REGEX=<span class="token-string">'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'</span>
 
-<span class="token-comment"># Better: Use ArrayList for frequent additions</span>
-<span class="token-variable">$List</span> = [System.Collections.ArrayList]@()
-[void]<span class="token-variable">$List</span>.Add(<span class="token-string">"Server1"</span>)
-[void]<span class="token-variable">$List</span>.Add(<span class="token-string">"Server2"</span>)
+<span class="token-comment"># Find URLs in file</span>
+<span class="token-function">grep</span> -oP <span class="token-string">'https?://[^\s"<>]+'</span> document.txt
 
-<span class="token-comment"># Check if contains</span>
-<span class="token-variable">$Servers</span> <span class="token-operator">-contains</span> <span class="token-string">"DC01"</span>          <span class="token-comment"># True</span>
-<span class="token-string">"DC01"</span> <span class="token-operator">-in</span> <span class="token-variable">$Servers</span>                <span class="token-comment"># True</span>
+<span class="token-comment"># MAC address pattern</span>
+<span class="token-function">grep</span> -oE <span class="token-string">'([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}'</span> network.log
 
-<span class="token-comment"># Loop through array</span>
-<span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Servers</span>) {
-    Write-Host <span class="token-string">"Processing: $Server"</span>
-}
+<span class="token-comment"># Find potential passwords in config (security audit)</span>
+<span class="token-function">grep</span> -iE <span class="token-string">'(password|passwd|pwd|secret|key)\s*[=:]\s*\S+'</span> *.conf
 
-<span class="token-comment"># Filter array</span>
-<span class="token-variable">$DCServers</span> = <span class="token-variable">$Servers</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$_</span> <span class="token-operator">-like</span> <span class="token-string">"DC*"</span> }</code></pre>
+<span class="token-comment"># Extract timestamps</span>
+<span class="token-function">grep</span> -oE <span class="token-string">'[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}'</span> logfile.txt</code></pre>
                     </div>
                 </div>
 
-                <!-- Hashtables -->
-                <h2>Hashtables</h2>
+                <!-- Bash Regex -->
+                <h2>Bash Built-in Regex</h2>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span class="code-language powershell">
-                            <span class="code-language-icon">🔷</span>
-                            PowerShell - Hashtables
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - [[ =~ ]] Operator
                         </span>
                         <button class="code-copy-btn"><span>📋</span> Copy</button>
                     </div>
                     <div class="code-block">
-<pre><code><span class="token-comment"># Create hashtable</span>
-<span class="token-variable">$ServerInfo</span> = @{
-    Name = <span class="token-string">"DC01"</span>
-    IP = <span class="token-string">"192.168.1.10"</span>
-    Role = <span class="token-string">"Domain Controller"</span>
-    Port = <span class="token-number">389</span>
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Basic pattern matching</span>
+string=<span class="token-string">"Hello World 123"</span>
+
+<span class="token-keyword">if</span> [[ <span class="token-variable">$string</span> =~ [0-9]+ ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Contains numbers"</span>
+    <span class="token-function">echo</span> <span class="token-string">"Matched: ${BASH_REMATCH[0]}"</span>  <span class="token-comment"># 123</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Capture groups with BASH_REMATCH</span>
+log_line=<span class="token-string">"2024-06-15 Error: Connection failed"</span>
+pattern=<span class="token-string">'([0-9]{4}-[0-9]{2}-[0-9]{2}) ([A-Za-z]+): (.*)'</span>
+
+<span class="token-keyword">if</span> [[ <span class="token-variable">$log_line</span> =~ <span class="token-variable">$pattern</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Date: ${BASH_REMATCH[1]}"</span>      <span class="token-comment"># 2024-06-15</span>
+    <span class="token-function">echo</span> <span class="token-string">"Level: ${BASH_REMATCH[2]}"</span>     <span class="token-comment"># Error</span>
+    <span class="token-function">echo</span> <span class="token-string">"Message: ${BASH_REMATCH[3]}"</span>   <span class="token-comment"># Connection failed</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Validate input</span>
+validate_ip() {
+    <span class="token-keyword">local</span> ip=<span class="token-variable">$1</span>
+    <span class="token-keyword">local</span> regex=<span class="token-string">'^([0-9]{1,3}\.){3}[0-9]{1,3}$'</span>
+    
+    <span class="token-keyword">if</span> [[ <span class="token-variable">$ip</span> =~ <span class="token-variable">$regex</span> ]]; <span class="token-keyword">then</span>
+        <span class="token-comment"># Additional octet validation</span>
+        IFS=<span class="token-string">'.'</span> <span class="token-function">read</span> -ra octets &lt;&lt;&lt; <span class="token-string">"$ip"</span>
+        <span class="token-keyword">for</span> octet <span class="token-keyword">in</span> <span class="token-string">"${octets[@]}"</span>; <span class="token-keyword">do</span>
+            <span class="token-keyword">if</span> (( octet &gt; <span class="token-number">255</span> )); <span class="token-keyword">then</span>
+                <span class="token-keyword">return</span> <span class="token-number">1</span>
+            <span class="token-keyword">fi</span>
+        <span class="token-keyword">done</span>
+        <span class="token-keyword">return</span> <span class="token-number">0</span>
+    <span class="token-keyword">fi</span>
+    <span class="token-keyword">return</span> <span class="token-number">1</span>
 }
 
-<span class="token-comment"># Access values</span>
-<span class="token-variable">$ServerInfo</span>[<span class="token-string">"Name"</span>]               <span class="token-comment"># DC01</span>
-<span class="token-variable">$ServerInfo</span>.IP                    <span class="token-comment"># 192.168.1.10</span>
-
-<span class="token-comment"># Add/modify keys</span>
-<span class="token-variable">$ServerInfo</span>[<span class="token-string">"OS"</span>] = <span class="token-string">"Windows Server 2022"</span>
-<span class="token-variable">$ServerInfo</span>.Location = <span class="token-string">"DataCenter1"</span>
-
-<span class="token-comment"># Remove key</span>
-<span class="token-variable">$ServerInfo</span>.Remove(<span class="token-string">"Port"</span>)
-
-<span class="token-comment"># Check for key</span>
-<span class="token-variable">$ServerInfo</span>.ContainsKey(<span class="token-string">"Name"</span>)    <span class="token-comment"># True</span>
-
-<span class="token-comment"># Get all keys/values</span>
-<span class="token-variable">$ServerInfo</span>.Keys
-<span class="token-variable">$ServerInfo</span>.Values
-
-<span class="token-comment"># Loop through hashtable</span>
-<span class="token-keyword">foreach</span> (<span class="token-variable">$Key</span> <span class="token-keyword">in</span> <span class="token-variable">$ServerInfo</span>.Keys) {
-    Write-Host <span class="token-string">"$Key : $($ServerInfo[$Key])"</span>
-}
-
-<span class="token-comment"># Ordered hashtable (maintains insertion order)</span>
-<span class="token-variable">$OrderedHash</span> = [ordered]@{
-    First = <span class="token-number">1</span>
-    Second = <span class="token-number">2</span>
-    Third = <span class="token-number">3</span>
-}
-
-<span class="token-comment"># Splatting with hashtables</span>
-<span class="token-variable">$Params</span> = @{
-    ComputerName = <span class="token-string">"DC01"</span>
-    Credential = <span class="token-variable">$Cred</span>
-    ScriptBlock = { Get-Service }
-}
-<span class="token-cmdlet">Invoke-Command</span> @Params   <span class="token-comment"># Splat with @</span></code></pre>
-                    </div>
-                </div>
-
-                <!-- Special Variables -->
-                <h2>Automatic & Special Variables</h2>
-
-                <div class="code-container">
-                    <div class="code-header">
-                        <span class="code-language powershell">
-                            <span class="code-language-icon">🔷</span>
-                            PowerShell - Special Variables
-                        </span>
-                        <button class="code-copy-btn"><span>📋</span> Copy</button>
-                    </div>
-                    <div class="code-block">
-<pre><code><span class="token-comment"># Automatic variables</span>
-<span class="token-variable">$_</span>              <span class="token-comment"># Current pipeline object</span>
-<span class="token-variable">$PSItem</span>         <span class="token-comment"># Same as $_</span>
-<span class="token-variable">$null</span>           <span class="token-comment"># Null/empty value</span>
-<span class="token-variable">$true</span>           <span class="token-comment"># Boolean true</span>
-<span class="token-variable">$false</span>          <span class="token-comment"># Boolean false</span>
-<span class="token-variable">$Error</span>          <span class="token-comment"># Array of recent errors</span>
-<span class="token-variable">$?</span>              <span class="token-comment"># Success of last command</span>
-<span class="token-variable">$LASTEXITCODE</span>   <span class="token-comment"># Exit code of last native command</span>
-<span class="token-variable">$PWD</span>            <span class="token-comment"># Current directory</span>
-<span class="token-variable">$HOME</span>           <span class="token-comment"># User's home directory</span>
-<span class="token-variable">$Host</span>           <span class="token-comment"># Host application info</span>
-<span class="token-variable">$PID</span>            <span class="token-comment"># Process ID of PowerShell</span>
-<span class="token-variable">$PSVersionTable</span> <span class="token-comment"># PowerShell version info</span>
-
-<span class="token-comment"># Environment variables</span>
-<span class="token-variable">$env:USERNAME</span>          <span class="token-comment"># Current user</span>
-<span class="token-variable">$env:COMPUTERNAME</span>      <span class="token-comment"># Computer name</span>
-<span class="token-variable">$env:PATH</span>              <span class="token-comment"># System PATH</span>
-<span class="token-variable">$env:TEMP</span>              <span class="token-comment"># Temp directory</span>
-
-<span class="token-comment"># Set environment variable</span>
-<span class="token-variable">$env:MY_VAR</span> = <span class="token-string">"MyValue"</span>
-
-<span class="token-comment"># Preference variables</span>
-<span class="token-variable">$ErrorActionPreference</span> = <span class="token-string">'Stop'</span>      <span class="token-comment"># Stop on errors</span>
-<span class="token-variable">$VerbosePreference</span> = <span class="token-string">'Continue'</span>      <span class="token-comment"># Show verbose output</span>
-<span class="token-variable">$DebugPreference</span> = <span class="token-string">'Continue'</span>        <span class="token-comment"># Show debug output</span>
-<span class="token-variable">$ConfirmPreference</span> = <span class="token-string">'None'</span>          <span class="token-comment"># Suppress confirmations</span></code></pre>
+<span class="token-keyword">if</span> validate_ip <span class="token-string">"192.168.1.100"</span>; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Valid IP address"</span>
+<span class="token-keyword">fi</span></code></pre>
                     </div>
                 </div>
 
@@ -491,50 +476,38 @@
                 <div class="info-box best-practice-box">
                     <div class="info-box-header">
                         <div class="info-box-icon">✅</div>
-                        <div class="info-box-title">Best Practices: Variables</div>
+                        <div class="info-box-title">Best Practices: Regex</div>
                     </div>
                     <ul>
-                        <li><strong>Use meaningful names:</strong> <code>$ServerList</code> not <code>$s</code></li>
-                        <li><strong>PascalCase convention:</strong> <code>$ComputerName</code></li>
-                        <li><strong>Type-constrain when needed:</strong> <code>[int]$Port</code></li>
-                        <li><strong>Use ArrayList for growth:</strong> Avoid <code>+=</code> on arrays</li>
-                        <li><strong>Prefer ordered hashtables:</strong> When order matters</li>
-                        <li><strong>Use splatting:</strong> For cleaner cmdlet calls</li>
-                    </ul>
-                </div>
-
-                <!-- Interview Tips -->
-                <div class="info-box interview-box">
-                    <div class="info-box-header">
-                        <div class="info-box-icon">💼</div>
-                        <div class="info-box-title">Interview Tips</div>
-                    </div>
-                    <ul>
-                        <li><strong>Common Question:</strong> "What's the difference between <code>@()</code> and <code>@{}</code>?"</li>
-                        <li><strong>Strong Answer:</strong> <code>@()</code> creates an array—an ordered collection accessed by index (0, 1, 2). <code>@{}</code> creates a hashtable—a key-value collection accessed by key name. Arrays are best for lists of similar items; hashtables are best for configuration or properties with named values.</li>
+                        <li><strong>Test patterns first:</strong> Use tools like regex101.com</li>
+                        <li><strong>Store in variables:</strong> Makes scripts more readable</li>
+                        <li><strong>Use -E for ERE:</strong> Cleaner syntax with +, ?, |</li>
+                        <li><strong>Be specific:</strong> <code>\d{1,3}</code> instead of <code>\d+</code> for IPs</li>
+                        <li><strong>Escape special chars:</strong> Use <code>\.</code> for literal dot</li>
+                        <li><strong>Consider performance:</strong> Simple patterns are faster</li>
                     </ul>
                 </div>
 
                 <!-- Key Takeaways -->
                 <h2>Key Takeaways</h2>
                 <ul>
-                    <li>Variables start with <code>$</code> and are dynamically typed</li>
-                    <li>Use <code>[type]</code> to constrain variable types</li>
-                    <li>Arrays (<code>@()</code>) are ordered, accessed by index</li>
-                    <li>Hashtables (<code>@{}</code>) are key-value pairs</li>
-                    <li>Use ArrayList instead of <code>+=</code> for performance</li>
-                    <li>Splatting (<code>@Params</code>) makes cmdlet calls cleaner</li>
+                    <li>Use <code>grep -E</code> for extended regex (ERE)</li>
+                    <li>Use <code>grep -P</code> for Perl-compatible regex (PCRE)</li>
+                    <li>Bash <code>[[ =~ ]]</code> captures groups in <code>BASH_REMATCH</code></li>
+                    <li>Store regex patterns in variables for readability</li>
+                    <li>Common patterns: IP addresses, emails, timestamps, URLs</li>
+                    <li>Test regex before using in production scripts</li>
                 </ul>
 
                 <!-- Navigation -->
                                                                                 <div class="page-navigation">
-                    <a href="2-3-pipeline-mastery.html" class="nav-button prev">
+                    <a href="3-7-system-admin.html" class="nav-button prev">
                         <span class="nav-button-label">Previous</span>
-                        <span class="nav-button-title">← 2.3 Pipeline Mastery</span>
+                        <span class="nav-button-title">← 3.7 System Administration</span>
                     </a>
-                    <a href="2-5-working-with-objects.html" class="nav-button next">
+                    <a href="3-9-text-processing.html" class="nav-button next">
                         <span class="nav-button-label">Next</span>
-                        <span class="nav-button-title">2.5 Working with Objects →</span>
+                        <span class="nav-button-title">3.9 Text Processing →</span>
                     </a>
                 </div>
             </div>

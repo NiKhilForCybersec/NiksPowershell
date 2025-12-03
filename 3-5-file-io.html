@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.5 File I/O - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#bash">Bash Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>File I/O</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>3.5 File I/O</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Read files line by line and in bulk</li>
+                        <li>Write and append to files</li>
+                        <li>Use redirection operators effectively</li>
+                        <li>Work with temporary files securely</li>
+                    </ul>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Redirection Operators</div>
+                    </div>
+                    <ul>
+                        <li><strong>></strong> → Write to file (overwrite)</li>
+                        <li><strong>>></strong> → Append to file</li>
+                        <li><strong><</strong> → Read from file (input)</li>
+                        <li><strong>2></strong> → Redirect stderr</li>
+                        <li><strong>&></strong> → Redirect both stdout and stderr</li>
+                        <li><strong>2>&1</strong> → Redirect stderr to stdout</li>
+                        <li><strong>|</strong> → Pipe stdout to next command</li>
+                    </ul>
+                </div>
+
+                <!-- Reading Files -->
+                <h2>Reading Files</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Reading Files
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Display entire file</span>
+<span class="token-function">cat</span> /etc/passwd
+
+<span class="token-comment"># Display with line numbers</span>
+<span class="token-function">cat</span> -n /etc/passwd
+<span class="token-function">nl</span> /etc/passwd
+
+<span class="token-comment"># First/last lines</span>
+<span class="token-function">head</span> -n 10 /var/log/syslog     <span class="token-comment"># First 10 lines</span>
+<span class="token-function">tail</span> -n 20 /var/log/syslog     <span class="token-comment"># Last 20 lines</span>
+<span class="token-function">tail</span> -f /var/log/syslog        <span class="token-comment"># Follow (live updates)</span>
+
+<span class="token-comment"># Read file into variable</span>
+content=<span class="token-variable">$(</span><span class="token-function">cat</span> config.txt<span class="token-variable">)</span>
+<span class="token-function">echo</span> <span class="token-string">"$content"</span>
+
+<span class="token-comment"># Read file line by line (recommended method)</span>
+<span class="token-keyword">while</span> IFS= <span class="token-function">read</span> -r line; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"Line: $line"</span>
+<span class="token-keyword">done</span> < /etc/hosts
+
+<span class="token-comment"># Read with line number</span>
+line_num=<span class="token-number">0</span>
+<span class="token-keyword">while</span> IFS= <span class="token-function">read</span> -r line; <span class="token-keyword">do</span>
+    ((line_num++))
+    <span class="token-function">echo</span> <span class="token-string">"$line_num: $line"</span>
+<span class="token-keyword">done</span> < file.txt
+
+<span class="token-comment"># Read specific fields (CSV-like)</span>
+<span class="token-keyword">while</span> IFS=<span class="token-string">':'</span> <span class="token-function">read</span> -r user pass uid gid gecos home shell; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"User: $user, Shell: $shell"</span>
+<span class="token-keyword">done</span> < /etc/passwd
+
+<span class="token-comment"># Read into array</span>
+mapfile -t lines < file.txt
+<span class="token-function">echo</span> <span class="token-string">"Total lines: ${#lines[@]}"</span>
+<span class="token-function">echo</span> <span class="token-string">"First line: ${lines[0]}"</span>
+
+<span class="token-comment"># Alternative: readarray</span>
+readarray -t data < config.txt
+
+<span class="token-comment"># Read specific line</span>
+<span class="token-function">sed</span> -n <span class="token-string">'5p'</span> file.txt           <span class="token-comment"># Line 5</span>
+<span class="token-function">sed</span> -n <span class="token-string">'5,10p'</span> file.txt        <span class="token-comment"># Lines 5-10</span>
+<span class="token-function">awk</span> <span class="token-string">'NR==5'</span> file.txt           <span class="token-comment"># Line 5 with awk</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Writing Files -->
+                <h2>Writing Files</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Writing Files
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Overwrite file</span>
+<span class="token-function">echo</span> <span class="token-string">"Hello World"</span> > output.txt
+
+<span class="token-comment"># Append to file</span>
+<span class="token-function">echo</span> <span class="token-string">"Another line"</span> >> output.txt
+
+<span class="token-comment"># Multi-line with heredoc</span>
+<span class="token-function">cat</span> > config.yml <span class="token-string"><<EOF
+server:
+  host: localhost
+  port: 8080
+logging:
+  level: INFO
+EOF</span>
+
+<span class="token-comment"># Heredoc with variable expansion</span>
+name=<span class="token-string">"MyApp"</span>
+<span class="token-function">cat</span> > settings.conf <span class="token-string"><<EOF
+app_name=$name
+created=$(date)
+user=$USER
+EOF</span>
+
+<span class="token-comment"># Heredoc without variable expansion (quote delimiter)</span>
+<span class="token-function">cat</span> > script.sh <span class="token-string"><<'EOF'
+#!/bin/bash
+echo "Current user: $USER"
+echo "Home: $HOME"
+EOF</span>
+
+<span class="token-comment"># Write command output to file</span>
+<span class="token-function">date</span> > timestamp.txt
+<span class="token-function">ls</span> -la > directory_listing.txt
+<span class="token-function">ps</span> aux > processes.txt
+
+<span class="token-comment"># Redirect both stdout and stderr</span>
+command &> all_output.txt
+command > stdout.txt 2> stderr.txt
+
+<span class="token-comment"># Append stderr to same file as stdout</span>
+command >> output.log 2>&1
+
+<span class="token-comment"># Write from loop</span>
+<span class="token-keyword">for</span> i <span class="token-keyword">in</span> {<span class="token-number">1</span>..<span class="token-number">10</span>}; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"Line $i"</span>
+<span class="token-keyword">done</span> > numbers.txt
+
+<span class="token-comment"># Use tee to write and display</span>
+<span class="token-function">echo</span> <span class="token-string">"Important message"</span> | <span class="token-function">tee</span> output.txt
+<span class="token-function">ls</span> -la | <span class="token-function">tee</span> listing.txt           <span class="token-comment"># Write and show</span>
+<span class="token-function">ls</span> -la | <span class="token-function">tee</span> -a listing.txt        <span class="token-comment"># Append and show</span>
+
+<span class="token-comment"># Write to multiple files</span>
+<span class="token-function">echo</span> <span class="token-string">"Log entry"</span> | <span class="token-function">tee</span> file1.txt file2.txt file3.txt
+
+<span class="token-comment"># printf for formatted output</span>
+<span class="token-function">printf</span> <span class="token-string">"%-20s %10s\n"</span> <span class="token-string">"Name"</span> <span class="token-string">"Value"</span> > report.txt
+<span class="token-function">printf</span> <span class="token-string">"%-20s %10d\n"</span> <span class="token-string">"Count"</span> <span class="token-number">42</span> >> report.txt</code></pre>
+                    </div>
+                </div>
+
+                <!-- File Descriptors -->
+                <h2>File Descriptors</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - File Descriptors
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Standard file descriptors:</span>
+<span class="token-comment"># 0 = stdin (input)</span>
+<span class="token-comment"># 1 = stdout (output)</span>
+<span class="token-comment"># 2 = stderr (errors)</span>
+
+<span class="token-comment"># Redirect stderr only</span>
+<span class="token-function">ls</span> /nonexistent 2> errors.txt
+
+<span class="token-comment"># Discard stderr</span>
+<span class="token-function">ls</span> /nonexistent 2>/dev/null
+
+<span class="token-comment"># Redirect stderr to stdout</span>
+<span class="token-function">ls</span> /nonexistent 2>&1
+
+<span class="token-comment"># Discard all output</span>
+command &>/dev/null
+
+<span class="token-comment"># Open custom file descriptor for reading</span>
+<span class="token-function">exec</span> 3< input.txt
+<span class="token-keyword">while</span> <span class="token-function">read</span> -r line <&3; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$line"</span>
+<span class="token-keyword">done</span>
+<span class="token-function">exec</span> 3<&-  <span class="token-comment"># Close descriptor</span>
+
+<span class="token-comment"># Open custom file descriptor for writing</span>
+<span class="token-function">exec</span> 4> output.txt
+<span class="token-function">echo</span> <span class="token-string">"Writing via FD 4"</span> >&4
+<span class="token-function">echo</span> <span class="token-string">"More content"</span> >&4
+<span class="token-function">exec</span> 4>&-  <span class="token-comment"># Close descriptor</span>
+
+<span class="token-comment"># Read and write simultaneously</span>
+<span class="token-function">exec</span> 3< input.txt
+<span class="token-function">exec</span> 4> output.txt
+<span class="token-keyword">while</span> <span class="token-function">read</span> -r line <&3; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"Processed: $line"</span> >&4
+<span class="token-keyword">done</span>
+<span class="token-function">exec</span> 3<&- 4>&-
+
+<span class="token-comment"># Swap stdout and stderr</span>
+command 3>&1 1>&2 2>&3</code></pre>
+                    </div>
+                </div>
+
+                <!-- Temporary Files -->
+                <h2>Temporary Files</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Temporary Files
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Create secure temp file</span>
+tmpfile=<span class="token-variable">$(</span><span class="token-function">mktemp</span><span class="token-variable">)</span>
+<span class="token-function">echo</span> <span class="token-string">"Temp file: $tmpfile"</span>
+
+<span class="token-comment"># Create temp file with custom prefix</span>
+tmpfile=<span class="token-variable">$(</span><span class="token-function">mktemp</span> /tmp/myapp.XXXXXX<span class="token-variable">)</span>
+
+<span class="token-comment"># Create temp directory</span>
+tmpdir=<span class="token-variable">$(</span><span class="token-function">mktemp</span> -d<span class="token-variable">)</span>
+<span class="token-function">echo</span> <span class="token-string">"Temp dir: $tmpdir"</span>
+
+<span class="token-comment"># Cleanup on exit (CRITICAL for security)</span>
+cleanup() {
+    <span class="token-function">rm</span> -f <span class="token-string">"$tmpfile"</span>
+    <span class="token-function">rm</span> -rf <span class="token-string">"$tmpdir"</span>
+}
+<span class="token-keyword">trap</span> cleanup EXIT
+
+<span class="token-comment"># Use temp file</span>
+<span class="token-function">echo</span> <span class="token-string">"Processing data..."</span> > <span class="token-string">"$tmpfile"</span>
+<span class="token-function">cat</span> <span class="token-string">"$tmpfile"</span>
+
+<span class="token-comment"># Secure temp file pattern</span>
+<span class="token-keyword">set</span> -e  <span class="token-comment"># Exit on error</span>
+
+tmpfile=<span class="token-variable">$(</span><span class="token-function">mktemp</span><span class="token-variable">)</span> || <span class="token-function">exit</span> <span class="token-number">1</span>
+<span class="token-keyword">trap</span> <span class="token-string">'rm -f "$tmpfile"'</span> EXIT
+
+<span class="token-comment"># Process data securely</span>
+<span class="token-function">chmod</span> <span class="token-number">600</span> <span class="token-string">"$tmpfile"</span>  <span class="token-comment"># Restrict permissions</span>
+sensitive_data > <span class="token-string">"$tmpfile"</span>
+
+<span class="token-comment"># Named pipe (FIFO) for inter-process communication</span>
+pipe=<span class="token-variable">$(</span><span class="token-function">mktemp</span> -u<span class="token-variable">)</span>
+<span class="token-function">mkfifo</span> <span class="token-string">"$pipe"</span>
+<span class="token-keyword">trap</span> <span class="token-string">'rm -f "$pipe"'</span> EXIT
+
+<span class="token-comment"># Process substitution (no temp file needed)</span>
+<span class="token-function">diff</span> <(<span class="token-function">ls</span> dir1) <(<span class="token-function">ls</span> dir2)
+<span class="token-function">comm</span> <(<span class="token-function">sort</span> file1) <(<span class="token-function">sort</span> file2)</code></pre>
+                    </div>
+                </div>
+
+                <!-- File Operations -->
+                <h2>Common File Operations</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - File Operations
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Check if file exists before reading</span>
+<span class="token-keyword">if</span> [[ -f <span class="token-string">"config.txt"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">cat</span> config.txt
+<span class="token-keyword">else</span>
+    <span class="token-function">echo</span> <span class="token-string">"Config file not found"</span>
+    <span class="token-function">exit</span> <span class="token-number">1</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Check if file is readable</span>
+<span class="token-keyword">if</span> [[ -r <span class="token-string">"$file"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">cat</span> <span class="token-string">"$file"</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Check if file is writable</span>
+<span class="token-keyword">if</span> [[ -w <span class="token-string">"$file"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"data"</span> >> <span class="token-string">"$file"</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Check if file is empty</span>
+<span class="token-keyword">if</span> [[ ! -s <span class="token-string">"$file"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"File is empty"</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Get file size</span>
+size=<span class="token-variable">$(</span><span class="token-function">stat</span> -c%s <span class="token-string">"$file"</span><span class="token-variable">)</span>            <span class="token-comment"># Linux</span>
+size=<span class="token-variable">$(</span><span class="token-function">stat</span> -f%z <span class="token-string">"$file"</span><span class="token-variable">)</span>            <span class="token-comment"># macOS</span>
+size=<span class="token-variable">$(</span><span class="token-function">wc</span> -c < <span class="token-string">"$file"</span><span class="token-variable">)</span>              <span class="token-comment"># Portable</span>
+
+<span class="token-comment"># Count lines</span>
+lines=<span class="token-variable">$(</span><span class="token-function">wc</span> -l < <span class="token-string">"$file"</span><span class="token-variable">)</span>
+
+<span class="token-comment"># Get file modification time</span>
+mod_time=<span class="token-variable">$(</span><span class="token-function">stat</span> -c%Y <span class="token-string">"$file"</span><span class="token-variable">)</span>        <span class="token-comment"># Epoch seconds</span>
+
+<span class="token-comment"># Touch file (create or update timestamp)</span>
+<span class="token-function">touch</span> newfile.txt
+
+<span class="token-comment"># Copy file</span>
+<span class="token-function">cp</span> source.txt dest.txt
+<span class="token-function">cp</span> -r source_dir/ dest_dir/         <span class="token-comment"># Recursive</span>
+
+<span class="token-comment"># Move/rename</span>
+<span class="token-function">mv</span> old.txt new.txt
+
+<span class="token-comment"># Delete</span>
+<span class="token-function">rm</span> file.txt
+<span class="token-function">rm</span> -rf directory/                    <span class="token-comment"># Recursive, force</span>
+
+<span class="token-comment"># Create directory</span>
+<span class="token-function">mkdir</span> -p /path/to/nested/dir        <span class="token-comment"># Create parents</span>
+
+<span class="token-comment"># Find files</span>
+<span class="token-function">find</span> /var/log -name <span class="token-string">"*.log"</span> -mtime -<span class="token-number">1</span>  <span class="token-comment"># Modified in last day</span>
+<span class="token-function">find</span> . -type f -size +100M           <span class="token-comment"># Files > 100MB</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Log Processing -->
+                <h2>Security Log Processing Example</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Log Processing Script
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+<span class="token-comment"># Process auth log and report failed logins</span>
+
+<span class="token-keyword">set</span> -euo pipefail
+
+LOG_FILE=<span class="token-string">"/var/log/auth.log"</span>
+OUTPUT_FILE=<span class="token-string">"failed_logins_$(date +%Y%m%d).csv"</span>
+
+<span class="token-comment"># Check log exists</span>
+<span class="token-keyword">if</span> [[ ! -r <span class="token-string">"$LOG_FILE"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Error: Cannot read $LOG_FILE"</span> >&2
+    <span class="token-function">exit</span> <span class="token-number">1</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Create CSV header</span>
+<span class="token-function">echo</span> <span class="token-string">"Timestamp,User,Source_IP,Count"</span> > <span class="token-string">"$OUTPUT_FILE"</span>
+
+<span class="token-comment"># Extract failed login attempts</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> <span class="token-string">"$LOG_FILE"</span> | \
+    <span class="token-function">awk</span> <span class="token-string">'{
+        for(i=1; i<=NF; i++) {
+            if($i == "for") user=$(i+1)
+            if($i == "from") ip=$(i+1)
+        }
+        print user "," ip
+    }'</span> | \
+    <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | \
+    <span class="token-function">awk</span> <span class="token-string">'{print strftime("%Y-%m-%d %H:%M:%S") "," $2 "," $1}'</span> >> <span class="token-string">"$OUTPUT_FILE"</span>
+
+<span class="token-comment"># Summary</span>
+total=<span class="token-variable">$(</span><span class="token-function">tail</span> -n +2 <span class="token-string">"$OUTPUT_FILE"</span> | <span class="token-function">wc</span> -l<span class="token-variable">)</span>
+<span class="token-function">echo</span> <span class="token-string">"Processed $total unique failed login combinations"</span>
+<span class="token-function">echo</span> <span class="token-string">"Report saved to: $OUTPUT_FILE"</span>
+
+<span class="token-comment"># Show top offenders</span>
+<span class="token-function">echo</span> <span class="token-string">""</span>
+<span class="token-function">echo</span> <span class="token-string">"Top 10 source IPs:"</span>
+<span class="token-function">grep</span> <span class="token-string">"Failed password"</span> <span class="token-string">"$LOG_FILE"</span> | \
+    <span class="token-function">grep</span> -oE <span class="token-string">'from [0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'</span> | \
+    <span class="token-function">cut</span> -d<span class="token-string">' '</span> -f2 | \
+    <span class="token-function">sort</span> | <span class="token-function">uniq</span> -c | \
+    <span class="token-function">sort</span> -rn | \
+    <span class="token-function">head</span> -10</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: File I/O</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use <code>read -r</code>:</strong> Prevents backslash interpretation</li>
+                        <li><strong>Set IFS= for read:</strong> Preserves leading/trailing whitespace</li>
+                        <li><strong>Always quote file paths:</strong> Handles spaces in filenames</li>
+                        <li><strong>Use mktemp for temp files:</strong> Secure, unique names</li>
+                        <li><strong>Trap EXIT for cleanup:</strong> Remove temp files on exit</li>
+                        <li><strong>Check file existence:</strong> Before reading with <code>[[ -f ]]</code></li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How do you read a file line by line in Bash?"</li>
+                        <li><strong>Strong Answer:</strong> Use <code>while IFS= read -r line; do ... done < file</code>. The <code>IFS=</code> preserves whitespace, <code>-r</code> prevents backslash interpretation. Avoid <code>for line in $(cat file)</code> as it breaks on whitespace and is slower.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><code>></code> overwrites, <code>>></code> appends, <code><</code> reads input</li>
+                    <li>Use <code>while IFS= read -r</code> for proper line reading</li>
+                    <li><code>2></code> redirects stderr, <code>&></code> redirects both streams</li>
+                    <li>Create temp files with <code>mktemp</code>, clean up with <code>trap EXIT</code></li>
+                    <li>Use heredocs (<code><<EOF</code>) for multi-line content</li>
+                    <li><code>tee</code> writes to file and displays output simultaneously</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="3-4-bash-functions.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 3.4 Functions & Scripts</span>
+                    </a>
+                    <a href="3-6-process-management.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.6 Process Management →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

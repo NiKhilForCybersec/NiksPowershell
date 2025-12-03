@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6.8 Python & APIs - PowerShell & Scripting Guide</title>
+    <title>4.3 Batch Control Flow - PowerShell & Scripting Guide</title>
     <link rel="stylesheet" href="main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,21 +200,19 @@
             </nav>
         </aside>
 
-
-
-
+        </aside>
 
         <main class="main-content">
             <div class="content-wrapper">
                 <nav class="breadcrumb">
                     <a href="index.html">Home</a>
                     <span class="breadcrumb-separator">›</span>
-                    <a href="index.html#python">Python Scripting</a>
+                    <a href="4-1-batch-intro.html">Batch Scripting</a>
                     <span class="breadcrumb-separator">›</span>
-                    <span>Python & APIs</span>
+                    <span>Control Flow</span>
                 </nav>
 
-                <h1>6.8 Python & APIs</h1>
+                <h1>4.3 Batch Control Flow</h1>
 
                 <div class="info-box overview-box">
                     <div class="info-box-header">
@@ -222,454 +220,481 @@
                         <div class="info-box-title">What You'll Learn</div>
                     </div>
                     <ul>
-                        <li>REST API fundamentals and authentication</li>
-                        <li>Integrating with VirusTotal, Shodan, and threat intel</li>
-                        <li>SIEM API integration (Splunk, Sentinel)</li>
-                        <li>Building reusable API clients</li>
-                        <li>Rate limiting and error handling</li>
+                        <li>IF statements and comparisons</li>
+                        <li>FOR loops (files, directories, ranges, tokens)</li>
+                        <li>GOTO and labels</li>
+                        <li>CALL for subroutines</li>
+                        <li>Error handling patterns</li>
                     </ul>
                 </div>
 
-                <h2>API Client Pattern</h2>
+                <h2>IF Statements</h2>
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Python - Reusable API Client Base</span>
+                        <span>Batch - Basic IF Syntax</span>
                         <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
                     </div>
-                    <pre><code>import requests
-import time
-from typing import Optional, Dict, Any
-from functools import wraps
+                    <pre><code>@echo off
 
-class APIClient:
-    """Base class for API integrations"""
-    
-    def __init__(self, base_url: str, api_key: str, rate_limit: int = 4):
-        self.base_url = base_url.rstrip('/')
-        self.api_key = api_key
-        self.rate_limit = rate_limit  # Requests per minute
-        self.last_request = 0
-        self.session = requests.Session()
-        self._setup_session()
-    
-    def _setup_session(self):
-        """Configure session with default headers"""
-        self.session.headers.update({
-            'Accept': 'application/json',
-            'User-Agent': 'SecurityToolkit/1.0'
-        })
-    
-    def _rate_limit(self):
-        """Enforce rate limiting"""
-        if self.rate_limit:
-            elapsed = time.time() - self.last_request
-            wait_time = (60 / self.rate_limit) - elapsed
-            if wait_time > 0:
-                time.sleep(wait_time)
-        self.last_request = time.time()
-    
-    def _request(self, method: str, endpoint: str, **kwargs) -> Dict:
-        """Make rate-limited request with error handling"""
-        self._rate_limit()
-        
-        url = f"{self.base_url}/{endpoint.lstrip('/')}"
-        
-        try:
-            response = self.session.request(method, url, **kwargs)
-            response.raise_for_status()
-            return response.json()
-        except requests.HTTPError as e:
-            if e.response.status_code == 429:
-                # Rate limited - wait and retry
-                time.sleep(60)
-                return self._request(method, endpoint, **kwargs)
-            raise
-        except requests.RequestException as e:
-            return {'error': str(e)}
-    
-    def get(self, endpoint: str, params: Dict = None) -> Dict:
-        return self._request('GET', endpoint, params=params)
-    
-    def post(self, endpoint: str, data: Dict = None, json: Dict = None) -> Dict:
-        return self._request('POST', endpoint, data=data, json=json)</code></pre>
-                </div>
+REM Basic IF
+IF "%1"=="" echo No parameter provided
 
-                <h2>VirusTotal Integration</h2>
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>Python - VirusTotal API Client</span>
-                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
-                    </div>
-                    <pre><code>class VirusTotalClient(APIClient):
-    """VirusTotal API v3 client"""
-    
-    def __init__(self, api_key: str):
-        super().__init__('https://www.virustotal.com/api/v3', api_key, rate_limit=4)
-        self.session.headers['x-apikey'] = api_key
-    
-    def check_hash(self, file_hash: str) -> Dict:
-        """Check file hash reputation"""
-        result = self.get(f'/files/{file_hash}')
-        
-        if 'error' in result:
-            return result
-        
-        data = result.get('data', {}).get('attributes', {})
-        stats = data.get('last_analysis_stats', {})
-        
-        return {
-            'hash': file_hash,
-            'malicious': stats.get('malicious', 0),
-            'suspicious': stats.get('suspicious', 0),
-            'undetected': stats.get('undetected', 0),
-            'harmless': stats.get('harmless', 0),
-            'type': data.get('type_description', 'Unknown'),
-            'names': data.get('names', [])[:5],
-            'tags': data.get('tags', []),
-            'reputation': data.get('reputation', 0)
-        }
-    
-    def check_url(self, url: str) -> Dict:
-        """Check URL reputation"""
-        import base64
-        url_id = base64.urlsafe_b64encode(url.encode()).decode().strip('=')
-        
-        result = self.get(f'/urls/{url_id}')
-        
-        if 'error' in result:
-            # URL not found - submit for scanning
-            return self.submit_url(url)
-        
-        data = result.get('data', {}).get('attributes', {})
-        stats = data.get('last_analysis_stats', {})
-        
-        return {
-            'url': url,
-            'malicious': stats.get('malicious', 0),
-            'suspicious': stats.get('suspicious', 0),
-            'categories': data.get('categories', {}),
-            'last_analysis': data.get('last_analysis_date', '')
-        }
-    
-    def submit_url(self, url: str) -> Dict:
-        """Submit URL for scanning"""
-        result = self.post('/urls', data={'url': url})
-        return {'status': 'submitted', 'id': result.get('data', {}).get('id')}
-    
-    def check_domain(self, domain: str) -> Dict:
-        """Check domain reputation"""
-        result = self.get(f'/domains/{domain}')
-        
-        if 'error' in result:
-            return result
-        
-        data = result.get('data', {}).get('attributes', {})
-        stats = data.get('last_analysis_stats', {})
-        
-        return {
-            'domain': domain,
-            'malicious': stats.get('malicious', 0),
-            'categories': data.get('categories', {}),
-            'registrar': data.get('registrar', ''),
-            'creation_date': data.get('creation_date', ''),
-            'whois': data.get('whois', '')[:500]
-        }
-    
-    def check_ip(self, ip: str) -> Dict:
-        """Check IP address reputation"""
-        result = self.get(f'/ip_addresses/{ip}')
-        
-        if 'error' in result:
-            return result
-        
-        data = result.get('data', {}).get('attributes', {})
-        stats = data.get('last_analysis_stats', {})
-        
-        return {
-            'ip': ip,
-            'malicious': stats.get('malicious', 0),
-            'country': data.get('country', ''),
-            'asn': data.get('asn', ''),
-            'as_owner': data.get('as_owner', '')
-        }
-
-# Usage
-vt = VirusTotalClient("YOUR_API_KEY")
-
-# Check suspicious hash
-result = vt.check_hash("5d41402abc4b2a76b9719d911017c592")
-if result.get('malicious', 0) > 0:
-    print(f"⚠️ MALICIOUS: {result['malicious']} detections")
-    print(f"Names: {result['names']}")</code></pre>
-                </div>
-
-                <h2>Shodan Integration</h2>
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>Python - Shodan API Client</span>
-                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
-                    </div>
-                    <pre><code>class ShodanClient(APIClient):
-    """Shodan API client for internet intelligence"""
-    
-    def __init__(self, api_key: str):
-        super().__init__('https://api.shodan.io', api_key, rate_limit=1)
-        self.api_key = api_key
-    
-    def host_info(self, ip: str) -> Dict:
-        """Get information about a specific IP"""
-        result = self.get(f'/shodan/host/{ip}', params={'key': self.api_key})
-        
-        if 'error' in result:
-            return result
-        
-        return {
-            'ip': ip,
-            'hostnames': result.get('hostnames', []),
-            'country': result.get('country_name', ''),
-            'city': result.get('city', ''),
-            'org': result.get('org', ''),
-            'isp': result.get('isp', ''),
-            'ports': result.get('ports', []),
-            'vulns': result.get('vulns', []),
-            'last_update': result.get('last_update', ''),
-            'services': [{
-                'port': svc.get('port'),
-                'product': svc.get('product', ''),
-                'version': svc.get('version', ''),
-                'banner': svc.get('data', '')[:200]
-            } for svc in result.get('data', [])]
-        }
-    
-    def search(self, query: str, limit: int = 10) -> Dict:
-        """Search Shodan for hosts matching query"""
-        result = self.get('/shodan/host/search', 
-                         params={'key': self.api_key, 'query': query})
-        
-        if 'error' in result:
-            return result
-        
-        return {
-            'total': result.get('total', 0),
-            'matches': [{
-                'ip': match.get('ip_str'),
-                'port': match.get('port'),
-                'org': match.get('org', ''),
-                'product': match.get('product', ''),
-                'country': match.get('location', {}).get('country_name', '')
-            } for match in result.get('matches', [])[:limit]]
-        }
-    
-    def dns_lookup(self, domain: str) -> Dict:
-        """Get DNS information for domain"""
-        result = self.get(f'/dns/resolve', 
-                         params={'key': self.api_key, 'hostnames': domain})
-        return result
-
-# Usage
-shodan = ShodanClient("YOUR_SHODAN_KEY")
-
-# Check exposed host
-info = shodan.host_info("8.8.8.8")
-print(f"Organization: {info['org']}")
-print(f"Open ports: {info['ports']}")
-print(f"Vulnerabilities: {info['vulns']}")
-
-# Search for vulnerable systems
-results = shodan.search("apache 2.4.49", limit=5)
-print(f"Found {results['total']} vulnerable hosts")</code></pre>
-                </div>
-
-                <h2>Splunk Integration</h2>
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>Python - Splunk API Client</span>
-                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
-                    </div>
-                    <pre><code>import time
-
-class SplunkClient:
-    """Splunk REST API client"""
-    
-    def __init__(self, host: str, port: int, username: str, password: str):
-        self.base_url = f"https://{host}:{port}"
-        self.session = requests.Session()
-        self.session.auth = (username, password)
-        self.session.verify = False  # Disable SSL verification for self-signed certs
-    
-    def search(self, query: str, earliest: str = "-24h", latest: str = "now") -> list:
-        """Execute Splunk search and return results"""
-        
-        # Create search job
-        job_url = f"{self.base_url}/services/search/jobs"
-        data = {
-            'search': f'search {query}',
-            'earliest_time': earliest,
-            'latest_time': latest,
-            'output_mode': 'json'
-        }
-        
-        response = self.session.post(job_url, data=data)
-        job_id = response.json()['sid']
-        
-        # Wait for job completion
-        status_url = f"{self.base_url}/services/search/jobs/{job_id}"
-        while True:
-            status = self.session.get(status_url, params={'output_mode': 'json'})
-            state = status.json()['entry'][0]['content']['dispatchState']
-            if state == 'DONE':
-                break
-            elif state == 'FAILED':
-                return {'error': 'Search failed'}
-            time.sleep(1)
-        
-        # Get results
-        results_url = f"{self.base_url}/services/search/jobs/{job_id}/results"
-        results = self.session.get(results_url, params={'output_mode': 'json'})
-        
-        return results.json().get('results', [])
-    
-    def get_failed_logins(self, hours: int = 24) -> list:
-        """Get failed login attempts from Windows Security logs"""
-        query = '''
-            index=wineventlog sourcetype=WinEventLog:Security EventCode=4625
-            | stats count by src_ip, user, dest
-            | sort -count
-        '''
-        return self.search(query, earliest=f"-{hours}h")
-    
-    def get_alerts(self, severity: str = None) -> list:
-        """Get triggered alerts"""
-        query = 'index=_audit action=alert_fired'
-        if severity:
-            query += f' severity={severity}'
-        return self.search(query)
-
-# Usage
-splunk = SplunkClient("splunk.company.com", 8089, "admin", "password")
-
-# Search for failed logins
-failed = splunk.get_failed_logins(hours=24)
-for event in failed[:10]:
-    print(f"{event['src_ip']}: {event['count']} failed attempts")</code></pre>
-                </div>
-
-                <h2>Microsoft Sentinel Integration</h2>
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>Python - Azure Sentinel Client</span>
-                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
-                    </div>
-                    <pre><code>from azure.identity import ClientSecretCredential
-from azure.monitor.query import LogsQueryClient
-from datetime import timedelta
-
-class SentinelClient:
-    """Microsoft Sentinel / Log Analytics client"""
-    
-    def __init__(self, tenant_id: str, client_id: str, client_secret: str, 
-                 workspace_id: str):
-        self.workspace_id = workspace_id
-        credential = ClientSecretCredential(tenant_id, client_id, client_secret)
-        self.client = LogsQueryClient(credential)
-    
-    def query(self, kql: str, timespan: timedelta = timedelta(days=1)) -> list:
-        """Execute KQL query"""
-        response = self.client.query_workspace(
-            workspace_id=self.workspace_id,
-            query=kql,
-            timespan=timespan
-        )
-        
-        results = []
-        for table in response.tables:
-            for row in table.rows:
-                results.append(dict(zip(table.columns, row)))
-        
-        return results
-    
-    def get_security_alerts(self, severity: str = None, days: int = 7) -> list:
-        """Get security alerts from Sentinel"""
-        kql = '''
-            SecurityAlert
-            | where TimeGenerated > ago({days}d)
-        '''
-        if severity:
-            kql += f"| where AlertSeverity == '{severity}'"
-        kql += '''
-            | project TimeGenerated, AlertName, AlertSeverity, Description, 
-                      Entities, Tactics, ProviderName
-            | order by TimeGenerated desc
-        '''
-        return self.query(kql.format(days=days), timedelta(days=days))
-    
-    def get_sign_in_failures(self, days: int = 1) -> list:
-        """Get failed sign-in attempts"""
-        kql = f'''
-            SigninLogs
-            | where TimeGenerated > ago({days}d)
-            | where ResultType != 0
-            | summarize FailureCount=count() by UserPrincipalName, IPAddress, 
-                        ResultDescription
-            | order by FailureCount desc
-        '''
-        return self.query(kql, timedelta(days=days))
-    
-    def hunt_suspicious_processes(self, process_name: str, days: int = 7) -> list:
-        """Hunt for suspicious process execution"""
-        kql = f'''
-            SecurityEvent
-            | where TimeGenerated > ago({days}d)
-            | where EventID == 4688
-            | where NewProcessName contains "{process_name}"
-            | project TimeGenerated, Computer, Account, NewProcessName, 
-                      CommandLine, ParentProcessName
-        '''
-        return self.query(kql, timedelta(days=days))
-
-# Usage
-sentinel = SentinelClient(
-    tenant_id="your-tenant-id",
-    client_id="your-client-id",
-    client_secret="your-secret",
-    workspace_id="your-workspace-id"
+REM IF-ELSE (use parentheses)
+IF "%1"=="start" (
+    echo Starting service...
+) ELSE (
+    echo Unknown command
 )
 
-# Get high severity alerts
-alerts = sentinel.get_security_alerts(severity="High", days=7)
-for alert in alerts[:10]:
-    print(f"{alert['TimeGenerated']}: {alert['AlertName']}")</code></pre>
+REM IF-ELSE IF-ELSE
+IF "%1"=="start" (
+    echo Starting...
+) ELSE IF "%1"=="stop" (
+    echo Stopping...
+) ELSE IF "%1"=="status" (
+    echo Checking status...
+) ELSE (
+    echo Usage: %0 start^|stop^|status
+)
+
+REM Case-insensitive comparison with /I
+IF /I "%1"=="YES" echo You said yes
+IF /I "%choice%"=="y" echo Confirmed</code></pre>
                 </div>
 
-                <div class="info-box best-practice-box">
-                    <div class="info-box-header">
-                        <div class="info-box-icon">✅</div>
-                        <div class="info-box-title">Best Practice: API Keys</div>
+                <h3>Comparison Operators</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - Comparisons</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
                     </div>
-                    <p>Never hardcode API keys. Use environment variables or a secrets manager like Azure Key Vault, AWS Secrets Manager, or HashiCorp Vault.</p>
+                    <pre><code>@echo off
+
+SET /A num=10
+
+REM String comparison (use quotes for safety)
+IF "%var%"=="value" echo Equal
+IF NOT "%var%"=="value" echo Not equal
+
+REM Numeric comparisons
+IF %num% EQU 10 echo Equal to 10
+IF %num% NEQ 5 echo Not equal to 5
+IF %num% LSS 20 echo Less than 20
+IF %num% LEQ 10 echo Less or equal to 10
+IF %num% GTR 5 echo Greater than 5
+IF %num% GEQ 10 echo Greater or equal to 10
+
+REM Check if variable is defined
+IF DEFINED var echo Variable exists
+IF NOT DEFINED var echo Variable not set
+
+REM Check ERRORLEVEL
+ping -n 1 192.168.1.1 >nul 2>&1
+IF %ERRORLEVEL% EQU 0 (
+    echo Host is up
+) ELSE (
+    echo Host is down
+)
+
+REM Shorthand errorlevel check
+IF ERRORLEVEL 1 echo Command failed</code></pre>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Meaning</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>EQU</code></td><td>Equal</td><td><code>IF %a% EQU 5</code></td></tr>
+                            <tr><td><code>NEQ</code></td><td>Not equal</td><td><code>IF %a% NEQ 0</code></td></tr>
+                            <tr><td><code>LSS</code></td><td>Less than</td><td><code>IF %a% LSS 10</code></td></tr>
+                            <tr><td><code>LEQ</code></td><td>Less or equal</td><td><code>IF %a% LEQ 10</code></td></tr>
+                            <tr><td><code>GTR</code></td><td>Greater than</td><td><code>IF %a% GTR 0</code></td></tr>
+                            <tr><td><code>GEQ</code></td><td>Greater or equal</td><td><code>IF %a% GEQ 1</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>File and Directory Tests</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - File/Directory Checks</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+
+REM Check if file exists
+IF EXIST "C:\Windows\System32\cmd.exe" (
+    echo File exists
+)
+
+REM Check if file does NOT exist
+IF NOT EXIST "C:\temp\log.txt" (
+    echo Creating log file...
+    echo Log started > "C:\temp\log.txt"
+)
+
+REM Check if directory exists (use trailing backslash or NUL)
+IF EXIST "C:\Logs\" echo Directory exists
+IF EXIST "C:\Logs\NUL" echo Directory exists (alt method)
+
+REM Wildcard check
+IF EXIST "*.txt" echo Text files found
+IF EXIST "C:\Logs\*.log" echo Log files present
+
+REM Common security check pattern
+SET suspicious=C:\Users\Public\malware.exe
+IF EXIST "%suspicious%" (
+    echo [ALERT] Suspicious file found: %suspicious%
+    echo Found at %DATE% %TIME% >> alerts.log
+)</code></pre>
+                </div>
+
+                <h2>FOR Loops</h2>
+                <h3>Loop Through Files</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - FOR with Files</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+
+REM Loop through files in current directory
+REM Note: Use %%i in scripts, %i on command line
+FOR %%f IN (*.txt) DO (
+    echo Processing: %%f
+)
+
+REM Loop through files in specific directory
+FOR %%f IN (C:\Logs\*.log) DO (
+    echo Log file: %%f
+    type "%%f" | find "ERROR"
+)
+
+REM Multiple patterns
+FOR %%f IN (*.txt *.log *.csv) DO (
+    echo Found: %%f
+)
+
+REM Recursive with /R (all subdirectories)
+FOR /R "C:\Users" %%f IN (*.exe) DO (
+    echo Executable: %%f
+)</code></pre>
+                </div>
+
+                <h3>Loop Through Directories</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - FOR /D with Directories</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+
+REM Loop through directories only
+FOR /D %%d IN (C:\Users\*) DO (
+    echo User folder: %%d
+)
+
+REM Recursive directory listing
+FOR /R /D "C:\Program Files" %%d IN (*) DO (
+    echo Directory: %%d
+)
+
+REM Check each user's startup folder
+FOR /D %%u IN (C:\Users\*) DO (
+    IF EXIST "%%u\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" (
+        echo Checking startup for: %%u
+        dir "%%u\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+    )
+)</code></pre>
+                </div>
+
+                <h3>Loop with Numbers</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - FOR /L with Numbers</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+
+REM FOR /L (start, step, end)
+REM Count 1 to 10
+FOR /L %%i IN (1,1,10) DO (
+    echo Number: %%i
+)
+
+REM Count by 2s
+FOR /L %%i IN (0,2,10) DO echo %%i
+
+REM Countdown
+FOR /L %%i IN (10,-1,1) DO (
+    echo %%i...
+    ping -n 2 127.0.0.1 >nul
+)
+echo Liftoff!
+
+REM Port scan example (basic)
+FOR /L %%p IN (20,1,25) DO (
+    echo Checking port %%p...
+)</code></pre>
+                </div>
+
+                <h3>Parse Command Output</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - FOR /F Parsing</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+SETLOCAL EnableDelayedExpansion
+
+REM Parse command output
+FOR /F "tokens=*" %%a IN ('dir /b *.txt') DO (
+    echo File: %%a
+)
+
+REM Parse with tokens (columns)
+REM tokens=1,2,3 gets first 3 columns
+FOR /F "tokens=1,2,3" %%a IN ('netstat -an') DO (
+    echo Proto: %%a  Local: %%b  Foreign: %%c
+)
+
+REM Skip header lines
+FOR /F "skip=4 tokens=1,2" %%a IN ('netstat -an') DO (
+    echo %%a %%b
+)
+
+REM Custom delimiter
+FOR /F "tokens=1,2 delims=:" %%a IN ('ipconfig ^| find "IPv4"') DO (
+    echo IP Address: %%b
+)
+
+REM Parse file contents
+FOR /F "tokens=*" %%line IN (servers.txt) DO (
+    echo Pinging %%line...
+    ping -n 1 %%line >nul
+)
+
+REM Get specific value from command
+FOR /F "tokens=2 delims==" %%a IN ('wmic os get caption /value') DO (
+    SET os_name=%%a
+)
+echo OS: %os_name%</code></pre>
+                </div>
+
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">FOR /F Options</div>
+                    </div>
+                    <p><code>tokens=1,2,3</code> - Which columns to grab<br>
+                    <code>delims=,;</code> - What separates columns (default: space/tab)<br>
+                    <code>skip=N</code> - Skip first N lines<br>
+                    <code>usebackq</code> - Use backticks for commands, quotes for filenames</p>
+                </div>
+
+                <h2>GOTO and Labels</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - GOTO and Labels</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+
+REM Labels start with :
+REM GOTO jumps to a label
+
+IF "%1"=="" GOTO usage
+IF "%1"=="scan" GOTO scan
+IF "%1"=="report" GOTO report
+GOTO usage
+
+:scan
+echo Running security scan...
+REM scan commands here
+GOTO end
+
+:report
+echo Generating report...
+REM report commands here
+GOTO end
+
+:usage
+echo Usage: %0 scan^|report
+echo.
+echo   scan   - Run security scan
+echo   report - Generate report
+GOTO end
+
+:end
+echo Done.
+exit /b 0</code></pre>
+                </div>
+
+                <h2>CALL for Subroutines</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - Subroutines with CALL</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+SETLOCAL EnableDelayedExpansion
+
+REM Main script
+echo Starting security checks...
+
+CALL :check_service "WinDefend" "Windows Defender"
+CALL :check_service "wscsvc" "Security Center"
+CALL :check_service "MpsSvc" "Windows Firewall"
+
+echo All checks complete.
+exit /b 0
+
+REM ========== Subroutines ==========
+
+:check_service
+REM %1 = service name, %2 = display name
+sc query %~1 | find "RUNNING" >nul
+IF %ERRORLEVEL% EQU 0 (
+    echo [OK] %~2 is running
+) ELSE (
+    echo [WARN] %~2 is NOT running!
+)
+exit /b 0
+
+:log_message
+REM %1 = message
+echo [%DATE% %TIME%] %~1 >> security.log
+exit /b 0</code></pre>
+                </div>
+
+                <h2>Error Handling</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - Error Handling Patterns</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+SETLOCAL
+
+REM Pattern 1: Check after each command
+ping -n 1 192.168.1.1 >nul 2>&1
+IF %ERRORLEVEL% NEQ 0 (
+    echo Failed to ping target
+    exit /b 1
+)
+
+REM Pattern 2: Using || for error (like bash)
+ping -n 1 badhost >nul 2>&1 || echo Ping failed
+
+REM Pattern 3: Using && for success
+ping -n 1 localhost >nul 2>&1 && echo Ping succeeded
+
+REM Pattern 4: Combined
+copy file.txt backup\ >nul 2>&1 && (
+    echo Copy succeeded
+) || (
+    echo Copy failed
+    exit /b 1
+)
+
+REM Pattern 5: Trap all errors
+:main
+CALL :do_work
+IF %ERRORLEVEL% NEQ 0 GOTO error
+echo Success!
+exit /b 0
+
+:error
+echo An error occurred (code: %ERRORLEVEL%)
+exit /b 1
+
+:do_work
+REM Commands that might fail
+exit /b 0</code></pre>
+                </div>
+
+                <h2>Security Script Example</h2>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Batch - Persistence Check Script</span>
+                        <button class="copy-btn" onclick="copyCode(this)">📋 Copy</button>
+                    </div>
+                    <pre><code>@echo off
+SETLOCAL EnableDelayedExpansion
+
+echo ==========================================
+echo Persistence Location Checker
+echo ==========================================
+echo.
+
+SET found=0
+
+REM Check Run keys
+echo [*] Checking Registry Run keys...
+FOR %%k IN (
+    "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+    "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+    "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"
+) DO (
+    echo.
+    echo Checking %%k:
+    reg query %%k 2>nul
+)
+
+REM Check Startup folders
+echo.
+echo [*] Checking Startup folders...
+FOR /D %%u IN (C:\Users\*) DO (
+    SET startup=%%u\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+    IF EXIST "!startup!" (
+        echo.
+        echo User: %%~nu
+        dir /b "!startup!" 2>nul
+    )
+)
+
+REM Check scheduled tasks
+echo.
+echo [*] Checking Scheduled Tasks...
+schtasks /query /fo LIST | find "TaskName"
+
+echo.
+echo ==========================================
+echo Check complete
+echo ==========================================
+
+ENDLOCAL</code></pre>
                 </div>
 
                 <h2>Key Takeaways</h2>
                 <ul>
-                    <li>Build reusable API client classes with rate limiting</li>
-                    <li>VirusTotal v3 API covers files, URLs, domains, and IPs</li>
-                    <li>Shodan reveals exposed services and vulnerabilities</li>
-                    <li>Splunk/Sentinel APIs enable automated threat hunting</li>
-                    <li>Always handle API errors and rate limits gracefully</li>
+                    <li><code>IF</code> uses <code>EQU, NEQ, LSS, LEQ, GTR, GEQ</code> for numbers</li>
+                    <li><code>IF EXIST</code> checks files/directories, <code>IF DEFINED</code> checks variables</li>
+                    <li><code>FOR %%i IN (...)</code> - files, <code>FOR /D</code> - directories, <code>FOR /L</code> - numbers</li>
+                    <li><code>FOR /F</code> parses text with tokens and delimiters</li>
+                    <li>Use <code>%%</code> in scripts, <code>%</code> on command line for FOR variables</li>
+                    <li><code>CALL :label</code> for subroutines, <code>exit /b</code> to return</li>
                 </ul>
 
                                 <div class="page-navigation">
-                    <a href="6-7-python-forensics.html" class="nav-button prev">
+                    <a href="4-2-batch-variables.html" class="nav-button prev">
                         <span class="nav-button-label">Previous</span>
-                        <span class="nav-button-title">← 6.7 Forensics & Log Analysis</span>
+                        <span class="nav-button-title">← 4.2 Variables & Parameters</span>
                     </a>
-                    <a href="7-1-azure-automation.html" class="nav-button next">
+                    <a href="4-4-batch-file-operations.html" class="nav-button next">
                         <span class="nav-button-label">Next</span>
-                        <span class="nav-button-title">7.1 Azure Automation →</span>
+                        <span class="nav-button-title">4.4 File Operations →</span>
                     </a>
                 </div>
             </div>
         </main>
+    </div>
 
     <div class="search-modal" id="searchModal">
         <div class="search-modal-content">

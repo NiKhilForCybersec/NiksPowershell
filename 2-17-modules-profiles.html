@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.17 Modules & Profiles - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Modules & Profiles</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.17 Modules & Profiles</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Find, install, and manage PowerShell modules</li>
+                        <li>Create custom modules for reusable code</li>
+                        <li>Configure PowerShell profiles for productivity</li>
+                        <li>Set up a security-focused PowerShell environment</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Extending PowerShell</h2>
+                <p>
+                    Modules extend PowerShell's capabilities by adding cmdlets, functions, and providers. 
+                    Profiles customize your PowerShell environment with aliases, functions, and settings 
+                    that load automatically every session.
+                </p>
+
+                <!-- Module Architecture -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Module Architecture</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         POWERSHELL MODULE TYPES                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌────────────────────┐  ┌────────────────────┐  ┌────────────────────┐
+    │   SCRIPT MODULE    │  │   BINARY MODULE    │  │   MANIFEST MODULE  │
+    │      (.psm1)       │  │      (.dll)        │  │      (.psd1)       │
+    ├────────────────────┤  ├────────────────────┤  ├────────────────────┤
+    │ • Pure PowerShell  │  │ • Compiled C#/.NET │  │ • Metadata file    │
+    │ • Functions        │  │ • Fast execution   │  │ • Version info     │
+    │ • Easy to write    │  │ • Advanced types   │  │ • Dependencies     │
+    │ • Human readable   │  │ • Complex logic    │  │ • Export control   │
+    └────────────────────┘  └────────────────────┘  └────────────────────┘
+
+    MODULE LOCATIONS:
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │ $env:PSModulePath contains:                                         │
+    │   • User:    ~\Documents\PowerShell\Modules    (your modules)      │
+    │   • System:  $PSHOME\Modules                   (built-in)          │
+    │   • Program: C:\Program Files\PowerShell\Modules (shared)          │
+    └─────────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Module Commands</div>
+                    </div>
+                    <ul>
+                        <li><strong>Get-Module</strong> → List loaded/available modules</li>
+                        <li><strong>Import-Module</strong> → Load a module into session</li>
+                        <li><strong>Find-Module</strong> → Search PowerShell Gallery</li>
+                        <li><strong>Install-Module</strong> → Download and install from gallery</li>
+                        <li><strong>Update-Module</strong> → Update installed modules</li>
+                        <li><strong>Remove-Module</strong> → Unload from current session</li>
+                    </ul>
+                </div>
+
+                <!-- Working with Modules -->
+                <h2>Working with Modules</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Module Management
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># List currently loaded modules</span>
+<span class="token-cmdlet">Get-Module</span>
+
+<span class="token-comment"># List all available modules (installed)</span>
+<span class="token-cmdlet">Get-Module</span> <span class="token-parameter">-ListAvailable</span>
+
+<span class="token-comment"># Search PowerShell Gallery</span>
+<span class="token-cmdlet">Find-Module</span> <span class="token-parameter">-Name</span> <span class="token-string">"*Security*"</span>
+<span class="token-cmdlet">Find-Module</span> <span class="token-parameter">-Tag</span> <span class="token-string">'Security'</span>, <span class="token-string">'Azure'</span>
+
+<span class="token-comment"># Install module from PowerShell Gallery</span>
+<span class="token-cmdlet">Install-Module</span> <span class="token-parameter">-Name</span> PSScriptAnalyzer <span class="token-parameter">-Scope</span> CurrentUser
+<span class="token-cmdlet">Install-Module</span> <span class="token-parameter">-Name</span> Az <span class="token-parameter">-AllowClobber</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Install specific version</span>
+<span class="token-cmdlet">Install-Module</span> <span class="token-parameter">-Name</span> Pester <span class="token-parameter">-RequiredVersion</span> <span class="token-number">5.3.0</span>
+
+<span class="token-comment"># Update module</span>
+<span class="token-cmdlet">Update-Module</span> <span class="token-parameter">-Name</span> Az
+
+<span class="token-comment"># Import module into session</span>
+<span class="token-cmdlet">Import-Module</span> ActiveDirectory
+<span class="token-cmdlet">Import-Module</span> <span class="token-parameter">-Name</span> <span class="token-string">"C:\Scripts\MyModule.psm1"</span>
+
+<span class="token-comment"># Import with prefix (avoid naming conflicts)</span>
+<span class="token-cmdlet">Import-Module</span> Az.Accounts <span class="token-parameter">-Prefix</span> <span class="token-string">"Azure"</span>
+<span class="token-comment"># Now: Get-AzureContext instead of Get-AzContext</span>
+
+<span class="token-comment"># Remove module from session</span>
+<span class="token-cmdlet">Remove-Module</span> <span class="token-parameter">-Name</span> PSScriptAnalyzer
+
+<span class="token-comment"># Get commands from a module</span>
+<span class="token-cmdlet">Get-Command</span> <span class="token-parameter">-Module</span> ActiveDirectory
+<span class="token-cmdlet">Get-Command</span> <span class="token-parameter">-Module</span> Az.Accounts <span class="token-parameter">-Verb</span> Get
+
+<span class="token-comment"># See module details</span>
+<span class="token-cmdlet">Get-Module</span> Az.Accounts <span class="token-parameter">-ListAvailable</span> | <span class="token-cmdlet">Format-List</span> *</code></pre>
+                    </div>
+                </div>
+
+                <!-- Essential Security Modules -->
+                <h2>Essential Security Modules</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Modules
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Azure/Microsoft 365 Security</span>
+<span class="token-cmdlet">Install-Module</span> Az <span class="token-parameter">-Scope</span> CurrentUser                    <span class="token-comment"># Azure management</span>
+<span class="token-cmdlet">Install-Module</span> Microsoft.Graph <span class="token-parameter">-Scope</span> CurrentUser       <span class="token-comment"># Graph API</span>
+<span class="token-cmdlet">Install-Module</span> ExchangeOnlineManagement <span class="token-parameter">-Scope</span> CurrentUser
+
+<span class="token-comment"># Active Directory</span>
+<span class="token-comment"># Install RSAT first (Windows only)</span>
+Add-WindowsCapability <span class="token-parameter">-Online</span> <span class="token-parameter">-Name</span> Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0
+
+<span class="token-comment"># Code Quality & Testing</span>
+<span class="token-cmdlet">Install-Module</span> PSScriptAnalyzer <span class="token-parameter">-Scope</span> CurrentUser     <span class="token-comment"># Linting</span>
+<span class="token-cmdlet">Install-Module</span> Pester <span class="token-parameter">-Scope</span> CurrentUser               <span class="token-comment"># Testing framework</span>
+
+<span class="token-comment"># Utilities</span>
+<span class="token-cmdlet">Install-Module</span> ImportExcel <span class="token-parameter">-Scope</span> CurrentUser          <span class="token-comment"># Excel without Office</span>
+<span class="token-cmdlet">Install-Module</span> PSReadLine <span class="token-parameter">-Scope</span> CurrentUser           <span class="token-comment"># Better console</span>
+<span class="token-cmdlet">Install-Module</span> Terminal-Icons <span class="token-parameter">-Scope</span> CurrentUser      <span class="token-comment"># File icons</span>
+
+<span class="token-comment"># Verify installed modules</span>
+<span class="token-cmdlet">Get-InstalledModule</span> | <span class="token-cmdlet">Select-Object</span> Name, Version, InstalledDate | 
+    <span class="token-cmdlet">Sort-Object</span> Name</code></pre>
+                    </div>
+                </div>
+
+                <!-- Creating Custom Module -->
+                <h2>Creating a Custom Module</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - SecurityTools.psm1
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># SecurityTools.psm1 - Custom security module</span>
+<span class="token-comment"># Save to: ~\Documents\PowerShell\Modules\SecurityTools\SecurityTools.psm1</span>
+
+<span class="token-keyword">function</span> <span class="token-function">Get-FailedLogins</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Gets failed login attempts from Security log.
+    .PARAMETER Hours
+        Number of hours to look back.
+    .EXAMPLE
+        Get-FailedLogins -Hours 24
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>
+    )
+    
+    <span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    
+    <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4625</span>
+        StartTime = <span class="token-variable">$StartTime</span>
+    } -ErrorAction SilentlyContinue | <span class="token-cmdlet">ForEach-Object</span> {
+        [PSCustomObject]@{
+            TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+            TargetUserName = <span class="token-variable">$_</span>.Properties[<span class="token-number">5</span>].Value
+            SourceIP = <span class="token-variable">$_</span>.Properties[<span class="token-number">19</span>].Value
+            FailureReason = <span class="token-variable">$_</span>.Properties[<span class="token-number">8</span>].Value
+        }
+    }
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Get-SuspiciousProcesses</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Finds processes running from unusual locations.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>()
+    
+    <span class="token-variable">$SafePaths</span> = @(
+        <span class="token-string">'C:\Windows'</span>,
+        <span class="token-string">'C:\Program Files'</span>,
+        <span class="token-string">'C:\Program Files (x86)'</span>
+    )
+    
+    <span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Where-Object</span> { 
+        <span class="token-variable">$_</span>.Path <span class="token-operator">-and</span> 
+        -not (<span class="token-variable">$SafePaths</span> | <span class="token-cmdlet">Where-Object</span> { <span class="token-variable">$Process</span>.Path.StartsWith(<span class="token-variable">$_</span>) })
+    } | <span class="token-cmdlet">Select-Object</span> Name, Id, Path, StartTime
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Test-PortOpen</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Tests if a TCP port is open.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$ComputerName</span>,
+        
+        [Parameter(Mandatory)]
+        [int]<span class="token-variable">$Port</span>,
+        
+        [int]<span class="token-variable">$Timeout</span> = <span class="token-number">1000</span>
+    )
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$TcpClient</span> = <span class="token-cmdlet">New-Object</span> System.Net.Sockets.TcpClient
+        <span class="token-variable">$Connect</span> = <span class="token-variable">$TcpClient</span>.BeginConnect(<span class="token-variable">$ComputerName</span>, <span class="token-variable">$Port</span>, <span class="token-variable">$null</span>, <span class="token-variable">$null</span>)
+        <span class="token-variable">$Wait</span> = <span class="token-variable">$Connect</span>.AsyncWaitHandle.WaitOne(<span class="token-variable">$Timeout</span>, <span class="token-variable">$false</span>)
+        
+        <span class="token-keyword">if</span> (<span class="token-variable">$Wait</span>) {
+            <span class="token-variable">$TcpClient</span>.EndConnect(<span class="token-variable">$Connect</span>)
+            <span class="token-variable">$TcpClient</span>.Close()
+            <span class="token-keyword">return</span> <span class="token-variable">$true</span>
+        }
+        <span class="token-keyword">return</span> <span class="token-variable">$false</span>
+    }
+    <span class="token-keyword">catch</span> {
+        <span class="token-keyword">return</span> <span class="token-variable">$false</span>
+    }
+}
+
+<span class="token-comment"># Export functions</span>
+<span class="token-cmdlet">Export-ModuleMember</span> <span class="token-parameter">-Function</span> Get-FailedLogins, Get-SuspiciousProcesses, Test-PortOpen</code></pre>
+                    </div>
+                </div>
+
+                <!-- Module Manifest -->
+                <h2>Module Manifest</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Create Manifest
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Generate module manifest</span>
+<span class="token-variable">$ManifestParams</span> = @{
+    Path = <span class="token-string">'.\SecurityTools\SecurityTools.psd1'</span>
+    RootModule = <span class="token-string">'SecurityTools.psm1'</span>
+    ModuleVersion = <span class="token-string">'1.0.0'</span>
+    Author = <span class="token-string">'Your Name'</span>
+    CompanyName = <span class="token-string">'Your Company'</span>
+    Description = <span class="token-string">'Security automation tools for SOC operations'</span>
+    PowerShellVersion = <span class="token-string">'5.1'</span>
+    FunctionsToExport = @(
+        <span class="token-string">'Get-FailedLogins'</span>,
+        <span class="token-string">'Get-SuspiciousProcesses'</span>,
+        <span class="token-string">'Test-PortOpen'</span>
+    )
+    CmdletsToExport = @()
+    VariablesToExport = @()
+    AliasesToExport = @()
+    Tags = @(<span class="token-string">'Security'</span>, <span class="token-string">'SOC'</span>, <span class="token-string">'Automation'</span>)
+    ProjectUri = <span class="token-string">'https://github.com/yourname/SecurityTools'</span>
+}
+
+<span class="token-cmdlet">New-ModuleManifest</span> @ManifestParams
+
+<span class="token-comment"># Test module manifest</span>
+<span class="token-cmdlet">Test-ModuleManifest</span> <span class="token-string">'.\SecurityTools\SecurityTools.psd1'</span>
+
+<span class="token-comment"># Import your custom module</span>
+<span class="token-cmdlet">Import-Module</span> <span class="token-string">'.\SecurityTools'</span> <span class="token-parameter">-Force</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- PowerShell Profile -->
+                <h2>PowerShell Profiles</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Profile Load Order</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        PROFILE TYPES (Load Order)                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    1. All Users, All Hosts
+       $PSHOME\Profile.ps1
+       
+    2. All Users, Current Host
+       $PSHOME\Microsoft.PowerShell_profile.ps1
+       
+    3. Current User, All Hosts        ← Most common for personal settings
+       $HOME\Documents\PowerShell\Profile.ps1
+       
+    4. Current User, Current Host     ← $PROFILE points here
+       $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+
+    Check paths: $PROFILE | Format-List -Force
+</pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Profile Setup
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Check profile paths</span>
+<span class="token-variable">$PROFILE</span> | <span class="token-cmdlet">Format-List</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Check if profile exists</span>
+<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$PROFILE</span>
+
+<span class="token-comment"># Create profile if it doesn't exist</span>
+<span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$PROFILE</span>)) {
+    <span class="token-cmdlet">New-Item</span> <span class="token-parameter">-Path</span> <span class="token-variable">$PROFILE</span> <span class="token-parameter">-ItemType</span> File <span class="token-parameter">-Force</span>
+}
+
+<span class="token-comment"># Open profile in editor</span>
+code <span class="token-variable">$PROFILE</span>
+<span class="token-comment"># or: notepad $PROFILE</span>
+
+<span class="token-comment"># Reload profile after editing</span>
+. <span class="token-variable">$PROFILE</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Profile Example -->
+                <h2>Security Engineer Profile</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Example Profile
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Microsoft.PowerShell_profile.ps1</span>
+<span class="token-comment"># Security Engineer PowerShell Profile</span>
+
+<span class="token-comment">#region Module Imports</span>
+<span class="token-cmdlet">Import-Module</span> Terminal-Icons -ErrorAction SilentlyContinue
+<span class="token-cmdlet">Import-Module</span> PSReadLine -ErrorAction SilentlyContinue
+<span class="token-comment">#endregion</span>
+
+<span class="token-comment">#region PSReadLine Configuration</span>
+<span class="token-cmdlet">Set-PSReadLineOption</span> <span class="token-parameter">-PredictionSource</span> History
+<span class="token-cmdlet">Set-PSReadLineOption</span> <span class="token-parameter">-PredictionViewStyle</span> ListView
+<span class="token-cmdlet">Set-PSReadLineOption</span> <span class="token-parameter">-EditMode</span> Windows
+<span class="token-cmdlet">Set-PSReadLineKeyHandler</span> <span class="token-parameter">-Key</span> Tab <span class="token-parameter">-Function</span> MenuComplete
+<span class="token-comment">#endregion</span>
+
+<span class="token-comment">#region Aliases</span>
+<span class="token-cmdlet">Set-Alias</span> <span class="token-parameter">-Name</span> grep <span class="token-parameter">-Value</span> <span class="token-cmdlet">Select-String</span>
+<span class="token-cmdlet">Set-Alias</span> <span class="token-parameter">-Name</span> which <span class="token-parameter">-Value</span> <span class="token-cmdlet">Get-Command</span>
+<span class="token-cmdlet">Set-Alias</span> <span class="token-parameter">-Name</span> ll <span class="token-parameter">-Value</span> <span class="token-cmdlet">Get-ChildItem</span>
+<span class="token-cmdlet">Set-Alias</span> <span class="token-parameter">-Name</span> touch <span class="token-parameter">-Value</span> <span class="token-cmdlet">New-Item</span>
+<span class="token-comment">#endregion</span>
+
+<span class="token-comment">#region Quick Security Functions</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-OpenPorts</span> {
+    <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Listen | 
+        <span class="token-cmdlet">Select-Object</span> LocalPort, 
+            @{N=<span class="token-string">'Process'</span>;E={(<span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess).Name}} |
+        <span class="token-cmdlet">Sort-Object</span> LocalPort <span class="token-parameter">-Unique</span>
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Get-EstablishedConnections</span> {
+    <span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Established |
+        <span class="token-cmdlet">Select-Object</span> LocalAddress, LocalPort, RemoteAddress, RemotePort,
+            @{N=<span class="token-string">'Process'</span>;E={(<span class="token-cmdlet">Get-Process</span> <span class="token-parameter">-Id</span> <span class="token-variable">$_</span>.OwningProcess).Name}}
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Get-RecentLogins</span> {
+    <span class="token-keyword">param</span>([int]<span class="token-variable">$Hours</span> = <span class="token-number">24</span>)
+    <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4624</span>
+        StartTime = (Get-Date).AddHours(-<span class="token-variable">$Hours</span>)
+    } -MaxEvents <span class="token-number">50</span> -ErrorAction SilentlyContinue
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Get-QuickHash</span> {
+    <span class="token-keyword">param</span>([Parameter(Mandatory)][string]<span class="token-variable">$Path</span>)
+    (<span class="token-cmdlet">Get-FileHash</span> <span class="token-variable">$Path</span> -Algorithm SHA256).Hash
+}
+
+<span class="token-keyword">function</span> <span class="token-function">Find-LargeFiles</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Path</span> = <span class="token-string">"."</span>,
+        [int]<span class="token-variable">$SizeMB</span> = <span class="token-number">100</span>
+    )
+    <span class="token-cmdlet">Get-ChildItem</span> <span class="token-variable">$Path</span> <span class="token-parameter">-Recurse</span> <span class="token-parameter">-File</span> |
+        <span class="token-cmdlet">Where-Object</span> Length <span class="token-operator">-gt</span> (<span class="token-variable">$SizeMB</span> * <span class="token-number">1MB</span>) |
+        <span class="token-cmdlet">Select-Object</span> FullName, @{N=<span class="token-string">'SizeMB'</span>;E={[math]::Round(<span class="token-variable">$_</span>.Length/<span class="token-number">1MB</span>,<span class="token-number">2</span>)}}
+}
+<span class="token-comment">#endregion</span>
+
+<span class="token-comment">#region Custom Prompt</span>
+<span class="token-keyword">function</span> <span class="token-function">prompt</span> {
+    <span class="token-variable">$IsAdmin</span> = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+    <span class="token-variable">$AdminIndicator</span> = <span class="token-keyword">if</span> (<span class="token-variable">$IsAdmin</span>) { <span class="token-string">"[ADMIN] "</span> } <span class="token-keyword">else</span> { <span class="token-string">""</span> }
+    <span class="token-variable">$Path</span> = <span class="token-variable">$PWD</span>.Path <span class="token-operator">-replace</span> [regex]::Escape(<span class="token-variable">$HOME</span>), <span class="token-string">'~'</span>
+    
+    Write-Host <span class="token-variable">$AdminIndicator</span> -ForegroundColor Red -NoNewline
+    Write-Host <span class="token-string">"$env:USERNAME@$env:COMPUTERNAME"</span> -ForegroundColor Green -NoNewline
+    Write-Host <span class="token-string">":"</span> -NoNewline
+    Write-Host <span class="token-variable">$Path</span> -ForegroundColor Blue -NoNewline
+    <span class="token-keyword">return</span> <span class="token-string">"$ "</span>
+}
+<span class="token-comment">#endregion</span>
+
+<span class="token-comment"># Startup message</span>
+Write-Host <span class="token-string">"Security Profile Loaded - $(Get-Date -Format 'yyyy-MM-dd HH:mm')"</span> -ForegroundColor Cyan
+Write-Host <span class="token-string">"Quick commands: Get-OpenPorts, Get-EstablishedConnections, Get-RecentLogins"</span> -ForegroundColor Gray</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Modules & Profiles</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use -Scope CurrentUser:</strong> Avoid needing admin rights</li>
+                        <li><strong>Pin module versions:</strong> Use RequiredVersion for consistency</li>
+                        <li><strong>Export explicitly:</strong> Only export needed functions</li>
+                        <li><strong>Keep profiles fast:</strong> Defer heavy imports until needed</li>
+                        <li><strong>Use module manifests:</strong> Version and dependency management</li>
+                        <li><strong>Test modules:</strong> Use Pester for automated testing</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How do you organize and share PowerShell code?"</li>
+                        <li><strong>Strong Answer:</strong> Create modules for reusable code with .psm1 script modules and .psd1 manifests for versioning. Share via internal PowerShell Gallery or Git repos. Use <code>Install-Module -Scope CurrentUser</code> to avoid admin requirements. Configure profiles for personal productivity functions and aliases.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Modules package reusable functions (.psm1 + .psd1)</li>
+                    <li>Use <code>Find-Module</code> and <code>Install-Module</code> for PowerShell Gallery</li>
+                    <li><code>$PROFILE</code> points to your personal profile script</li>
+                    <li>Profiles customize environment: aliases, functions, prompt</li>
+                    <li><code>Export-ModuleMember</code> controls what's public</li>
+                    <li>Use manifests for versioning and dependency management</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="2-16-error-handling.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.16 Error Handling</span>
+                    </a>
+                    <a href="3-1-bash-intro.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.1 Bash Introduction →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

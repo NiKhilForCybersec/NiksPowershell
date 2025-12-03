@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2 Variables & Data Types - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#bash">Bash Scripting</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Variables & Data Types</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>3.2 Variables & Data Types</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Declare and use Bash variables properly</li>
+                        <li>Work with strings, numbers, and arrays</li>
+                        <li>Understand quoting rules and expansion</li>
+                        <li>Use environment and special variables</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Bash Variables Basics</h2>
+                <p>
+                    Bash variables are untyped by default—everything is a string. Understanding 
+                    how to properly declare, quote, and expand variables is essential for writing 
+                    reliable scripts.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Variable Rules</div>
+                    </div>
+                    <ul>
+                        <li><strong>No spaces around =</strong> → <code>name="value"</code> ✓ <code>name = "value"</code> ✗</li>
+                        <li><strong>$ to read, no $ to assign</strong> → <code>name="John"</code> then <code>echo $name</code></li>
+                        <li><strong>Double quotes expand</strong> → <code>"Hello $name"</code> → "Hello John"</li>
+                        <li><strong>Single quotes literal</strong> → <code>'Hello $name'</code> → "Hello $name"</li>
+                        <li><strong>Curly braces for clarity</strong> → <code>${name}</code> prevents ambiguity</li>
+                    </ul>
+                </div>
+
+                <!-- Variable Declaration -->
+                <h2>Variable Declaration</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Variable Basics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Variable assignment (NO spaces around =)</span>
+name=<span class="token-string">"John"</span>
+count=<span class="token-number">42</span>
+path=/var/log
+
+<span class="token-comment"># WRONG - these cause errors</span>
+<span class="token-comment"># name = "John"   # Tries to run 'name' command</span>
+<span class="token-comment"># name= "John"    # Sets empty, then runs 'John'</span>
+
+<span class="token-comment"># Read variable with $</span>
+<span class="token-function">echo</span> <span class="token-variable">$name</span>
+<span class="token-function">echo</span> <span class="token-string">"Hello, $name"</span>
+
+<span class="token-comment"># Curly braces for clarity</span>
+file=<span class="token-string">"report"</span>
+<span class="token-function">echo</span> <span class="token-string">"${file}_backup.txt"</span>   <span class="token-comment"># report_backup.txt</span>
+<span class="token-function">echo</span> <span class="token-string">"$file_backup.txt"</span>     <span class="token-comment"># Error - $file_backup doesn't exist</span>
+
+<span class="token-comment"># Read-only variables</span>
+<span class="token-keyword">readonly</span> PI=3.14159
+<span class="token-comment"># PI=3.14  # Error: PI is read-only</span>
+
+<span class="token-comment"># Unset a variable</span>
+temp=<span class="token-string">"temporary"</span>
+<span class="token-function">unset</span> temp
+
+<span class="token-comment"># Check if variable is set</span>
+<span class="token-keyword">if</span> [[ -z <span class="token-string">"$undefined_var"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Variable is empty or unset"</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-keyword">if</span> [[ -n <span class="token-string">"$name"</span> ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Variable has a value"</span>
+<span class="token-keyword">fi</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Quoting -->
+                <h2>Quoting Rules</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Quoting
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+name=<span class="token-string">"Alice"</span>
+price=<span class="token-string">'$100'</span>
+
+<span class="token-comment"># Double quotes: Variables and commands expand</span>
+<span class="token-function">echo</span> <span class="token-string">"Hello, $name"</span>           <span class="token-comment"># Hello, Alice</span>
+<span class="token-function">echo</span> <span class="token-string">"Today is $(date +%A)"</span>   <span class="token-comment"># Today is Monday</span>
+<span class="token-function">echo</span> <span class="token-string">"Home: $HOME"</span>             <span class="token-comment"># Home: /home/user</span>
+
+<span class="token-comment"># Single quotes: Everything is literal</span>
+<span class="token-function">echo</span> <span class="token-string">'Hello, $name'</span>           <span class="token-comment"># Hello, $name</span>
+<span class="token-function">echo</span> <span class="token-string">'Price: $100'</span>            <span class="token-comment"># Price: $100</span>
+<span class="token-function">echo</span> <span class="token-string">'Command: $(whoami)'</span>     <span class="token-comment"># Command: $(whoami)</span>
+
+<span class="token-comment"># No quotes: Word splitting and globbing occur</span>
+files=<span class="token-string">"file1.txt file2.txt"</span>
+<span class="token-function">echo</span> <span class="token-variable">$files</span>                    <span class="token-comment"># Each file becomes separate argument</span>
+<span class="token-function">echo</span> <span class="token-string">"$files"</span>                  <span class="token-comment"># Preserved as single string</span>
+
+<span class="token-comment"># Escape special characters</span>
+<span class="token-function">echo</span> <span class="token-string">"She said \"Hello\""</span>
+<span class="token-function">echo</span> <span class="token-string">"Path: \$HOME"</span>            <span class="token-comment"># Path: $HOME (literal)</span>
+<span class="token-function">echo</span> <span class="token-string">"Line1\nLine2"</span>            <span class="token-comment"># \n is literal</span>
+<span class="token-function">echo</span> -e <span class="token-string">"Line1\nLine2"</span>         <span class="token-comment"># \n is newline</span>
+
+<span class="token-comment"># Best practice: ALWAYS quote variables</span>
+filename=<span class="token-string">"my file.txt"</span>
+<span class="token-function">cat</span> <span class="token-string">"$filename"</span>               <span class="token-comment"># Correct</span>
+<span class="token-comment"># cat $filename               # WRONG - becomes: cat my file.txt</span>
+
+<span class="token-comment"># Mixing quotes</span>
+<span class="token-function">echo</span> <span class="token-string">"It's a nice day"</span>        <span class="token-comment"># Works - single quote inside double</span>
+<span class="token-function">echo</span> <span class="token-string">'Say "Hello"'</span>            <span class="token-comment"># Works - double quote inside single</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- String Operations -->
+                <h2>String Operations</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - String Manipulation
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+str=<span class="token-string">"Hello World"</span>
+
+<span class="token-comment"># String length</span>
+<span class="token-function">echo</span> <span class="token-string">"${#str}"</span>                <span class="token-comment"># 11</span>
+
+<span class="token-comment"># Substring extraction: ${string:position:length}</span>
+<span class="token-function">echo</span> <span class="token-string">"${str:0:5}"</span>             <span class="token-comment"># Hello (first 5 chars)</span>
+<span class="token-function">echo</span> <span class="token-string">"${str:6}"</span>               <span class="token-comment"># World (from position 6)</span>
+<span class="token-function">echo</span> <span class="token-string">"${str: -5}"</span>             <span class="token-comment"># World (last 5 chars, note space)</span>
+
+<span class="token-comment"># String replacement</span>
+path=<span class="token-string">"/home/user/documents/file.txt"</span>
+<span class="token-function">echo</span> <span class="token-string">"${path/user/admin}"</span>     <span class="token-comment"># Replace first occurrence</span>
+<span class="token-function">echo</span> <span class="token-string">"${path//\//-}"</span>          <span class="token-comment"># Replace all / with - (// = global)</span>
+
+<span class="token-comment"># Remove pattern from beginning/end</span>
+file=<span class="token-string">"document.tar.gz"</span>
+<span class="token-function">echo</span> <span class="token-string">"${file#*.}"</span>             <span class="token-comment"># tar.gz (remove shortest from start)</span>
+<span class="token-function">echo</span> <span class="token-string">"${file##*.}"</span>            <span class="token-comment"># gz (remove longest from start)</span>
+<span class="token-function">echo</span> <span class="token-string">"${file%.*}"</span>             <span class="token-comment"># document.tar (remove shortest from end)</span>
+<span class="token-function">echo</span> <span class="token-string">"${file%%.*}"</span>            <span class="token-comment"># document (remove longest from end)</span>
+
+<span class="token-comment"># Case conversion (Bash 4+)</span>
+name=<span class="token-string">"JoHn DoE"</span>
+<span class="token-function">echo</span> <span class="token-string">"${name,,}"</span>              <span class="token-comment"># john doe (lowercase)</span>
+<span class="token-function">echo</span> <span class="token-string">"${name^^}"</span>              <span class="token-comment"># JOHN DOE (uppercase)</span>
+<span class="token-function">echo</span> <span class="token-string">"${name^}"</span>               <span class="token-comment"># John doe (capitalize first)</span>
+
+<span class="token-comment"># String concatenation</span>
+first=<span class="token-string">"Hello"</span>
+second=<span class="token-string">"World"</span>
+full=<span class="token-string">"$first $second"</span>
+full+=<span class="token-string">"!"</span>                      <span class="token-comment"># Append</span>
+<span class="token-function">echo</span> <span class="token-string">"$full"</span>                   <span class="token-comment"># Hello World!</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Default Values -->
+                <h2>Default Values and Substitution</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Parameter Expansion
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Default value if unset or empty</span>
+name=<span class="token-string">""</span>
+<span class="token-function">echo</span> <span class="token-string">"${name:-default}"</span>       <span class="token-comment"># "default" (doesn't modify $name)</span>
+
+<span class="token-comment"># Default value if unset only (empty string is okay)</span>
+<span class="token-function">echo</span> <span class="token-string">"${name-default}"</span>        <span class="token-comment"># "" (name is set, just empty)</span>
+
+<span class="token-comment"># Assign default if unset or empty</span>
+<span class="token-function">echo</span> <span class="token-string">"${name:=guest}"</span>         <span class="token-comment"># "guest" (also sets $name)</span>
+<span class="token-function">echo</span> <span class="token-string">"$name"</span>                   <span class="token-comment"># "guest"</span>
+
+<span class="token-comment"># Error if unset or empty</span>
+<span class="token-comment"># ${name:?Error message}      # Exits with error if unset/empty</span>
+
+<span class="token-comment"># Use alternative value if set</span>
+value=<span class="token-string">"exists"</span>
+<span class="token-function">echo</span> <span class="token-string">"${value:+was set}"</span>      <span class="token-comment"># "was set" (because value exists)</span>
+<span class="token-function">echo</span> <span class="token-string">"${unset:+was set}"</span>      <span class="token-comment"># "" (because unset)</span>
+
+<span class="token-comment"># Common patterns</span>
+<span class="token-comment"># Use environment variable or default</span>
+LOG_LEVEL=<span class="token-string">"${LOG_LEVEL:-INFO}"</span>
+CONFIG_PATH=<span class="token-string">"${CONFIG_PATH:-/etc/myapp/config.yml}"</span>
+
+<span class="token-comment"># Require variable to be set</span>
+: <span class="token-string">"${API_KEY:?API_KEY must be set}"</span>
+
+<span class="token-comment"># Check and set in one line</span>
+<span class="token-variable">TIMEOUT</span>=<span class="token-string">"${TIMEOUT:-30}"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Arrays -->
+                <h2>Arrays</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Arrays
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Indexed array declaration</span>
+servers=(<span class="token-string">"web01"</span> <span class="token-string">"web02"</span> <span class="token-string">"db01"</span> <span class="token-string">"db02"</span>)
+
+<span class="token-comment"># Access elements (0-indexed)</span>
+<span class="token-function">echo</span> <span class="token-string">"${servers[0]}"</span>          <span class="token-comment"># web01</span>
+<span class="token-function">echo</span> <span class="token-string">"${servers[2]}"</span>          <span class="token-comment"># db01</span>
+<span class="token-function">echo</span> <span class="token-string">"${servers[-1]}"</span>         <span class="token-comment"># db02 (last element)</span>
+
+<span class="token-comment"># All elements</span>
+<span class="token-function">echo</span> <span class="token-string">"${servers[@]}"</span>          <span class="token-comment"># All as separate words</span>
+<span class="token-function">echo</span> <span class="token-string">"${servers[*]}"</span>          <span class="token-comment"># All as single string</span>
+
+<span class="token-comment"># Array length</span>
+<span class="token-function">echo</span> <span class="token-string">"${#servers[@]}"</span>         <span class="token-comment"># 4</span>
+
+<span class="token-comment"># Array indices</span>
+<span class="token-function">echo</span> <span class="token-string">"${!servers[@]}"</span>         <span class="token-comment"># 0 1 2 3</span>
+
+<span class="token-comment"># Add element</span>
+servers+=(<span class="token-string">"cache01"</span>)
+
+<span class="token-comment"># Slice array</span>
+<span class="token-function">echo</span> <span class="token-string">"${servers[@]:1:2}"</span>      <span class="token-comment"># web02 db01 (from index 1, 2 elements)</span>
+
+<span class="token-comment"># Loop through array</span>
+<span class="token-keyword">for</span> server <span class="token-keyword">in</span> <span class="token-string">"${servers[@]}"</span>; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"Processing: $server"</span>
+<span class="token-keyword">done</span>
+
+<span class="token-comment"># Loop with index</span>
+<span class="token-keyword">for</span> i <span class="token-keyword">in</span> <span class="token-string">"${!servers[@]}"</span>; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"$i: ${servers[$i]}"</span>
+<span class="token-keyword">done</span>
+
+<span class="token-comment"># Associative array (Bash 4+)</span>
+<span class="token-keyword">declare</span> -A config
+config[host]=<span class="token-string">"localhost"</span>
+config[port]=<span class="token-string">"8080"</span>
+config[timeout]=<span class="token-string">"30"</span>
+
+<span class="token-function">echo</span> <span class="token-string">"Host: ${config[host]}"</span>
+<span class="token-function">echo</span> <span class="token-string">"Keys: ${!config[@]}"</span>     <span class="token-comment"># host port timeout</span>
+<span class="token-function">echo</span> <span class="token-string">"Values: ${config[@]}"</span>   <span class="token-comment"># localhost 8080 30</span>
+
+<span class="token-comment"># Check if key exists</span>
+<span class="token-keyword">if</span> [[ -v config[host] ]]; <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"Host is configured"</span>
+<span class="token-keyword">fi</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Numbers and Arithmetic -->
+                <h2>Numbers and Arithmetic</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Arithmetic
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Arithmetic expansion $(( ))</span>
+a=<span class="token-number">10</span>
+b=<span class="token-number">3</span>
+
+<span class="token-function">echo</span> <span class="token-string">"Sum: $((a + b))"</span>        <span class="token-comment"># 13</span>
+<span class="token-function">echo</span> <span class="token-string">"Diff: $((a - b))"</span>       <span class="token-comment"># 7</span>
+<span class="token-function">echo</span> <span class="token-string">"Product: $((a * b))"</span>    <span class="token-comment"># 30</span>
+<span class="token-function">echo</span> <span class="token-string">"Quotient: $((a / b))"</span>   <span class="token-comment"># 3 (integer division)</span>
+<span class="token-function">echo</span> <span class="token-string">"Remainder: $((a % b))"</span>  <span class="token-comment"># 1</span>
+<span class="token-function">echo</span> <span class="token-string">"Power: $((a ** 2))"</span>     <span class="token-comment"># 100</span>
+
+<span class="token-comment"># Increment/decrement</span>
+count=<span class="token-number">0</span>
+(( count++ ))                   <span class="token-comment"># count = 1</span>
+(( count += <span class="token-number">5</span> ))                <span class="token-comment"># count = 6</span>
+(( count-- ))                   <span class="token-comment"># count = 5</span>
+
+<span class="token-comment"># let command</span>
+<span class="token-function">let</span> <span class="token-string">"result = a + b"</span>
+<span class="token-function">let</span> <span class="token-string">"a++"</span>
+
+<span class="token-comment"># expr command (older, portable)</span>
+result=<span class="token-variable">$(</span><span class="token-function">expr</span> <span class="token-variable">$a</span> + <span class="token-variable">$b</span><span class="token-variable">)</span>
+
+<span class="token-comment"># Floating point with bc</span>
+<span class="token-function">echo</span> <span class="token-string">"10 / 3"</span> | <span class="token-function">bc</span> -l         <span class="token-comment"># 3.33333...</span>
+result=<span class="token-variable">$(</span><span class="token-function">echo</span> <span class="token-string">"scale=2; 10/3"</span> | <span class="token-function">bc</span><span class="token-variable">)</span>  <span class="token-comment"># 3.33</span>
+
+<span class="token-comment"># Comparison in arithmetic context</span>
+<span class="token-keyword">if</span> (( a > b )); <span class="token-keyword">then</span>
+    <span class="token-function">echo</span> <span class="token-string">"$a is greater than $b"</span>
+<span class="token-keyword">fi</span>
+
+<span class="token-comment"># Ternary operator</span>
+max=$(( a > b ? a : b ))
+
+<span class="token-comment"># Hex and octal</span>
+hex=0xFF
+<span class="token-function">echo</span> <span class="token-string">"Hex $hex = $((hex))"</span>    <span class="token-comment"># 255</span>
+oct=0777
+<span class="token-function">echo</span> <span class="token-string">"Octal $oct = $((oct))"</span>  <span class="token-comment"># 511</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Special Variables -->
+                <h2>Special Variables</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Special Variables
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Script arguments</span>
+<span class="token-function">echo</span> <span class="token-string">"Script name: $0"</span>
+<span class="token-function">echo</span> <span class="token-string">"First arg: $1"</span>
+<span class="token-function">echo</span> <span class="token-string">"Second arg: $2"</span>
+<span class="token-function">echo</span> <span class="token-string">"All args: $@"</span>            <span class="token-comment"># As separate words</span>
+<span class="token-function">echo</span> <span class="token-string">"All args: $*"</span>            <span class="token-comment"># As single string</span>
+<span class="token-function">echo</span> <span class="token-string">"Number of args: $#"</span>
+
+<span class="token-comment"># Process info</span>
+<span class="token-function">echo</span> <span class="token-string">"Process ID: $$"</span>
+<span class="token-function">echo</span> <span class="token-string">"Parent PID: $PPID"</span>
+
+<span class="token-comment"># Exit status</span>
+<span class="token-function">ls</span> /nonexistent 2>/dev/null
+<span class="token-function">echo</span> <span class="token-string">"Exit status: $?"</span>         <span class="token-comment"># Non-zero (error)</span>
+
+<span class="token-function">ls</span> / >/dev/null
+<span class="token-function">echo</span> <span class="token-string">"Exit status: $?"</span>         <span class="token-comment"># 0 (success)</span>
+
+<span class="token-comment"># Background process PID</span>
+<span class="token-function">sleep</span> <span class="token-number">10</span> &
+<span class="token-function">echo</span> <span class="token-string">"Background PID: $!"</span>
+
+<span class="token-comment"># Environment variables</span>
+<span class="token-function">echo</span> <span class="token-string">"Home: $HOME"</span>
+<span class="token-function">echo</span> <span class="token-string">"User: $USER"</span>
+<span class="token-function">echo</span> <span class="token-string">"Shell: $SHELL"</span>
+<span class="token-function">echo</span> <span class="token-string">"Path: $PATH"</span>
+<span class="token-function">echo</span> <span class="token-string">"PWD: $PWD"</span>
+<span class="token-function">echo</span> <span class="token-string">"Hostname: $HOSTNAME"</span>
+
+<span class="token-comment"># Random number</span>
+<span class="token-function">echo</span> <span class="token-string">"Random: $RANDOM"</span>         <span class="token-comment"># 0-32767</span>
+<span class="token-function">echo</span> <span class="token-string">"Random 1-100: $((RANDOM % 100 + 1))"</span>
+
+<span class="token-comment"># Seconds since script started</span>
+<span class="token-function">echo</span> <span class="token-string">"Seconds: $SECONDS"</span>
+
+<span class="token-comment"># Line number in script</span>
+<span class="token-function">echo</span> <span class="token-string">"Line: $LINENO"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Command Substitution -->
+                <h2>Command Substitution</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language bash">
+                            <span class="code-language-icon">🐧</span>
+                            Bash - Command Substitution
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#!/bin/bash</span>
+
+<span class="token-comment"># Modern syntax: $(command)</span>
+today=<span class="token-variable">$(</span><span class="token-function">date</span> +%Y-%m-%d<span class="token-variable">)</span>
+user=<span class="token-variable">$(</span><span class="token-function">whoami</span><span class="token-variable">)</span>
+files=<span class="token-variable">$(</span><span class="token-function">ls</span> -1 | <span class="token-function">wc</span> -l<span class="token-variable">)</span>
+
+<span class="token-function">echo</span> <span class="token-string">"Today: $today"</span>
+<span class="token-function">echo</span> <span class="token-string">"User: $user"</span>
+<span class="token-function">echo</span> <span class="token-string">"Files: $files"</span>
+
+<span class="token-comment"># Nested command substitution</span>
+<span class="token-function">echo</span> <span class="token-string">"Home dir contains $(ls $(echo $HOME) | wc -l) items"</span>
+
+<span class="token-comment"># Backtick syntax (older, avoid)</span>
+today=`<span class="token-function">date</span> +%Y-%m-%d`
+
+<span class="token-comment"># Process substitution</span>
+<span class="token-comment"># Compare two command outputs</span>
+<span class="token-function">diff</span> <(ls dir1) <(ls dir2)
+
+<span class="token-comment"># Read from command</span>
+<span class="token-keyword">while</span> <span class="token-function">read</span> -r line; <span class="token-keyword">do</span>
+    <span class="token-function">echo</span> <span class="token-string">"Line: $line"</span>
+<span class="token-keyword">done</span> < <(<span class="token-function">cat</span> /etc/passwd | <span class="token-function">head</span> -5)
+
+<span class="token-comment"># Security use case: Get current IP</span>
+my_ip=<span class="token-variable">$(</span><span class="token-function">curl</span> -s ifconfig.me<span class="token-variable">)</span>
+<span class="token-function">echo</span> <span class="token-string">"External IP: $my_ip"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Bash Variables</div>
+                    </div>
+                    <ul>
+                        <li><strong>Always quote variables:</strong> <code>"$var"</code> prevents word splitting</li>
+                        <li><strong>Use ${} for clarity:</strong> <code>${var}_suffix</code> is unambiguous</li>
+                        <li><strong>Check if set:</strong> Use <code>${var:-default}</code> for defaults</li>
+                        <li><strong>Use local in functions:</strong> Prevents variable leakage</li>
+                        <li><strong>Use readonly for constants:</strong> <code>readonly CONFIG="/etc/app"</code></li>
+                        <li><strong>Prefer $(command) over backticks:</strong> Nestable and clearer</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between single and double quotes in Bash?"</li>
+                        <li><strong>Strong Answer:</strong> Double quotes allow variable expansion and command substitution (<code>"Hello $name"</code> → "Hello John"), while single quotes preserve everything literally (<code>'$name'</code> → "$name"). Always use double quotes around variables to prevent word splitting on spaces.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>No spaces around <code>=</code> in assignments</li>
+                    <li>Double quotes expand variables, single quotes don't</li>
+                    <li>Always quote variables to prevent word splitting</li>
+                    <li>Use <code>${var:-default}</code> for default values</li>
+                    <li>Arrays use parentheses: <code>arr=(a b c)</code></li>
+                    <li>Arithmetic uses <code>$(( ))</code> or <code>(( ))</code></li>
+                    <li><code>$?</code> is exit status, <code>$$</code> is PID, <code>$@</code> is all arguments</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="3-1-bash-intro.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 3.1 Bash Introduction</span>
+                    </a>
+                    <a href="3-3-control-structures.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">3.3 Control Structures →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

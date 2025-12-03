@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1 Incident Response Scripts - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar (abbreviated) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#security">Security Automation</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Incident Response</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>5.1 Incident Response Scripts</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Build automated evidence collection scripts for Windows systems</li>
+                        <li>Capture volatile data: processes, network connections, memory artifacts</li>
+                        <li>Collect persistent data: event logs, registry, file system artifacts</li>
+                        <li>Create incident timelines and generate IR reports</li>
+                        <li>Integrate with SIEM and EDR platforms for automated response</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Automating Incident Response</h2>
+                <p>
+                    When a security incident occurs, time is critical. Every second spent manually 
+                    collecting evidence is a second an attacker could use to cover their tracks or 
+                    move laterally. Automated IR scripts ensure consistent, rapid, and thorough 
+                    evidence collection while maintaining chain of custody.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: IR Evidence Order (Volatility)</div>
+                    </div>
+                    <ul>
+                        <li><strong>R</strong>egisters & Cache → Most volatile (disappears instantly)</li>
+                        <li><strong>A</strong>ctive Memory (RAM) → Gone on reboot</li>
+                        <li><strong>N</strong>etwork Connections → Can change any moment</li>
+                        <li><strong>P</strong>rocesses Running → Attackers may terminate</li>
+                        <li><strong>D</strong>isk Data → Most persistent (logs, files, registry)</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Remember: <strong>R.A.N.P.D.</strong> - Collect in this order, from most to least volatile!</em>
+                    </p>
+                </div>
+
+                <!-- IR Collection Workflow -->
+                <h2>IR Collection Workflow</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Incident Response Script Workflow</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    INCIDENT RESPONSE COLLECTION WORKFLOW                     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌───────────────┐
+    │   INCIDENT    │
+    │   DETECTED    │
+    └───────┬───────┘
+            │
+            ▼
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  PHASE 1: VOLATILE DATA COLLECTION (Do this first!)               │
+    ├───────────────────────────────────────────────────────────────────┤
+    │  □ Running processes (Get-Process)                                │
+    │  □ Network connections (Get-NetTCPConnection)                     │
+    │  □ Logged-in users (quser, Get-WmiObject Win32_LoggedOnUser)      │
+    │  □ Open handles and DLLs (handle.exe, listdlls.exe)              │
+    │  □ Clipboard contents                                             │
+    │  □ Memory dump (if warranted - winpmem, DumpIt)                   │
+    └───────────────────────────────────────────────────────────────────┘
+            │
+            ▼
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  PHASE 2: SYSTEM STATE CAPTURE                                    │
+    ├───────────────────────────────────────────────────────────────────┤
+    │  □ System information (systeminfo, Get-ComputerInfo)              │
+    │  □ Installed software (Get-WmiObject Win32_Product)               │
+    │  □ Services and their states                                      │
+    │  □ Scheduled tasks                                                │
+    │  □ Startup programs (autoruns)                                    │
+    │  □ Environment variables                                          │
+    └───────────────────────────────────────────────────────────────────┘
+            │
+            ▼
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  PHASE 3: PERSISTENT DATA COLLECTION                              │
+    ├───────────────────────────────────────────────────────────────────┤
+    │  □ Event logs (Security, System, Application, PowerShell)         │
+    │  □ Registry hives (SAM, SECURITY, SOFTWARE, SYSTEM)               │
+    │  □ Prefetch files (C:\Windows\Prefetch)                           │
+    │  □ Recent files and jumplists                                     │
+    │  □ Browser history and artifacts                                  │
+    │  □ $MFT and filesystem metadata                                   │
+    └───────────────────────────────────────────────────────────────────┘
+            │
+            ▼
+    ┌───────────────────────────────────────────────────────────────────┐
+    │  PHASE 4: PACKAGE & TRANSFER                                      │
+    ├───────────────────────────────────────────────────────────────────┤
+    │  □ Hash all collected files (SHA256)                              │
+    │  □ Create evidence manifest                                       │
+    │  □ Compress and encrypt package                                   │
+    │  □ Transfer to secure location                                    │
+    │  □ Document chain of custody                                      │
+    └───────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Volatile Data Collection -->
+                <h2>Collecting Volatile Data</h2>
+
+                <h3>Process Collection Script</h3>
+                <p>Capture all running processes with detailed information including command lines, 
+                parent processes, and network connections:</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Comprehensive Process Collection
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-IRProcessData</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects detailed process information for incident response.
+    .DESCRIPTION
+        Gathers processes with command lines, parent PIDs, hashes, 
+        network connections, and loaded modules.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\IR_Evidence"</span>
+    )
+    
+    <span class="token-comment"># Create output directory</span>
+    <span class="token-keyword">if</span> (-not (Test-Path <span class="token-variable">$OutputPath</span>)) {
+        New-Item -ItemType Directory -Path <span class="token-variable">$OutputPath</span> -Force | Out-Null
+    }
+    
+    <span class="token-variable">$Timestamp</span> = Get-Date -Format <span class="token-string">"yyyyMMdd_HHmmss"</span>
+    
+    <span class="token-comment"># Collect process data with WMI for command lines</span>
+    <span class="token-variable">$Processes</span> = Get-CimInstance Win32_Process | Select-Object `
+        ProcessId,
+        Name,
+        ParentProcessId,
+        CommandLine,
+        ExecutablePath,
+        CreationDate,
+        @{N=<span class="token-string">'Owner'</span>;E={
+            <span class="token-keyword">try</span> { 
+                (<span class="token-variable">$_</span> | Invoke-CimMethod -MethodName GetOwner).User 
+            } <span class="token-keyword">catch</span> { <span class="token-string">'N/A'</span> }
+        }},
+        @{N=<span class="token-string">'Hash'</span>;E={
+            <span class="token-keyword">if</span> (<span class="token-variable">$_</span>.ExecutablePath -and (Test-Path <span class="token-variable">$_</span>.ExecutablePath)) {
+                (Get-FileHash <span class="token-variable">$_</span>.ExecutablePath -Algorithm SHA256).Hash
+            } <span class="token-keyword">else</span> { <span class="token-string">'N/A'</span> }
+        }}
+    
+    <span class="token-comment"># Export to CSV</span>
+    <span class="token-variable">$ProcessFile</span> = Join-Path <span class="token-variable">$OutputPath</span> <span class="token-string">"Processes_$Timestamp.csv"</span>
+    <span class="token-variable">$Processes</span> | Export-Csv -Path <span class="token-variable">$ProcessFile</span> -NoTypeInformation
+    
+    <span class="token-comment"># Collect network connections per process</span>
+    <span class="token-variable">$NetConnections</span> = Get-NetTCPConnection | Select-Object `
+        LocalAddress, LocalPort,
+        RemoteAddress, RemotePort,
+        State, OwningProcess,
+        @{N=<span class="token-string">'ProcessName'</span>;E={
+            (Get-Process -Id <span class="token-variable">$_</span>.OwningProcess -ErrorAction SilentlyContinue).Name
+        }},
+        CreationTime
+    
+    <span class="token-variable">$NetFile</span> = Join-Path <span class="token-variable">$OutputPath</span> <span class="token-string">"NetworkConnections_$Timestamp.csv"</span>
+    <span class="token-variable">$NetConnections</span> | Export-Csv -Path <span class="token-variable">$NetFile</span> -NoTypeInformation
+    
+    Write-Host <span class="token-string">"[+] Process data saved to: $ProcessFile"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"[+] Network data saved to: $NetFile"</span> -ForegroundColor Green
+    
+    <span class="token-keyword">return</span> @{
+        ProcessFile = <span class="token-variable">$ProcessFile</span>
+        NetworkFile = <span class="token-variable">$NetFile</span>
+        ProcessCount = <span class="token-variable">$Processes</span>.Count
+        ConnectionCount = <span class="token-variable">$NetConnections</span>.Count
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Event Log Collection -->
+                <h2>Event Log Collection</h2>
+
+                <p>Security event logs are crucial for understanding what happened. This script 
+                collects relevant logs and filters for security-significant events:</p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Security Event Log Collector
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-IREventLogs</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects security-relevant event logs for incident response.
+    .PARAMETER HoursBack
+        Number of hours of logs to collect. Default is 72.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\IR_Evidence\EventLogs"</span>,
+        [int]<span class="token-variable">$HoursBack</span> = 72
+    )
+    
+    <span class="token-keyword">if</span> (-not (Test-Path <span class="token-variable">$OutputPath</span>)) {
+        New-Item -ItemType Directory -Path <span class="token-variable">$OutputPath</span> -Force | Out-Null
+    }
+    
+    <span class="token-variable">$StartTime</span> = (Get-Date).AddHours(-<span class="token-variable">$HoursBack</span>)
+    <span class="token-variable">$Timestamp</span> = Get-Date -Format <span class="token-string">"yyyyMMdd_HHmmss"</span>
+    
+    <span class="token-comment"># Security-relevant Event IDs</span>
+    <span class="token-variable">$SecurityEventIDs</span> = @{
+        <span class="token-comment"># Logon Events</span>
+        <span class="token-string">'Logon'</span> = @(4624, 4625, 4634, 4647, 4648, 4672)
+        <span class="token-comment"># Account Management</span>
+        <span class="token-string">'AccountMgmt'</span> = @(4720, 4722, 4723, 4724, 4725, 4726, 4738, 4740)
+        <span class="token-comment"># Process Events</span>
+        <span class="token-string">'Process'</span> = @(4688, 4689)
+        <span class="token-comment"># Privilege Use</span>
+        <span class="token-string">'Privilege'</span> = @(4673, 4674)
+        <span class="token-comment"># Object Access</span>
+        <span class="token-string">'ObjectAccess'</span> = @(4663, 4656, 4658)
+        <span class="token-comment"># Policy Change</span>
+        <span class="token-string">'PolicyChange'</span> = @(4719, 4739)
+    }
+    
+    <span class="token-comment"># Collect Security Log</span>
+    Write-Host <span class="token-string">"[*] Collecting Security Event Log..."</span> -ForegroundColor Cyan
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$SecurityEvents</span> = Get-WinEvent -FilterHashtable @{
+            LogName = <span class="token-string">'Security'</span>
+            StartTime = <span class="token-variable">$StartTime</span>
+        } -ErrorAction Stop | Select-Object `
+            TimeCreated, Id, LevelDisplayName, 
+            Message, MachineName,
+            @{N=<span class="token-string">'Category'</span>;E={
+                <span class="token-keyword">switch</span> (<span class="token-variable">$_</span>.Id) {
+                    {<span class="token-variable">$_</span> -in @(4624,4625,4634,4647,4648,4672)} { <span class="token-string">'Logon'</span> }
+                    {<span class="token-variable">$_</span> -in @(4720,4722,4723,4724,4725,4726,4738,4740)} { <span class="token-string">'Account'</span> }
+                    {<span class="token-variable">$_</span> -eq 4688} { <span class="token-string">'ProcessCreation'</span> }
+                    {<span class="token-variable">$_</span> -eq 4689} { <span class="token-string">'ProcessTermination'</span> }
+                    default { <span class="token-string">'Other'</span> }
+                }
+            }}
+        
+        <span class="token-variable">$SecurityFile</span> = Join-Path <span class="token-variable">$OutputPath</span> <span class="token-string">"Security_$Timestamp.csv"</span>
+        <span class="token-variable">$SecurityEvents</span> | Export-Csv -Path <span class="token-variable">$SecurityFile</span> -NoTypeInformation
+        Write-Host <span class="token-string">"[+] Security log: $($SecurityEvents.Count) events"</span> -ForegroundColor Green
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"Failed to collect Security log: $_"</span>
+    }
+    
+    <span class="token-comment"># Collect PowerShell Operational Log (crucial for attack detection)</span>
+    Write-Host <span class="token-string">"[*] Collecting PowerShell Operational Log..."</span> -ForegroundColor Cyan
+    
+    <span class="token-keyword">try</span> {
+        <span class="token-variable">$PSEvents</span> = Get-WinEvent -FilterHashtable @{
+            LogName = <span class="token-string">'Microsoft-Windows-PowerShell/Operational'</span>
+            StartTime = <span class="token-variable">$StartTime</span>
+        } -ErrorAction Stop
+        
+        <span class="token-variable">$PSFile</span> = Join-Path <span class="token-variable">$OutputPath</span> <span class="token-string">"PowerShell_$Timestamp.csv"</span>
+        <span class="token-variable">$PSEvents</span> | Export-Csv -Path <span class="token-variable">$PSFile</span> -NoTypeInformation
+        Write-Host <span class="token-string">"[+] PowerShell log: $($PSEvents.Count) events"</span> -ForegroundColor Green
+    }
+    <span class="token-keyword">catch</span> {
+        Write-Warning <span class="token-string">"Failed to collect PowerShell log: $_"</span>
+    }
+    
+    <span class="token-comment"># Export raw EVTX files for forensic tools</span>
+    Write-Host <span class="token-string">"[*] Exporting raw EVTX files..."</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$LogsToExport</span> = @(
+        <span class="token-string">'Security'</span>,
+        <span class="token-string">'System'</span>,
+        <span class="token-string">'Application'</span>,
+        <span class="token-string">'Microsoft-Windows-PowerShell/Operational'</span>,
+        <span class="token-string">'Microsoft-Windows-Sysmon/Operational'</span>
+    )
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$LogName</span> <span class="token-keyword">in</span> <span class="token-variable">$LogsToExport</span>) {
+        <span class="token-variable">$SafeName</span> = <span class="token-variable">$LogName</span> -replace <span class="token-string">'/'</span>, <span class="token-string">'_'</span> -replace <span class="token-string">'-'</span>, <span class="token-string">'_'</span>
+        <span class="token-variable">$EvtxPath</span> = Join-Path <span class="token-variable">$OutputPath</span> <span class="token-string">"${SafeName}_$Timestamp.evtx"</span>
+        
+        <span class="token-keyword">try</span> {
+            wevtutil epl <span class="token-variable">$LogName</span> <span class="token-variable">$EvtxPath</span>
+            Write-Host <span class="token-string">"[+] Exported: $LogName"</span> -ForegroundColor Green
+        }
+        <span class="token-keyword">catch</span> {
+            Write-Warning <span class="token-string">"Could not export $LogName"</span>
+        }
+    }
+    
+    Write-Host <span class="token-string">"`n[✓] Event log collection complete!"</span> -ForegroundColor Green
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Registry Collection -->
+                <h2>Registry Artifact Collection</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Registry Persistence Check
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-IRRegistryArtifacts</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects registry artifacts commonly used for persistence.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">".\IR_Evidence\Registry"</span>
+    )
+    
+    <span class="token-keyword">if</span> (-not (Test-Path <span class="token-variable">$OutputPath</span>)) {
+        New-Item -ItemType Directory -Path <span class="token-variable">$OutputPath</span> -Force | Out-Null
+    }
+    
+    <span class="token-variable">$Timestamp</span> = Get-Date -Format <span class="token-string">"yyyyMMdd_HHmmss"</span>
+    
+    <span class="token-comment"># Common persistence locations</span>
+    <span class="token-variable">$PersistenceKeys</span> = @(
+        <span class="token-comment"># Run keys</span>
+        <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span>,
+        <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce'</span>,
+        <span class="token-string">'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run'</span>,
+        <span class="token-string">'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce'</span>,
+        <span class="token-comment"># Services</span>
+        <span class="token-string">'HKLM:\SYSTEM\CurrentControlSet\Services'</span>,
+        <span class="token-comment"># Winlogon</span>
+        <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon'</span>,
+        <span class="token-comment"># Image File Execution Options (IFEO)</span>
+        <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options'</span>,
+        <span class="token-comment"># AppInit DLLs</span>
+        <span class="token-string">'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows'</span>
+    )
+    
+    <span class="token-variable">$Results</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Key</span> <span class="token-keyword">in</span> <span class="token-variable">$PersistenceKeys</span>) {
+        <span class="token-keyword">if</span> (Test-Path <span class="token-variable">$Key</span>) {
+            <span class="token-keyword">try</span> {
+                <span class="token-variable">$Values</span> = Get-ItemProperty -Path <span class="token-variable">$Key</span> -ErrorAction Stop
+                
+                <span class="token-variable">$Values</span>.PSObject.Properties | 
+                    Where-Object { <span class="token-variable">$_</span>.Name -notmatch <span class="token-string">'^PS'</span> } |
+                    ForEach-Object {
+                        <span class="token-variable">$Results</span> += [PSCustomObject]@{
+                            Timestamp = Get-Date
+                            KeyPath = <span class="token-variable">$Key</span>
+                            ValueName = <span class="token-variable">$_</span>.Name
+                            ValueData = <span class="token-variable">$_</span>.Value
+                            ValueType = <span class="token-variable">$_</span>.Value.GetType().Name
+                        }
+                    }
+            }
+            <span class="token-keyword">catch</span> {
+                Write-Warning <span class="token-string">"Cannot access: $Key"</span>
+            }
+        }
+    }
+    
+    <span class="token-comment"># Export results</span>
+    <span class="token-variable">$OutputFile</span> = Join-Path <span class="token-variable">$OutputPath</span> <span class="token-string">"RegistryPersistence_$Timestamp.csv"</span>
+    <span class="token-variable">$Results</span> | Export-Csv -Path <span class="token-variable">$OutputFile</span> -NoTypeInformation
+    
+    Write-Host <span class="token-string">"[+] Found $($Results.Count) registry entries"</span> -ForegroundColor Green
+    Write-Host <span class="token-string">"[+] Saved to: $OutputFile"</span> -ForegroundColor Green
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Complete IR Script -->
+                <h2>Complete IR Collection Script</h2>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: IR Script Design</div>
+                    </div>
+                    <ul>
+                        <li><strong>Idempotent:</strong> Running twice shouldn't corrupt or duplicate evidence</li>
+                        <li><strong>Self-contained:</strong> Minimize dependencies on external tools</li>
+                        <li><strong>Hash everything:</strong> Create SHA256 hashes of all collected files</li>
+                        <li><strong>Timestamped:</strong> Include collection timestamps in filenames and logs</li>
+                        <li><strong>Error-tolerant:</strong> Continue collection even if some components fail</li>
+                        <li><strong>Chain of custody:</strong> Log who ran the script, when, and on what system</li>
+                    </ul>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Master IR Collection Script
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment">#Requires -RunAsAdministrator</span>
+<span class="token-comment">&lt;#
+.SYNOPSIS
+    Comprehensive Incident Response Evidence Collector
+.DESCRIPTION
+    Collects volatile and persistent forensic artifacts from 
+    Windows systems for incident response investigations.
+.EXAMPLE
+    .\Invoke-IRCollection.ps1 -CaseNumber "IR-2024-001"
+#&gt;</span>
+
+[CmdletBinding()]
+<span class="token-keyword">param</span>(
+    [Parameter(Mandatory)]
+    [string]<span class="token-variable">$CaseNumber</span>,
+    
+    [string]<span class="token-variable">$OutputPath</span> = <span class="token-string">"C:\IR_Evidence\$CaseNumber"</span>,
+    
+    [int]<span class="token-variable">$EventLogHours</span> = 72
+)
+
+<span class="token-comment"># Initialize</span>
+<span class="token-variable">$StartTime</span> = Get-Date
+<span class="token-variable">$Hostname</span> = $env:COMPUTERNAME
+<span class="token-variable">$Collector</span> = $env:USERNAME
+<span class="token-variable">$Timestamp</span> = Get-Date -Format <span class="token-string">"yyyyMMdd_HHmmss"</span>
+
+<span class="token-comment"># Create evidence structure</span>
+<span class="token-variable">$Folders</span> = @(
+    <span class="token-string">"$OutputPath\Volatile"</span>,
+    <span class="token-string">"$OutputPath\EventLogs"</span>,
+    <span class="token-string">"$OutputPath\Registry"</span>,
+    <span class="token-string">"$OutputPath\FileSystem"</span>,
+    <span class="token-string">"$OutputPath\Network"</span>
+)
+
+<span class="token-keyword">foreach</span> (<span class="token-variable">$Folder</span> <span class="token-keyword">in</span> <span class="token-variable">$Folders</span>) {
+    New-Item -ItemType Directory -Path <span class="token-variable">$Folder</span> -Force | Out-Null
+}
+
+<span class="token-comment"># Start collection log</span>
+<span class="token-variable">$LogFile</span> = <span class="token-string">"$OutputPath\Collection_Log_$Timestamp.txt"</span>
+<span class="token-keyword">function</span> <span class="token-function">Write-Log</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Message</span>)
+    <span class="token-variable">$Entry</span> = <span class="token-string">"[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] $Message"</span>
+    <span class="token-variable">$Entry</span> | Tee-Object -FilePath <span class="token-variable">$LogFile</span> -Append
+}
+
+Write-Log <span class="token-string">"=========================================="</span>
+Write-Log <span class="token-string">"IR Evidence Collection Started"</span>
+Write-Log <span class="token-string">"Case: $CaseNumber"</span>
+Write-Log <span class="token-string">"Host: $Hostname"</span>
+Write-Log <span class="token-string">"Collector: $Collector"</span>
+Write-Log <span class="token-string">"=========================================="</span>
+
+<span class="token-comment"># PHASE 1: Volatile Data</span>
+Write-Log <span class="token-string">"`n[PHASE 1] Collecting Volatile Data..."</span>
+
+<span class="token-comment"># Processes</span>
+Write-Log <span class="token-string">"  - Running processes..."</span>
+Get-CimInstance Win32_Process | 
+    Select-Object ProcessId, Name, ParentProcessId, CommandLine, 
+                  ExecutablePath, CreationDate |
+    Export-Csv <span class="token-string">"$OutputPath\Volatile\Processes_$Timestamp.csv"</span> -NoTypeInformation
+
+<span class="token-comment"># Network Connections</span>
+Write-Log <span class="token-string">"  - Network connections..."</span>
+Get-NetTCPConnection | 
+    Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, 
+                  State, OwningProcess, CreationTime |
+    Export-Csv <span class="token-string">"$OutputPath\Network\TCPConnections_$Timestamp.csv"</span> -NoTypeInformation
+
+<span class="token-comment"># DNS Cache</span>
+Write-Log <span class="token-string">"  - DNS cache..."</span>
+Get-DnsClientCache | 
+    Export-Csv <span class="token-string">"$OutputPath\Network\DNSCache_$Timestamp.csv"</span> -NoTypeInformation
+
+<span class="token-comment"># Logged-on Users</span>
+Write-Log <span class="token-string">"  - Logged-on users..."</span>
+quser 2>$null | Out-File <span class="token-string">"$OutputPath\Volatile\LoggedOnUsers_$Timestamp.txt"</span>
+
+<span class="token-comment"># PHASE 2: System State</span>
+Write-Log <span class="token-string">"`n[PHASE 2] Collecting System State..."</span>
+
+<span class="token-comment"># System Info</span>
+Write-Log <span class="token-string">"  - System information..."</span>
+Get-ComputerInfo | 
+    Out-File <span class="token-string">"$OutputPath\Volatile\SystemInfo_$Timestamp.txt"</span>
+
+<span class="token-comment"># Services</span>
+Write-Log <span class="token-string">"  - Services..."</span>
+Get-Service | 
+    Select-Object Name, DisplayName, Status, StartType |
+    Export-Csv <span class="token-string">"$OutputPath\Volatile\Services_$Timestamp.csv"</span> -NoTypeInformation
+
+<span class="token-comment"># Scheduled Tasks</span>
+Write-Log <span class="token-string">"  - Scheduled tasks..."</span>
+Get-ScheduledTask | 
+    Select-Object TaskName, TaskPath, State, Author, 
+                  @{N=<span class="token-string">'Actions'</span>;E={<span class="token-variable">$_</span>.Actions.Execute}} |
+    Export-Csv <span class="token-string">"$OutputPath\Volatile\ScheduledTasks_$Timestamp.csv"</span> -NoTypeInformation
+
+<span class="token-comment"># PHASE 3: Event Logs</span>
+Write-Log <span class="token-string">"`n[PHASE 3] Collecting Event Logs..."</span>
+
+<span class="token-variable">$LogsToCollect</span> = @(<span class="token-string">'Security'</span>, <span class="token-string">'System'</span>, <span class="token-string">'Application'</span>)
+<span class="token-keyword">foreach</span> (<span class="token-variable">$Log</span> <span class="token-keyword">in</span> <span class="token-variable">$LogsToCollect</span>) {
+    Write-Log <span class="token-string">"  - $Log log..."</span>
+    <span class="token-keyword">try</span> {
+        wevtutil epl <span class="token-variable">$Log</span> <span class="token-string">"$OutputPath\EventLogs\${Log}_$Timestamp.evtx"</span>
+    } <span class="token-keyword">catch</span> {
+        Write-Log <span class="token-string">"  [!] Failed to export $Log"</span>
+    }
+}
+
+<span class="token-comment"># PHASE 4: Create Manifest &amp; Hashes</span>
+Write-Log <span class="token-string">"`n[PHASE 4] Creating Evidence Manifest..."</span>
+
+<span class="token-variable">$AllFiles</span> = Get-ChildItem -Path <span class="token-variable">$OutputPath</span> -Recurse -File
+<span class="token-variable">$Manifest</span> = <span class="token-variable">$AllFiles</span> | ForEach-Object {
+    [PSCustomObject]@{
+        FileName = <span class="token-variable">$_</span>.Name
+        FullPath = <span class="token-variable">$_</span>.FullName
+        Size = <span class="token-variable">$_</span>.Length
+        SHA256 = (Get-FileHash <span class="token-variable">$_</span>.FullName -Algorithm SHA256).Hash
+        CollectedAt = Get-Date
+    }
+}
+
+<span class="token-variable">$Manifest</span> | Export-Csv <span class="token-string">"$OutputPath\Evidence_Manifest_$Timestamp.csv"</span> -NoTypeInformation
+
+<span class="token-comment"># Summary</span>
+<span class="token-variable">$EndTime</span> = Get-Date
+<span class="token-variable">$Duration</span> = <span class="token-variable">$EndTime</span> - <span class="token-variable">$StartTime</span>
+
+Write-Log <span class="token-string">"`n=========================================="</span>
+Write-Log <span class="token-string">"Collection Complete!"</span>
+Write-Log <span class="token-string">"Duration: $($Duration.TotalMinutes.ToString('0.00')) minutes"</span>
+Write-Log <span class="token-string">"Files Collected: $($AllFiles.Count)"</span>
+Write-Log <span class="token-string">"Output: $OutputPath"</span>
+Write-Log <span class="token-string">"=========================================="</span>
+
+Write-Host <span class="token-string">"`n[✓] IR Collection Complete! Evidence saved to: $OutputPath"</span> -ForegroundColor Green</code></pre>
+                    </div>
+                </div>
+
+                <!-- Critical Warning -->
+                <div class="info-box critical-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🚨</div>
+                        <div class="info-box-title">Critical: Chain of Custody</div>
+                    </div>
+                    <ul>
+                        <li><strong>Document everything:</strong> Who collected, when, where, and why</li>
+                        <li><strong>Hash all evidence:</strong> SHA256 at minimum, create manifest files</li>
+                        <li><strong>Secure transfer:</strong> Encrypt evidence packages during transfer</li>
+                        <li><strong>Access logging:</strong> Track who accessed evidence and when</li>
+                        <li><strong>Never modify originals:</strong> Work on copies, preserve original artifacts</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "Walk me through how you would respond to a suspected malware infection."</li>
+                        <li><strong>Strong Answer:</strong> Start with volatile data (processes, connections), then persistent data (logs, registry), emphasize order of volatility</li>
+                        <li><strong>Key Points:</strong> Mention chain of custody, timestamping, hashing, and documentation</li>
+                        <li><strong>Bonus:</strong> Reference specific Event IDs (4688 for process creation, 4624/4625 for logon events)</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Collect volatile evidence first—processes, connections, memory—before it disappears</li>
+                    <li>Automate collection for consistency and speed during high-stress incidents</li>
+                    <li>Hash all evidence files and maintain chain of custody documentation</li>
+                    <li>Event logs (Security, PowerShell, Sysmon) are gold mines for investigation</li>
+                    <li>Registry persistence locations should always be checked during IR</li>
+                    <li>Design scripts to be error-tolerant and continue even when components fail</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="4-4-batch-file-operations.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 4.4 File Operations</span>
+                    </a>
+                    <a href="5-2-threat-hunting.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">5.2 Threat Hunting →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

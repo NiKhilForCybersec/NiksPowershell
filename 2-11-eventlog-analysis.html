@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.11 Event Log Analysis - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Event Log Analysis</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.11 Event Log Analysis</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Query Windows Event Logs with Get-WinEvent</li>
+                        <li>Use FilterHashtable for high-performance queries</li>
+                        <li>Extract and analyze security-relevant events</li>
+                        <li>Build automated monitoring and alerting scripts</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Windows Event Logs for Security</h2>
+                <p>
+                    Windows Event Logs are the primary source of security telemetry on Windows systems. 
+                    Understanding how to efficiently query and analyze these logs is essential for 
+                    incident response, threat hunting, and compliance monitoring.
+                </p>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Critical Security Event IDs</div>
+                    </div>
+                    <ul>
+                        <li><strong>4624</strong> = Successful logon</li>
+                        <li><strong>4625</strong> = Failed logon (brute force indicator)</li>
+                        <li><strong>4672</strong> = Special privileges assigned (admin logon)</li>
+                        <li><strong>4688</strong> = Process creation (requires audit policy)</li>
+                        <li><strong>4720/4726</strong> = User created/deleted</li>
+                        <li><strong>4728/4732</strong> = User added to security/local group</li>
+                        <li><strong>4740</strong> = Account lockout</li>
+                        <li><strong>7045</strong> = Service installed</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">
+                        🎯 <em>Mnemonic: "4-6-2-4 for login, 4-6-8-8 for processes"</em>
+                    </p>
+                </div>
+
+                <!-- Event Log Architecture -->
+                <h2>Event Log Architecture</h2>
+
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 Windows Event Log Structure</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    WINDOWS EVENT LOG CHANNELS                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│    SECURITY      │  │     SYSTEM       │  │   APPLICATION    │
+│                  │  │                  │  │                  │
+│ • Logon/Logoff   │  │ • Service start  │  │ • App crashes    │
+│ • Object access  │  │ • Driver load    │  │ • App errors     │
+│ • Privilege use  │  │ • System errors  │  │ • Custom apps    │
+│ • Account mgmt   │  │ • Shutdown/boot  │  │                  │
+│ • Policy change  │  │                  │  │                  │
+└──────────────────┘  └──────────────────┘  └──────────────────┘
+        │                     │                     │
+        └─────────────────────┼─────────────────────┘
+                              │
+                    ┌─────────▼─────────┐
+                    │  APPLICATIONS &   │
+                    │  SERVICES LOGS    │
+                    └───────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+┌───────▼───────┐   ┌─────────▼─────────┐   ┌───────▼───────┐
+│  PowerShell   │   │  Windows Defender │   │    Sysmon     │
+│  Operational  │   │    Operational    │   │  Operational  │
+│               │   │                   │   │               │
+│ • Script      │   │ • Detections      │   │ • Process     │
+│   execution   │   │ • Scans           │   │   create      │
+│ • Module load │   │ • Remediation     │   │ • Network     │
+│ • Transcript  │   │                   │   │ • File create │
+└───────────────┘   └───────────────────┘   └───────────────┘
+
+Path: C:\Windows\System32\winevt\Logs\
+Format: .evtx (binary XML)
+</pre>
+                </div>
+
+                <!-- Get-WinEvent Basics -->
+                <h2>Get-WinEvent: The Modern Approach</h2>
+
+                <p>
+                    <code>Get-WinEvent</code> is the recommended cmdlet for querying Windows Event Logs. 
+                    It's faster and more flexible than the legacy <code>Get-EventLog</code>.
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Get-WinEvent Basics
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># List available logs</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-ListLog</span> * | <span class="token-cmdlet">Where-Object</span> RecordCount <span class="token-operator">-gt</span> <span class="token-number">0</span>
+
+<span class="token-comment"># Get recent events from Security log</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> Security <span class="token-parameter">-MaxEvents</span> <span class="token-number">100</span>
+
+<span class="token-comment"># Get events from PowerShell Operational log</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> <span class="token-string">'Microsoft-Windows-PowerShell/Operational'</span> <span class="token-parameter">-MaxEvents</span> <span class="token-number">50</span>
+
+<span class="token-comment"># Get Sysmon events (if installed)</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> <span class="token-string">'Microsoft-Windows-Sysmon/Operational'</span> <span class="token-parameter">-MaxEvents</span> <span class="token-number">50</span>
+
+<span class="token-comment"># Query remote computer</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-LogName</span> Security <span class="token-parameter">-ComputerName</span> <span class="token-string">"Server01"</span> <span class="token-parameter">-MaxEvents</span> <span class="token-number">100</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- FilterHashtable -->
+                <h2>FilterHashtable: High-Performance Queries</h2>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practice: Always Use FilterHashtable</div>
+                    </div>
+                    <p>
+                        FilterHashtable filters at the source (Windows Event Log service) before 
+                        PowerShell processes the results. This is <strong>10-100x faster</strong> than 
+                        piping to Where-Object.
+                    </p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - FilterHashtable Usage
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Filter by Event ID</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    Id = <span class="token-number">4625</span>  <span class="token-comment"># Failed logons</span>
+}
+
+<span class="token-comment"># Filter by multiple Event IDs</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    Id = <span class="token-number">4624</span>, <span class="token-number">4625</span>, <span class="token-number">4634</span>  <span class="token-comment"># Logon events</span>
+}
+
+<span class="token-comment"># Filter by time range</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    Id = <span class="token-number">4625</span>
+    StartTime = (Get-Date).AddHours(-24)
+    EndTime = Get-Date
+}
+
+<span class="token-comment"># Filter by Level (1=Critical, 2=Error, 3=Warning, 4=Info)</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'System'</span>
+    Level = <span class="token-number">1</span>, <span class="token-number">2</span>  <span class="token-comment"># Critical and Error</span>
+}
+
+<span class="token-comment"># Filter by Provider (source)</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+    LogName = <span class="token-string">'Security'</span>
+    ProviderName = <span class="token-string">'Microsoft-Windows-Security-Auditing'</span>
+    Id = <span class="token-number">4688</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Event Analysis -->
+                <h2>Security Event Analysis Scripts</h2>
+
+                <h3>Failed Login Analysis</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Failed Login Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-FailedLogins</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Analyzes failed login attempts from Security log.
+    .PARAMETER HoursBack
+        Number of hours to analyze. Default 24.
+    .PARAMETER MinAttempts
+        Minimum attempts to report. Default 5.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$HoursBack</span> = 24,
+        [int]<span class="token-variable">$MinAttempts</span> = 5
+    )
+    
+    <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4625</span>
+        StartTime = (Get-Date).AddHours(-<span class="token-variable">$HoursBack</span>)
+    } -ErrorAction SilentlyContinue
+    
+    <span class="token-keyword">if</span> (-not <span class="token-variable">$Events</span>) {
+        Write-Host <span class="token-string">"No failed login events found."</span> -ForegroundColor Green
+        <span class="token-keyword">return</span>
+    }
+    
+    <span class="token-comment"># Parse events and extract key fields</span>
+    <span class="token-variable">$ParsedEvents</span> = <span class="token-variable">$Events</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        [PSCustomObject]@{
+            TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+            TargetUser = <span class="token-variable">$_</span>.Properties[5].Value
+            TargetDomain = <span class="token-variable">$_</span>.Properties[6].Value
+            SourceIP = <span class="token-variable">$_</span>.Properties[19].Value
+            LogonType = <span class="token-variable">$_</span>.Properties[10].Value
+            FailureReason = <span class="token-variable">$_</span>.Properties[8].Value
+            SubStatus = <span class="token-variable">$_</span>.Properties[9].Value
+        }
+    }
+    
+    <span class="token-comment"># Group by source IP</span>
+    Write-Host <span class="token-string">"`n=== Failed Logins by Source IP ==="</span> -ForegroundColor Cyan
+    <span class="token-variable">$ParsedEvents</span> | 
+        <span class="token-cmdlet">Group-Object</span> SourceIP | 
+        <span class="token-cmdlet">Where-Object</span> Count <span class="token-operator">-ge</span> <span class="token-variable">$MinAttempts</span> |
+        <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span> |
+        <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'SourceIP'</span>;E={<span class="token-variable">$_</span>.Name}}, Count,
+            @{N=<span class="token-string">'TargetUsers'</span>;E={(<span class="token-variable">$_</span>.Group.TargetUser | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-Unique</span>) -join <span class="token-string">', '</span>}}
+    
+    <span class="token-comment"># Group by target user</span>
+    Write-Host <span class="token-string">"`n=== Failed Logins by Target User ==="</span> -ForegroundColor Cyan
+    <span class="token-variable">$ParsedEvents</span> | 
+        <span class="token-cmdlet">Group-Object</span> TargetUser | 
+        <span class="token-cmdlet">Where-Object</span> Count <span class="token-operator">-ge</span> <span class="token-variable">$MinAttempts</span> |
+        <span class="token-cmdlet">Sort-Object</span> Count <span class="token-parameter">-Descending</span> |
+        <span class="token-cmdlet">Select-Object</span> @{N=<span class="token-string">'TargetUser'</span>;E={<span class="token-variable">$_</span>.Name}}, Count
+}
+
+<span class="token-comment"># Usage</span>
+Get-FailedLogins <span class="token-parameter">-HoursBack</span> <span class="token-number">48</span> <span class="token-parameter">-MinAttempts</span> <span class="token-number">10</span></code></pre>
+                    </div>
+                </div>
+
+                <h3>Logon Type Reference</h3>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Security Relevance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>2</strong></td>
+                                <td>Interactive</td>
+                                <td>Local keyboard/console</td>
+                                <td>Physical access</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3</strong></td>
+                                <td>Network</td>
+                                <td>SMB, network resource</td>
+                                <td>Lateral movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4</strong></td>
+                                <td>Batch</td>
+                                <td>Scheduled task</td>
+                                <td>Persistence</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5</strong></td>
+                                <td>Service</td>
+                                <td>Service startup</td>
+                                <td>Service accounts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>7</strong></td>
+                                <td>Unlock</td>
+                                <td>Workstation unlock</td>
+                                <td>Physical presence</td>
+                            </tr>
+                            <tr>
+                                <td><strong>10</strong></td>
+                                <td>RemoteInteractive</td>
+                                <td>RDP</td>
+                                <td>Remote access</td>
+                            </tr>
+                            <tr>
+                                <td><strong>11</strong></td>
+                                <td>CachedInteractive</td>
+                                <td>Cached credentials</td>
+                                <td>Offline attack potential</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Process Creation Monitoring (Event ID 4688)</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Process Creation Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-SuspiciousProcesses</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Identifies suspicious process execution from Event ID 4688.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$HoursBack</span> = 24
+    )
+    
+    <span class="token-comment"># Suspicious patterns to look for</span>
+    <span class="token-variable">$SuspiciousPatterns</span> = @(
+        <span class="token-string">'powershell.*-enc'</span>,
+        <span class="token-string">'powershell.*downloadstring'</span>,
+        <span class="token-string">'powershell.*iex'</span>,
+        <span class="token-string">'cmd.*/c.*powershell'</span>,
+        <span class="token-string">'certutil.*-urlcache'</span>,
+        <span class="token-string">'certutil.*-decode'</span>,
+        <span class="token-string">'bitsadmin.*/transfer'</span>,
+        <span class="token-string">'mshta.*vbscript'</span>,
+        <span class="token-string">'wmic.*process.*call.*create'</span>,
+        <span class="token-string">'regsvr32.*/s.*/u'</span>,
+        <span class="token-string">'rundll32.*javascript'</span>
+    )
+    
+    <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4688</span>
+        StartTime = (Get-Date).AddHours(-<span class="token-variable">$HoursBack</span>)
+    } -ErrorAction SilentlyContinue
+    
+    <span class="token-variable">$SuspiciousEvents</span> = <span class="token-variable">$Events</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$CommandLine</span> = <span class="token-variable">$_</span>.Properties[8].Value  <span class="token-comment"># Command line (if auditing enabled)</span>
+        <span class="token-variable">$ProcessName</span> = <span class="token-variable">$_</span>.Properties[5].Value
+        
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$pattern</span> <span class="token-keyword">in</span> <span class="token-variable">$SuspiciousPatterns</span>) {
+            <span class="token-keyword">if</span> (<span class="token-variable">$CommandLine</span> <span class="token-operator">-match</span> <span class="token-variable">$pattern</span>) {
+                [PSCustomObject]@{
+                    TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+                    ProcessName = <span class="token-variable">$ProcessName</span>
+                    CommandLine = <span class="token-variable">$CommandLine</span>
+                    User = <span class="token-variable">$_</span>.Properties[1].Value
+                    ParentProcess = <span class="token-variable">$_</span>.Properties[13].Value
+                    MatchedPattern = <span class="token-variable">$pattern</span>
+                }
+                <span class="token-keyword">break</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$SuspiciousEvents</span>) {
+        Write-Host <span class="token-string">"[!] Found $($SuspiciousEvents.Count) suspicious process executions!"</span> -ForegroundColor Red
+        <span class="token-variable">$SuspiciousEvents</span> | <span class="token-cmdlet">Format-Table</span> <span class="token-parameter">-AutoSize</span> <span class="token-parameter">-Wrap</span>
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"[+] No suspicious process patterns found."</span> -ForegroundColor Green
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <h3>User Account Changes</h3>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Account Change Monitoring
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-AccountChanges</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Monitors user account creation, deletion, and privilege changes.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$HoursBack</span> = 24
+    )
+    
+    <span class="token-comment"># Event IDs for account management</span>
+    <span class="token-variable">$AccountEventIds</span> = @{
+        <span class="token-number">4720</span> = <span class="token-string">'User account created'</span>
+        <span class="token-number">4722</span> = <span class="token-string">'User account enabled'</span>
+        <span class="token-number">4723</span> = <span class="token-string">'User attempted to change password'</span>
+        <span class="token-number">4724</span> = <span class="token-string">'Password reset attempted'</span>
+        <span class="token-number">4725</span> = <span class="token-string">'User account disabled'</span>
+        <span class="token-number">4726</span> = <span class="token-string">'User account deleted'</span>
+        <span class="token-number">4728</span> = <span class="token-string">'Member added to security-enabled global group'</span>
+        <span class="token-number">4732</span> = <span class="token-string">'Member added to security-enabled local group'</span>
+        <span class="token-number">4738</span> = <span class="token-string">'User account changed'</span>
+        <span class="token-number">4740</span> = <span class="token-string">'Account locked out'</span>
+    }
+    
+    <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-variable">$AccountEventIds</span>.Keys
+        StartTime = (Get-Date).AddHours(-<span class="token-variable">$HoursBack</span>)
+    } -ErrorAction SilentlyContinue
+    
+    <span class="token-variable">$Events</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        [PSCustomObject]@{
+            TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+            EventId = <span class="token-variable">$_</span>.Id
+            Action = <span class="token-variable">$AccountEventIds</span>[[int]<span class="token-variable">$_</span>.Id]
+            TargetUser = <span class="token-variable">$_</span>.Properties[0].Value
+            PerformedBy = <span class="token-variable">$_</span>.Properties[4].Value
+            Computer = <span class="token-variable">$_</span>.MachineName
+        }
+    } | <span class="token-cmdlet">Sort-Object</span> TimeCreated <span class="token-parameter">-Descending</span>
+}
+
+<span class="token-comment"># Check for additions to privileged groups</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-PrivilegedGroupChanges</span> {
+    <span class="token-keyword">param</span>([int]<span class="token-variable">$HoursBack</span> = 24)
+    
+    <span class="token-variable">$PrivilegedGroups</span> = @(
+        <span class="token-string">'Domain Admins'</span>,
+        <span class="token-string">'Enterprise Admins'</span>,
+        <span class="token-string">'Schema Admins'</span>,
+        <span class="token-string">'Administrators'</span>,
+        <span class="token-string">'Backup Operators'</span>,
+        <span class="token-string">'Account Operators'</span>
+    )
+    
+    <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Security'</span>
+        Id = <span class="token-number">4728</span>, <span class="token-number">4732</span>, <span class="token-number">4756</span>
+        StartTime = (Get-Date).AddHours(-<span class="token-variable">$HoursBack</span>)
+    } -ErrorAction SilentlyContinue | <span class="token-cmdlet">Where-Object</span> {
+        <span class="token-variable">$GroupName</span> = <span class="token-variable">$_</span>.Properties[2].Value
+        <span class="token-variable">$PrivilegedGroups</span> -contains <span class="token-variable">$GroupName</span>
+    } | <span class="token-cmdlet">ForEach-Object</span> {
+        [PSCustomObject]@{
+            TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+            GroupName = <span class="token-variable">$_</span>.Properties[2].Value
+            MemberAdded = <span class="token-variable">$_</span>.Properties[0].Value
+            AddedBy = <span class="token-variable">$_</span>.Properties[6].Value
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- PowerShell Logging -->
+                <h2>PowerShell Script Block Logging</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Script Block Analysis
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Get-SuspiciousPowerShell</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Analyzes PowerShell script block logs for suspicious activity.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [int]<span class="token-variable">$HoursBack</span> = 24
+    )
+    
+    <span class="token-comment"># Suspicious keywords in PowerShell</span>
+    <span class="token-variable">$SuspiciousKeywords</span> = @(
+        <span class="token-string">'Invoke-Mimikatz'</span>,
+        <span class="token-string">'Invoke-Expression'</span>,
+        <span class="token-string">'IEX'</span>,
+        <span class="token-string">'DownloadString'</span>,
+        <span class="token-string">'DownloadFile'</span>,
+        <span class="token-string">'Net.WebClient'</span>,
+        <span class="token-string">'FromBase64String'</span>,
+        <span class="token-string">'-EncodedCommand'</span>,
+        <span class="token-string">'-enc'</span>,
+        <span class="token-string">'Invoke-Shellcode'</span>,
+        <span class="token-string">'Get-Keystrokes'</span>,
+        <span class="token-string">'Get-GPPPassword'</span>,
+        <span class="token-string">'Add-Persistence'</span>,
+        <span class="token-string">'AMSI'</span>,
+        <span class="token-string">'Bypass'</span>
+    )
+    
+    <span class="token-variable">$Events</span> = <span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+        LogName = <span class="token-string">'Microsoft-Windows-PowerShell/Operational'</span>
+        Id = <span class="token-number">4104</span>  <span class="token-comment"># Script Block Logging</span>
+        StartTime = (Get-Date).AddHours(-<span class="token-variable">$HoursBack</span>)
+    } -ErrorAction SilentlyContinue
+    
+    <span class="token-variable">$Findings</span> = <span class="token-variable">$Events</span> | <span class="token-cmdlet">ForEach-Object</span> {
+        <span class="token-variable">$ScriptBlock</span> = <span class="token-variable">$_</span>.Properties[2].Value
+        
+        <span class="token-keyword">foreach</span> (<span class="token-variable">$keyword</span> <span class="token-keyword">in</span> <span class="token-variable">$SuspiciousKeywords</span>) {
+            <span class="token-keyword">if</span> (<span class="token-variable">$ScriptBlock</span> <span class="token-operator">-match</span> <span class="token-variable">$keyword</span>) {
+                [PSCustomObject]@{
+                    TimeCreated = <span class="token-variable">$_</span>.TimeCreated
+                    MatchedKeyword = <span class="token-variable">$keyword</span>
+                    ScriptBlockId = <span class="token-variable">$_</span>.Properties[3].Value
+                    ScriptPreview = <span class="token-variable">$ScriptBlock</span>.Substring(0, [Math]::Min(200, <span class="token-variable">$ScriptBlock</span>.Length))
+                }
+                <span class="token-keyword">break</span>
+            }
+        }
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Findings</span>) {
+        Write-Host <span class="token-string">"[!] Found $($Findings.Count) suspicious PowerShell executions!"</span> -ForegroundColor Red
+        <span class="token-variable">$Findings</span>
+    } <span class="token-keyword">else</span> {
+        Write-Host <span class="token-string">"[+] No suspicious PowerShell activity found."</span> -ForegroundColor Green
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Export Functions -->
+                <h2>Exporting Events for Analysis</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Export Events
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Export to CSV for analysis</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{LogName=<span class="token-string">'Security'</span>;Id=<span class="token-number">4625</span>} | 
+    <span class="token-cmdlet">Select-Object</span> TimeCreated, Id, Message |
+    <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"FailedLogins_$(Get-Date -f yyyyMMdd).csv"</span> <span class="token-parameter">-NoTypeInformation</span>
+
+<span class="token-comment"># Export raw .evtx file</span>
+wevtutil epl Security <span class="token-string">"Security_$(Get-Date -f yyyyMMdd).evtx"</span>
+
+<span class="token-comment"># Export specific time range</span>
+wevtutil epl Security <span class="token-string">"Security_Export.evtx"</span> /q:<span class="token-string">"*[System[TimeCreated[@SystemTime>='2024-01-01T00:00:00']]]"</span>
+
+<span class="token-comment"># Convert to JSON for SIEM ingestion</span>
+<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{LogName=<span class="token-string">'Security'</span>;Id=<span class="token-number">4624</span>,<span class="token-number">4625</span>} <span class="token-parameter">-MaxEvents</span> <span class="token-number">1000</span> |
+    <span class="token-cmdlet">ConvertTo-Json</span> <span class="token-parameter">-Depth</span> <span class="token-number">3</span> |
+    <span class="token-cmdlet">Out-File</span> <span class="token-string">"SecurityEvents.json"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you investigate a brute force attack?"</li>
+                        <li><strong>Strong Answer:</strong> Query Event ID 4625 (failed logins), group by source IP and target user. Look for high-volume attempts from single IPs or targeting specific accounts. Check for successful logins (4624) following failures. Correlate with 4672 for privilege escalation.</li>
+                        <li><strong>Key Event IDs to memorize:</strong> 4624/4625 (logon), 4688 (process), 4720/4726 (user), 4728/4732 (group), 7045 (service)</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>Get-WinEvent</code> with <code>FilterHashtable</code> for best performance</li>
+                    <li>Critical security events: 4624/4625 (logon), 4688 (process), 4720-4740 (accounts)</li>
+                    <li>Always enable command-line logging in audit policy for process creation events</li>
+                    <li>PowerShell script block logging (Event ID 4104) is essential for detecting attacks</li>
+                    <li>Build reusable functions for common analysis tasks</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="2-10-registry.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.10 Registry Operations</span>
+                    </a>
+                    <a href="2-12-active-directory.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.12 Active Directory →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

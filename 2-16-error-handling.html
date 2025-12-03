@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.16 Error Handling - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Error Handling</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.16 Error Handling</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Understand terminating vs non-terminating errors</li>
+                        <li>Use Try/Catch/Finally for robust error handling</li>
+                        <li>Control error behavior with ErrorAction</li>
+                        <li>Implement logging and error reporting in scripts</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>Why Error Handling Matters</h2>
+                <p>
+                    Robust error handling is essential for security scripts that must work reliably 
+                    in production. A script that fails silently can miss critical security events, 
+                    while one that crashes unexpectedly can leave systems in an inconsistent state.
+                </p>
+
+                <!-- Error Types -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 PowerShell Error Types</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          POWERSHELL ERRORS                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌────────────────────────────┐    ┌────────────────────────────┐
+    │   TERMINATING ERRORS       │    │  NON-TERMINATING ERRORS    │
+    │                            │    │                            │
+    │ • Stop script execution    │    │ • Script continues         │
+    │ • Caught by Try/Catch      │    │ • Written to $Error        │
+    │ • Thrown by:               │    │ • Generated by:            │
+    │   - throw statement        │    │   - Most cmdlet errors     │
+    │   - ThrowTerminatingError  │    │   - File not found         │
+    │   - Divide by zero         │    │   - Access denied          │
+    │   - .NET exceptions        │    │   - Invalid parameters     │
+    └────────────────────────────┘    └────────────────────────────┘
+                │                                  │
+                │                                  │
+                ▼                                  ▼
+    ┌────────────────────────────┐    ┌────────────────────────────┐
+    │   Caught by Try/Catch      │    │   Use -ErrorAction Stop    │
+    │   automatically            │    │   to make them terminating │
+    └────────────────────────────┘    └────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: ErrorAction Values</div>
+                    </div>
+                    <ul>
+                        <li><strong>Stop</strong> → Make error terminating, catch with Try/Catch</li>
+                        <li><strong>Continue</strong> → Show error, keep going (default)</li>
+                        <li><strong>SilentlyContinue</strong> → Hide error, keep going</li>
+                        <li><strong>Ignore</strong> → Hide error, don't add to $Error</li>
+                        <li><strong>Inquire</strong> → Prompt user for action</li>
+                    </ul>
+                </div>
+
+                <!-- Try Catch Finally -->
+                <h2>Try/Catch/Finally</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Try/Catch/Finally
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic Try/Catch</span>
+<span class="token-keyword">try</span> {
+    <span class="token-comment"># Code that might fail</span>
+    <span class="token-variable">$Content</span> = <span class="token-cmdlet">Get-Content</span> <span class="token-string">"C:\NonExistent.txt"</span> <span class="token-parameter">-ErrorAction</span> Stop
+}
+<span class="token-keyword">catch</span> {
+    <span class="token-comment"># Handle the error</span>
+    Write-Host <span class="token-string">"Error: $($_.Exception.Message)"</span> -ForegroundColor Red
+}
+
+<span class="token-comment"># Try/Catch/Finally</span>
+<span class="token-keyword">try</span> {
+    <span class="token-variable">$Connection</span> = <span class="token-cmdlet">New-Object</span> System.Net.Sockets.TcpClient(<span class="token-string">"server"</span>, <span class="token-number">443</span>)
+    <span class="token-comment"># Do work with connection</span>
+}
+<span class="token-keyword">catch</span> {
+    Write-Error <span class="token-string">"Connection failed: $_"</span>
+}
+<span class="token-keyword">finally</span> {
+    <span class="token-comment"># Always runs - even if error occurs</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$Connection</span>) {
+        <span class="token-variable">$Connection</span>.Close()
+    }
+}
+
+<span class="token-comment"># Catch specific exception types</span>
+<span class="token-keyword">try</span> {
+    <span class="token-variable">$Result</span> = <span class="token-number">10</span> / <span class="token-number">0</span>
+}
+<span class="token-keyword">catch</span> [System.DivideByZeroException] {
+    Write-Host <span class="token-string">"Cannot divide by zero!"</span>
+}
+<span class="token-keyword">catch</span> [System.IO.FileNotFoundException] {
+    Write-Host <span class="token-string">"File not found!"</span>
+}
+<span class="token-keyword">catch</span> {
+    <span class="token-comment"># Catch-all for other exceptions</span>
+    Write-Host <span class="token-string">"Unexpected error: $($_.Exception.GetType().Name)"</span>
+}
+
+<span class="token-comment"># Access error details</span>
+<span class="token-keyword">try</span> {
+    <span class="token-cmdlet">Get-Item</span> <span class="token-string">"C:\NoSuchFile.txt"</span> <span class="token-parameter">-ErrorAction</span> Stop
+}
+<span class="token-keyword">catch</span> {
+    <span class="token-comment"># $_ is the ErrorRecord</span>
+    Write-Host <span class="token-string">"Exception Type: $($_.Exception.GetType().FullName)"</span>
+    Write-Host <span class="token-string">"Message: $($_.Exception.Message)"</span>
+    Write-Host <span class="token-string">"Target: $($_.TargetObject)"</span>
+    Write-Host <span class="token-string">"Script Line: $($_.InvocationInfo.ScriptLineNumber)"</span>
+    Write-Host <span class="token-string">"Stack Trace: $($_.ScriptStackTrace)"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- ErrorAction -->
+                <h2>ErrorAction Parameter</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - ErrorAction
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Stop - Make error terminating (required for Try/Catch)</span>
+<span class="token-keyword">try</span> {
+    <span class="token-cmdlet">Get-Service</span> <span class="token-string">"NonExistentService"</span> <span class="token-parameter">-ErrorAction</span> Stop
+}
+<span class="token-keyword">catch</span> {
+    Write-Host <span class="token-string">"Service not found"</span>
+}
+
+<span class="token-comment"># SilentlyContinue - Suppress error output</span>
+<span class="token-variable">$Service</span> = <span class="token-cmdlet">Get-Service</span> <span class="token-string">"MaybeExists"</span> <span class="token-parameter">-ErrorAction</span> SilentlyContinue
+<span class="token-keyword">if</span> (<span class="token-variable">$Service</span>) {
+    Write-Host <span class="token-string">"Service found"</span>
+}
+
+<span class="token-comment"># Ignore - Like SilentlyContinue but doesn't add to $Error</span>
+<span class="token-variable">$Error</span>.Clear()
+<span class="token-cmdlet">Get-Item</span> <span class="token-string">"NoFile.txt"</span> <span class="token-parameter">-ErrorAction</span> Ignore
+<span class="token-variable">$Error</span>.Count  <span class="token-comment"># Still 0</span>
+
+<span class="token-comment"># Set default for entire script</span>
+<span class="token-variable">$ErrorActionPreference</span> = <span class="token-string">'Stop'</span>
+
+<span class="token-comment"># Common pattern: Check if resource exists</span>
+<span class="token-keyword">function</span> <span class="token-function">Test-ServiceExists</span> {
+    <span class="token-keyword">param</span>([string]<span class="token-variable">$Name</span>)
+    <span class="token-variable">$null</span> <span class="token-operator">-ne</span> (<span class="token-cmdlet">Get-Service</span> <span class="token-variable">$Name</span> <span class="token-parameter">-ErrorAction</span> SilentlyContinue)
+}
+
+<span class="token-comment"># Using -ErrorVariable to capture errors</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"C:\NoFolder"</span> <span class="token-parameter">-ErrorAction</span> SilentlyContinue <span class="token-parameter">-ErrorVariable</span> myError
+<span class="token-keyword">if</span> (<span class="token-variable">$myError</span>) {
+    Write-Host <span class="token-string">"Error occurred: $myError"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- $Error Variable -->
+                <h2>The $Error Variable</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - $Error Collection
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># $Error is an ArrayList of all errors in session</span>
+<span class="token-variable">$Error</span>.Count              <span class="token-comment"># Total errors</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>]                  <span class="token-comment"># Most recent error</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>].Exception        <span class="token-comment"># Exception object</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>].Exception.Message
+
+<span class="token-comment"># Clear all errors</span>
+<span class="token-variable">$Error</span>.Clear()
+
+<span class="token-comment"># Examine error details</span>
+<span class="token-variable">$Error</span>[<span class="token-number">0</span>] | <span class="token-cmdlet">Format-List</span> * <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># Get errors from specific command</span>
+<span class="token-cmdlet">Get-ChildItem</span> <span class="token-string">"C:\Bad\Path"</span> <span class="token-parameter">-ErrorAction</span> SilentlyContinue <span class="token-parameter">-ErrorVariable</span> +myErrors
+<span class="token-comment"># Note: +myErrors appends to existing variable</span>
+
+<span class="token-comment"># Check if last command succeeded</span>
+<span class="token-cmdlet">Get-Service</span> <span class="token-string">"WinRM"</span>
+<span class="token-keyword">if</span> (<span class="token-variable">$?</span>) {
+    Write-Host <span class="token-string">"Command succeeded"</span>
+} <span class="token-keyword">else</span> {
+    Write-Host <span class="token-string">"Command failed"</span>
+}
+
+<span class="token-comment"># $LASTEXITCODE for native commands</span>
+ping -n 1 google.com
+<span class="token-keyword">if</span> (<span class="token-variable">$LASTEXITCODE</span> <span class="token-operator">-eq</span> <span class="token-number">0</span>) {
+    Write-Host <span class="token-string">"Ping succeeded"</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Throwing Errors -->
+                <h2>Throwing Errors</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Throwing Errors
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Simple throw</span>
+<span class="token-keyword">throw</span> <span class="token-string">"Something went wrong!"</span>
+
+<span class="token-comment"># Throw with custom exception</span>
+<span class="token-keyword">throw</span> [System.IO.FileNotFoundException]::new(<span class="token-string">"Config file missing"</span>)
+
+<span class="token-comment"># Write-Error (non-terminating by default)</span>
+<span class="token-cmdlet">Write-Error</span> <span class="token-string">"This is an error message"</span>
+<span class="token-cmdlet">Write-Error</span> <span class="token-parameter">-Message</span> <span class="token-string">"Error"</span> <span class="token-parameter">-ErrorAction</span> Stop  <span class="token-comment"># Make it terminating</span>
+
+<span class="token-comment"># Function with parameter validation</span>
+<span class="token-keyword">function</span> <span class="token-function">Get-SecureFile</span> {
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [ValidateScript({ 
+            <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$_</span>)) {
+                <span class="token-keyword">throw</span> <span class="token-string">"File does not exist: $_"</span>
+            }
+            <span class="token-variable">$true</span>
+        })]
+        [string]<span class="token-variable">$Path</span>
+    )
+    
+    <span class="token-cmdlet">Get-Content</span> <span class="token-variable">$Path</span>
+}
+
+<span class="token-comment"># Validate and throw meaningful errors</span>
+<span class="token-keyword">function</span> <span class="token-function">Invoke-SecurityScan</span> {
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Target</span>
+    )
+    
+    <span class="token-comment"># Validate input</span>
+    <span class="token-keyword">if</span> ([string]::IsNullOrWhiteSpace(<span class="token-variable">$Target</span>)) {
+        <span class="token-keyword">throw</span> [System.ArgumentException]::new(<span class="token-string">"Target cannot be empty"</span>)
+    }
+    
+    <span class="token-comment"># Check prerequisites</span>
+    <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Get-Command</span> nmap <span class="token-parameter">-ErrorAction</span> SilentlyContinue)) {
+        <span class="token-keyword">throw</span> [System.InvalidOperationException]::new(<span class="token-string">"nmap is not installed"</span>)
+    }
+    
+    <span class="token-comment"># Continue with scan...</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Logging Pattern -->
+                <h2>Production Logging Pattern</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Logging with Error Handling
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Write-Log</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Writes log messages with timestamp and severity.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory, Position = <span class="token-number">0</span>)]
+        [string]<span class="token-variable">$Message</span>,
+        
+        [ValidateSet(<span class="token-string">'INFO'</span>, <span class="token-string">'WARN'</span>, <span class="token-string">'ERROR'</span>, <span class="token-string">'DEBUG'</span>)]
+        [string]<span class="token-variable">$Level</span> = <span class="token-string">'INFO'</span>,
+        
+        [string]<span class="token-variable">$LogFile</span> = <span class="token-string">".\script_$(Get-Date -Format 'yyyyMMdd').log"</span>,
+        
+        [switch]<span class="token-variable">$NoConsole</span>
+    )
+    
+    <span class="token-variable">$Timestamp</span> = Get-Date -Format <span class="token-string">'yyyy-MM-dd HH:mm:ss'</span>
+    <span class="token-variable">$LogEntry</span> = <span class="token-string">"[$Timestamp] [$Level] $Message"</span>
+    
+    <span class="token-comment"># Write to file</span>
+    <span class="token-variable">$LogEntry</span> | <span class="token-cmdlet">Out-File</span> <span class="token-parameter">-FilePath</span> <span class="token-variable">$LogFile</span> <span class="token-parameter">-Append</span> <span class="token-parameter">-Encoding</span> UTF8
+    
+    <span class="token-comment"># Write to console with color</span>
+    <span class="token-keyword">if</span> (-not <span class="token-variable">$NoConsole</span>) {
+        <span class="token-variable">$Color</span> = <span class="token-keyword">switch</span> (<span class="token-variable">$Level</span>) {
+            <span class="token-string">'ERROR'</span> { <span class="token-string">'Red'</span> }
+            <span class="token-string">'WARN'</span>  { <span class="token-string">'Yellow'</span> }
+            <span class="token-string">'DEBUG'</span> { <span class="token-string">'Gray'</span> }
+            default { <span class="token-string">'White'</span> }
+        }
+        Write-Host <span class="token-variable">$LogEntry</span> -ForegroundColor <span class="token-variable">$Color</span>
+    }
+}
+
+<span class="token-comment"># Wrapper functions</span>
+<span class="token-keyword">function</span> <span class="token-function">Write-LogInfo</span>  { <span class="token-keyword">param</span>(<span class="token-variable">$Msg</span>) Write-Log <span class="token-variable">$Msg</span> <span class="token-parameter">-Level</span> INFO }
+<span class="token-keyword">function</span> <span class="token-function">Write-LogWarn</span>  { <span class="token-keyword">param</span>(<span class="token-variable">$Msg</span>) Write-Log <span class="token-variable">$Msg</span> <span class="token-parameter">-Level</span> WARN }
+<span class="token-keyword">function</span> <span class="token-function">Write-LogError</span> { <span class="token-keyword">param</span>(<span class="token-variable">$Msg</span>) Write-Log <span class="token-variable">$Msg</span> <span class="token-parameter">-Level</span> ERROR }
+<span class="token-keyword">function</span> <span class="token-function">Write-LogDebug</span> { <span class="token-keyword">param</span>(<span class="token-variable">$Msg</span>) Write-Log <span class="token-variable">$Msg</span> <span class="token-parameter">-Level</span> DEBUG }
+
+<span class="token-comment"># Complete script with error handling and logging</span>
+<span class="token-keyword">function</span> <span class="token-function">Invoke-SafeOperation</span> {
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string]<span class="token-variable">$Target</span>
+    )
+    
+    Write-LogInfo <span class="token-string">"Starting operation on $Target"</span>
+    
+    <span class="token-keyword">try</span> {
+        Write-LogDebug <span class="token-string">"Validating target..."</span>
+        
+        <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$Target</span> <span class="token-parameter">-Count</span> <span class="token-number">1</span> <span class="token-parameter">-Quiet</span>)) {
+            <span class="token-keyword">throw</span> <span class="token-string">"Target $Target is not reachable"</span>
+        }
+        
+        Write-LogInfo <span class="token-string">"Target validated, proceeding..."</span>
+        
+        <span class="token-comment"># Main operation</span>
+        <span class="token-variable">$Result</span> = <span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Target</span> <span class="token-parameter">-ScriptBlock</span> {
+            <span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">5</span>
+        } <span class="token-parameter">-ErrorAction</span> Stop
+        
+        Write-LogInfo <span class="token-string">"Operation completed successfully"</span>
+        <span class="token-keyword">return</span> <span class="token-variable">$Result</span>
+    }
+    <span class="token-keyword">catch</span> {
+        Write-LogError <span class="token-string">"Operation failed: $($_.Exception.Message)"</span>
+        Write-LogError <span class="token-string">"Stack trace: $($_.ScriptStackTrace)"</span>
+        <span class="token-keyword">throw</span>  <span class="token-comment"># Re-throw to caller</span>
+    }
+    <span class="token-keyword">finally</span> {
+        Write-LogDebug <span class="token-string">"Cleanup complete"</span>
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Common Patterns -->
+                <h2>Common Error Handling Patterns</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Error Patterns
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Pattern 1: Retry with backoff</span>
+<span class="token-keyword">function</span> <span class="token-function">Invoke-WithRetry</span> {
+    <span class="token-keyword">param</span>(
+        [scriptblock]<span class="token-variable">$ScriptBlock</span>,
+        [int]<span class="token-variable">$MaxRetries</span> = <span class="token-number">3</span>,
+        [int]<span class="token-variable">$DelaySeconds</span> = <span class="token-number">5</span>
+    )
+    
+    <span class="token-variable">$Attempt</span> = <span class="token-number">0</span>
+    <span class="token-keyword">while</span> (<span class="token-variable">$Attempt</span> <span class="token-operator">-lt</span> <span class="token-variable">$MaxRetries</span>) {
+        <span class="token-variable">$Attempt</span>++
+        <span class="token-keyword">try</span> {
+            <span class="token-keyword">return</span> & <span class="token-variable">$ScriptBlock</span>
+        }
+        <span class="token-keyword">catch</span> {
+            <span class="token-keyword">if</span> (<span class="token-variable">$Attempt</span> <span class="token-operator">-eq</span> <span class="token-variable">$MaxRetries</span>) {
+                <span class="token-keyword">throw</span>
+            }
+            Write-Warning <span class="token-string">"Attempt $Attempt failed. Retrying in $DelaySeconds seconds..."</span>
+            Start-Sleep -Seconds <span class="token-variable">$DelaySeconds</span>
+            <span class="token-variable">$DelaySeconds</span> *= <span class="token-number">2</span>  <span class="token-comment"># Exponential backoff</span>
+        }
+    }
+}
+
+<span class="token-comment"># Usage</span>
+<span class="token-variable">$Result</span> = Invoke-WithRetry {
+    <span class="token-cmdlet">Invoke-RestMethod</span> <span class="token-string">"https://api.example.com/data"</span>
+}
+
+<span class="token-comment"># Pattern 2: Collect errors and continue</span>
+<span class="token-keyword">function</span> <span class="token-function">Process-AllServers</span> {
+    <span class="token-keyword">param</span>([string[]]<span class="token-variable">$Servers</span>)
+    
+    <span class="token-variable">$Results</span> = @()
+    <span class="token-variable">$Errors</span> = @()
+    
+    <span class="token-keyword">foreach</span> (<span class="token-variable">$Server</span> <span class="token-keyword">in</span> <span class="token-variable">$Servers</span>) {
+        <span class="token-keyword">try</span> {
+            <span class="token-variable">$Results</span> += <span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Server</span> <span class="token-parameter">-ScriptBlock</span> {
+                <span class="token-cmdlet">Get-ComputerInfo</span> | <span class="token-cmdlet">Select-Object</span> CsName, WindowsVersion
+            } <span class="token-parameter">-ErrorAction</span> Stop
+        }
+        <span class="token-keyword">catch</span> {
+            <span class="token-variable">$Errors</span> += [PSCustomObject]@{
+                Server = <span class="token-variable">$Server</span>
+                Error = <span class="token-variable">$_</span>.Exception.Message
+            }
+        }
+    }
+    
+    <span class="token-comment"># Report at end</span>
+    <span class="token-keyword">if</span> (<span class="token-variable">$Errors</span>) {
+        Write-Warning <span class="token-string">"$($Errors.Count) servers failed:"</span>
+        <span class="token-variable">$Errors</span> | <span class="token-cmdlet">Format-Table</span>
+    }
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}
+
+<span class="token-comment"># Pattern 3: Validate before execute</span>
+<span class="token-keyword">function</span> <span class="token-function">Remove-OldLogs</span> {
+    <span class="token-keyword">param</span>(
+        [string]<span class="token-variable">$Path</span>,
+        [int]<span class="token-variable">$DaysOld</span> = <span class="token-number">30</span>
+    )
+    
+    <span class="token-comment"># Validate path exists</span>
+    <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$Path</span>)) {
+        <span class="token-keyword">throw</span> <span class="token-string">"Path does not exist: $Path"</span>
+    }
+    
+    <span class="token-comment"># Validate it's a directory</span>
+    <span class="token-keyword">if</span> (-not (<span class="token-cmdlet">Test-Path</span> <span class="token-variable">$Path</span> <span class="token-parameter">-PathType</span> Container)) {
+        <span class="token-keyword">throw</span> <span class="token-string">"Path is not a directory: $Path"</span>
+    }
+    
+    <span class="token-comment"># Safe to proceed</span>
+    <span class="token-variable">$Cutoff</span> = (Get-Date).AddDays(-<span class="token-variable">$DaysOld</span>)
+    <span class="token-cmdlet">Get-ChildItem</span> <span class="token-variable">$Path</span> <span class="token-parameter">-Filter</span> <span class="token-string">"*.log"</span> |
+        <span class="token-cmdlet">Where-Object</span> LastWriteTime <span class="token-operator">-lt</span> <span class="token-variable">$Cutoff</span> |
+        <span class="token-cmdlet">Remove-Item</span> <span class="token-parameter">-Force</span>
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Best Practices -->
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Best Practices: Error Handling</div>
+                    </div>
+                    <ul>
+                        <li><strong>Use -ErrorAction Stop:</strong> Makes errors catchable in Try/Catch</li>
+                        <li><strong>Be specific in catches:</strong> Catch specific exception types when possible</li>
+                        <li><strong>Log before re-throwing:</strong> Capture context before propagating errors</li>
+                        <li><strong>Use Finally for cleanup:</strong> Ensure resources are released</li>
+                        <li><strong>Validate inputs early:</strong> Fail fast with meaningful messages</li>
+                        <li><strong>Don't catch and ignore:</strong> Either handle or re-throw</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "What's the difference between terminating and non-terminating errors?"</li>
+                        <li><strong>Strong Answer:</strong> Terminating errors stop script execution and are caught by Try/Catch (like throw, .NET exceptions). Non-terminating errors are written to $Error but script continues (most cmdlet errors). Use <code>-ErrorAction Stop</code> to convert non-terminating to terminating errors for proper Try/Catch handling.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Use <code>-ErrorAction Stop</code> to catch cmdlet errors in Try/Catch</li>
+                    <li>The <code>$_</code> variable in Catch contains the full ErrorRecord</li>
+                    <li>Finally block always runs—use for cleanup</li>
+                    <li>Use <code>$ErrorActionPreference = 'Stop'</code> for strict scripts</li>
+                    <li>Implement logging in production scripts for troubleshooting</li>
+                    <li>Retry patterns are essential for network operations</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="2-15-remoting-jobs.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.15 Remoting & Jobs</span>
+                    </a>
+                    <a href="2-17-modules-profiles.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.17 Modules & Profiles →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>

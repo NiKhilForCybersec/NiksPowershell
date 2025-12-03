@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.15 Remoting & Background Jobs - PowerShell & Scripting Guide</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">🖥️</div>
+                    <div class="sidebar-logo-text">
+                        PowerShell & Scripting
+                        <span>Ultimate Guide</span>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+            </div>
+            
+                        <nav class="sidebar-nav">
+                <!-- Section 1: Scripting Fundamentals -->
+                <div class="nav-section" data-section="fundamentals">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📚</span>
+                        Scripting Fundamentals
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="1-1-scripting-overview.html" class="nav-link"><span class="nav-link-number">1.1</span> Scripting Overview</a>
+                        <a href="1-2-choosing-right-tool.html" class="nav-link"><span class="nav-link-number">1.2</span> Choosing the Right Tool</a>
+                        <a href="1-3-setting-up-environment.html" class="nav-link"><span class="nav-link-number">1.3</span> Setting Up Environment</a>
+                    </div>
+                </div>
+
+                <!-- Section 2: PowerShell Deep Dive -->
+                <div class="nav-section" data-section="powershell">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔷</span>
+                        PowerShell Deep Dive
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="2-1-powershell-intro.html" class="nav-link"><span class="nav-link-number">2.1</span> PowerShell Introduction</a>
+                        <a href="2-2-cmdlet-anatomy.html" class="nav-link"><span class="nav-link-number">2.2</span> Cmdlet Anatomy</a>
+                        <a href="2-3-pipeline-mastery.html" class="nav-link"><span class="nav-link-number">2.3</span> Pipeline Mastery</a>
+                        <a href="2-4-variables-data-types.html" class="nav-link"><span class="nav-link-number">2.4</span> Variables & Data Types</a>
+                        <a href="2-5-working-with-objects.html" class="nav-link"><span class="nav-link-number">2.5</span> Working with Objects</a>
+                        <a href="2-6-control-structures.html" class="nav-link"><span class="nav-link-number">2.6</span> Control Structures</a>
+                        <a href="2-7-functions.html" class="nav-link"><span class="nav-link-number">2.7</span> Functions</a>
+                        <a href="2-8-files.html" class="nav-link"><span class="nav-link-number">2.8</span> Working with Files</a>
+                        <a href="2-9-wmi-cim.html" class="nav-link"><span class="nav-link-number">2.9</span> WMI & CIM</a>
+                        <a href="2-10-registry.html" class="nav-link"><span class="nav-link-number">2.10</span> Registry Operations</a>
+                        <a href="2-11-eventlog-analysis.html" class="nav-link"><span class="nav-link-number">2.11</span> Event Log Analysis</a>
+                        <a href="2-12-active-directory.html" class="nav-link"><span class="nav-link-number">2.12</span> Active Directory</a>
+                        <a href="2-13-networking-commands.html" class="nav-link"><span class="nav-link-number">2.13</span> Networking Commands</a>
+                        <a href="2-14-web-requests.html" class="nav-link"><span class="nav-link-number">2.14</span> Web Requests & APIs</a>
+                        <a href="2-15-remoting-jobs.html" class="nav-link"><span class="nav-link-number">2.15</span> Remoting & Jobs</a>
+                        <a href="2-16-error-handling.html" class="nav-link"><span class="nav-link-number">2.16</span> Error Handling</a>
+                        <a href="2-17-modules-profiles.html" class="nav-link"><span class="nav-link-number">2.17</span> Modules & Profiles</a>
+                    </div>
+                </div>
+
+                <!-- Section 3: Bash Scripting -->
+                <div class="nav-section" data-section="bash">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐧</span>
+                        Bash Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="3-1-bash-intro.html" class="nav-link"><span class="nav-link-number">3.1</span> Bash Introduction</a>
+                        <a href="3-2-bash-variables.html" class="nav-link"><span class="nav-link-number">3.2</span> Variables & Data Types</a>
+                        <a href="3-3-control-structures.html" class="nav-link"><span class="nav-link-number">3.3</span> Control Structures</a>
+                        <a href="3-4-bash-functions.html" class="nav-link"><span class="nav-link-number">3.4</span> Functions & Scripts</a>
+                        <a href="3-5-file-io.html" class="nav-link"><span class="nav-link-number">3.5</span> File I/O</a>
+                        <a href="3-6-process-management.html" class="nav-link"><span class="nav-link-number">3.6</span> Process Management</a>
+                        <a href="3-7-system-admin.html" class="nav-link"><span class="nav-link-number">3.7</span> System Administration</a>
+                        <a href="3-8-regex.html" class="nav-link"><span class="nav-link-number">3.8</span> Regular Expressions</a>
+                        <a href="3-9-text-processing.html" class="nav-link"><span class="nav-link-number">3.9</span> Text Processing</a>
+                        <a href="3-10-bash-networking.html" class="nav-link"><span class="nav-link-number">3.10</span> Bash Networking</a>
+                    </div>
+                </div>
+
+                <!-- Section 4: Batch/CMD Scripting -->
+                <div class="nav-section" data-section="batch">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📦</span>
+                        Batch/CMD Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="4-1-batch-intro.html" class="nav-link"><span class="nav-link-number">4.1</span> Batch Introduction</a>
+                        <a href="4-2-batch-variables.html" class="nav-link"><span class="nav-link-number">4.2</span> Variables & Parameters</a>
+                        <a href="4-3-batch-control-flow.html" class="nav-link"><span class="nav-link-number">4.3</span> Control Flow</a>
+                        <a href="4-4-batch-file-operations.html" class="nav-link"><span class="nav-link-number">4.4</span> File Operations</a>
+                    </div>
+                </div>
+
+                <!-- Section 5: Security Automation -->
+                <div class="nav-section" data-section="security">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🛡️</span>
+                        Security Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="5-1-incident-response.html" class="nav-link"><span class="nav-link-number">5.1</span> Incident Response</a>
+                        <a href="5-2-threat-hunting.html" class="nav-link"><span class="nav-link-number">5.2</span> Threat Hunting</a>
+                        <a href="5-3-vulnerability-scanning.html" class="nav-link"><span class="nav-link-number">5.3</span> Vulnerability Scanning</a>
+                        <a href="5-4-forensics-scripts.html" class="nav-link"><span class="nav-link-number">5.4</span> Forensics Scripts</a>
+                        <a href="5-5-siem-integration.html" class="nav-link"><span class="nav-link-number">5.5</span> SIEM Integration</a>
+                        <a href="5-6-edr-automation.html" class="nav-link"><span class="nav-link-number">5.6</span> EDR Automation</a>
+                        <a href="5-7-compliance-automation.html" class="nav-link"><span class="nav-link-number">5.7</span> Compliance Automation</a>
+                        <a href="5-8-log-analysis.html" class="nav-link"><span class="nav-link-number">5.8</span> Log Analysis</a>
+                        <a href="5-9-malware-analysis.html" class="nav-link"><span class="nav-link-number">5.9</span> Malware Analysis</a>
+                    </div>
+                </div>
+
+                <!-- Section 6: Python Scripting -->
+                <div class="nav-section" data-section="python">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🐍</span>
+                        Python Scripting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="6-1-python-security-intro.html" class="nav-link"><span class="nav-link-number">6.1</span> Python for Security</a>
+                        <a href="6-2-python-fundamentals.html" class="nav-link"><span class="nav-link-number">6.2</span> Python Fundamentals</a>
+                        <a href="6-3-python-functions.html" class="nav-link"><span class="nav-link-number">6.3</span> Functions & Modules</a>
+                        <a href="6-4-python-file-handling.html" class="nav-link"><span class="nav-link-number">6.4</span> File & Data Handling</a>
+                        <a href="6-5-python-networking.html" class="nav-link"><span class="nav-link-number">6.5</span> Python Networking</a>
+                        <a href="6-6-python-security-automation.html" class="nav-link"><span class="nav-link-number">6.6</span> Security Automation</a>
+                        <a href="6-7-python-forensics.html" class="nav-link"><span class="nav-link-number">6.7</span> Forensics & Log Analysis</a>
+                        <a href="6-8-python-apis.html" class="nav-link"><span class="nav-link-number">6.8</span> Python & APIs</a>
+                    </div>
+                </div>
+
+                <!-- Section 7: Cloud Automation -->
+                <div class="nav-section collapsed" data-section="cloud">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">☁️</span>
+                        Cloud Automation
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="7-1-azure-automation.html" class="nav-link"><span class="nav-link-number">7.1</span> Azure Automation</a>
+                    </div>
+                </div>
+
+                <!-- Section 8: Real-World Projects -->
+                <div class="nav-section collapsed" data-section="projects">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🚀</span>
+                        Real-World Projects
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="8-1-security-dashboard.html" class="nav-link"><span class="nav-link-number">8.1</span> Security Dashboard</a>
+                        <a href="8-2-log-aggregator.html" class="nav-link"><span class="nav-link-number">8.2</span> Log Aggregator</a>
+                        <a href="8-3-asset-inventory.html" class="nav-link"><span class="nav-link-number">8.3</span> Asset Inventory</a>
+                    </div>
+                </div>
+
+                <!-- Section 9: Troubleshooting -->
+                <div class="nav-section collapsed" data-section="troubleshooting">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">🔧</span>
+                        Troubleshooting
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="9-1-common-errors.html" class="nav-link"><span class="nav-link-number">9.1</span> Common Errors</a>
+                        <a href="9-2-debugging-techniques.html" class="nav-link"><span class="nav-link-number">9.2</span> Debugging Techniques</a>
+                        <a href="9-3-performance-issues.html" class="nav-link"><span class="nav-link-number">9.3</span> Performance Issues</a>
+                    </div>
+                </div>
+
+                <!-- Section 10: Reference -->
+                <div class="nav-section collapsed" data-section="reference">
+                    <div class="nav-section-header">
+                        <span class="nav-section-icon">📖</span>
+                        Reference
+                        <span class="nav-section-toggle">▼</span>
+                    </div>
+                    <div class="nav-section-content">
+                        <a href="10-1-cheat-sheets.html" class="nav-link"><span class="nav-link-number">10.1</span> Cheat Sheets</a>
+                        <a href="10-2-interview-preparation.html" class="nav-link"><span class="nav-link-number">10.2</span> Interview Preparation</a>
+                        <a href="10-3-log-paths-reference.html" class="nav-link"><span class="nav-link-number">10.3</span> Log Paths Reference</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+
+
+
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="index.html#powershell">PowerShell Deep Dive</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span>Remoting & Background Jobs</span>
+                </nav>
+
+                <!-- Page Title -->
+                <h1>2.15 Remoting & Background Jobs</h1>
+
+                <!-- What You'll Learn Box -->
+                <div class="info-box overview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">📖</div>
+                        <div class="info-box-title">What You'll Learn</div>
+                    </div>
+                    <ul>
+                        <li>Execute commands on remote computers with PowerShell Remoting</li>
+                        <li>Create and manage background jobs for parallel execution</li>
+                        <li>Use ForEach-Object -Parallel for modern parallelism</li>
+                        <li>Build scalable scripts for enterprise environments</li>
+                    </ul>
+                </div>
+
+                <!-- Introduction -->
+                <h2>PowerShell Remoting Overview</h2>
+                <p>
+                    PowerShell Remoting enables you to run commands on remote computers, making it 
+                    essential for managing enterprise environments. Combined with background jobs, 
+                    you can execute tasks in parallel across hundreds of systems.
+                </p>
+
+                <!-- Architecture Diagram -->
+                <div class="ascii-diagram">
+                    <div class="ascii-diagram-title">📊 PowerShell Remoting Architecture</div>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        POWERSHELL REMOTING                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌──────────────────┐         WinRM (TCP 5985/5986)        ┌──────────────┐
+    │  Admin Workstation │ ─────────────────────────────────► │   Server 1   │
+    │                    │                                     └──────────────┘
+    │  Invoke-Command    │ ─────────────────────────────────► ┌──────────────┐
+    │  Enter-PSSession   │                                     │   Server 2   │
+    │  New-PSSession     │                                     └──────────────┘
+    │                    │ ─────────────────────────────────► ┌──────────────┐
+    └──────────────────┘                                      │   Server N   │
+                                                               └──────────────┘
+
+    ┌─────────────────────────────────────────────────────────────────────────┐
+    │  Session Types:                                                          │
+    │                                                                          │
+    │  • Enter-PSSession    = Interactive 1:1 session (like SSH)              │
+    │  • Invoke-Command     = Run commands on multiple targets                 │
+    │  • New-PSSession      = Persistent session (reusable connection)        │
+    └─────────────────────────────────────────────────────────────────────────┘
+</pre>
+                </div>
+
+                <!-- Memory Aid -->
+                <div class="info-box memory-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">🧠</div>
+                        <div class="info-box-title">Memory Aid: Remoting vs Jobs</div>
+                    </div>
+                    <ul>
+                        <li><strong>Remoting</strong> → Execute commands on OTHER computers</li>
+                        <li><strong>Jobs</strong> → Execute commands in BACKGROUND (local or remote)</li>
+                        <li><strong>Combined</strong> → Run commands on many systems simultaneously</li>
+                    </ul>
+                </div>
+
+                <!-- Enable Remoting -->
+                <h2>Enabling PowerShell Remoting</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Enable Remoting (Admin)
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Enable remoting on the target machine (run as admin)</span>
+<span class="token-cmdlet">Enable-PSRemoting</span> <span class="token-parameter">-Force</span>
+
+<span class="token-comment"># What this does:</span>
+<span class="token-comment"># 1. Starts WinRM service</span>
+<span class="token-comment"># 2. Sets WinRM to auto-start</span>
+<span class="token-comment"># 3. Creates firewall exception</span>
+<span class="token-comment"># 4. Registers default endpoints</span>
+
+<span class="token-comment"># Check WinRM service status</span>
+<span class="token-cmdlet">Get-Service</span> WinRM
+
+<span class="token-comment"># Check WinRM configuration</span>
+winrm get winrm/config
+
+<span class="token-comment"># Test connectivity to remote machine</span>
+<span class="token-cmdlet">Test-WSMan</span> <span class="token-parameter">-ComputerName</span> Server01
+
+<span class="token-comment"># Add trusted host (for workgroup environments)</span>
+<span class="token-cmdlet">Set-Item</span> WSMan:\localhost\Client\TrustedHosts <span class="token-parameter">-Value</span> <span class="token-string">"Server01,Server02"</span>
+<span class="token-cmdlet">Set-Item</span> WSMan:\localhost\Client\TrustedHosts <span class="token-parameter">-Value</span> <span class="token-string">"*"</span>  <span class="token-comment"># All (not recommended)</span>
+
+<span class="token-comment"># View trusted hosts</span>
+<span class="token-cmdlet">Get-Item</span> WSMan:\localhost\Client\TrustedHosts</code></pre>
+                    </div>
+                </div>
+
+                <!-- Interactive Sessions -->
+                <h2>Interactive Remote Sessions</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Enter-PSSession
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Enter interactive session (like SSH)</span>
+<span class="token-cmdlet">Enter-PSSession</span> <span class="token-parameter">-ComputerName</span> Server01
+
+<span class="token-comment"># With explicit credentials</span>
+<span class="token-variable">$Cred</span> = <span class="token-cmdlet">Get-Credential</span>
+<span class="token-cmdlet">Enter-PSSession</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-Credential</span> <span class="token-variable">$Cred</span>
+
+<span class="token-comment"># Once connected, prompt changes: [Server01]: PS C:\Users\Admin></span>
+<span class="token-comment"># All commands now run on Server01</span>
+
+<span class="token-comment"># Exit the session</span>
+<span class="token-cmdlet">Exit-PSSession</span>   <span class="token-comment"># or just 'exit'</span>
+
+<span class="token-comment"># Connect via IP (requires TrustedHosts or SSL)</span>
+<span class="token-cmdlet">Enter-PSSession</span> <span class="token-parameter">-ComputerName</span> 192.168.1.100 <span class="token-parameter">-Credential</span> <span class="token-variable">$Cred</span>
+
+<span class="token-comment"># Connect using HTTPS (port 5986)</span>
+<span class="token-cmdlet">Enter-PSSession</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-UseSSL</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Invoke-Command -->
+                <h2>Running Commands Remotely</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Invoke-Command
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Run command on single remote computer</span>
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-ScriptBlock</span> {
+    <span class="token-cmdlet">Get-Process</span> | <span class="token-cmdlet">Sort-Object</span> CPU <span class="token-parameter">-Descending</span> | <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-First</span> <span class="token-number">5</span>
+}
+
+<span class="token-comment"># Run on multiple computers (parallel by default!)</span>
+<span class="token-variable">$Servers</span> = @(<span class="token-string">'Server01'</span>, <span class="token-string">'Server02'</span>, <span class="token-string">'Server03'</span>)
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Servers</span> <span class="token-parameter">-ScriptBlock</span> {
+    [PSCustomObject]@{
+        ComputerName = <span class="token-variable">$env:COMPUTERNAME</span>
+        Uptime = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+        FreeMemoryGB = [math]::Round((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1MB, 2)
+    }
+}
+
+<span class="token-comment"># Pass variables to remote session with $using:</span>
+<span class="token-variable">$ServiceName</span> = <span class="token-string">"WinRM"</span>
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-ScriptBlock</span> {
+    <span class="token-cmdlet">Get-Service</span> <span class="token-parameter">-Name</span> <span class="token-variable">$using:ServiceName</span>
+}
+
+<span class="token-comment"># Pass arguments using ArgumentList</span>
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-ScriptBlock</span> {
+    <span class="token-keyword">param</span>(<span class="token-variable">$SvcName</span>)
+    <span class="token-cmdlet">Get-Service</span> <span class="token-parameter">-Name</span> <span class="token-variable">$SvcName</span>
+} <span class="token-parameter">-ArgumentList</span> <span class="token-string">"WinRM"</span>
+
+<span class="token-comment"># Run a local script file remotely</span>
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Servers</span> <span class="token-parameter">-FilePath</span> C:\Scripts\Get-SecurityInfo.ps1
+
+<span class="token-comment"># Control parallelism (default is 32)</span>
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Servers</span> <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">10</span> <span class="token-parameter">-ScriptBlock</span> { hostname }</code></pre>
+                    </div>
+                </div>
+
+                <!-- Persistent Sessions -->
+                <h2>Persistent Sessions</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - PSSession Management
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Create persistent sessions (faster for multiple commands)</span>
+<span class="token-variable">$Sessions</span> = <span class="token-cmdlet">New-PSSession</span> <span class="token-parameter">-ComputerName</span> Server01, Server02, Server03
+
+<span class="token-comment"># View sessions</span>
+<span class="token-cmdlet">Get-PSSession</span>
+
+<span class="token-comment"># Run multiple commands on same sessions (maintains state)</span>
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-Session</span> <span class="token-variable">$Sessions</span> <span class="token-parameter">-ScriptBlock</span> { <span class="token-variable">$Info</span> = <span class="token-cmdlet">Get-ComputerInfo</span> }
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-Session</span> <span class="token-variable">$Sessions</span> <span class="token-parameter">-ScriptBlock</span> { <span class="token-variable">$Info</span>.WindowsProductName }
+
+<span class="token-comment"># Enter specific session interactively</span>
+<span class="token-cmdlet">Enter-PSSession</span> <span class="token-parameter">-Session</span> <span class="token-variable">$Sessions</span>[0]
+
+<span class="token-comment"># Copy files to/from remote sessions</span>
+<span class="token-cmdlet">Copy-Item</span> <span class="token-parameter">-Path</span> C:\Scripts\tool.ps1 <span class="token-parameter">-Destination</span> C:\Temp\ <span class="token-parameter">-ToSession</span> <span class="token-variable">$Sessions</span>[0]
+<span class="token-cmdlet">Copy-Item</span> <span class="token-parameter">-Path</span> C:\Logs\app.log <span class="token-parameter">-Destination</span> C:\Evidence\ <span class="token-parameter">-FromSession</span> <span class="token-variable">$Sessions</span>[0]
+
+<span class="token-comment"># Disconnect sessions (can reconnect later)</span>
+<span class="token-cmdlet">Disconnect-PSSession</span> <span class="token-parameter">-Session</span> <span class="token-variable">$Sessions</span>
+
+<span class="token-comment"># Reconnect</span>
+<span class="token-variable">$Sessions</span> = <span class="token-cmdlet">Get-PSSession</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-State</span> Disconnected
+<span class="token-cmdlet">Connect-PSSession</span> <span class="token-parameter">-Session</span> <span class="token-variable">$Sessions</span>
+
+<span class="token-comment"># Close sessions when done</span>
+<span class="token-cmdlet">Remove-PSSession</span> <span class="token-parameter">-Session</span> <span class="token-variable">$Sessions</span>
+<span class="token-cmdlet">Get-PSSession</span> | <span class="token-cmdlet">Remove-PSSession</span>  <span class="token-comment"># Remove all</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Background Jobs -->
+                <h2>Background Jobs</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Background Jobs
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Start a background job</span>
+<span class="token-variable">$Job</span> = <span class="token-cmdlet">Start-Job</span> <span class="token-parameter">-ScriptBlock</span> {
+    <span class="token-cmdlet">Get-ChildItem</span> C:\ <span class="token-parameter">-Recurse</span> -ErrorAction SilentlyContinue | 
+        <span class="token-cmdlet">Where-Object</span> Length <span class="token-operator">-gt</span> 100MB
+}
+
+<span class="token-comment"># Check job status</span>
+<span class="token-cmdlet">Get-Job</span>
+
+<span class="token-comment"># Wait for job to complete</span>
+<span class="token-cmdlet">Wait-Job</span> <span class="token-parameter">-Job</span> <span class="token-variable">$Job</span>
+
+<span class="token-comment"># Get job results</span>
+<span class="token-variable">$Results</span> = <span class="token-cmdlet">Receive-Job</span> <span class="token-parameter">-Job</span> <span class="token-variable">$Job</span>
+
+<span class="token-comment"># Get results and keep them (can receive again)</span>
+<span class="token-cmdlet">Receive-Job</span> <span class="token-parameter">-Job</span> <span class="token-variable">$Job</span> <span class="token-parameter">-Keep</span>
+
+<span class="token-comment"># Remove completed jobs</span>
+<span class="token-cmdlet">Remove-Job</span> <span class="token-parameter">-Job</span> <span class="token-variable">$Job</span>
+<span class="token-cmdlet">Get-Job</span> | <span class="token-cmdlet">Remove-Job</span>  <span class="token-comment"># Remove all</span>
+
+<span class="token-comment"># Start multiple jobs</span>
+<span class="token-number">1</span>..<span class="token-number">5</span> | <span class="token-cmdlet">ForEach-Object</span> {
+    <span class="token-cmdlet">Start-Job</span> <span class="token-parameter">-Name</span> <span class="token-string">"Job$_"</span> <span class="token-parameter">-ScriptBlock</span> {
+        Start-Sleep -Seconds (Get-Random -Minimum 1 -Maximum 5)
+        <span class="token-string">"Job $using:_ completed"</span>
+    }
+}
+
+<span class="token-comment"># Wait for all jobs</span>
+<span class="token-cmdlet">Get-Job</span> | <span class="token-cmdlet">Wait-Job</span> | <span class="token-cmdlet">Receive-Job</span>
+
+<span class="token-comment"># Remote job (runs on remote computer in background)</span>
+<span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> Server01 <span class="token-parameter">-ScriptBlock</span> {
+    <span class="token-cmdlet">Get-EventLog</span> <span class="token-parameter">-LogName</span> Security <span class="token-parameter">-Newest</span> <span class="token-number">1000</span>
+} <span class="token-parameter">-AsJob</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- ForEach-Object -Parallel -->
+                <h2>ForEach-Object -Parallel (PowerShell 7+)</h2>
+
+                <div class="info-box best-practice-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">✅</div>
+                        <div class="info-box-title">Modern Parallelism</div>
+                    </div>
+                    <p>PowerShell 7 introduced <code>ForEach-Object -Parallel</code>, which is simpler and 
+                    more efficient than traditional jobs for many use cases.</p>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell 7 - ForEach-Object -Parallel
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-comment"># Basic parallel execution</span>
+<span class="token-number">1</span>..<span class="token-number">10</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Parallel</span> {
+    <span class="token-string">"Processing item $_"</span>
+    Start-Sleep -Seconds 1
+} <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">5</span>
+
+<span class="token-comment"># Parallel with external variable ($using:)</span>
+<span class="token-variable">$LogPath</span> = <span class="token-string">"C:\Logs"</span>
+<span class="token-variable">$Servers</span> = @(<span class="token-string">'Server01'</span>, <span class="token-string">'Server02'</span>, <span class="token-string">'Server03'</span>)
+
+<span class="token-variable">$Servers</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Parallel</span> {
+    <span class="token-variable">$Server</span> = <span class="token-variable">$_</span>
+    <span class="token-variable">$Output</span> = <span class="token-cmdlet">Invoke-Command</span> <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Server</span> <span class="token-parameter">-ScriptBlock</span> {
+        <span class="token-cmdlet">Get-Service</span> | <span class="token-cmdlet">Where-Object</span> Status <span class="token-operator">-eq</span> <span class="token-string">'Stopped'</span>
+    }
+    <span class="token-variable">$Output</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"$using:LogPath\$Server-services.csv"</span>
+} <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">10</span>
+
+<span class="token-comment"># Parallel ping sweep</span>
+<span class="token-variable">$Subnet</span> = <span class="token-string">"192.168.1"</span>
+<span class="token-number">1</span>..<span class="token-number">254</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Parallel</span> {
+    <span class="token-variable">$IP</span> = <span class="token-string">"$using:Subnet.$_"</span>
+    <span class="token-keyword">if</span> (<span class="token-cmdlet">Test-Connection</span> <span class="token-variable">$IP</span> <span class="token-parameter">-Count</span> <span class="token-number">1</span> <span class="token-parameter">-Quiet</span> -TimeoutSeconds 1) {
+        [PSCustomObject]@{
+            IP = <span class="token-variable">$IP</span>
+            Status = <span class="token-string">'Online'</span>
+        }
+    }
+} <span class="token-parameter">-ThrottleLimit</span> <span class="token-number">50</span>
+
+<span class="token-comment"># As job (returns immediately)</span>
+<span class="token-variable">$Job</span> = <span class="token-number">1</span>..<span class="token-number">100</span> | <span class="token-cmdlet">ForEach-Object</span> <span class="token-parameter">-Parallel</span> {
+    <span class="token-string">"Item $_"</span>
+} <span class="token-parameter">-AsJob</span>
+
+<span class="token-variable">$Job</span> | <span class="token-cmdlet">Wait-Job</span> | <span class="token-cmdlet">Receive-Job</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Security Script -->
+                <h2>Security: Multi-System Data Collection</h2>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-language powershell">
+                            <span class="code-language-icon">🔷</span>
+                            PowerShell - Multi-System Security Audit
+                        </span>
+                        <button class="code-copy-btn"><span>📋</span> Copy</button>
+                    </div>
+                    <div class="code-block">
+<pre><code><span class="token-keyword">function</span> <span class="token-function">Invoke-RemoteSecurityAudit</span> {
+    <span class="token-comment">&lt;#
+    .SYNOPSIS
+        Collects security-relevant data from multiple remote systems.
+    #&gt;</span>
+    [CmdletBinding()]
+    <span class="token-keyword">param</span>(
+        [Parameter(Mandatory)]
+        [string[]]<span class="token-variable">$ComputerName</span>,
+        
+        [PSCredential]<span class="token-variable">$Credential</span>,
+        
+        [int]<span class="token-variable">$ThrottleLimit</span> = <span class="token-number">10</span>
+    )
+    
+    <span class="token-variable">$ScriptBlock</span> = {
+        <span class="token-comment"># Collect security data on remote system</span>
+        <span class="token-variable">$Data</span> = [ordered]@{
+            ComputerName = <span class="token-variable">$env:COMPUTERNAME</span>
+            CollectedAt = Get-Date
+            
+            <span class="token-comment"># Local admins</span>
+            LocalAdmins = (Get-LocalGroupMember -Group <span class="token-string">"Administrators"</span> -ErrorAction SilentlyContinue).Name -join <span class="token-string">'; '</span>
+            
+            <span class="token-comment"># Recent failed logins</span>
+            FailedLogins = @(<span class="token-cmdlet">Get-WinEvent</span> <span class="token-parameter">-FilterHashtable</span> @{
+                LogName = <span class="token-string">'Security'</span>
+                Id = <span class="token-number">4625</span>
+                StartTime = (Get-Date).AddHours(-24)
+            } -MaxEvents <span class="token-number">100</span> -ErrorAction SilentlyContinue).Count
+            
+            <span class="token-comment"># Listening ports</span>
+            ListeningPorts = (<span class="token-cmdlet">Get-NetTCPConnection</span> <span class="token-parameter">-State</span> Listen | 
+                <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-Unique</span> LocalPort | 
+                <span class="token-cmdlet">Sort-Object</span> LocalPort).LocalPort -join <span class="token-string">', '</span>
+            
+            <span class="token-comment"># Antivirus status</span>
+            AVStatus = (Get-CimInstance -Namespace root\SecurityCenter2 -ClassName AntivirusProduct -ErrorAction SilentlyContinue).displayName
+            
+            <span class="token-comment"># Pending updates</span>
+            PendingReboot = <span class="token-cmdlet">Test-Path</span> <span class="token-string">"HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired"</span>
+            
+            <span class="token-comment"># Firewall status</span>
+            FirewallEnabled = (<span class="token-cmdlet">Get-NetFirewallProfile</span> | <span class="token-cmdlet">Where-Object</span> Enabled).Name -join <span class="token-string">', '</span>
+        }
+        
+        [PSCustomObject]<span class="token-variable">$Data</span>
+    }
+    
+    <span class="token-comment"># Build parameters</span>
+    <span class="token-variable">$Params</span> = @{
+        ComputerName = <span class="token-variable">$ComputerName</span>
+        ScriptBlock = <span class="token-variable">$ScriptBlock</span>
+        ThrottleLimit = <span class="token-variable">$ThrottleLimit</span>
+        ErrorAction = <span class="token-string">'SilentlyContinue'</span>
+    }
+    
+    <span class="token-keyword">if</span> (<span class="token-variable">$Credential</span>) {
+        <span class="token-variable">$Params</span>.Credential = <span class="token-variable">$Credential</span>
+    }
+    
+    Write-Host <span class="token-string">"[*] Starting audit of $($ComputerName.Count) systems..."</span> -ForegroundColor Cyan
+    
+    <span class="token-variable">$Results</span> = <span class="token-cmdlet">Invoke-Command</span> @Params
+    
+    Write-Host <span class="token-string">"[+] Audit complete. Retrieved data from $($Results.Count) systems."</span> -ForegroundColor Green
+    
+    <span class="token-keyword">return</span> <span class="token-variable">$Results</span>
+}
+
+<span class="token-comment"># Usage</span>
+<span class="token-variable">$Servers</span> = <span class="token-cmdlet">Get-ADComputer</span> <span class="token-parameter">-Filter</span> <span class="token-string">"OperatingSystem -like '*Server*'"</span> | 
+    <span class="token-cmdlet">Select-Object</span> <span class="token-parameter">-ExpandProperty</span> Name
+
+<span class="token-variable">$AuditResults</span> = Invoke-RemoteSecurityAudit <span class="token-parameter">-ComputerName</span> <span class="token-variable">$Servers</span>
+<span class="token-variable">$AuditResults</span> | <span class="token-cmdlet">Export-Csv</span> <span class="token-string">"SecurityAudit_$(Get-Date -Format 'yyyyMMdd').csv"</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <h2>Parallelism Methods Comparison</h2>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Best For</th>
+                                <th>Pros</th>
+                                <th>Cons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Invoke-Command</strong></td>
+                                <td>Remote execution on multiple systems</td>
+                                <td>Built-in parallelism, mature</td>
+                                <td>Requires WinRM</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Start-Job</strong></td>
+                                <td>Long-running local tasks</td>
+                                <td>Works in PS 5.1, full isolation</td>
+                                <td>Higher overhead, slower</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ForEach-Object -Parallel</strong></td>
+                                <td>Local parallel processing</td>
+                                <td>Simple syntax, efficient</td>
+                                <td>PS 7+ only</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ThreadJob</strong></td>
+                                <td>Lightweight local parallelism</td>
+                                <td>Lower overhead than Start-Job</td>
+                                <td>Less isolation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Warning -->
+                <div class="info-box warning-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">⚠️</div>
+                        <div class="info-box-title">Security Considerations</div>
+                    </div>
+                    <ul>
+                        <li>WinRM uses ports 5985 (HTTP) and 5986 (HTTPS)</li>
+                        <li>Use HTTPS (5986) in production for encrypted traffic</li>
+                        <li>Limit TrustedHosts—avoid using "*"</li>
+                        <li>Credentials are sent securely but audit who has access</li>
+                        <li>Consider Just Enough Administration (JEA) for restricted endpoints</li>
+                    </ul>
+                </div>
+
+                <!-- Interview Tips -->
+                <div class="info-box interview-box">
+                    <div class="info-box-header">
+                        <div class="info-box-icon">💼</div>
+                        <div class="info-box-title">Interview Tips</div>
+                    </div>
+                    <ul>
+                        <li><strong>Common Question:</strong> "How would you run a script on 100 servers?"</li>
+                        <li><strong>Strong Answer:</strong> Use <code>Invoke-Command</code> with an array of computer names—it executes in parallel by default (up to 32 at once via ThrottleLimit). For repeated commands, create persistent sessions with <code>New-PSSession</code> for better performance. Store credentials securely with <code>Get-Credential</code> or from a vault.</li>
+                        <li><strong>Follow-up:</strong> Mention error handling (<code>-ErrorAction</code>, <code>-ErrorVariable</code>), collecting failures separately, and using <code>-AsJob</code> for very long operations.</li>
+                    </ul>
+                </div>
+
+                <!-- Key Takeaways -->
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><code>Enable-PSRemoting</code> configures WinRM for remote connections</li>
+                    <li><code>Enter-PSSession</code> for interactive 1:1 sessions (like SSH)</li>
+                    <li><code>Invoke-Command</code> for running commands on multiple systems in parallel</li>
+                    <li><code>New-PSSession</code> creates reusable connections for multiple commands</li>
+                    <li>Use <code>$using:</code> to pass local variables to remote sessions</li>
+                    <li>PowerShell 7's <code>ForEach-Object -Parallel</code> simplifies local parallelism</li>
+                </ul>
+
+                <!-- Navigation -->
+                                                                                <div class="page-navigation">
+                    <a href="2-14-web-requests.html" class="nav-button prev">
+                        <span class="nav-button-label">Previous</span>
+                        <span class="nav-button-title">← 2.14 Web Requests & APIs</span>
+                    </a>
+                    <a href="2-16-error-handling.html" class="nav-button next">
+                        <span class="nav-button-label">Next</span>
+                        <span class="nav-button-title">2.16 Error Handling →</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <input type="text" class="search-modal-input" id="searchModalInput" placeholder="Search documentation..." autocomplete="off">
+            <div class="search-modal-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle">☰</button>
+
+    <script src="main.js"></script>
+</body>
+</html>
